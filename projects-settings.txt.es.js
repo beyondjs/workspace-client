@@ -1,0 +1,110 @@
+define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_exports, _amd_module, dependency_0) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.txt = _exports.hmr = void 0;
+
+  const bimport = specifier => {
+    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+  };
+
+  const {
+    Bundle: __Bundle
+  } = dependency_0;
+
+  const __pkg = new __Bundle({
+    "module": {
+      "vspecifier": "@beyond-js/dashboard@0.0.1/projects-settings",
+      "multibundle": true
+    },
+    "type": "txt"
+  }, _amd_module.uri).package('es');
+
+  ;
+
+  __pkg.dependencies.update([]);
+
+  const {
+    module
+  } = __pkg.bundle;
+  const ims = new Map();
+  /*********************
+  INTERNAL MODULE: ./txt
+  *********************/
+
+  ims.set('./txt', {
+    hash: 762036597,
+    creator: function (require, exports) {
+      exports.txt = {
+        "errors": {
+          "noSelected": "the application selected does not has distributions",
+          "ALREADY_EXISTS": "Ya existe una distribución con esta configuración",
+          "PORT_USED": "Ya existe una distribución con el puerto indicado"
+        },
+        "name": "Nombre",
+        "platform": {
+          "label": "Plataforma",
+          "options": {
+            "web": "Web",
+            "backend": "Backend",
+            "android": "Android",
+            "ios": "iOS",
+            "ssr": "SSR",
+            "node": "Node"
+          },
+          "environment": "Entorno",
+          "checkType": "Comprobación de tipos",
+          "port": {
+            "label": "Puerto",
+            "error": "El puerto no está disponible",
+            "success": "Puerto disponible",
+            "tooltip": "Check port"
+          },
+          "ts": "TS",
+          "default": "default",
+          "ssr": "ssr",
+          "titleModal": "Creememos Una nueva distribucion",
+          "modalHeader": "Elige la configuracion para la distribucion",
+          "compress": "Comprimir",
+          "add": "Añadir",
+          "title": "Distribuciones",
+          "environments": {
+            "dev": "Development",
+            "prod": "Production"
+          },
+          "applications": {
+            "select": "Proyecto"
+          }
+        }
+      };
+    }
+  });
+  __pkg.exports.descriptor = [{
+    "im": "./txt",
+    "from": "txt",
+    "name": "txt"
+  }];
+  let txt; // Module exports
+
+  _exports.txt = txt;
+
+  __pkg.exports.process = function ({
+    require,
+    prop,
+    value
+  }) {
+    (require || prop === 'txt') && (_exports.txt = txt = require ? require('./txt').txt : value);
+  };
+
+  const hmr = new function () {
+    this.on = (event, listener) => __pkg.hmr.on(event, listener);
+
+    this.off = (event, listener) => __pkg.hmr.off(event, listener);
+  }();
+  _exports.hmr = hmr;
+
+  __pkg.initialise(ims);
+});
