@@ -4,7 +4,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/backend", "0.0.10"], ["@beyond-js/kernel", "0.0.22"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -63,6 +63,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 
@@ -72,4 +74,4 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
 
   __pkg.initialise(ims);
 });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7TUFPQSxNQUFNQSxpQkFBaUIsR0FBSUMsS0FBRCxJQUFxQjtRQUMzQ0EsS0FBSyxDQUFDRCxpQkFBTkMsR0FBMEIsQ0FBQ0MsR0FBRCxFQUFhQyxNQUFiLEtBQW1DO1VBQ3pELEtBQUssTUFBTUMsS0FBWCxJQUFvQkQsTUFBcEIsRUFBNEI7WUFDeEIsSUFBSUMsS0FBSyxDQUFDQyxRQUFORCxFQUFKLEVBQXNCO1lBRXRCLE1BQU1FLElBQUksR0FBR0YsS0FBSyxDQUFDRyxXQUFOSCxFQUFiO1lBQ0EsTUFBTUksSUFBSSxHQUFHSixLQUFLLENBQUNLLGFBQU5MLEVBQWI7WUFDQSxNQUFNTSxNQUFNLEdBQUdOLEtBQUssQ0FBQ08sZUFBTlAsRUFBZjtZQUVBUSxPQUFPLENBQUNDLEdBQVJELENBQVlOLElBQVpNLEVBQWtCSixJQUFsQkksRUFBd0JGLE1BQXhCRTtVQUNIOztVQUVELE9BQU9WLEdBQUcsQ0FBQ1ksS0FBWDtRQVhKO01BREo7O01BZ0JDYixLQUFhLENBQUNELGlCQUFkQyxJQUFtQ0QsaUJBQWlCLENBQUNDLEtBQUQsQ0FBcERBIiwibmFtZXMiOlsicHJlcGFyZVN0YWNrVHJhY2UiLCJFcnJvciIsImVyciIsImZyYW1lcyIsImZyYW1lIiwiaXNOYXRpdmUiLCJmaWxlIiwiZ2V0RmlsZU5hbWUiLCJsaW5lIiwiZ2V0TGluZU51bWJlciIsImNvbHVtbiIsImdldENvbHVtbk51bWJlciIsImNvbnNvbGUiLCJsb2ciLCJzdGFjayJdLCJzb3VyY2VSb290IjoiLyIsInNvdXJjZXMiOlsiQGJleW9uZC1qcy9rZXJuZWwvZXJyb3IvZXJyb3IudHMiXSwic291cmNlc0NvbnRlbnQiOltudWxsXX0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7TUFPQSxNQUFNQSxpQkFBaUIsR0FBSUMsS0FBRCxJQUFxQjtRQUMzQ0EsS0FBSyxDQUFDRCxpQkFBTkMsR0FBMEIsQ0FBQ0MsR0FBRCxFQUFhQyxNQUFiLEtBQW1DO1VBQ3pELEtBQUssTUFBTUMsS0FBWCxJQUFvQkQsTUFBcEIsRUFBNEI7WUFDeEIsSUFBSUMsS0FBSyxDQUFDQyxRQUFORCxFQUFKLEVBQXNCO1lBRXRCLE1BQU1FLElBQUksR0FBR0YsS0FBSyxDQUFDRyxXQUFOSCxFQUFiO1lBQ0EsTUFBTUksSUFBSSxHQUFHSixLQUFLLENBQUNLLGFBQU5MLEVBQWI7WUFDQSxNQUFNTSxNQUFNLEdBQUdOLEtBQUssQ0FBQ08sZUFBTlAsRUFBZjtZQUVBUSxPQUFPLENBQUNDLEdBQVJELENBQVlOLElBQVpNLEVBQWtCSixJQUFsQkksRUFBd0JGLE1BQXhCRTtVQUNIOztVQUVELE9BQU9WLEdBQUcsQ0FBQ1ksS0FBWDtRQVhKO01BREo7O01BZ0JDYixLQUFhLENBQUNELGlCQUFkQyxJQUFtQ0QsaUJBQWlCLENBQUNDLEtBQUQsQ0FBcERBIiwibmFtZXMiOlsicHJlcGFyZVN0YWNrVHJhY2UiLCJFcnJvciIsImVyciIsImZyYW1lcyIsImZyYW1lIiwiaXNOYXRpdmUiLCJmaWxlIiwiZ2V0RmlsZU5hbWUiLCJsaW5lIiwiZ2V0TGluZU51bWJlciIsImNvbHVtbiIsImdldENvbHVtbk51bWJlciIsImNvbnNvbGUiLCJsb2ciLCJzdGFjayJdLCJzb3VyY2VSb290IjoiLyIsInNvdXJjZXMiOlsiZXJyb3IudHMiXSwic291cmNlc0NvbnRlbnQiOltudWxsXX0=

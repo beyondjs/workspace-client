@@ -4,10 +4,10 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.txt = _exports.hmr = void 0;
+  _exports.txt = _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", null], ["@beyond-js/ui", null], ["@beyond-js/inspect", null], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -36,9 +36,20 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
   *********************/
 
   ims.set('./txt', {
-    hash: 2409503332,
+    hash: 1029374951,
     creator: function (require, exports) {
       exports.txt = {
+        "sections": {
+          "error": {
+            "title": "Summary of errors"
+          },
+          "status": {
+            "title": "Compilation status"
+          }
+        },
+        "empty": {
+          "title": "There is no compilation in process"
+        },
         "title": "Compilation",
         "start": {
           "title": "Select a distribution"
@@ -72,9 +83,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
           "title": "Compilation Status",
           "errorLog": "Summary of errors obtained in building process"
         },
-        "finished": {
+        "alerts": {
           "error": "Build generated with errors",
           "success": "Build has been done successfully",
+          "process": "Building project"
+        },
+        "finished": {
           "directory": "Location directory"
         },
         "ts": "TS",
@@ -108,6 +122,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     (require || prop === 'txt') && (_exports.txt = txt = require ? require('./txt').txt : value);
   };
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 
