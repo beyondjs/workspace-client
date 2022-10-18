@@ -1,17 +1,19 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.0.22/texts", "@beyond-js/dashboard@0.0.1/project-compile.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/ds-select", "react-select@5.4.0", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/tabs"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.ApplicationBoard = ApplicationBoard;
-  _exports.Distributions = Distributions;
-  _exports.Header = Header;
+  _exports.DisplayListActions = DisplayListActions;
+  _exports.DistributionsHeader = DistributionsHeader;
   _exports.HeaderStructure = HeaderStructure;
   _exports.ModulesList = ModulesList;
+  _exports.NoDistributionsModal = NoDistributionsModal;
+  _exports.ProjectHeaderActions = ProjectHeaderActions;
   _exports.Tab = Tab;
   _exports.TabSelector = TabSelector;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -42,46 +44,56 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     BeyondConfirmModal
   } = dependency_10;
   const {
-    useBinder
+    DSSelect
   } = dependency_11;
+  const Select = dependency_12.default;
   const {
-    DSModel
-  } = dependency_12;
-  const {
-    BeyondTooltip
+    useBinder
   } = dependency_13;
   const {
-    Uploader
+    DSModel
   } = dependency_14;
   const {
-    monacoDependency
+    BeyondTooltip
   } = dependency_15;
+  const {
+    Uploader
+  } = dependency_16;
+  const {
+    monacoDependency
+  } = dependency_17;
   const {
     FadeIn,
     DSIcon,
     DashboardIcon,
+    ProcessIconButton,
     DSIconButton
-  } = dependency_16;
-  const {
-    DSContextMenu
-  } = dependency_17;
-  const {
-    AppDistributions
   } = dependency_18;
   const {
-    AppContext,
-    useAppContext,
-    useDSWorkspaceContext
+    DSContextMenu
   } = dependency_19;
   const {
-    CurrentTexts
+    ProjectDistributions
   } = dependency_20;
   const {
-    CompileModal
+    ProjectContext,
+    useProjectContext,
+    useDSWorkspaceContext
   } = dependency_21;
+  const {
+    CurrentTexts
+  } = dependency_22;
+  const {
+    CompileModal
+  } = dependency_23;
+  const {
+    TabsContainer,
+    Tabs,
+    Board
+  } = dependency_24;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -99,7 +111,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.legacy', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/tooltip', dependency_13], ['@beyond-js/dashboard/uploader-workspace', dependency_14], ['@beyond-js/dashboard/ds-editor.code', dependency_15], ['@beyond-js/dashboard/core-components', dependency_16], ['@beyond-js/dashboard/context-menu', dependency_17], ['@beyond-js/dashboard/project-distributions.code', dependency_18], ['@beyond-js/dashboard/ds-contexts', dependency_19], ['@beyond-js/kernel/texts', dependency_20], ['@beyond-js/dashboard/project-compile.code', dependency_21]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.legacy', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/ds-select', dependency_11], ['react-select', dependency_12], ['@beyond-js/dashboard/hooks', dependency_13], ['@beyond-js/dashboard/models', dependency_14], ['@beyond-js/dashboard/tooltip', dependency_15], ['@beyond-js/dashboard/uploader-workspace', dependency_16], ['@beyond-js/dashboard/ds-editor.code', dependency_17], ['@beyond-js/dashboard/core-components', dependency_18], ['@beyond-js/dashboard/context-menu', dependency_19], ['@beyond-js/dashboard/project-distributions.code', dependency_20], ['@beyond-js/dashboard/ds-contexts', dependency_21], ['@beyond-js/kernel/texts', dependency_22], ['@beyond-js/dashboard/project-compile.code', dependency_23], ['@beyond-js/dashboard/tabs', dependency_24]]);
 
   const {
     module
@@ -175,59 +187,33 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }
 
   }();
-
-  function _extends() {
-    _extends = Object.assign ? Object.assign.bind() : function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-
-      return target;
-    };
-    return _extends.apply(this, arguments);
-  }
-  /*********************
-  main-board\context.jsx
-  *********************/
-
-
-  const StaticContext = React.createContext();
-
-  const useStaticContext = () => React.useContext(StaticContext);
-  /*******************
-  main-board\index.jsx
-  *******************/
-
+  /********
+  index.jsx
+  ********/
 
   const VIEWS = {
     modules: ModulesList,
-    distributions: AppDistributions,
+    distributions: ProjectDistributions,
     config: Description
   };
 
   function ApplicationBoard(props) {
-    const [displayView, setDisplayView] = React.useState(localStorage.getItem('beyond.lists.view') ?? 'table');
     const [state, setState] = React.useState({});
     const {
       panel,
-      workspace,
-      action
+      workspace
     } = useDSWorkspaceContext();
-    const [showModalCompile, setShowCompileModal] = React.useState(false);
     const {
       id,
       moduleId
     } = props?.specs ?? {};
     const tab = VIEWS.hasOwnProperty(props.specs.tab) ? props.specs.tab : 'modules';
+    const [showNoDistributionsModal, setShowNoDistributionsModal] = React.useState(false);
+    const [addDistribution, setAddDistribution] = React.useState(false);
     const [selectedView, setSelectedView] = React.useState(tab);
     React.useEffect(() => {
       if (!id) return;
+      setShowNoDistributionsModal(false);
 
       const onChange = () => {
         const {
@@ -237,15 +223,6 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
           controller,
           ready
         }));
-
-        if (ready) {
-          let {
-            application: {
-              application
-            }
-          } = controller;
-          panel.setTabName(`app.${application.id}`, application.name);
-        }
       };
 
       controller.start(workspace, id, moduleId);
@@ -254,38 +231,45 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       return () => controller.unbind('change', onChange);
     }, [id]);
     if (!state.ready || controller.currentId !== id) return /*#__PURE__*/React.createElement(Preloader, null);
+    const {
+      application: project,
+      texts,
+      application: {
+        application
+      }
+    } = controller;
     const value = {
-      application: controller.application,
+      application,
       // @deprecated Application is a legacy name.
-      project: controller.application,
+      project,
       // project is the name to use instead of application.
-      texts: controller.texts,
-      displayView,
-      setDisplayView,
+      texts,
       id,
       selectedView,
       setSelectedView,
-      showModalCompile,
-      setShowCompileModal
+      addDistribution,
+      setAddDistribution,
+      showNoDistributionsModal,
+      setShowNoDistributionsModal
     };
-    const Control = VIEWS[selectedView];
-    const attrs = {};
-    if (selectedView === 'distributions') attrs.application = controller.application;
-    return /*#__PURE__*/React.createElement(AppContext.Provider, {
+    return /*#__PURE__*/React.createElement(ProjectContext.Provider, {
       value: value
     }, /*#__PURE__*/React.createElement("div", {
       className: "ds__board"
     }, /*#__PURE__*/React.createElement(HeaderStructure, null), /*#__PURE__*/React.createElement("div", {
-      className: "cols-container"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "left-col"
-    }, /*#__PURE__*/React.createElement(TabSelector, null), /*#__PURE__*/React.createElement(Control, _extends({}, attrs, {
+      className: "ds__board__tabs-container container--no-gap"
+    }, /*#__PURE__*/React.createElement(TabsContainer, null, /*#__PURE__*/React.createElement(Tabs, {
+      tabs: ["Modules", "Distributions", "Configuration"]
+    }), /*#__PURE__*/React.createElement(Board, null, /*#__PURE__*/React.createElement(ModulesList, null), /*#__PURE__*/React.createElement(ProjectDistributions, {
       application: controller.application
-    }))))), /*#__PURE__*/React.createElement(CompileModal, null));
+    }), /*#__PURE__*/React.createElement(Description, null))))), showNoDistributionsModal && /*#__PURE__*/React.createElement(NoDistributionsModal, {
+      onClose: () => setShowNoDistributionsModal(false),
+      type: showNoDistributionsModal
+    }));
   }
-  /*************************************
-  main-board\structure\action-button.jsx
-  *************************************/
+  /**************************
+  structure\action-button.jsx
+  **************************/
 
 
   function DSProcessButton({
@@ -319,309 +303,274 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       title: title
     });
   }
-  /******************************
-  main-board\structure\header.jsx
-  ******************************/
+  /***************************
+  structure\header\actions.jsx
+  ***************************/
+
+
+  function ProjectHeaderActions() {
+    let {
+      setShowNoDistributionsModal,
+      project: {
+        application: {
+          declarations,
+          deployment: {
+            distributions
+          }
+        }
+      },
+      texts: {
+        actions
+      }
+    } = useProjectContext();
+    const {
+      toggleCompilationModal
+    } = useDSWorkspaceContext();
+
+    const generateDeclarations = () => declarations.update();
+
+    const compile = event => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!distributions.size) {
+        setShowNoDistributionsModal('compile');
+        return;
+      }
+
+      toggleCompilationModal();
+    }; // const [processed, setProcessed] = React.useState(project.moduleManager.processed);
+    // const {itemsProcessed, total} = declarations;
+
+
+    return /*#__PURE__*/React.createElement("section", {
+      className: "project__header__actions flex-center flex-container"
+    }, /*#__PURE__*/React.createElement(DistributionsHeader, null), /*#__PURE__*/React.createElement(DSIconButton, {
+      title: actions.compile,
+      onClick: compile,
+      icon: "compile"
+    }), /*#__PURE__*/React.createElement(ProcessIconButton, {
+      onClick: generateDeclarations,
+      title: actions.declarations,
+      icon: "declarations"
+    }));
+  }
+  /***************************************
+  structure\header\distributions\index.jsx
+  ***************************************/
+
+
+  function DistributionsHeader() {
+    const [selectedDistribution, setSelectedDistribution] = React.useState();
+    const {
+      setShowNoDistributionsModal,
+      project: {
+        application: {
+          deployment,
+          deployment: {
+            distributions
+          }
+        }
+      }
+    } = useProjectContext();
+    const options = [...distributions.values()].filter(item => !!item.name).map(item => ({
+      value: item.name,
+      label: item.name
+    }));
+    const noDistributions = !options.length;
+
+    const handleChange = option => {
+      setSelectedDistribution(option.value);
+    };
+
+    const handleClick = () => {
+      if (noDistributions) {
+        setShowNoDistributionsModal('execute');
+        return;
+      }
+    };
+
+    if (noDistributions) {
+      return (
+        /*#__PURE__*/
+        // <section className="project__header__distributions">
+        React.createElement("div", {
+          className: "launchers__action__container"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "simulated__select"
+        }, "Execute", /*#__PURE__*/React.createElement(DSIcon, {
+          icon: "arrowDropDown"
+        })), /*#__PURE__*/React.createElement(DSIconButton, {
+          icon: "play",
+          onClick: handleClick
+        })) // </section>
+
+      );
+    }
+
+    return (
+      /*#__PURE__*/
+      // <section className="project__header__distributions">
+      React.createElement("div", {
+        className: "launchers__action__container"
+      }, /*#__PURE__*/React.createElement(DSSelect, {
+        className: "ds-select",
+        name: "backend",
+        options: options,
+        onChange: handleChange,
+        value: selectedDistribution
+      }), /*#__PURE__*/React.createElement(DSIconButton, {
+        icon: "play",
+        onClick: handleClick
+      })) // </section>
+
+    );
+  }
+  /********************************************************
+  structure\header\distributions\no-distributions-modal.jsx
+  ********************************************************/
+
+
+  function NoDistributionsModal({
+    type
+  }) {
+    const {
+      texts: {
+        distribution: {
+          empty
+        }
+      },
+      setAddDistribution,
+      setShowNoDistributionsModal,
+      setSelectedView
+    } = useProjectContext();
+    const {
+      title,
+      action,
+      message
+    } = empty[type];
+
+    const closeModal = () => {
+      setShowNoDistributionsModal(false);
+    };
+
+    const openDistributionsTab = () => {
+      closeModal();
+      setSelectedView('distributions');
+      setAddDistribution(true);
+    };
+
+    return /*#__PURE__*/React.createElement(BeyondModal, {
+      show: true,
+      onClose: closeModal,
+      className: "ds-modal"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels modal__panels--auto"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section left__panel"
+    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h3", null, title)), /*#__PURE__*/React.createElement("footer", null, /*#__PURE__*/React.createElement(BeyondButton, {
+      onClick: openDistributionsTab,
+      className: "primary"
+    }, action))), /*#__PURE__*/React.createElement("section", {
+      className: "right__panel flex-container flex-center"
+    }, /*#__PURE__*/React.createElement("p", {
+      className: "p2"
+    }, message))));
+  }
+  /*************************
+  structure\header\index.jsx
+  *************************/
 
 
   function HeaderStructure() {
     let {
-      texts,
-      texts: {
-        actions
-      },
-      application,
-      showModalCompile,
-      setShowCompileModal
-    } = useAppContext();
-    const {
-      panel,
-      workspace
-    } = useDSWorkspaceContext();
-    const model = application?.application;
+      project
+    } = useProjectContext();
+    const model = project?.application;
     const [state, setState] = React.useState({});
-    const [processed, setProcessed] = React.useState(application.moduleManager.processed);
     if (!model) return null;
     const {
       declarations
     } = model;
-    const {
-      itemsProcessed,
-      total
-    } = declarations;
-
-    const openNavigator = event => {
-      event.preventDefault();
-      event.stopPropagation();
-      workspace.openNavigator(model.id, model.url, true);
-    };
-
     useBinder([model, declarations], () => setState({}));
-    useBinder([application.moduleManager], () => setProcessed(application.moduleManager.processed));
-
-    const generateDeclarations = () => declarations.update();
-
-    const openDistributions = event => {
-      event.preventDefault();
-      workspace.openBoard('settings', {
-        tab: 'apps'
-      });
-    };
-
-    const compile = event => {
-      event.stopPropagation();
-      event.preventDefault();
-      setShowCompileModal(true);
-    };
-
+    useBinder([project.moduleManager], () => setProcessed(project.moduleManager.processed));
     return /*#__PURE__*/React.createElement("div", {
-      className: "application__detail sticky-content"
+      className: "project__detail board__header"
     }, /*#__PURE__*/React.createElement("section", {
-      className: "board__header"
-    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h2", null, model.name, " ", /*#__PURE__*/React.createElement("small", null, `(id: ${model.id})`)), /*#__PURE__*/React.createElement("span", {
-      className: "pathname"
-    }, model.path), model.url && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-      onClick: openNavigator,
-      href: model.url,
-      className: "link",
-      target: "_blank"
-    }, model.url))), /*#__PURE__*/React.createElement("div", {
-      className: "board__header__actions flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "scanned__section  flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "title"
-    }, texts.scanner.title), /*#__PURE__*/React.createElement("div", {
-      className: "detail_item"
-    }, processed, " / ", application.moduleManager.total), /*#__PURE__*/React.createElement(DSProcessButton, {
-      title: texts.actions.scanAll,
-      onClick: application.moduleManager.loadAll,
-      className: "on-primary circle",
-      icon: "scan"
-    })), /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: openDistributions,
-      icon: "distributions",
-      title: texts.actions.distributions
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: compile,
-      icon: "compile",
-      title: texts.actions.compile
-    }), /*#__PURE__*/React.createElement(BeyondButton, {
-      onClick: generateDeclarations,
-      className: "btn primary"
-    }, !declarations.processing ? /*#__PURE__*/React.createElement(React.Fragment, null, actions.declarations) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(BeyondSpinner, {
-      className: "on-primary"
-    }), `${actions.generatingDeclarations} ${itemsProcessed}/${total}`)))));
+      className: "project__header___detail"
+    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h4", null, model.name, " ", /*#__PURE__*/React.createElement("small", null, `(id: ${model.id})`)), !!project.specifier && /*#__PURE__*/React.createElement("div", {
+      className: "project__specifier flex flex-center-y"
+    }, /*#__PURE__*/React.createElement(DSIcon, {
+      icon: "contentCopy"
+    }), project.specifier))), /*#__PURE__*/React.createElement(ProjectHeaderActions, null));
   }
-  /**************************************************
-  main-board\structure\header\distributions\index.jsx
-  **************************************************/
-
-
-  function Distributions() {
-    return /*#__PURE__*/React.createElement(React.Fragment, null);
-  }
-  /************************************
-  main-board\structure\header\index.jsx
-  ************************************/
-
-
-  function Header() {
-    let {
-      texts,
-      texts: {
-        actions
-      },
-      application,
-      setShowCompileModal
-    } = useAppContext();
-    const {
-      panel,
-      workspace
-    } = useDSWorkspaceContext();
-    const model = application?.application;
-    const [state, setState] = React.useState({});
-    const [processed, setProcessed] = React.useState(application.moduleManager.processed);
-    if (!model) return null;
-    const {
-      declarations
-    } = model;
-    const {
-      itemsProcessed,
-      total
-    } = declarations;
-
-    const openNavigator = event => {
-      event.preventDefault();
-      event.stopPropagation();
-      workspace.openNavigator(model.id, model.url, true);
-    };
-
-    useBinder([model, declarations], () => setState({}));
-    useBinder([application.moduleManager], () => setProcessed(application.moduleManager.processed));
-
-    const generateDeclarations = () => declarations.update();
-
-    const openDistributions = event => {
-      event.preventDefault();
-      workspace.openBoard('settings', {
-        tab: 'apps'
-      });
-    };
-
-    const compile = event => {
-      event.stopPropagation();
-      event.preventDefault();
-      setShowCompileModal(true);
-    };
-
-    return /*#__PURE__*/React.createElement("div", {
-      className: "application__detail sticky-content"
-    }, /*#__PURE__*/React.createElement("section", {
-      className: "board__header"
-    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h2", null, model.name, " ", /*#__PURE__*/React.createElement("small", null, `(id: ${model.id})`)), /*#__PURE__*/React.createElement("span", {
-      className: "pathname"
-    }, model.path), model.url && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-      onClick: openNavigator,
-      href: model.url,
-      className: "link",
-      target: "_blank"
-    }, model.url))), /*#__PURE__*/React.createElement("div", {
-      className: "board__header__actions flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "scanned__section  flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "title"
-    }, texts.scanner.title), /*#__PURE__*/React.createElement("div", {
-      className: "detail_item"
-    }, processed, " / ", application.moduleManager.total), /*#__PURE__*/React.createElement(DSProcessButton, {
-      title: texts.actions.scanAll,
-      onClick: application.moduleManager.loadAll,
-      className: "on-primary circle",
-      icon: "scan"
-    })), /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: openDistributions,
-      icon: "distributions",
-      title: texts.actions.distributions
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: compile,
-      icon: "compile",
-      title: texts.actions.compile
-    }), /*#__PURE__*/React.createElement(BeyondButton, {
-      onClick: generateDeclarations,
-      className: "btn primary"
-    }, !declarations.processing ? /*#__PURE__*/React.createElement(React.Fragment, null, actions.declarations) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(BeyondSpinner, {
-      className: "on-primary"
-    }), `${actions.generatingDeclarations} ${itemsProcessed}/${total}`)))));
-  }
-  /*********************************
-  main-board\structure\preloader.jsx
-  *********************************/
+  /**********************
+  structure\preloader.jsx
+  **********************/
 
 
   function Preloader() {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("main", {
       className: "ds__board"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "application__detail"
+      className: "project__detail board__header"
     }, /*#__PURE__*/React.createElement("section", {
-      className: "board__header"
-    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: "17px",
-      width: "50px"
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "pathname"
-    }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: "7px",
+      className: "project__header___detail"
+    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement(BeyondPreloadText, {
+      height: "11px",
       width: "150px"
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "board__header__actions flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "scanned__section  flex-center flex-container"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "title"
-    }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: "7px",
-      width: "100px"
     })), /*#__PURE__*/React.createElement("div", {
-      className: "detail_item"
-    }, "..."), /*#__PURE__*/React.createElement("button", {
-      className: "beyond-icon-button circle button--fetching"
-    }, /*#__PURE__*/React.createElement(BeyondSpinner, {
-      active: true,
-      className: "primary"
-    }))), /*#__PURE__*/React.createElement(BeyondButton, {
-      icon: "distributions",
-      className: "btn primary"
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      className: "circle bee--action action--play",
-      icon: "compile"
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "play"
-    }), /*#__PURE__*/React.createElement("button", {
-      className: "beyond-icon-button circle button--fetching"
-    }, /*#__PURE__*/React.createElement(BeyondSpinner, {
-      active: true,
-      className: "primary"
-    })), /*#__PURE__*/React.createElement(BeyondButton, {
-      className: "btn primary"
-    }, /*#__PURE__*/React.createElement(BeyondSpinner, {
-      className: "on-primary"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "pd-base"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "link"
-    }, " ", /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: "7px",
-      width: "50px"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "ds-board__application application-header"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "left-col"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "modules-list_header"
-    }, /*#__PURE__*/React.createElement("section", {
-      className: "header_container"
-    }, /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("input", {
-      className: "modules-list_search-input"
-    }))), /*#__PURE__*/React.createElement("section", {
-      className: "header_container app__container-filter"
-    }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: "7px",
-      width: "50px"
-    }), /*#__PURE__*/React.createElement(BeyondIconButton, {
-      icon: "expandMore",
-      className: "circle"
+      className: "project__specifier flex flex-center-y"
+    }, /*#__PURE__*/React.createElement(DSIcon, {
+      icon: "contentCopy",
+      disabled: true
     }), /*#__PURE__*/React.createElement(BeyondPreloadText, {
       height: "7px",
       width: "50px"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "right-col"
+    })))), /*#__PURE__*/React.createElement("section", {
+      className: "project__header__actions flex-center flex-container"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "actions"
-    }, /*#__PURE__*/React.createElement(DSIconButton, {
-      "data-view": "grid",
-      icon: "thSolid",
-      className: `circle`
+      className: "launchers__action__container"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "simulated__select preload"
     }), /*#__PURE__*/React.createElement(DSIconButton, {
-      "data-view": "table",
-      icon: "thSolid",
-      className: `circle`
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "actions"
+      icon: "play",
+      disabled: true
+    })), /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: "compile",
+      disabled: true
+    }), /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: "declarations",
+      disabled: true
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "ds__board__tabs-container"
+    }, /*#__PURE__*/React.createElement("article", {
+      className: "ds-tabs__container"
+    }, /*#__PURE__*/React.createElement("ul", {
+      className: "ds-tabs__list"
+    }, /*#__PURE__*/React.createElement("li", {
+      className: "ds-tabs__tab"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "tab-button active"
     }, /*#__PURE__*/React.createElement("span", {
-      className: "tag"
-    }, " \xA0 \xA0\xA0\xA0\xA0\xA0"), /*#__PURE__*/React.createElement("span", {
-      className: "tag"
-    }, " \xA0 \xA0\xA0\xA0\xA0\xA0"), /*#__PURE__*/React.createElement("span", {
-      className: "tag"
-    }, " \xA0 \xA0\xA0\xA0\xA0\xA0"), /*#__PURE__*/React.createElement("span", {
-      className: "tag"
-    }, " \xA0 \xA0\xA0\xA0\xA0\xA0")))));
+      className: "tab-name"
+    }, "\xA0"))), /*#__PURE__*/React.createElement("li", {
+      className: "ds-tabs__tab"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "tab-button"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "tab-name"
+    }, "\xA0"))), /*#__PURE__*/React.createElement("li", {
+      className: "ds-tabs__tab"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "tab-button"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "tab-name"
+    }, "\xA0")))))));
   }
-  /*********************************
-  main-board\structure\tabs\item.jsx
-  *********************************/
+  /**********************
+  structure\tabs\item.jsx
+  **********************/
 
 
   function Tab({
@@ -631,7 +580,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     const {
       selectedView,
       setSelectedView
-    } = useAppContext();
+    } = useProjectContext();
     const isSelected = selectedView === value; // Esto lo dejo listo para que se apliquen los estilos correspondientes 🙂
 
     const activeClassName = isSelected ? 'active' : '';
@@ -640,18 +589,18 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       setSelectedView(value);
     }
 
+    const cls = `ds-tabs__tab ${isSelected ? ' ds-tabs__tab--active' : ''}`;
     return /*#__PURE__*/React.createElement("li", {
-      className: "tab"
+      className: cls
     }, /*#__PURE__*/React.createElement("button", {
-      className: `tab-button ${activeClassName}`,
       onClick: selectTab
     }, /*#__PURE__*/React.createElement("span", {
       className: "tab-name"
     }, name)));
   }
-  /*****************************************
-  main-board\structure\tabs\tab-selector.jsx
-  *****************************************/
+  /******************************
+  structure\tabs\tab-selector.jsx
+  ******************************/
 
 
   function TabSelector() {
@@ -661,11 +610,11 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
           tabs: texts
         }
       }
-    } = useAppContext();
+    } = useProjectContext();
     return /*#__PURE__*/React.createElement("nav", {
-      className: "tab-selector"
+      className: "ds-tabs__container"
     }, /*#__PURE__*/React.createElement("ul", {
-      className: "tab-list"
+      className: "ds-tabs__list"
     }, /*#__PURE__*/React.createElement(Tab, {
       name: texts.modules,
       value: "modules"
@@ -677,9 +626,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       value: "config"
     })));
   }
-  /*************************
-  main-board\tabs\config.jsx
-  *************************/
+  /**************
+  tabs\config.jsx
+  **************/
 
 
   function Description() {
@@ -690,16 +639,18 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       application: {
         application
       }
-    } = useAppContext();
-    return /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(EditField, {
+    } = useProjectContext();
+    return /*#__PURE__*/React.createElement("section", {
+      className: "tab__container"
+    }, /*#__PURE__*/React.createElement(EditField, {
       field: "title"
     }), /*#__PURE__*/React.createElement(EditField, {
       field: "description"
     }));
   }
-  /***********************
-  main-board\tabs\edit.jsx
-  ***********************/
+  /************
+  tabs\edit.jsx
+  ************/
 
 
   function EditField({
@@ -710,10 +661,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       texts: {
         application: texts
       },
-      application: {
-        application
-      }
-    } = useAppContext();
+      application
+    } = useProjectContext();
     const [value, setValue] = React.useState(application[field] ?? '');
     const label = texts.info[field];
     const fieldValue = application[field] ?? texts.info.empty[field];
@@ -781,9 +730,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       icon: "edit"
     })));
   }
-  /*****************************
-  main-board\tabs\list\empty.jsx
-  *****************************/
+  /******************
+  tabs\list\empty.jsx
+  ******************/
 
 
   function Empty({
@@ -822,7 +771,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     })));
   }
   /************************************************
-  main-board\tabs\list\header\containers-filter.jsx
+  tabs\list\header\components\containers-filter.jsx
   ************************************************/
 
 
@@ -886,7 +835,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }, libraries));
   }
   /*********************************************
-  main-board\tabs\list\header\filter-bundles.jsx
+  tabs\list\header\components\filter-bundles.jsx
   *********************************************/
 
 
@@ -899,8 +848,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
      * the name is overwritten here
      */
     const {
-      application: model
-    } = useAppContext();
+      project: model
+    } = useProjectContext();
     const {
       bundles
     } = model;
@@ -933,61 +882,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       className: "actions"
     }, filters);
   }
-  /*************************************
-  main-board\tabs\list\header\header.jsx
-  *************************************/
-
-
-  function HeaderList() {
-    let {
-      texts,
-      displayView,
-      setDisplayView
-    } = useAppContext();
-    texts = texts.navbar;
-    /**
-     * Changes the view from list view to grid and vice versa
-     * @param event
-     */
-
-    const changeView = event => {
-      const target = event.currentTarget;
-      const {
-        view
-      } = target.dataset; //remove all active classes in display button
-
-      const removeActive = item => item.classList.remove('active');
-
-      target.closest('.actions').querySelectorAll('.beyond-icon-button').forEach(removeActive);
-      target.classList.add('active');
-      localStorage.setItem('beyond.lists.view', view);
-      setDisplayView(view);
-    };
-
-    return /*#__PURE__*/React.createElement("div", {
-      className: "ds-board__application application-header"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "left-col"
-    }, /*#__PURE__*/React.createElement(SearchForm, null)), /*#__PURE__*/React.createElement("div", {
-      className: "right-col"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "actions"
-    }, /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: changeView,
-      "data-view": "grid",
-      icon: "thSolid",
-      className: `circle  ${displayView === 'grid' ? 'active' : ''}`
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      onClick: changeView,
-      "data-view": "table",
-      icon: "barsSolid",
-      className: `circle  ${displayView === 'table' ? 'active' : ''}`
-    })), /*#__PURE__*/React.createElement(FilterBundles, {
-      texts: texts
-    })));
-  }
   /******************************************
-  main-board\tabs\list\header\search-form.jsx
+  tabs\list\header\components\search-form.jsx
   ******************************************/
 
 
@@ -997,12 +893,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     const {
       addModule,
       texts,
-      application: model
-    } = useAppContext();
+      project
+    } = useProjectContext();
 
     const onChange = event => {
       setToFound(event.currentTarget.value);
-      model.filterText = event.currentTarget.value;
+      project.filterText = event.currentTarget.value;
     };
 
     const searcher = React.useRef();
@@ -1012,7 +908,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
     const search = event => {
       event.preventDefault();
-      setTitle(toFound);
+      const {
+        value
+      } = event.currentTarget;
     };
 
     const clickForm = event => {
@@ -1042,14 +940,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }, texts.actions.add)), /*#__PURE__*/React.createElement(ContainersFilter, null));
   }
   /**************************************
-  main-board\tabs\list\header\service.jsx
+  tabs\list\header\components\service.jsx
   **************************************/
 
 
   function ServiceActions() {
     let {
       application
-    } = useAppContext();
+    } = useProjectContext();
     if (!application.backend) return null;
     const [iconApp, setIconApp] = React.useState('av:stop');
     const runAction = React.useRef(null);
@@ -1069,9 +967,73 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       className: "circle secondary active"
     }));
   }
-  /************************************
-  main-board\tabs\list\item\actions.jsx
-  ************************************/
+  /*******************************************
+  tabs\list\header\components\view-actions.jsx
+  *******************************************/
+
+
+  function DisplayListActions() {
+    let {
+      texts,
+      displayView,
+      setDisplayView
+    } = useProjectContext();
+    /**
+     * Changes the view from list view to grid and vice versa
+     * @param event
+     */
+
+    const changeView = event => {
+      const target = event.currentTarget;
+      const {
+        view
+      } = target.dataset; //remove all active classes in display button
+
+      const removeActive = item => item.classList.remove('active');
+
+      target.closest('.actions').querySelectorAll('.beyond-icon-button').forEach(removeActive);
+      target.classList.add('active');
+      localStorage.setItem('beyond.lists.view', view);
+      setDisplayView(view);
+    };
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "actions"
+    }, /*#__PURE__*/React.createElement(DSIconButton, {
+      onClick: changeView,
+      "data-view": "grid",
+      icon: "thSolid",
+      className: `circle  ${displayView === 'grid' ? 'active' : ''}`
+    }), /*#__PURE__*/React.createElement(DSIconButton, {
+      onClick: changeView,
+      "data-view": "table",
+      icon: "barsSolid",
+      className: `circle  ${displayView === 'table' ? 'active' : ''}`
+    }));
+  }
+  /*************************
+  tabs\list\header\index.jsx
+  *************************/
+
+
+  function HeaderList() {
+    let {
+      texts
+    } = useProjectContext();
+    texts = texts.navbar;
+    return /*#__PURE__*/React.createElement("div", {
+      className: "ds-board__application application-header bg-secondary"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "left-col"
+    }, /*#__PURE__*/React.createElement(SearchForm, null)), /*#__PURE__*/React.createElement("div", {
+      className: "right-col"
+    }, /*#__PURE__*/React.createElement(FilterBundles, {
+      texts: texts
+    })));
+  }
+  /*************************
+  tabs\list\item\actions.jsx
+  *************************/
 
 
   function ItemActions({
@@ -1144,9 +1106,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       onClose: closeConfirm
     }));
   }
-  /******************************************
-  main-board\tabs\list\item\actions\clone.jsx
-  ******************************************/
+  /*******************************
+  tabs\list\item\actions\clone.jsx
+  *******************************/
 
 
   function ItemCloneAction({
@@ -1208,9 +1170,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       className: "on-primary"
     }) : 'Duplicar')))));
   }
-  /*******************************************
-  main-board\tabs\list\item\actions\delete.jsx
-  *******************************************/
+  /********************************
+  tabs\list\item\actions\delete.jsx
+  ********************************/
 
 
   function ItemDeleteAction({
@@ -1245,9 +1207,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       onCancel: onClose
     });
   }
-  /**************************************
-  main-board\tabs\list\item\grid-item.jsx
-  **************************************/
+  /***************************
+  tabs\list\item\grid-item.jsx
+  ***************************/
 
   /**
    *
@@ -1263,7 +1225,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     const {
       application,
       navigateModule
-    } = useAppContext();
+    } = useProjectContext();
     const {
       errors,
       warnings
@@ -1272,7 +1234,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       path,
       name
     } = am.module;
-    path = path.toLowerCase().replace(application.application.path.toLowerCase(), '');
+    path = path.toLowerCase().replace(application.path.toLowerCase(), '');
     return /*#__PURE__*/React.createElement(ModuleLink, {
       am: am
     }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("div", {
@@ -1299,9 +1261,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       am: am
     }));
   }
-  /****************************************
-  main-board\tabs\list\item\information.jsx
-  ****************************************/
+  /*****************************
+  tabs\list\item\information.jsx
+  *****************************/
 
 
   function ModuleInformation({
@@ -1309,15 +1271,17 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   }) {
     if (!am) return null;
     const {
-      application,
+      project,
       navigateModule
-    } = useAppContext();
-    const link = am.route ? `${application.application.url}${am.route.toLowerCase()}` : '';
+    } = useProjectContext();
+    const link = am.route ? `${project.application.url}${am.route.toLowerCase()}` : '';
     let {
       path,
-      name
+      name,
+      specifier,
+      subpath
     } = am.module;
-    path = path.toLowerCase().replace(application.application.path.toLowerCase(), '');
+    path = path.toLowerCase().replace(project.application.path.toLowerCase(), '');
 
     const navigate = event => {
       event.preventDefault();
@@ -1331,18 +1295,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     return /*#__PURE__*/React.createElement("div", {
       className: "col flex-center-y"
     }, /*#__PURE__*/React.createElement("h5", {
-      className: "lower"
-    }, path), name && /*#__PURE__*/React.createElement("h6", {
-      className: "module__name primary-color"
-    }, name), am.route && /*#__PURE__*/React.createElement("span", {
-      target: "_blank",
-      className: "link acent",
-      onClick: navigate
-    }, " ", route));
+      className: "lower p3"
+    }, name), /*#__PURE__*/React.createElement("span", {
+      className: "p2 primary-color"
+    }, specifier));
   }
-  /*********************************
-  main-board\tabs\list\item\item.jsx
-  *********************************/
+  /**********************
+  tabs\list\item\item.jsx
+  **********************/
 
   /**
    *
@@ -1392,9 +1352,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       am: am
     })));
   }
-  /*********************************
-  main-board\tabs\list\item\link.jsx
-  *********************************/
+  /**********************
+  tabs\list\item\link.jsx
+  **********************/
 
 
   function ModuleLink({
@@ -1406,7 +1366,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     } = useDSWorkspaceContext();
     const {
       project
-    } = useAppContext();
+    } = useProjectContext();
 
     const showModule = event => {
       event.stopPropagation();
@@ -1423,9 +1383,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       onClick: showModule
     }, children);
   }
-  /***************************************
-  main-board\tabs\list\item\processors.jsx
-  ***************************************/
+  /****************************
+  tabs\list\item\processors.jsx
+  ****************************/
 
 
   function Processors({
@@ -1442,38 +1402,35 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }, item));
     return /*#__PURE__*/React.createElement(React.Fragment, null, items);
   }
-  /****************************
-  main-board\tabs\list\list.jsx
-  ****************************/
+  /*****************
+  tabs\list\list.jsx
+  *****************/
 
 
   function ModulesList() {
     const {
       filterBundle,
-      application
-    } = useAppContext();
+      project
+    } = useProjectContext();
     let {
       texts,
       displayView
-    } = useAppContext();
-    useBinder([application], () => setItems(application?.items));
-    if (!application) return null;
-    const [items, setItems] = React.useState(application?.items ?? []);
+    } = useProjectContext();
+    const [items, setItems] = React.useState(project?.items ?? []);
+    const cls = `ds-list list--table`;
+    useBinder([project], () => {
+      setItems(project?.items);
+    }, 'items.filtered');
     texts = texts.modules;
-    if (!items.length) return /*#__PURE__*/React.createElement(Empty, {
-      texts: texts
-    });
-    const Control = displayView === 'table' ? Item : GridItem;
-    const output = items.map(item => /*#__PURE__*/React.createElement(Control, {
+    const output = items.map(item => /*#__PURE__*/React.createElement(Item, {
       am: item,
       key: item.id
     }));
-    const cls = `ds-list list--${displayView}`;
     return /*#__PURE__*/React.createElement("div", {
       className: "ds-board__list-container ds-module-list__component"
-    }, /*#__PURE__*/React.createElement(HeaderList, null), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(HeaderList, null), output.length ? /*#__PURE__*/React.createElement("div", {
       className: cls
-    }, output), !output?.length && /*#__PURE__*/React.createElement(Empty, {
+    }, output) : /*#__PURE__*/React.createElement(Empty, {
       texts: texts,
       type: filterBundle
     }));
@@ -1483,7 +1440,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-board.code', '.ds-board__application.ds__board{padding:20px}.workspace__board{padding:20px}.ds__board .application__detail{z-index:10}.ds__board .application__detail .board__header__actions{display:flex;align-content:center;justify-content:center;gap:10px}.ds__board .application__detail .board__header__actions .beyond-icon-button.action--play{fill:green;border:1px solid rgba(0,128,0,.2)}.ds__board .application__detail .board__header__actions .beyond-icon-button.action--stop{fill:red;border:1px solid rgba(255,0,0,.2);background:rgba(255,0,0,.2)}.ds__board .item-information{display:grid;grid-gap:8px;align-items:center;margin-top:15px}.ds__board .item-information .description-item{background:#333;padding:5px 15px;display:flex;justify-content:space-between;transition:all .2s ease-in;cursor:pointer}.ds__board .item-information .description-item:hover{background:#262626}.ds__board .item-information .description-item:hover .beyond-icon-button{opacity:1}.ds__board .item-information .description-item .beyond-icon-button{opacity:.3;transition:all .2s ease-in}.ds__board .item-information .description-item .beyond-icon-button svg{transition:all .2s ease-in;fill:var(--beyond-text-on-secondary)}.ds__board .item-information.item-information--edit .form-group{display:grid;grid-template-columns:1fr;grid-gap:5px;width:100%}.ds__board .item-information.item-information--edit .form-group input{background:#333;outline:0!important;color:var(--beyond-text-on-secondary);border:1px solid #f0f0f0;padding:15px;font-size:16px}.ds__board .item-information.item-information--edit .form-group input:hover{border-color:#e4e5dc}.ds__board .item-information.item-information--edit .form-group .form__actions{margin:15px;display:flex;gap:8px;justify-content:flex-end}.cols-container{display:grid;grid-template-columns:1fr;position:relative}.cols-container .left-col .container-distributions .header-distributions{padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center}.cols-container .left-col .container-distributions .list-distributions{width:100%;height:100%;padding:0 2.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;align-content:center}.cols-container .left-col .container-distributions .list-distributions .item-distribution{background:var(--beyond-secondary-color);box-shadow:0 1rem 10px 1px var(--beyond-secondary-dark-color);border:1px solid transparent;border-radius:.2rem;list-style:none;cursor:pointer;padding:2rem;display:flex;justify-content:space-between;align-items:center}.cols-container .left-col .container-distributions .list-distributions .item-distribution:hover{border:1px solid var(--beyond-text-on-primary)}.cols-container .left-col .container-distributions .list-distributions .item-distribution h2{font-weight:700;font-size:1.2rem;padding:unset;margin:.2rem 0}.cols-container .left-col .container-distributions .list-distributions .item-distribution .info-container{display:flex;flex-direction:column}.cols-container .left-col .container-distributions .list-distributions .item-distribution .info-container .item__description{color:var(--beyond-gray-color);font-size:1.2rem;margin:.1rem 0}.cols-container .left-col .container-distributions .list-distributions .item-distribution .actions-container{height:100%;display:flex;align-items:flex-end;gap:.5rem}.sticky-content{position:sticky;top:0}.modules-list_header .app__container-filter{position:relative;padding-right:0}.modules-list_header .app__container-filter .header-filter_list{position:absolute;top:100%;left:0;bottom:0;right:0;cursor:pointer;display:grid;background:rgba(5,9,16,.6);transition:all .3s ease-in-out;z-index:999;height:0;overflow:hidden;opacity:0}.modules-list_header .app__container-filter .header-filter_list.opened{opacity:1;transition:all .3s ease-in;height:auto;overflow:visible}.modules-list_header .app__container-filter .header-filter_list .header-filter_item{padding:8px 15px;transition:all .3s ease-in-out;cursor:pointer;background:rgba(5,9,16,.6)}.modules-list_header .app__container-filter .header-filter_list .header-filter_item:last-child{box-shadow:0 5px 5px -4px rgba(5,9,16,.6)}.modules-list_header .app__container-filter .header-filter_list .header-filter_item:hover{background:var(--beyond-primary-color);transition:all .3s ease-in}.modules-list_header{display:grid;width:100%;grid-template-columns:60% 40%;gap:8px}.modules-list_header .header_container{cursor:pointer;display:grid;grid-template-columns:1fr auto auto;transition:all ease-in .3s;align-items:center;border-bottom:1px solid #82837f;font-size:14px;padding:0 8px}.modules-list_header .header_container .filter-container{display:grid;grid-template-columns:1fr auto}.modules-list_header .header_container:focus-within{background:rgba(0,0,0,.4)}.modules-list_header .header_container .modules-list_search-input{border:0;background:0 0;cursor:pointer;color:#fff;outline:0;width:100%;transition:all .2s ease-in}.modules-list_header .header_container .modules-list_search-input::placeholder{color:#fff}.ds-board__application.application-header{display:grid;padding:15px;width:100%;grid-template-columns:1fr auto;grid-gap:15px}.ds-board__application.application-header .right-col{justify-content:flex-end}.ds-board__application.application-header .left-col,.ds-board__application.application-header .right-col{display:flex;justify-content:space-between;align-items:center;gap:15px}.ds-board__application.application-header .left-col label,.ds-board__application.application-header .right-col label{display:flex;align-items:center}.ds-board__application.application-header .left-col .actions,.ds-board__application.application-header .right-col .actions{display:flex;gap:5px}.module-list__item .beyond-icon-button,.module-list__item .beyond-icon.error-icon,.module-list__item .beyond-icon.warning-icon{border:1px solid var(--beyond-secondary-color);border-radius:50%;padding:10px;height:3.2rem;width:3.2rem;background:var(--beyond-secondary-dark-color);fill:#fff;transition:all .3s ease-in}.module-list__item .beyond-icon-button .beyond-ripple,.module-list__item .beyond-icon.error-icon .beyond-ripple,.module-list__item .beyond-icon.warning-icon .beyond-ripple{border-radius:50%}.module-list__item .beyond-icon-button.error-icon,.module-list__item .beyond-icon.error-icon.error-icon,.module-list__item .beyond-icon.warning-icon.error-icon{background:#d2281e}.module-list__item .beyond-icon-button.warning-icon,.module-list__item .beyond-icon.error-icon.warning-icon,.module-list__item .beyond-icon.warning-icon.warning-icon{fill:#F7D994}.ds-module-list__component .ds-list.list--grid{display:grid;padding:15px;grid-template-columns:1fr 1fr 1fr;grid-gap:15px}.ds-module-list__component .ds-list.list--grid .actions-icon,.ds-module-list__component .ds-list.list--grid .beyond-popover__target{fill:#fff;position:absolute;top:5px;padding:5px;right:5px;height:25px;width:25px;z-index:999}.ds-module-list__component .ds-list.list--grid .col-end{display:flex;justify-content:flex-end}.ds-module-list__component .ds-list.list--grid .module-list__item{padding:20px;border:1px solid var(--beyond-secondary-light-color);background-image:linear-gradient(to right,#121f36 0,#050910 100%);transition:all ease-in .3s;cursor:pointer}.ds-module-list__component .ds-list.list--grid .module-list__item .badge-item+.badge-item{margin-left:8px}.ds-module-list__component .ds-list.list--grid .module-list__item:hover{background-image:linear-gradient(to right,#050910 0,#121f36 100%);box-shadow:0 5px 5px -5px #000}.ds-module-list__component .ds-list.list--grid .module-list__item h4,.ds-module-list__component .ds-list.list--grid .module-list__item h5,.ds-module-list__component .ds-list.list--grid .module-list__item h6{padding:0;margin:0}.ds-module-list__component .ds-list.list--grid .module-list__item .col{margin-top:15px}.ds-module-list__component .ds-list.list--grid .module-list__item .icon{padding:5px 8px;height:30px;width:30px;border-radius:50%;background:#000}.ds-module-list__component .ds-list.list--grid .module-list__item .icon+.icon{margin-left:5px}.ds-module-list__component .ds-list.list--grid .module-list__item .icon.icon--error{fill:#D2281E}.ds-module-list__component .ds-list.list--grid .module-list__item .icon.icon--warning{fill:#F7D994}.ds-module-list__component .module-list__item{position:relative}.ds-module-list__component .module-list__item .actions-icon,.ds-module-list__component .module-list__item .beyond-popover__target{fill:#fff}.ds-module-list__component .module-list__item .beyond-popover__target.target--opened .beyond-icon{background:#000}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions{z-index:9999}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul{list-style:none;padding:0;margin:0;background:#000!important;box-shadow:0 3px 5px var(--beyond-secondary-dark-color)}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li{padding:8px;display:flex;align-items:center;gap:8px}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li .beyond-icon{fill:var(--beyond-primary-color)}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li:hover{background:var(--beyond-secondary-color)}.ds-list.list--table .module-list__item{display:grid;grid-template-columns:1fr auto auto;align-content:center;grid-gap:15px;justify-content:space-between;align-items:center;flex-flow:row;cursor:pointer;transition:all .3s ease-in;border-bottom:1px solid var(--beyond-gray-lighter-color);padding:20px;display:grid;justify-content:space-between;align-items:center;flex-flow:row}.ds-list.list--table .module-list__item:hover{background-image:linear-gradient(to right,rgba(18,31,54,.5) 0,rgba(5,9,16,.5) 100%);transition:all .3s ease-in}.ds-list.list--table .module-list__item:last-child{border-bottom:none;margin-bottom:20px}.ds-list.list--table .module-list__item .right-col{text-align:right;justify-content:flex-end}.ds-list.list--table .module-list__item .p1,.ds-list.list--table .module-list__item h3,.ds-list.list--table .module-list__item h4{margin:0;padding:0}.ds-list.list--table .module-list__item .actions,.ds-list.list--table .module-list__item .item-information{display:flex;gap:8px}.ds-list.list--table .module-list__item .actions .action-icon:hover .beyond-icon,.ds-list.list--table .module-list__item .item-information .action-icon:hover .beyond-icon{border:1px solid var(--beyond-primary-accent-color);background:var(--beyond-primary-accent-color);transition:all .3s ease-in}.ds-list.list--table .module-list__item .actions .beyond-icon-button.error-icon .beyond-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.error-icon .beyond-icon{background:var(--beyond-error-color)}.ds-list.list--table .module-list__item .actions .beyond-icon-button,.ds-list.list--table .module-list__item .item-information .beyond-icon-button{border:1px solid var(--beyond-secondary-color);border-radius:50%;padding:10px;height:5.2rem;width:3.2rem;background:var(--beyond-secondary-dark-color);fill:var(--beyond-text-on-primary);transition:all .3s ease-in}.ds-list.list--table .module-list__item .actions .beyond-icon-button .beyond-ripple,.ds-list.list--table .module-list__item .item-information .beyond-icon-button .beyond-ripple{border-radius:50%}.ds-list.list--table .module-list__item .actions .beyond-icon-button.error-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.error-icon{background:var(--beyond-error-color)}.ds-list.list--table .module-list__item .actions .beyond-icon-button.warning-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.warning-icon{fill:var(--beyond-warning-color)}.ds-list.list--table .module-list__item h4,.ds-list.list--table .module-list__item h5,.ds-list.list--table .module-list__item h6{padding:5px 0}.ds-list.list--table .module-list__item h4.module__name,.ds-list.list--table .module-list__item h4.module__name:first-letter,.ds-list.list--table .module-list__item h5.module__name,.ds-list.list--table .module-list__item h5.module__name:first-letter,.ds-list.list--table .module-list__item h6.module__name,.ds-list.list--table .module-list__item h6.module__name:first-letter{text-transform:lowercase}.ds-list.list--table .module-list__item .processors__list{display:flex;gap:5px}.ds-list.list--table .module-list__item .actions{display:flex;gap:8px;align-items:center}.ds-panel__static-board{display:grid;grid-template-rows:auto 1fr;padding:40px}.ds-panel__static-board .text-left{align-self:flex-start;justify-content:start}.ds-panel__static-board .text-left h3{padding:0;margin:0}.ds-panel__static-board>main{display:grid;grid-template-columns:60px 1fr;grid-gap:15px}.ds-panel__static-board>main .static__items ul{padding:0;margin:0;list-style:none;display:grid;grid-gap:5px}.ds-panel__static-board>main .static__items ul .beyond-icon-button{fill:var(--beyond-text-on-primary);stroke:var(--beyond-text-on-primary);display:grid;justify-content:center;align-items:center;width:100%;height:60px}.ds-panel__static-board>main .static__items ul li{cursor:pointer;display:grid;width:100%;position:relative;transition:.3s ease all}.ds-panel__static-board>main .static__items ul li .beyond-element-image{height:60px;margin:0;width:60px}.ds-panel__static-board>main .static__items ul li .beyond-element-image img{object-fit:contain;min-height:100%;width:100%}.ds-panel__static-board>main .static__items ul li:hover:after{content:" ";position:absolute;top:0;left:0;bottom:0;right:0;background:rgba(255,128,86,.3)}.ds-panel__static-board>main section .beyond-element-image{max-height:100%;max-width:100%;display:inline-grid;position:relative;transition:all .3s ease-in;opacity:.9;cursor:pointer}.ds-panel__static-board>main section .beyond-element-image:hover{opacity:1}.ds-panel__static-board>main section .beyond-element-image figcaption{display:none;transition:all .3s ease-in}.ds-panel__static-board>main section .beyond-element-image:hover figcaption{position:absolute;top:0;left:0;bottom:0;right:0;display:flex;transition:all .3s ease-in;justify-content:center;align-content:center;align-items:center;background:rgba(255,128,86,.4)}.ds-panel__static-board>main section .beyond-element-image.beyond-element-image-preload{background:0 0}.ds-panel__static-board>main section .beyond-element-image img{max-width:100%;max-height:100%;object-fit:contain}.ds-panel__static-board .static__header{display:flex;justify-content:space-between}.ds-panel__static-board .static__actions ul{display:flex;padding:0;list-style:none}.ds-panel__static-board .static__actions ul .beyond-ripple{border-radius:50%}.ds-panel__static-board .static__actions ul .beyond-icon-button{border:1px solid var(--beyond-secondary-color);border-radius:50%;background:var(--beyond-secondary-color)}.ds-panel__static-board .static__actions ul .beyond-icon-button svg{fill:#fff}.ds-board__application .tag{background:var(--beyond-secondary-light-color);color:var(--beyond-text-on-secondary);display:inline-flex;padding:3px 8px;font-size:.7rem;border-radius:2px;justify-content:center;align-items:center;cursor:pointer;text-transform:uppercase;text-align:center}.ds-board__application .tag.tag-active{background:#e4e5dc;color:var(--beyond-secondary-color)}.ds-board__application .tag.tag-error{background:var(--beyond-primary-dark-color)}.ds-board__application.application-header .actions .beyond-icon-button{transition:all .2s ease-in}.ds-board__application.application-header .actions .beyond-icon-button.active{background:var(--beyond-primary-accent-color)}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-board.code', '.ds-board__application.ds__board{padding:20px}.workspace__board{padding:20px}.ds__board .application__detail{z-index:10}.ds__board .application__detail .board__header__actions{display:flex;align-content:center;justify-content:center;gap:10px}.ds__board .application__detail .board__header__actions .beyond-icon-button.action--play{fill:green;border:1px solid rgba(0,128,0,.2)}.ds__board .application__detail .board__header__actions .beyond-icon-button.action--stop{fill:red;border:1px solid rgba(255,0,0,.2);background:rgba(255,0,0,.2)}.ds__board .item-information{display:grid;grid-gap:8px;align-items:center;margin-top:15px}.ds__board .item-information .description-item{padding:5px 15px;border-bottom:1px solid var(--app-border-color);display:flex;justify-content:space-between;transition:all .2s ease-in;cursor:pointer}.ds__board .item-information .description-item:hover .beyond-icon-button{opacity:1}.ds__board .item-information .description-item .beyond-icon-button{opacity:.3;transition:all .2s ease-in}.ds__board .item-information .description-item .beyond-icon-button svg{transition:all .2s ease-in;fill:var(--beyond-text-on-secondary)}.ds__board .item-information.item-information--edit .form-group{display:grid;grid-template-columns:1fr;grid-gap:5px;width:100%}.ds__board .item-information.item-information--edit .form-group input{outline:0!important;color:var(--beyond-text-on-secondary);border:none;box-shadow:none;border-bottom:1px solid var(--app-border-color);padding:15px;font-size:16px;background:0 0}.ds__board .item-information.item-information--edit .form-group input:hover{border-color:var(--secondary-dark)}.ds__board .item-information.item-information--edit .form-group .form__actions{margin:15px;display:flex;gap:8px;justify-content:flex-end}.ds__board .ds__board__tabs-container{padding:2.5rem;grid-gap:1rem;height:100%}.ds__board .ds__board__tabs-container.container--no-gap{grid-gap:0}.modules-list_header .app__container-filter{position:relative;padding-right:0}.modules-list_header .app__container-filter .header-filter_list{position:absolute;top:100%;left:0;bottom:0;right:0;cursor:pointer;display:grid;background:rgba(5,9,16,.6);transition:all .3s ease-in-out;z-index:999;height:0;overflow:hidden;opacity:0}.modules-list_header .app__container-filter .header-filter_list.opened{opacity:1;transition:all .3s ease-in;height:auto;overflow:visible}.modules-list_header .app__container-filter .header-filter_list .header-filter_item{padding:8px 15px;transition:all .3s ease-in-out;cursor:pointer;background:rgba(5,9,16,.6)}.modules-list_header .app__container-filter .header-filter_list .header-filter_item:last-child{box-shadow:0 5px 5px -4px rgba(5,9,16,.6)}.modules-list_header .app__container-filter .header-filter_list .header-filter_item:hover{background:var(--beyond-primary-color);transition:all .3s ease-in}.project__header__actions .launchers__action__container{width:60%;display:grid;grid-template-columns:1fr auto;grid-gap:.5rem;align-items:center}.project__header__actions .form__select,.project__header__actions .simulated__select{padding:.4rem;display:flex;justify-content:space-between;position:relative!important;border:none!important;border-bottom:1px solid var(--color-white)!important}.project__header__actions .form__select.preload,.project__header__actions .simulated__select.preload{border-bottom:1px solid var(--secondary)!important}.project__header__actions .form__select .form__select__options,.project__header__actions .simulated__select .form__select__options{bottom:-35px}.project__header__actions .form__select svg,.project__header__actions .simulated__select svg{fill:var(--text-on-primary)}.panel__container .project__detail.board__header{display:grid;grid-template-columns:1fr 30%;grid-gap:.25rem;padding:0}.panel__container .project__detail.board__header>section{padding:1rem;height:100%}.panel__container .project__detail.board__header .project__header__actions,.panel__container .project__detail.board__header .project__header__distributions{gap:.5rem}.panel__container .project__detail.board__header .project__header__actions .beyond-icon-button,.panel__container .project__detail.board__header .project__header__distributions .beyond-icon-button{border:1px solid var(--beyond-secondary-color);border-radius:50%;display:flex;align-content:center;justify-items:center;height:2.5rem;width:2.5rem;background:var(--beyond-secondary-dark-color);fill:#fff;transition:all .3s ease-in}.panel__container.panel__container--divided .project__detail.board__header{grid-template-columns:1fr}.modules-list_header{display:grid;width:100%;grid-template-columns:60% 40%;gap:8px}.modules-list_header .header_container{cursor:pointer;display:grid;grid-template-columns:1fr auto auto;transition:all ease-in .3s;align-items:center;border-bottom:1px solid #82837f;font-size:14px;padding:0 8px}.modules-list_header .header_container .filter-container{display:grid;grid-template-columns:1fr auto}.modules-list_header .header_container:focus-within{background:rgba(0,0,0,.4)}.modules-list_header .header_container .modules-list_search-input{border:0;background:0 0;cursor:pointer;color:#fff;outline:0;width:100%;transition:all .2s ease-in}.modules-list_header .header_container .modules-list_search-input::placeholder{color:#fff}.ds-board__application.application-header{display:grid;padding:15px;width:100%;grid-template-columns:1fr auto;grid-gap:15px}.ds-board__application.application-header .right-col{justify-content:flex-end}.ds-board__application.application-header .left-col,.ds-board__application.application-header .right-col{display:flex;justify-content:space-between;align-items:center;gap:15px}.ds-board__application.application-header .left-col label,.ds-board__application.application-header .right-col label{display:flex;align-items:center}.ds-board__application.application-header .left-col .actions,.ds-board__application.application-header .right-col .actions{display:flex;gap:5px}.module-list__item .beyond-icon-button,.module-list__item .beyond-icon.error-icon,.module-list__item .beyond-icon.warning-icon{border:1px solid var(--beyond-secondary-color);border-radius:50%;padding:10px;height:3.2rem;width:3.2rem;background:var(--beyond-secondary-dark-color);fill:#fff;transition:all .3s ease-in}.module-list__item .beyond-icon-button .beyond-ripple,.module-list__item .beyond-icon.error-icon .beyond-ripple,.module-list__item .beyond-icon.warning-icon .beyond-ripple{border-radius:50%}.module-list__item .beyond-icon-button.error-icon,.module-list__item .beyond-icon.error-icon.error-icon,.module-list__item .beyond-icon.warning-icon.error-icon{background:#d2281e}.module-list__item .beyond-icon-button.warning-icon,.module-list__item .beyond-icon.error-icon.warning-icon,.module-list__item .beyond-icon.warning-icon.warning-icon{fill:#F7D994}.ds-module-list__component .ds-list.list--grid{display:grid;padding:15px;grid-template-columns:1fr 1fr 1fr;grid-gap:15px}.ds-module-list__component .ds-list.list--grid .actions-icon,.ds-module-list__component .ds-list.list--grid .beyond-popover__target{fill:#fff;position:absolute;top:5px;padding:5px;right:5px;height:25px;width:25px;z-index:999}.ds-module-list__component .ds-list.list--grid .col-end{display:flex;justify-content:flex-end}.ds-module-list__component .ds-list.list--grid .module-list__item{padding:20px;border:1px solid var(--beyond-secondary-light-color);background-image:linear-gradient(to right,#121f36 0,#050910 100%);transition:all ease-in .3s;cursor:pointer}.ds-module-list__component .ds-list.list--grid .module-list__item .badge-item+.badge-item{margin-left:8px}.ds-module-list__component .ds-list.list--grid .module-list__item:hover{background-image:linear-gradient(to right,#050910 0,#121f36 100%);box-shadow:0 5px 5px -5px #000}.ds-module-list__component .ds-list.list--grid .module-list__item h4,.ds-module-list__component .ds-list.list--grid .module-list__item h5,.ds-module-list__component .ds-list.list--grid .module-list__item h6{padding:0;margin:0}.ds-module-list__component .ds-list.list--grid .module-list__item .col{margin-top:15px}.ds-module-list__component .ds-list.list--grid .module-list__item .icon{padding:5px 8px;height:30px;width:30px;border-radius:50%;background:#000}.ds-module-list__component .ds-list.list--grid .module-list__item .icon+.icon{margin-left:5px}.ds-module-list__component .ds-list.list--grid .module-list__item .icon.icon--error{fill:#D2281E}.ds-module-list__component .ds-list.list--grid .module-list__item .icon.icon--warning{fill:#F7D994}.ds-module-list__component .module-list__item{position:relative}.ds-module-list__component .module-list__item .actions-icon,.ds-module-list__component .module-list__item .beyond-popover__target{fill:#fff}.ds-module-list__component .module-list__item .beyond-popover__target.target--opened .beyond-icon{background:#000}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions{z-index:9999}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul{list-style:none;padding:0;margin:0;background:#000!important;box-shadow:0 3px 5px var(--beyond-secondary-dark-color)}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li{padding:8px;display:flex;align-items:center;gap:8px}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li .beyond-icon{fill:var(--beyond-primary-color)}.ds-module-list__component .module-list__item .beyond-popover__content.item-actions ul li:hover{background:var(--beyond-secondary-color)}.ds-list.list--table .module-list__item{display:grid;grid-template-columns:1fr auto auto;align-content:center;grid-gap:15px;justify-content:space-between;align-items:center;flex-flow:row;cursor:pointer;transition:all .3s ease-in;border-bottom:1px solid var(--beyond-gray-lighter-color);padding:20px;display:grid;justify-content:space-between;align-items:center;flex-flow:row}.ds-list.list--table .module-list__item:hover{background-image:linear-gradient(to right,rgba(18,31,54,.5) 0,rgba(5,9,16,.5) 100%);transition:all .3s ease-in}.ds-list.list--table .module-list__item:last-child{border-bottom:none;margin-bottom:20px}.ds-list.list--table .module-list__item .right-col{text-align:right;justify-content:flex-end}.ds-list.list--table .module-list__item .p1,.ds-list.list--table .module-list__item h3,.ds-list.list--table .module-list__item h4{margin:0;padding:0}.ds-list.list--table .module-list__item .actions,.ds-list.list--table .module-list__item .item-information{display:flex;gap:8px}.ds-list.list--table .module-list__item .actions .action-icon:hover .beyond-icon,.ds-list.list--table .module-list__item .item-information .action-icon:hover .beyond-icon{border:1px solid var(--beyond-primary-accent-color);background:var(--beyond-primary-accent-color);transition:all .3s ease-in}.ds-list.list--table .module-list__item .actions .beyond-icon-button.error-icon .beyond-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.error-icon .beyond-icon{background:var(--beyond-error-color)}.ds-list.list--table .module-list__item .actions .beyond-icon-button,.ds-list.list--table .module-list__item .item-information .beyond-icon-button{border:1px solid var(--beyond-secondary-color);border-radius:50%;padding:10px;height:5.2rem;width:3.2rem;background:var(--beyond-secondary-dark-color);fill:var(--beyond-text-on-primary);transition:all .3s ease-in}.ds-list.list--table .module-list__item .actions .beyond-icon-button .beyond-ripple,.ds-list.list--table .module-list__item .item-information .beyond-icon-button .beyond-ripple{border-radius:50%}.ds-list.list--table .module-list__item .actions .beyond-icon-button.error-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.error-icon{background:var(--beyond-error-color)}.ds-list.list--table .module-list__item .actions .beyond-icon-button.warning-icon,.ds-list.list--table .module-list__item .item-information .beyond-icon-button.warning-icon{fill:var(--beyond-warning-color)}.ds-list.list--table .module-list__item h4,.ds-list.list--table .module-list__item h5,.ds-list.list--table .module-list__item h6{padding:5px 0}.ds-list.list--table .module-list__item h4.module__name,.ds-list.list--table .module-list__item h4.module__name:first-letter,.ds-list.list--table .module-list__item h5.module__name,.ds-list.list--table .module-list__item h5.module__name:first-letter,.ds-list.list--table .module-list__item h6.module__name,.ds-list.list--table .module-list__item h6.module__name:first-letter{text-transform:lowercase}.ds-list.list--table .module-list__item .processors__list{display:flex;gap:5px}.ds-list.list--table .module-list__item .actions{display:flex;gap:8px;align-items:center}.ds-board__application .tag{background:var(--beyond-secondary-light-color);color:var(--beyond-text-on-secondary);display:inline-flex;padding:3px 8px;font-size:.7rem;border-radius:2px;justify-content:center;align-items:center;cursor:pointer;text-transform:uppercase;text-align:center}.ds-board__application .tag.tag-active{background:#e4e5dc;color:var(--beyond-secondary-color)}.ds-board__application .tag.tag-error{background:var(--beyond-primary-dark-color)}.ds-board__application.application-header .actions .beyond-icon-button{transition:all .2s ease-in}.ds-board__application.application-header .actions .beyond-icon-button.active{background:var(--beyond-primary-accent-color)}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -1493,6 +1450,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

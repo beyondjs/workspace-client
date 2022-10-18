@@ -1,13 +1,13 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.txt = _exports.hmr = void 0;
+  _exports.txt = _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -36,7 +36,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
   *********************/
 
   ims.set('./txt', {
-    hash: 3637122135,
+    hash: 1573832672,
     creator: function (require, exports) {
       exports.txt = {
         "actions": {
@@ -78,6 +78,36 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
             "close": "Cerrar"
           },
           "error404": "Application not found"
+        },
+        "select": {
+          "title": "Compilación",
+          "start": {
+            "title": "Selecciona una distribución para realizar la compilación"
+          },
+          "empty": "No hay distribuciones añadidas. Cree uno con la plataforma y las especificaciones que desea construir.",
+          "actions": {
+            "market": "Marketplace",
+            "compile": "Compilar"
+          }
+        },
+        "distribution": {
+          "environment": "Entorno",
+          "ts": "TS",
+          "platform": "Plataforma",
+          "ssr": "SSR",
+          "ports": {
+            "title": "Puertos",
+            "http": "Puerto Http",
+            "inspect": "Puerto de Inspección ",
+            "bundles": "Puerto DevServer"
+          },
+          "empty": {
+            "title": "Distributions",
+            "messages": {
+              "execute": "Es necesario agregar una distribución con la plataforma en la que desees ejecutar el proyecto",
+              "compile": "Es necesario agregar una distribución con la plataforma en la que desees compilar el proyecto"
+            }
+          }
         },
         "modules": {
           "actions": {
@@ -168,6 +198,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     (require || prop === 'txt') && (_exports.txt = txt = require ? require('./txt').txt : value);
   };
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
   });
   _exports.BundleManager = void 0;
   _exports.DSDatabase = DSDatabase;
-  _exports.projectsFactory = _exports.hmr = _exports.branchFactory = _exports.TreeFactory = _exports.ModuleModel = _exports.ModuleManager = _exports.FilesTree = _exports.FavoritesModel = _exports.FavoritesFactory = _exports.FavoriteChildren = _exports.DSUser = _exports.DSModel = void 0;
+  _exports.projectsFactory = _exports.hmr = _exports.branchFactory = _exports.__beyond_pkg = _exports.TreeFactory = _exports.Packagers = _exports.ModuleModel = _exports.ModuleManager = _exports.FilesTree = _exports.FavoritesModel = _exports.FavoritesFactory = _exports.FavoriteChildren = _exports.DSUser = _exports.DSModel = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -15,6 +15,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     ReactiveModel
   } = dependency_1;
   const {
+    Packager,
     Application,
     Consumers,
     Dashboard,
@@ -31,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
   } = dependency_5;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -1254,7 +1255,6 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
         },
         tree: tree
       });
-      console.log(1, bundle, tree);
       this.setFetching(true);
       bundle.bind('change', _ => {
         if (!bundle.tree.landed) return;
@@ -2047,7 +2047,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
         return this.#items.get(id);
       }
 
-      const tree = new this.types[type](type, specs);
+      const TreeModel = this.types[type];
+      const tree = new TreeModel(type, specs);
       this.#items.set(id, tree);
 
       tree.__setType(type);
@@ -2933,267 +2934,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       return !![...this.items.values()].find(item => item.items.find(item => item.pathname === pathname));
     };
   }
-  /**************************************
-  FILE: module\bundles\bundles-manager.js
-  **************************************/
+  /***************************************
+  FILE: module\bundles\bundle\consumers.js
+  ***************************************/
 
 
   _exports.FavoritesModel = FavoritesModel;
-
-  class BundlesManager extends ReactiveModel {
-    #applicationModel;
-
-    get applicationModel() {
-      return this.#applicationModel;
-    }
-
-    #bundles;
-
-    get bundles() {
-      return this.#bundles;
-    }
-
-    get fetching() {
-      let fetching = false;
-      this.items.forEach(bundle => {
-        if (bundle.fetching) fetching = true;
-      });
-      return fetching;
-    }
-
-    #processing;
-
-    get processing() {
-      return this.#processing;
-    }
-
-    #items = new Map();
-
-    get items() {
-      return this.#items;
-    }
-
-    get consumers() {
-      let consumers = [];
-      const set = new Set();
-      this.items.forEach(bundle => {
-        const {
-          items
-        } = bundle.consumers;
-        items.forEach(item => {
-          if (set.has(item.id)) return;
-          consumers.push(item);
-          set.add(item.id);
-        });
-      });
-      return consumers;
-    }
-
-    get dependencies() {
-      let dependencies = [];
-      const set = new Set();
-      this.items.forEach(bundle => {
-        if (!bundle.dependencies) return;
-        const {
-          items
-        } = bundle.dependencies;
-        items.forEach(item => {
-          if (set.has(item.id)) return;
-          set.add(item.id);
-          dependencies.push(item);
-        });
-      });
-      return dependencies;
-    }
-
-    #txt;
-    #module;
-
-    get module() {
-      return this.#module;
-    }
-
-    get id() {
-      return `${this.#module.id}////bundles-manager`;
-    }
-
-    #itemsProcessed = new Set();
-    #processed = false;
-
-    get processed() {
-      return this.#processed;
-    }
-
-    #tree;
-
-    get tree() {
-      return this.#tree;
-    }
-
-    #am;
-
-    get errors() {
-      let errors = [];
-      [...this.items.values()].forEach(item => {
-        errors = errors.concat(item.errors);
-      });
-      return errors;
-    }
-
-    get alerts() {
-      return this.errors.length + this.warnings.length;
-    }
-
-    get warnings() {
-      let warnings = [];
-      [...this.items.values()].forEach(item => warnings = warnings.concat(item.warnings));
-      return warnings;
-    }
-
-    #compilers;
-
-    get compilers() {
-      return this.#compilers;
-    }
-
-    constructor(module) {
-      super();
-      this.#module = module;
-      this.#am = module.am;
-      const txt = module.am.getBundle('txt');
-      this.#applicationModel = module.applicationModel;
-      this.#compilers = new CompilersManager();
-      this.#bundles = module.am.bundles;
-      this.#txt = txt;
-      this.#process();
-      this.createTree();
-    }
-
-    createTree() {
-      const items = [...this.#items.values()];
-      this.#tree = TreeFactory.get('module', {
-        project: this.#applicationModel,
-        object: this.module.am,
-        items: items,
-        listener: async () => {
-          const {
-            am,
-            am: {
-              bundles
-            }
-          } = this.#module;
-          this.#process();
-          const items = [...this.#items.values()];
-          if (!this.#am.tree.landed) return;
-          this.#tree.setElements(items);
-        }
-      });
-    }
-
-    check() {
-      this.items.forEach(bundle => bundle.dependencies.check());
-    }
-
-    #process() {
-      this.#am.bundles.forEach(bundle => {
-        if (bundle.name === 'txt' || this.#items.has(bundle.name)) return;
-        const bundleManager = new BundleManager(this.#applicationModel, this.#tree, bundle, this.#txt);
-
-        const onProcess = () => {
-          this.#itemsProcessed.add(bundleManager.id);
-
-          if (!bundleManager.processed) {
-            return;
-          }
-
-          if (this.items.size === this.#itemsProcessed.size) {
-            this.triggerEvent('bundles.processed');
-            this.triggerEvent('change');
-            bundleManager.unbind('change', onProcess);
-          }
-        };
-
-        bundleManager.bind('change', onProcess);
-        bundleManager.bind('change', this.triggerEvent);
-        this.items.set(bundle.name, bundleManager);
-        this.compilers.validate(bundleManager);
-        if (bundleManager.processed) onProcess();
-      });
-    }
-    /**
-     * loads a consumer or dependency module
-     *
-     * @param type
-     * @param moduleId
-     * @param bundleId
-     * @returns {Promise<void>}
-     */
-
-
-    async load(type, moduleId, bundleId) {
-      const module = await this.#applicationModel.moduleManager.load(moduleId);
-      if (!['consumers', 'dependencies'].includes(type)) throw new Error(`the property ${type} required to load does not exists`);
-      this.items.forEach(item => {
-        const object = item[type];
-        if (!object.entries.has(bundleId)) return;
-        object.setItem(bundleId, module);
-        this.triggerEvent(`${module.am.id}.change`);
-        this.triggerEvent();
-      });
-    }
-
-    async loadConsumers() {
-      const items = [...this.items.values()];
-      this.#processing = true;
-      this.triggerEvent();
-      await Promise.all(items.map(item => {
-        item.consumers.load();
-      }));
-      this.#processing = true;
-      this.triggerEvent();
-    }
-
-    async loadDependencies() {
-      const items = [...this.items.values()].filter(item => !!item.dependencies);
-      this.#processing = true;
-      this.triggerEvent();
-      const promises = items.map(item => item.dependencies.load());
-      await Promise.all(promises);
-      this.#processing = true;
-      this.triggerEvent();
-    }
-
-  }
-  /****************************************
-  FILE: module\bundles\compilers-manager.js
-  ****************************************/
-
-
-  class CompilersManager extends ReactiveModel {
-    #items = [];
-
-    get items() {
-      return this.#items;
-    }
-
-    validate(bundleManager) {
-      if (!bundleManager.compiler) return;
-      this.items.push(bundleManager);
-    }
-
-    async load() {
-      this.fetching = true;
-      const promises = this.items.map(item => item.loadCompiler());
-      await Promise.all(promises);
-      this.fetching = false;
-      this.triggerEvent();
-    }
-
-  }
-  /********************************
-  FILE: module\bundles\consumers.js
-  ********************************/
-
 
   class ConsumersManager extends ReactiveModel {
     #ready;
@@ -3311,9 +3057,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     }
 
   }
-  /***********************************
-  FILE: module\bundles\dependencies.js
-  ***********************************/
+  /******************************************
+  FILE: module\bundles\bundle\dependencies.js
+  ******************************************/
 
 
   class DependenciesManager extends ReactiveModel {
@@ -3416,10 +3162,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
           return false;
         }
 
-        this.#entries.set(item.bundle.id, {
-          id: item.bundle.id,
+        this.#entries.set(item.id, {
+          id: item.id,
           bundle: item.bundle,
-          name: `${module.name}/${item.bundle.name}`,
           dependency: item,
           module
         });
@@ -3440,41 +3185,16 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     }
 
   }
-  /******************************
-  FILE: module\bundles\manager.js
-  ******************************/
+  /***********************************
+  FILE: module\bundles\bundle\index.js
+  ***********************************/
 
 
   class BundleManager extends ReactiveModel {
-    #tree = new Map();
-
-    get tree() {
-      return this.#tree;
-    }
-
     #bundle;
 
     get bundle() {
       return this.#bundle;
-    }
-
-    get id() {
-      return this.#bundle.id;
-    }
-
-    get name() {
-      return this.#bundle.name;
-    }
-
-    get fetching() {
-      return this.#dependencies?.fetching || this.#consumers?.fetching || this.#compiler?.fetching;
-    }
-
-    HAS_DEPENDENCIES = ['ts'];
-    #dependencies;
-
-    get dependencies() {
-      return this.#dependencies;
     }
 
     #consumers;
@@ -3483,29 +3203,51 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       return this.#consumers;
     }
 
+    #dependencies;
+
+    get dependencies() {
+      return this.#dependencies;
+    }
+
     get errors() {
       return this.#bundle.errors;
     }
 
-    get warnings() {
-      return this.#bundle.warnings;
+    get id() {
+      return this.#bundle.id;
     }
 
-    #compiler;
+    get fetching() {
+      return this.#dependencies?.fetching || this.#consumers?.fetching;
+    }
 
-    get compiler() {
-      return this.#compiler;
+    HAS_DEPENDENCIES = ['ts'];
+
+    get name() {
+      return this.#bundle.name;
+    }
+
+    #tree = new Map();
+
+    get tree() {
+      return this.#tree;
+    }
+
+    #packagers = new Map();
+
+    get packagers() {
+      return this.#packagers;
     }
     /**
-     * Represents the model of the current application
+     * Represents the model of the current project
      * @private
      */
 
 
-    #application;
+    #project;
 
-    get application() {
-      return this.#application;
+    get project() {
+      return this.#project;
     }
 
     #processors = new Map();
@@ -3514,15 +3256,15 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       return this.#processors;
     }
 
-    get diagnostics() {
-      return this.#compiler?.diagnostics ?? {};
+    get warnings() {
+      return this.#bundle.warnings;
     }
 
     #txt;
 
     get processed() {
       if (!this.bundle.processors.has('ts')) return true;
-      return !!this.#compiler && this.#consumers.ready && this.#dependencies.ready;
+      return this.#consumers.ready && this.#dependencies.ready;
     }
 
     get totalFiles() {
@@ -3535,29 +3277,29 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     }
     /**
      *
-     * @param {ApplicationModel} application
+     * @param {ApplicationModel} project
      * @param tree {TreeFactory} Tree of module's bundles.
      * @param bundle
      * @param txt
      */
 
 
-    constructor(application, tree, bundle, txt) {
+    constructor(project, tree, bundle, txt) {
       super();
       this.#bundle = bundle;
       this.#tree = tree;
       this.#txt = txt;
-      this.#application = application;
+      this.#project = project;
+      this.#packagers = new Packagers(this.#bundle);
 
       if (bundle.processors.has('ts')) {
-        this.#dependencies = new DependenciesManager(bundle, application, tree);
+        this.#dependencies = new DependenciesManager(bundle, project, tree);
         this.dependencies.bind('change', this.triggerEvent);
       }
 
-      this.#consumers = new ConsumersManager(bundle, application, tree);
+      this.#consumers = new ConsumersManager(bundle, project, tree);
       this.consumers.bind('change', this.triggerEvent);
       if (txt) this.#processors.set('txt', txt.processors.get('txt'));
-      this.#createCompiler();
       this.bundle.processors.forEach(processor => this.#processors.set(processor.name, processor));
     }
 
@@ -3572,30 +3314,672 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       return processor.sources.items.find(i => i.file === file);
     }
 
-    #createCompiler() {
-      if (!this.bundle.processors.has('ts')) return;
-      const processor = this.bundle.processors.get('ts');
-      this.#compiler = new ProcessorCompiler({
-        identifier: {
-          id: processor.id
-        }
-      });
-      this.compiler.bind('change', this.triggerEvent);
-      window.compiler = this.#compiler;
+  }
+  /***************************************
+  FILE: module\bundles\bundle\packagers.js
+  ***************************************/
+
+
+  _exports.BundleManager = BundleManager;
+
+  class Packagers extends ReactiveModel {
+    #bundle;
+    #items = new Map();
+
+    get items() {
+      return this.#items;
     }
 
-    loadCompiler = () => this.#compiler.fetch();
+    #active;
+
+    get active() {
+      return this.#active;
+    }
+
+    constructor(bundle) {
+      super();
+      this.#bundle = bundle;
+    }
+
+    load = async cspec => {
+      const promise = new PendingPromise();
+      const id = `${this.#bundle.id}///${cspec.id}`;
+      const specs = {
+        identifier: {
+          id
+        },
+        tree: {
+          properties: {
+            compilers: true
+          }
+        }
+      };
+
+      if (this.#items.has(id)) {
+        promise.resolve(this.#items.get(id));
+        return;
+      }
+
+      const item = new Packager(specs);
+
+      const onLoad = () => {
+        if (!item.tree.landed) return;
+        item.unbind('change', onLoad);
+        this.#active = item;
+        this.#items.set(id, item);
+        promise.resolve(item);
+      };
+
+      this.#items.set(id, promise);
+      item.bind('change', onLoad);
+      item.fetch();
+      return promise;
+    };
   }
-  /*****************************
-  FILE: module\module-manager.js
-  *****************************/
+  /****************************
+  FILE: module\bundles\index.js
+  ****************************/
+
+
+  _exports.Packagers = Packagers;
+
+  class BundlesManager extends ReactiveModel {
+    #project;
+
+    get project() {
+      return this.#project;
+    }
+
+    #bundles;
+
+    get bundles() {
+      return this.#bundles;
+    }
+
+    get fetching() {
+      let fetching = false;
+      this.items.forEach(bundle => {
+        if (bundle.fetching) fetching = true;
+      });
+      return fetching;
+    }
+
+    #processing;
+
+    get processing() {
+      return this.#processing;
+    }
+
+    #items = new Map();
+
+    get items() {
+      return this.#items;
+    }
+
+    get consumers() {
+      let consumers = [];
+      const set = new Set();
+      this.items.forEach(bundle => {
+        const {
+          items
+        } = bundle.consumers;
+        items.forEach(item => {
+          if (set.has(item.id)) return;
+          consumers.push(item);
+          set.add(item.id);
+        });
+      });
+      return consumers;
+    }
+
+    get dependencies() {
+      let dependencies = [];
+      const set = new Set();
+      this.items.forEach(bundle => {
+        if (!bundle.dependencies) return;
+        const {
+          items
+        } = bundle.dependencies;
+        items.forEach(item => {
+          if (set.has(item.id)) return;
+          set.add(item.id);
+          dependencies.push(item);
+        });
+      });
+      return dependencies;
+    }
+
+    #txt;
+    #module;
+
+    get module() {
+      return this.#module;
+    }
+
+    get id() {
+      return `${this.#module.id}////bundles-manager`;
+    }
+
+    #itemsProcessed = new Set();
+    #processed = false;
+
+    get processed() {
+      return this.#processed;
+    }
+
+    #tree;
+
+    get tree() {
+      return this.#tree;
+    }
+
+    #am;
+
+    get errors() {
+      let errors = [];
+      [...this.items.values()].forEach(item => {
+        errors = errors.concat(item.errors);
+      });
+      return errors;
+    }
+
+    get alerts() {
+      return this.errors.length + this.warnings.length;
+    }
+
+    get warnings() {
+      let warnings = [];
+      [...this.items.values()].forEach(item => warnings = warnings.concat(item.warnings));
+      return warnings;
+    }
+
+    constructor(module) {
+      super();
+      this.#module = module;
+      this.#am = module.am;
+      const txt = module.am.getBundle('txt');
+      this.#project = module.project;
+      this.#bundles = module.am.bundles;
+      this.#txt = txt;
+      this.#process();
+      this.createTree();
+    }
+
+    createTree() {
+      const items = [...this.#items.values()];
+      this.#tree = TreeFactory.get('module', {
+        project: this.#project,
+        object: this.module.am,
+        items: items,
+        listener: async () => {
+          const {
+            am,
+            am: {
+              bundles
+            }
+          } = this.#module;
+          this.#process();
+          const items = [...this.#items.values()];
+          if (!this.#am.tree.landed) return;
+          this.#tree.setElements(items);
+        }
+      });
+    }
+
+    check() {
+      this.items.forEach(bundle => bundle.dependencies.check());
+    }
+
+    #process() {
+      this.#am.bundles.forEach(bundle => {
+        if (bundle.name === 'txt' || this.#items.has(bundle.name)) return;
+        const bundleManager = new BundleManager(this.#project, this.#tree, bundle, this.#txt);
+
+        const onProcess = () => {
+          this.#itemsProcessed.add(bundleManager.id);
+
+          if (!bundleManager.processed) {
+            return;
+          }
+
+          if (this.items.size === this.#itemsProcessed.size) {
+            this.triggerEvent('bundles.processed');
+            this.triggerEvent('change');
+            bundleManager.unbind('change', onProcess);
+          }
+        };
+
+        bundleManager.bind('change', onProcess);
+        bundleManager.bind('change', this.triggerEvent);
+        this.items.set(bundle.id, bundleManager);
+        if (bundleManager.processed) onProcess();
+      });
+    }
+    /**
+     * loads a consumer or dependency module
+     *
+     * @param type
+     * @param moduleId
+     * @param bundleId
+     * @returns {Promise<void>}
+     */
+
+
+    async load(type, moduleId, bundleId) {
+      const module = await this.#project.moduleManager.load(moduleId);
+      if (!['consumers', 'dependencies'].includes(type)) throw new Error(`the property ${type} required to load does not exists`);
+      this.items.forEach(item => {
+        const object = item[type];
+        if (!object.entries.has(bundleId)) return;
+        object.setItem(bundleId, module);
+        this.triggerEvent(`${module.am.id}.change`);
+        this.triggerEvent();
+      });
+    }
+
+    loadConsumers = async () => {
+      const items = [...this.items.values()];
+      this.#processing = true;
+      this.triggerEvent();
+      await Promise.all(items.map(item => {
+        item.consumers.load();
+      }));
+      this.#processing = true;
+      this.triggerEvent();
+    };
+    loadDependencies = async () => {
+      const items = [...this.items.values()].filter(item => {
+        return !!item.dependencies;
+      });
+      this.#processing = true;
+      this.triggerEvent();
+      const promises = items.map(item => item.dependencies.load());
+      await Promise.all(promises);
+      this.#processing = true;
+      this.triggerEvent();
+    };
+    loadPackagers = async cspec => {
+      try {
+        const {
+          distributions
+        } = this.#project.application.deployment;
+        const promise = new PendingPromise();
+        const distribution = distributions.get(cspec);
+
+        if (!distribution) {
+          console.error('distribution not found');
+        }
+
+        const promises = [];
+        this.items.forEach(bundle => {
+          promises.push(bundle.packagers.load(distribution));
+        });
+        await Promise.all(promises);
+        promise.resolve(true);
+      } catch (e) {
+        console.trace(e);
+      }
+    };
+  }
+  /*****************************************
+  FILE: module\bundles\processors\manager.js
+  *****************************************/
+
+
+  class ProcessorManager extends ReactiveModel {
+    constructor() {
+      super();
+    }
+
+  }
+  /********************
+  FILE: module\index.js
+  ********************/
+
+  /**
+   /**
+   * Represents the model-ui of the module
+   */
+
+
+  class ModuleModel extends ReactiveModel {
+    #tree = {
+      properties: {
+        module: {
+          properties: {
+            static: true
+          }
+        },
+        bundles: {
+          properties: {
+            processors: {
+              properties: {
+                sources: true,
+                overwrites: true
+              }
+            }
+          }
+        }
+      }
+    };
+    #cspec;
+
+    get cspec() {
+      return this.#cspec;
+    }
+
+    set cspec(value) {
+      if (value === this.#cspec) return;
+      this.#cspec = value;
+      this.triggerEvent();
+    }
+    /**
+     * @deprecated use project istead
+     * @returns {any}
+     */
+
+
+    get applicationModel() {
+      return this.#project;
+    }
+
+    #project;
+
+    get project() {
+      return this.#project;
+    }
+
+    get application() {
+      return this.#project.application;
+    }
+
+    get applicationId() {
+      return this.am?.container?.id;
+    }
+
+    #sources = new Map();
+
+    get sources() {
+      return this.#sources;
+    }
+
+    get processed() {
+      let processed = true;
+      this.bundles.forEach(item => {
+        if (!item.processed) processed = false;
+      });
+      return processed;
+    }
+
+    get bundles() {
+      return this.#bundlesManager;
+    }
+    /**
+     * @property {BundlesManager} bundlesManager
+     */
+
+
+    #bundlesManager;
+
+    get bundlesManager() {
+      return this.#bundlesManager;
+    }
+
+    get id() {
+      return this.am?.id;
+    }
+    /**
+     * Returns the module's name.
+     *
+     * If the module does not have name returns the identifier without
+     * the application id section.
+     * @returns {string}
+     */
+
+
+    get name() {
+      let name = this.am?.id?.replace(`application//${this.application.id}//`, '');
+      return this.am?.name ?? name;
+    }
+
+    #bundlesTree;
+
+    get bundlesTree() {
+      return this.#bundlesManager.tree;
+    }
+    /**
+     * @private {ApplicationModule}
+     */
+
+
+    #am;
+
+    get am() {
+      return this.#am;
+    }
+    /**
+     * @deprecated use am property instead
+     * @returns {*}
+     */
+
+
+    get module() {
+      return this.#am;
+    }
+
+    #ready;
+
+    get ready() {
+      return this.am.tree.landed && this.#ready;
+    }
+
+    #updating;
+
+    get updating() {
+      return this.#updating;
+    }
+
+    #_static;
+
+    get static() {
+      return this.#_static;
+    }
+
+    #errors = [];
+
+    get errors() {
+      return this.#am.module?.errors ?? [];
+    }
+
+    #warnings = [];
+
+    get warnings() {
+      return this.#am.module?.warnings ?? [];
+    }
+
+    #found;
+
+    get found() {
+      return this.#am?.found;
+    }
+
+    get alerts() {
+      const total = this.errors.length + this.warnings.length;
+      return {
+        total: total
+      };
+    }
+
+    get totalFiles() {
+      let total = 0;
+      this.bundles.items.forEach(bundle => total += bundle.totalFiles);
+      return total;
+    }
+
+    #moduleManager;
+
+    constructor(moduleId, project, moduleManager) {
+      super();
+      this.#moduleManager = moduleManager;
+      this.#project = project;
+      this.load(moduleId);
+    }
+    /**
+     * Loads a Module
+     *
+     * @param moduleId
+     * @param concat if is true the moduleId will be concatenated with the application string id.
+     */
+
+
+    load(moduleId, concat = false) {
+      if (this.#am) {
+        this.#am.off('change', this.triggerEvent);
+        this.#am = undefined;
+      }
+
+      moduleId = concat ? `${this.#project.id}//${moduleId}` : moduleId; //Instanciar TemplateApplicationsSource
+
+      this.#am = new ApplicationModule({
+        identifier: {
+          id: moduleId
+        },
+        tree: this.#tree
+      });
+      this.#am.on('change', this.checkLoaded);
+      this.fetch();
+    }
+    /**
+     * Validates if the module is fully loaded
+     *
+     * Processes all the properties of the module to leave prepared the structure to be consumed.
+     */
+
+
+    checkLoaded = () => {
+      if (!this.am.found) {
+        this.#ready = true;
+        this.#found = false;
+        this.triggerEvent('model.loaded');
+      }
+
+      if (!this.am.tree.landed) return;
+      this.am.off('change', this.checkLoaded); // load bundles by name;
+
+      this.checkModule();
+      this.triggerEvent();
+      this.loadStatic();
+      this.am.bundles.forEach(bundle => {
+        bundle.processors.forEach(item => {
+          item.sources.items.forEach(source => this.#sources.set(source.id, source));
+        });
+      });
+      this.am.on('change', this.triggerEvent);
+      this.#ready = true;
+      this.triggerEvent('model.loaded');
+    };
+    /**
+     * Validates the module and generates de bundleManager instances
+     *
+     * Also check if the module has a text bundle and adds its txt processor
+     * as a processor of the each bundle.
+     */
+
+    checkModule() {
+      this.#bundlesManager = new BundlesManager(this);
+      this.#bundlesManager.bind('change', this.triggerEvent);
+
+      const onProcessed = () => {
+        this.#moduleManager.setProcessed(this.id);
+        this.#bundlesManager.unbind('bundles.processed', onProcessed);
+      };
+
+      if (this.#bundlesManager.processed) onProcessed();
+      this.#bundlesManager.bind('bundles.processed', onProcessed);
+    }
+
+    loadStatic() {
+      if (!this.am.module?.static) return;
+      this.#_static = TreeFactory.get('static', {
+        project: this.project,
+        object: this.am,
+        items: this.am.module.static.items,
+        listener: () => {
+          const {
+            am,
+            am: {
+              module
+            }
+          } = this;
+          if (!am.tree.landed) return;
+          this.#_static.setElements(module.static.items);
+        }
+      });
+    }
+
+    getFile(bundleName, processorContainer, fileName) {
+      bundleName = processorContainer === 'txt' ? 'txt' : bundleName;
+      const bundle = this.am.getBundle(bundleName);
+      const processor = bundle.processors.get(processorContainer);
+      let file;
+      processor.files.items.forEach(item => {
+        const name = item.relative.file.replace(/\\/g, '/').split(['/']).pop();
+        if (name === fileName) file = item;
+      });
+
+      if (!file) {
+        console.warn(`the file ${file} was not found`);
+      }
+
+      return file;
+    }
+    /**
+     * TODO: @julio
+     */
+
+
+    async deleteFile(params) {
+      const bundle = this.#am.getBundle(this._bundleId);
+      await file.delete({
+        target: params.name
+      });
+    }
+
+    async fetch() {
+      const promise = new PendingPromise();
+      const {
+        module
+      } = this;
+      module.fetch({
+        container: true,
+        bundles: {
+          processors: true
+        }
+      });
+      return promise;
+    }
+    /**
+     * TODO: @julio
+     * @param params
+     * @returns {Promise<void>}
+     */
+
+
+    async createFile(params) {
+      await this.#am.createFile(params);
+    }
+
+  }
+  /**********************
+  FILE: module\manager.js
+  **********************/
 
   /**
    * Manages the modules instances and interfaces between them and editors instances
    */
 
 
-  _exports.BundleManager = BundleManager;
+  _exports.ModuleModel = ModuleModel;
   window.models = [];
 
   class ModuleManager extends ReactiveModel {
@@ -3772,352 +4156,6 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
 
     getItem = itemId => this.#application.am?.items.find(item => item.id === itemId);
   }
-  /***************************
-  FILE: module\module-model.js
-  ***************************/
-
-  /**
-   /**
-   * Represents the model-ui of the module
-   */
-
-
-  _exports.ModuleManager = ModuleManager;
-
-  class ModuleModel extends ReactiveModel {
-    #tree = {
-      properties: {
-        module: {
-          properties: {
-            static: true
-          }
-        },
-        bundles: {
-          properties: {
-            processors: {
-              properties: {
-                sources: true,
-                overwrites: true
-              }
-            }
-          }
-        }
-      }
-    };
-    /**
-     * @deprecated use project istead
-     * @returns {any}
-     */
-
-    get applicationModel() {
-      return this.#project;
-    }
-
-    #project;
-
-    get project() {
-      return this.#project;
-    }
-
-    get application() {
-      return this.#project.application;
-    }
-
-    get applicationId() {
-      return this.am?.container?.id;
-    }
-
-    #sources = new Map();
-
-    get sources() {
-      return this.#sources;
-    }
-
-    get processed() {
-      let processed = true;
-      this.bundles.forEach(item => {
-        if (!item.processed) processed = false;
-      });
-      return processed;
-    }
-
-    get bundles() {
-      return this.#bundlesManager;
-    }
-    /**
-     * @property {BundlesManager} bundlesManager
-     */
-
-
-    #bundlesManager;
-
-    get bundlesManager() {
-      return this.#bundlesManager;
-    }
-
-    get id() {
-      return this.am?.id;
-    }
-    /**
-     * Returns the module's name.
-     *
-     * If the module does not have name returns the identifier without
-     * the application id section.
-     * @returns {string}
-     */
-
-
-    get name() {
-      let name = this.am?.id?.replace(`application//${this.application.id}//`, '');
-      return this.am?.name ?? name;
-    }
-
-    #bundlesTree;
-
-    get bundlesTree() {
-      return this.#bundlesManager.tree;
-    }
-    /**
-     * @private {ApplicationModule}
-     */
-
-
-    #am;
-
-    get am() {
-      return this.#am;
-    }
-    /**
-     * @deprecated use am property instead
-     * @returns {*}
-     */
-
-
-    get module() {
-      return this.#am;
-    }
-
-    #ready;
-
-    get ready() {
-      return this.am.tree.landed && this.#ready;
-    }
-
-    #updating;
-
-    get updating() {
-      return this.#updating;
-    }
-
-    #_static;
-
-    get static() {
-      return this.#_static;
-    }
-
-    #errors = [];
-
-    get errors() {
-      return this.#am.module?.errors ?? [];
-    }
-
-    #warnings = [];
-
-    get warnings() {
-      return this.#am.module?.warnings ?? [];
-    }
-
-    #found;
-
-    get found() {
-      return this.#am?.found;
-    }
-
-    get alerts() {
-      const total = this.errors.length + this.warnings.length;
-      return {
-        total: total
-      };
-    }
-
-    get totalFiles() {
-      let total = 0;
-      this.bundles.items.forEach(bundle => total += bundle.totalFiles);
-      return total;
-    }
-
-    #moduleManager;
-
-    constructor(moduleId, project, moduleManager) {
-      super();
-      this.#moduleManager = moduleManager;
-      this.#project = project;
-      this.load(moduleId);
-    }
-    /**
-     * Loads a Module
-     *
-     * @param moduleId
-     * @param concat if is true the moduleId will be concatenated with the application string id.
-     */
-
-
-    load(moduleId, concat = false) {
-      if (this.#am) {
-        this.#am.off('change', this.triggerEvent);
-        this.#am = undefined;
-      }
-
-      moduleId = concat ? `${this.#project.id}//${moduleId}` : moduleId; //Instanciar TemplateApplicationsSource
-
-      this.#am = new ApplicationModule({
-        identifier: {
-          id: moduleId
-        },
-        tree: this.#tree
-      });
-      this.#am.on('change', this.checkLoaded);
-      this.fetch();
-    }
-    /**
-     * Validates if the module is fully load
-     *
-     * Processes all the properties of the module to leave prepared the structure could be consumed.
-     */
-
-
-    checkLoaded = () => {
-      if (!this.am.found) {
-        this.#ready = true;
-        this.#found = false;
-        this.triggerEvent('model.loaded');
-      }
-
-      if (!this.am.tree.landed) return;
-      /**
-       * TODO: remove timeout function. Was added to avoid PLM tree landed error.
-       */
-
-      this.am.off('change', this.checkLoaded); // load bundles by name;
-
-      this.checkModule();
-      this.triggerEvent();
-      this.loadStatic();
-      this.am.bundles.forEach(bundle => {
-        bundle.processors.forEach(item => {
-          item.sources.items.forEach(source => this.#sources.set(source.id, source));
-        });
-      });
-      this.am.on('change', this.triggerEvent);
-      this.#ready = true;
-      this.triggerEvent('model.loaded');
-    };
-
-    loadStatic() {
-      if (!this.am.module?.static) return;
-      this.#_static = TreeFactory.get('static', {
-        project: this.project,
-        object: this.am,
-        items: this.am.module.static.items,
-        listener: () => {
-          const {
-            am,
-            am: {
-              module
-            }
-          } = this;
-          if (!am.tree.landed) return;
-          this.#_static.setElements(module.static.items);
-        }
-      });
-    }
-    /**
-     * Validates the module and generates de bundleManager instances
-     *
-     * Also check if the module has a text bundle and adds its txt processor
-     * as a processor of the each bundle.
-     */
-
-
-    checkModule() {
-      this.#bundlesManager = new BundlesManager(this);
-      this.#bundlesManager.bind('change', this.triggerEvent);
-
-      const onProcessed = () => {
-        this.#moduleManager.setProcessed(this.id);
-        this.#bundlesManager.unbind('bundles.processed', onProcessed);
-      };
-
-      if (this.#bundlesManager.processed) onProcessed();
-      this.#bundlesManager.bind('bundles.processed', onProcessed);
-    }
-
-    getFile(bundleName, processorContainer, fileName) {
-      bundleName = processorContainer === 'txt' ? 'txt' : bundleName;
-      const bundle = this.am.getBundle(bundleName);
-      const processor = bundle.processors.get(processorContainer);
-      let file;
-      processor.files.items.forEach(item => {
-        const name = item.relative.file.replace(/\\/g, '/').split(['/']).pop();
-        if (name === fileName) file = item;
-      });
-
-      if (!file) {
-        console.warn(`the file ${file} was not found`);
-      }
-
-      return file;
-    }
-    /**
-     * TODO: @julio
-     */
-
-
-    async deleteFile(params) {
-      const bundle = this.#am.getBundle(this._bundleId);
-      await file.delete({
-        target: params.name
-      });
-    }
-
-    async fetch() {
-      const promise = new PendingPromise();
-      const {
-        module
-      } = this;
-      module.fetch({
-        container: true,
-        bundles: {
-          processors: true
-        }
-      });
-      return promise;
-    }
-    /**
-     * TODO: @julio
-     * @param params
-     * @returns {Promise<void>}
-     */
-
-
-    async createFile(params) {
-      await this.#am.createFile(params);
-    }
-
-  }
-  /********************************
-  FILE: module\processor-manager.js
-  ********************************/
-
-
-  _exports.ModuleModel = ModuleModel;
-
-  class ProcessorManager extends ReactiveModel {
-    constructor() {
-      super();
-    }
-
-  }
   /*****************************
   FILE: project\distributions.js
   *****************************/
@@ -4161,8 +4199,10 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
   ***********************/
 
 
+  _exports.ModuleManager = ModuleManager;
+
   class ProjectModel extends ReactiveModel {
-    #bundles = ['layout', 'page', 'code', 'all', 'widget'];
+    #bundles = ['layout', 'page', 'code', 'widget', 'all'];
 
     get bundles() {
       return this.#bundles;
@@ -4201,6 +4241,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       return this.#filterContainer;
     }
 
+    get specifier() {
+      let specifier = this.#application.specifier ?? this.#application.name;
+      specifier = ['undefined'].includes(specifier) ? undefined : specifier;
+      return specifier;
+    }
+
     set filterContainer(value) {
       if (value === this.#filterContainer) return;
       this.#filterContainer = value;
@@ -4228,7 +4274,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     set filterText(value) {
       if (value === this._filterText) return;
       this._filterText = value;
-      this.triggerEvent();
+      this.triggerEvent('items.filtered');
     }
     /**
      * Return the items of the application checking if it's necessary apply a filter.
@@ -4293,6 +4339,26 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
 
     get modulesTree() {
       return this.#modulesTree;
+    }
+
+    get distributionValues() {
+      return {
+        values: {
+          id: "",
+          name: "",
+          local: "",
+          ssr: "",
+          ports: {},
+          ts: "",
+          amd: "",
+          minify: {},
+          //todo: obtener
+          platform: "",
+          environment: "",
+          compress: "",
+          default: ""
+        }
+      };
     }
     /**
      *
@@ -4450,6 +4516,17 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
         application: this.application
       }; // DSNotifications.register(this.application.errors, specs);
     };
+
+    async compile(id) {
+      try {
+        this.processing = true;
+        const distribution = this.application.deployment.distributions.get(id);
+        await this.application.builder.build(distribution.values);
+        this.processing = false;
+        this.triggerEvent('compilation.change');
+      } catch (e) {}
+    }
+
   }
   /****************************
   FILE: project\static\index.js
@@ -4462,6 +4539,10 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
 
     get project() {
       return this.#project;
+    }
+
+    get id() {
+      return `${this.#project.id}.static`;
     }
 
     #application;
@@ -4482,7 +4563,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
       this.#application = project.application;
       this.#tree = TreeFactory.get('static', {
         project: this.#project,
-        object: this.#application.static,
+        object: this,
         items: this.#application.static.items,
         listener: () => {
           this.#tree.setElements(this.#application.static.items);
@@ -5009,6 +5090,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/insp
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

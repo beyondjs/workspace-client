@@ -1,11 +1,13 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.0.22/texts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/dashboard@0.0.1/texts-binder"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
+  _exports.Images = Images;
   _exports.StaticBoard = StaticBoard;
-  _exports.hmr = void 0;
+  _exports.StaticHeader = StaticHeader;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -63,16 +65,19 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     AppDistributions
   } = dependency_18;
   const {
-    AppContext,
-    useAppContext,
+    ProjectContext,
+    useProjectContext,
     useDSWorkspaceContext
   } = dependency_19;
   const {
     CurrentTexts
   } = dependency_20;
+  const {
+    useTextsBinder
+  } = dependency_21;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -90,7 +95,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.legacy', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/tooltip', dependency_13], ['@beyond-js/dashboard/uploader-workspace', dependency_14], ['@beyond-js/dashboard/ds-editor.code', dependency_15], ['@beyond-js/dashboard/core-components', dependency_16], ['@beyond-js/dashboard/context-menu', dependency_17], ['@beyond-js/dashboard/project-distributions.code', dependency_18], ['@beyond-js/dashboard/ds-contexts', dependency_19], ['@beyond-js/kernel/texts', dependency_20]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.legacy', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/tooltip', dependency_13], ['@beyond-js/dashboard/uploader-workspace', dependency_14], ['@beyond-js/dashboard/ds-editor.code', dependency_15], ['@beyond-js/dashboard/core-components', dependency_16], ['@beyond-js/dashboard/context-menu', dependency_17], ['@beyond-js/dashboard/project-distributions.code', dependency_18], ['@beyond-js/dashboard/ds-contexts', dependency_19], ['@beyond-js/kernel/texts', dependency_20], ['@beyond-js/dashboard/texts-binder', dependency_21]]);
 
   const {
     module
@@ -167,153 +172,54 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   }();
   /**********
-  actions.jsx
+  context.jsx
   **********/
 
-  function StaticActions() {
-    const actions = {
-      name: 'static'
-    };
-    const {
-      image,
-      type
-    } = useStaticContext();
+  const
+  /*bundle*/
+  StaticContext = React.createContext();
 
-    const updateState = update => setState({ ...state,
-      ...update
-    });
-
-    const [state, setState] = React.useState({
-      modal: false,
-      confirm: false
-    });
-
-    const onDelete = event => {
-      event.stopPropagation();
-      event.preventDefault();
-      updateState({
-        confirm: true
-      });
-    };
-
-    const onConfirm = async () => {
-      try {
-        updateState({
-          confirm: false
-        });
-        image.delete(type === 'overwrite');
-      } catch (e) {
-        console.error(e);
-        updateState({
-          confirm: false
-        });
-      }
-    };
-
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
-      className: "static__actions"
-    }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(BeyondIconButton, {
-      "data-title": "delete",
-      icon: "delete",
-      onClick: onDelete
-    })))), state.confirm && /*#__PURE__*/React.createElement(BeyondConfirmModal, {
-      show: true,
-      className: "xs ds-modal",
-      onConfirm: onConfirm,
-      text: "Cambiar texto",
-      onCancel: () => updateState({
-        confirm: false
-      })
-    }));
-  }
-  /********
-  aside.jsx
-  ********/
+  const
+  /*bundle*/
+  useStaticContext = () => React.useContext(StaticContext);
+  /****************
+  header\images.jsx
+  ****************/
 
 
-  function StaticAside() {
+  function Images() {
     const {
       originalSrc
     } = useStaticContext();
-    return /*#__PURE__*/React.createElement("aside", {
+    return /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("ul", {
       className: "static__items"
-    }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(BeyondImage, {
+    }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(BeyondImage, {
       src: encodeURI(originalSrc)
     })), /*#__PURE__*/React.createElement(StaticOverwrite, null)));
   }
-  /********
-  board.jsx
-  ********/
-
-
-  function StaticBoard({
-    specs
-  }) {
-    let {
-      image,
-      type
-    } = specs;
-    if (!image) return null;
-    const {
-      workspace: {
-        project
-      }
-    } = useDSWorkspaceContext();
-
-    if (!project) {
-      console.warn("you are trying to access static files without had selected an application");
-      return;
-    }
-
-    image = project.static.get(image);
-
-    if (!image) {
-      throw new Error('the images does not exists');
-    }
-
-    const urlApp = project.application.url;
-    const originalSrc = `${urlApp}${image?.pathname}?original`;
-    const overwriteSrc = image.overwrite && `${urlApp}${image?.pathname}`;
-    const [src, setSrc] = React.useState({});
-    let source = type === 'overwrite' ? overwriteSrc : originalSrc;
-    source = src.original === image.id && src.base64 ? src.base64 : source;
-    return /*#__PURE__*/React.createElement(StaticContext.Provider, {
-      value: {
-        type,
-        image,
-        originalSrc,
-        overwriteSrc,
-        src,
-        setSrc
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "ds-panel__static-board"
-    }, /*#__PURE__*/React.createElement(StaticHeader, {
-      type: type
-    }), /*#__PURE__*/React.createElement("main", null, /*#__PURE__*/React.createElement(StaticAside, null), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(BeyondImage, {
-      src: source
-    }, /*#__PURE__*/React.createElement("figcaption", null, /*#__PURE__*/React.createElement(StaticActions, null)))))));
-  }
-  /*********
-  header.jsx
-  *********/
+  /***************
+  header\index.jsx
+  ***************/
 
 
   function StaticHeader() {
     const {
-      image
+      image,
+      type,
+      texts
     } = useStaticContext();
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("header", {
       className: "static__header"
-    }, /*#__PURE__*/React.createElement("header", {
-      className: "text-left"
-    }, /*#__PURE__*/React.createElement("h3", null, image.filename), /*#__PURE__*/React.createElement("h6", {
-      className: "text-muted"
-    }, image.file)));
+    }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h4", null, image.filename)), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: "folder",
+      title: texts.actions.copy
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "p1 ellipsis-text"
+    }, image.file)), /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(Images, null)));
   }
-  /*******************
-  static-overwrite.jsx
-  *******************/
+  /**************************
+  header\static-overwrite.jsx
+  **************************/
 
 
   function StaticOverwrite() {
@@ -366,12 +272,121 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       icon: "add"
     })));
   }
+  /********
+  index.jsx
+  ********/
+
+
+  function StaticBoard({
+    specs
+  }) {
+    let {
+      image,
+      type
+    } = specs;
+    const {
+      workspace: {
+        project
+      }
+    } = useDSWorkspaceContext();
+    const module = __pkg.bundle.module.specifier;
+    const [textsReady, texts] = useTextsBinder(module);
+    const [src, setSrc] = React.useState({});
+
+    if (!project) {
+      console.warn("you are trying to access static files without had selected an application");
+      return;
+    }
+
+    if (!image || !textsReady) return null;
+    image = project.static.get(image);
+
+    if (!image) {
+      throw new Error('the images does not exists');
+    }
+
+    const urlApp = project.application.url;
+    const originalSrc = `${urlApp}${image?.pathname}?original`;
+    const overwriteSrc = image.overwrite && `${urlApp}${image?.pathname}`;
+    let source = type === 'overwrite' ? overwriteSrc : originalSrc;
+    source = src.original === image.id && src.base64 ? src.base64 : source;
+    return /*#__PURE__*/React.createElement(StaticContext.Provider, {
+      value: {
+        type,
+        texts,
+        image,
+        originalSrc,
+        overwriteSrc,
+        src,
+        setSrc
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ds-panel__static-board"
+    }, /*#__PURE__*/React.createElement(StaticHeader, {
+      type: type
+    }), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement(BeyondImage, {
+      src: "http://localhost:3020/images/awesome.jpg"
+    }))));
+  }
+  /*******************
+  sections\actions.jsx
+  *******************/
+
+
+  function StaticActions() {
+    const actions = {
+      name: 'static'
+    };
+    const {
+      image,
+      type
+    } = useStaticContext();
+
+    const updateState = update => setState({ ...state,
+      ...update
+    });
+
+    const [state, setState] = React.useState({
+      modal: false,
+      confirm: false
+    });
+
+    const onDelete = event => {
+      event.stopPropagation();
+      event.preventDefault();
+      updateState({
+        confirm: true
+      });
+    };
+
+    const onConfirm = async () => {
+      try {
+        updateState({
+          confirm: false
+        });
+        image.delete(type === 'overwrite');
+      } catch (e) {
+        console.error(e);
+        updateState({
+          confirm: false
+        });
+      }
+    };
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+      className: "static__actions"
+    }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(BeyondIconButton, {
+      "data-title": "delete",
+      icon: "delete",
+      onClick: onDelete
+    })))));
+  }
   /**********
   SCSS STYLES
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/static-board.code', '');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/static-board.code', '.static__header{display:grid;grid-template-columns:1fr 1fr auto;grid-gap:.5rem}.static__header>section{background:var(--secondary-accent-40);padding:1rem;display:flex;align-items:center;gap:.5rem}.static__header>section .ellipsis-text{text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:100%;max-width:80%}.static__header>section .beyond-icon{fill:var(--text-color)}.static__header .static__items{list-style:none;display:flex;gap:.5rem}.static__header .static__items .beyond-element-image{height:40px;margin:0;aspect-ratio:1/1}.ds-panel__static-board{display:grid;height:100%;grid-template-rows:auto 1fr}.ds-panel__static-board article{display:flex;align-items:center;justify-content:center}.ds-panel__static-board article .beyond-element-image{max-height:60vh}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -381,6 +396,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

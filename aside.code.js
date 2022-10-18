@@ -1,12 +1,17 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/dashboard@0.0.1/workspace-tree", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-favorites", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/kernel@0.0.22/texts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/dashboard@0.0.1/workspace-tree", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/kernel@0.1.0/texts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
+  _exports.Aside = Aside;
+  _exports.AsideFavorites = AsideFavorites;
+  _exports.AsideHeader = AsideHeader;
+  _exports.DSAsideBody = DSAsideBody;
+  _exports.EmptyAside = EmptyAside;
   _exports.ModuleTree = ModuleTree;
   _exports.WorspaceAside = WorspaceAside;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -44,17 +49,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     DSIconButton
   } = dependency_11;
   const {
-    AsideFavorites
+    useBinder
   } = dependency_12;
   const {
-    useBinder
-  } = dependency_13;
-  const {
     CurrentTexts
-  } = dependency_14;
+  } = dependency_13;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -72,7 +74,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/modal', dependency_3], ['@beyond-js/ui/spinner', dependency_4], ['@beyond-js/ui/form', dependency_5], ['@beyond-js/ui/perfect-scrollbar', dependency_6], ['@beyond-js/inspect/models.legacy', dependency_7], ['@beyond-js/dashboard/ds-contexts', dependency_8], ['@beyond-js/dashboard/ds-select', dependency_9], ['@beyond-js/dashboard/workspace-tree', dependency_10], ['@beyond-js/dashboard/core-components', dependency_11], ['@beyond-js/dashboard/ds-favorites', dependency_12], ['@beyond-js/dashboard/hooks', dependency_13], ['@beyond-js/kernel/texts', dependency_14]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/modal', dependency_3], ['@beyond-js/ui/spinner', dependency_4], ['@beyond-js/ui/form', dependency_5], ['@beyond-js/ui/perfect-scrollbar', dependency_6], ['@beyond-js/inspect/models.legacy', dependency_7], ['@beyond-js/dashboard/ds-contexts', dependency_8], ['@beyond-js/dashboard/ds-select', dependency_9], ['@beyond-js/dashboard/workspace-tree', dependency_10], ['@beyond-js/dashboard/core-components', dependency_11], ['@beyond-js/dashboard/hooks', dependency_12], ['@beyond-js/kernel/texts', dependency_13]]);
 
   const {
     module
@@ -166,201 +168,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     };
     const Control = objectPanels[panel];
     const clsDetail = `ds__aside__detail`;
-    return /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(BeyondScrollContainer, {
+    return /*#__PURE__*/React.createElement("aside", {
       className: clsDetail
-    }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(BeyondSpinner, {
+    }, /*#__PURE__*/React.createElement(BeyondSpinner, {
+      className: "aside__spinner",
       active: true
-    }), /*#__PURE__*/React.createElement(Control, null))));
-  }
-  /**************
-  aside\empty.jsx
-  **************/
-
-
-  function Empty() {
-    const {
-      texts
-    } = useDSAsideContext();
-    return /*#__PURE__*/React.createElement("div", {
-      className: "ds-aside__empty"
-    }, /*#__PURE__*/React.createElement(DSIcon, {
-      icon: "project"
-    }), texts.empty);
-  }
-  /***************
-  aside\module.jsx
-  ***************/
-
-  /**
-   * Render the module tree
-   * @param module ModuleModel, is optional only is passed if the tree will be showed into the application tree.
-   * @param hideTitle
-   * @returns {JSX.Element}
-   * @constructor
-   */
-
-
-  function ModuleTree({
-    module,
-    hideTitle = false
-  }) {
-    let {
-      application: {
-        moduleManager: {
-          active
-        }
-      }
-    } = useDSAsideContext();
-    let {
-      texts: {
-        tree: texts
-      }
-    } = useDSAsideContext();
-    const model = active;
-
-    if (!model || !model?.bundles) {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "ds__aside__detail"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "alert alert-info"
-      }, /*#__PURE__*/React.createElement("h3", null, texts.module.empty.title), /*#__PURE__*/React.createElement("span", null, texts.module.empty.description)));
-    }
-
-    const {
-      bundlesTree,
-      static: staticFiles
-    } = model;
-    const specs = {};
-    if (!hideTitle) specs.title = model.name;
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DSTree, _extends({}, specs, {
-      tree: bundlesTree
-    })), staticFiles && /*#__PURE__*/React.createElement(DSTree, {
-      title: texts.static.title,
-      tree: staticFiles
-    }));
-  }
-  /****************
-  aside\project.jsx
-  ****************/
-
-  /**
-   * Renders the project tree
-   *
-   * renders the project tree until bundles names. When the bundle is selected it loads
-   * by itself another tree.
-  
-   * @param tree
-   * @returns {JSX.Element}
-   * @constructor
-   */
-
-
-  function ProjectTree({
-    tree
-  }) {
-    let {
-      application,
-      texts
-    } = useDSAsideContext();
-    const {
-      workspace
-    } = useDSWorkspaceContext();
-    const toPrint = [];
-    texts = texts.tree;
-    if (!application) return null;
-    toPrint.push( /*#__PURE__*/React.createElement(DSTree, {
-      title: texts.modules,
-      tree: application.modulesTree,
-      key: "application"
-    }));
-    application.libraries.forEach(library => {
-      const modules = application.itemsByContainer(library.id);
-      if (!modules.length) return;
-      toPrint.push( /*#__PURE__*/React.createElement(DSTree, {
-        key: "modules",
-        title: library.library.name,
-        tree: modules
-      }));
-    });
-
-    const openInfo = event => {
-      event.stopPropagation();
-      event.preventDefault();
-      workspace.openApp(application?.application?.id);
-    };
-
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("header", {
-      className: "ds-aside__header flex-row flex-space"
-    }, /*#__PURE__*/React.createElement("h3", {
-      className: "row"
-    }, application.application.name ?? application.id)), /*#__PURE__*/React.createElement("div", {
-      className: "aside__link",
-      onClick: openInfo
-    }, /*#__PURE__*/React.createElement(DSIcon, {
-      icon: "info"
-    }), /*#__PURE__*/React.createElement("span", null, " Information ")), toPrint);
-  }
-  /***************
-  aside\static.jsx
-  ***************/
-
-
-  function StaticsRootTree() {
-    const {
-      workspace: {
-        project
-      }
-    } = useDSWorkspaceContext();
-    const {
-      texts
-    } = useDSAsideContext();
-    if (!project.application || !project.static) return null;
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
-      className: "ds-aside__header"
-    }, /*#__PURE__*/React.createElement("h3", null, texts.static.title)), /*#__PURE__*/React.createElement(DSTree, {
-      title: texts.static.title,
-      object: project.application,
-      tree: project.static.tree
-    }));
-  }
-  /*****************
-  aside\template.jsx
-  *****************/
-
-
-  function TemplateRootTree() {
-    let {
-      workspace
-    } = useDSWorkspaceContext();
-    const {
-      texts: {
-        tree: {
-          template: texts
-        }
-      }
-    } = useDSAsideContext();
-    const {
-      application,
-      global,
-      processors
-    } = workspace?.application?.template;
-    const output = [];
-
-    const getTree = (obj, key, title) => {
-      return /*#__PURE__*/React.createElement(DSTree, {
-        key: key,
-        title: title,
-        tree: obj,
-        type: `template.${key}`
-      });
-    };
-
-    output.push(getTree(application, 'application', texts.application));
-    output.push(getTree(global, 'global', texts.global));
-    processors.forEach((processor, key) => output.push(getTree(processor, key, key)));
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
-      className: "ds-aside__header"
-    }, /*#__PURE__*/React.createElement("h3", null, texts.title)), output);
+    }), /*#__PURE__*/React.createElement(Control, null));
   }
   /************
   container.jsx
@@ -397,6 +210,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         controller,
         modules: controller?.modules,
         application: workspace?.application,
+        project: workspace?.active,
         texts: controller?.texts,
         ready: controller?.ready,
         setActiveAside: workspace.aside.setActive,
@@ -417,6 +231,303 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       className: cls,
       ref: ref
     }, /*#__PURE__*/React.createElement(PreAside, null), /*#__PURE__*/React.createElement(Aside, null)));
+  }
+  /********************
+  detail\body\index.jsx
+  ********************/
+
+
+  function DSAsideBody({
+    children
+  }) {
+    return /*#__PURE__*/React.createElement(BeyondScrollContainer, {
+      className: "ds__aside__detail__container"
+    }, children);
+  }
+  /***************
+  detail\empty.jsx
+  ***************/
+
+
+  /*bundle*/
+  function EmptyAside({
+    title,
+    children
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "ds__aside--empty"
+    }, /*#__PURE__*/React.createElement(AsideHeader, null, /*#__PURE__*/React.createElement("h4", null, title)), /*#__PURE__*/React.createElement("section", {
+      className: "ds__aside__empty-content"
+    }, children));
+  }
+  /**********************
+  detail\header\index.jsx
+  **********************/
+
+
+  function AsideHeader({
+    className,
+    children
+  }) {
+    const cls = `ds-aside__header flex-row flex-space${className ? ` ${className}` : ''}`;
+    return /*#__PURE__*/React.createElement("header", {
+      className: cls
+    }, children);
+  }
+  /****************
+  detail\module.jsx
+  ****************/
+
+  /**
+   * Render the module tree
+   * @param module ModuleModel, is optional only is passed if the tree will be showed into the application tree.
+   * @param hideTitle
+   * @returns {JSX.Element}
+   * @constructor
+   */
+
+
+  function ModuleTree({
+    module,
+    hideTitle = false
+  }) {
+    let {
+      application: {
+        moduleManager: {
+          active
+        }
+      }
+    } = useDSAsideContext();
+    let {
+      texts: {
+        tree: texts
+      }
+    } = useDSAsideContext();
+    const model = active;
+
+    if (!model || !model?.bundles) {
+      return /*#__PURE__*/React.createElement(EmptyAside, {
+        title: texts.module.title
+      }, /*#__PURE__*/React.createElement("h5", null, texts.module.empty.title), /*#__PURE__*/React.createElement("span", null, texts.module.empty.description));
+    }
+
+    const {
+      bundlesTree,
+      static: staticFiles
+    } = model;
+    const specs = {};
+    if (!hideTitle) specs.title = model.name;
+    return /*#__PURE__*/React.createElement(DSAsideBody, null, /*#__PURE__*/React.createElement(DSTree, _extends({}, specs, {
+      tree: bundlesTree
+    })), staticFiles && /*#__PURE__*/React.createElement(DSTree, {
+      title: texts.static.title,
+      tree: staticFiles
+    }));
+  }
+  /*****************
+  detail\project.jsx
+  *****************/
+
+  /**
+   * Renders the project tree
+   *
+   * renders the project tree until bundles names. When the bundle is selected it loads
+   * by itself another tree.
+  
+   * @param tree
+   * @returns {JSX.Element}
+   * @constructor
+   */
+
+
+  function ProjectTree() {
+    let {
+      project,
+      texts
+    } = useDSAsideContext();
+    const {
+      workspace
+    } = useDSWorkspaceContext();
+    const [tree, setTree] = React.useState(project.modulesTree);
+    texts = texts.tree;
+    useBinder([project], () => setTree(project.modulesTree));
+    if (!project || !tree) return null;
+
+    const openInfo = event => {
+      event.stopPropagation();
+      event.preventDefault();
+      workspace.openApp(project?.application?.id);
+    };
+
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AsideHeader, {
+      className: "right-icon flex-container"
+    }, /*#__PURE__*/React.createElement("h4", null, project.application.name ?? project.id), /*#__PURE__*/React.createElement(DSIconButton, {
+      onClick: openInfo,
+      icon: "info"
+    })), /*#__PURE__*/React.createElement(DSAsideBody, null, /*#__PURE__*/React.createElement(DSTree, {
+      title: texts.modules,
+      tree: tree
+    })));
+  }
+  /****************
+  detail\static.jsx
+  ****************/
+
+
+  function StaticsRootTree() {
+    const {
+      workspace: {
+        active: project
+      }
+    } = useDSWorkspaceContext();
+    const {
+      texts
+    } = useDSAsideContext();
+    if (!project.application || !project.static) return null;
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AsideHeader, null, /*#__PURE__*/React.createElement("h4", null, texts.static.title)), /*#__PURE__*/React.createElement(DSAsideBody, null, /*#__PURE__*/React.createElement(DSTree, {
+      title: texts.static.title,
+      object: project.application,
+      tree: project.static.tree
+    })));
+  }
+  /******************
+  detail\template.jsx
+  ******************/
+
+
+  function TemplateRootTree() {
+    let {
+      workspace
+    } = useDSWorkspaceContext();
+    const {
+      texts: {
+        tree: {
+          template: texts
+        }
+      }
+    } = useDSAsideContext();
+    const {
+      application,
+      global,
+      processors
+    } = workspace?.application?.template;
+    const output = [];
+
+    const getTree = (obj, key, title) => {
+      return /*#__PURE__*/React.createElement(DSTree, {
+        key: key,
+        title: title,
+        tree: obj,
+        type: `template.${key}`
+      });
+    };
+
+    output.push(getTree(application, 'application', texts.application));
+    output.push(getTree(global, 'global', texts.global));
+    processors?.forEach((processor, key) => output.push(getTree(processor, key, key)));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AsideHeader, null, /*#__PURE__*/React.createElement("h4", null, texts.title)), /*#__PURE__*/React.createElement(DSAsideBody, null, output));
+  }
+  /******************
+  favorites\aside.jsx
+  ******************/
+
+
+  function AsideFavorites() {
+    const {
+      workspace: {
+        application: {
+          favorites
+        }
+      }
+    } = useDSWorkspaceContext();
+    const [totalFavorites, setTotalFavorites] = React.useState(favorites?.items.size);
+    const [renamed, setRenamed] = React.useState(favorites?.items.size);
+    const {
+      texts
+    } = useDSAsideContext();
+    useBinder([favorites], () => setTotalFavorites(favorites.items.size));
+    useBinder([favorites], () => setRenamed(performance.now()), 'favorite.renamed');
+
+    if (!favorites.items.size) {
+      return /*#__PURE__*/React.createElement(EmptyAside, {
+        title: texts.favorites.title
+      }, /*#__PURE__*/React.createElement("h5", null, texts.favorites.empty.title), /*#__PURE__*/React.createElement("span", null, texts.favorites.empty.description));
+    }
+
+    const items = [...favorites.items.values()];
+    const output = items.map((item, key) => /*#__PURE__*/React.createElement(DSTree, {
+      key: key,
+      object: item,
+      title: item.name,
+      tree: item.tree
+    }));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(AsideHeader, {
+      className: "ds-aside__header"
+    }, /*#__PURE__*/React.createElement("h3", null, texts?.favorites?.title)), /*#__PURE__*/React.createElement(DSAsideBody, null, output));
+  }
+  /************************
+  favorites\rename-form.jsx
+  ************************/
+
+
+  function FavoritesRenameForm({
+    object,
+    closeModal
+  }) {
+    let {
+      texts: {
+        favorites: texts
+      }
+    } = useDSTreeContext();
+    const [fetching, setFetching] = React.useState();
+    const [name, setName] = React.useState(object.name);
+    const props = {};
+    if (!name) props.disabled = true;
+
+    const onSave = async event => {
+      event.stopPropagation();
+      event.preventDefault();
+      setFetching(true);
+      await object.rename(name);
+      window.setTimeout(() => {
+        setFetching(false);
+        closeModal(true);
+      }, 300);
+    };
+
+    const onClick = event => event.stopPropagation();
+
+    const handleName = event => {
+      event.stopPropagation();
+      setName(event.currentTarget.value);
+    };
+
+    return /*#__PURE__*/React.createElement(BeyondModal, {
+      show: true,
+      className: "xs ds-modal ds-modal__favorites"
+    }, /*#__PURE__*/React.createElement("header", {
+      onClick: onClick,
+      className: "ds-modal_header"
+    }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h4", null, texts.title))), /*#__PURE__*/React.createElement("div", {
+      onClick: onClick,
+      className: "ds-modal__content"
+    }, /*#__PURE__*/React.createElement("form", {
+      onSubmit: onSave
+    }, /*#__PURE__*/React.createElement(BeyondInput, {
+      autoComplete: "off",
+      name: "name",
+      value: name,
+      required: true,
+      onChange: handleName
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "actions"
+    }, /*#__PURE__*/React.createElement(BeyondButton, _extends({}, props, {
+      onClick: onSave,
+      className: "primary"
+    }), fetching ? /*#__PURE__*/React.createElement(BeyondSpinner, {
+      fetching: true,
+      className: "on-primary"
+    }) : texts.actions.save)))));
   }
   /*************************
   preaside\pre-aside-tab.jsx
@@ -533,7 +644,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/aside.code', '.ds__aside{display:flex;flex-direction:row;position:relative;align-items:start;background:var(--ds-aside-bg);transition:all .2s linear;height:calc(100vh - 50px)}.ds__aside.hide-detail .ds__aside__detail{width:0;display:none;transition:all .3s linear}.ds__aside .aside__link{padding:8px 15px;border-bottom:1px solid #050910;cursor:pointer;transition:.2s all ease-in}.ds__aside .aside__link:hover{background:#050910}.ds__aside .aside__link .beyond-icon{margin:0;fill:red;height:16px;width:16px;font-size:13px}.ds__aside .ds__aside__detail{padding:0;z-index:2;min-width:220px;max-width:220px;position:sticky;align-items:start;top:50px;height:calc(100vh - 50px);overflow:hidden;width:100%;transition:all .3s linear}.ds__aside .ds__aside__detail>.beyond-element-spinner{display:none}.ds__aside .ds__aside__detail.is-fetching{opacity:.3}.ds__aside .ds__aside__detail.is-fetching .ds-aside__header .beyond-icon{display:none}.ds__aside .ds__aside__detail.is-fetching>.beyond-element-spinner{display:flex;position:absolute;top:15px;right:15px}.ds__aside .ds__aside__detail .ds-tree{position:relative}.ds-aside__header{align-items:center;padding:0 0 0 15px;height:34px;border-bottom:2px solid var(--beyond-secondary-light-color);display:flex;justify-content:space-between}.ds-aside__header.flex-row{display:flex}.ds-aside__header.flex-space{justify-content:space-between}.ds-aside__header .beyond-icon{fill:var(--beyond-gray-lighter-color)}.ds-aside__header h3{margin:0;font-size:14px;padding:0}.ds-aside__header .inline__actions .beyond-icon-button{margin:0;height:30px;width:30px}.ds__pre-aside ul li{border-left:4px solid transparent}.ds__pre-aside ul li .beyond-icon-button{opacity:.7;cursor:not-allowed}.ds__pre-aside ul li.disabled{opacity:.7;cursor:none}.ds__pre-aside ul li .beyond-icon-button{height:50px;width:50px;fill:var(--beyond-text-on-secondary);transition:all 150ms linear}.ds__pre-aside ul li .beyond-icon-button svg{height:20px;width:20px}.ds__pre-aside ul li.active,.ds__pre-aside ul li:active,.ds__pre-aside ul li:hover{border-left-color:var(--beyond-primary-dark-color);background:rgba(255,255,255,.1)}.ds__pre-aside ul li.active .beyond-icon-button,.ds__pre-aside ul li:active .beyond-icon-button,.ds__pre-aside ul li:hover .beyond-icon-button{opacity:1}.ds__pre-aside{display:flex;flex-direction:column;align-items:start;position:sticky;top:50px;justify-content:space-between;height:calc(100vh - 80px);border-right:.5px solid var(--beyond-secondary-dark-color);background:var(--ds-aside-secondary-bg)}.ds__pre-aside .end-list{border-top:1px solid #fff;background:var(--ds-preaside-bg)}.ds__pre-aside ul{list-style:none;padding:0;margin:0}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/aside.code', '.ds__aside{display:flex;flex-direction:row;position:relative;align-items:start;background:var(--ds-aside-bg);transition:all .2s linear;height:100vh}.ds__aside .ds__aside__detail__container{height:100%}.ds__aside.hide-detail .ds__aside__detail{width:0;display:none;transition:all .3s linear}.ds__aside .ds__aside__detail{box-shadow:6px 0 12px #0000004A}.ds__aside .ds__aside__detail{padding:calc(66px - 33px) 0 0;z-index:2;min-width:220px;max-width:220px;position:sticky;align-items:start;top:0;height:100vh;overflow:hidden;font-size:.75rem;width:100%;transition:all .3s linear}.ds__aside .ds__aside__detail.h__p{padding:0 0}.ds__aside .ds__aside__detail .beyond-element-spinner.aside__spinner{display:none}.ds__aside .ds__aside__detail.is-fetching{opacity:.3}.ds__aside .ds__aside__detail.is-fetching .ds-aside__header .beyond-icon{display:none}.ds__aside .ds__aside__detail.is-fetching .beyond-element-spinner.aside__spinner{display:flex;position:absolute;top:15px;right:15px}.ds__aside .ds__aside__detail .ds-tree{position:relative}.ds__aside__detail .ds__aside--empty .ds__aside__empty-content{color:var(--secondary-text-color);padding:1rem}.ds__aside__detail .ds__aside--empty h4,.ds__aside__detail .ds__aside--empty h5{color:var(--text-color)}.ds__aside__detail .ds__aside--empty h5{margin-bottom:1rem}.ds-aside__header{align-items:center;padding:0 0 0 15px;height:34px;border-bottom:2px solid var(--beyond-secondary-light-color);display:flex;justify-content:space-between}.ds-aside__header.flex-space{justify-content:space-between}.ds-aside__header .beyond-icon-button{height:30px;transition:all .2s ease-in}.ds-aside__header .beyond-icon-button .beyond-icon{fill:var(--text-color)}.ds-aside__header .beyond-icon-button:hover .beyond-icon{fill:var(--secondary-text-color)}.ds__pre-aside ul li{border-left:4px solid transparent}.ds__pre-aside ul li .beyond-icon-button{opacity:.7;cursor:not-allowed}.ds__pre-aside ul li.disabled{opacity:.7;cursor:none}.ds__pre-aside ul li .beyond-icon-button{height:50px;width:50px;fill:var(--beyond-text-on-secondary);transition:all 150ms linear}.ds__pre-aside ul li .beyond-icon-button svg{height:20px;width:20px}.ds__pre-aside ul li.active,.ds__pre-aside ul li:active,.ds__pre-aside ul li:hover{border-left-color:var(--beyond-primary-dark-color);background:rgba(255,255,255,.1)}.ds__pre-aside ul li.active .beyond-icon-button,.ds__pre-aside ul li:active .beyond-icon-button,.ds__pre-aside ul li:hover .beyond-icon-button{opacity:1}.ds__aside.hide-detail .ds__pre-aside{box-shadow:6px 0 12px #0000004A}.ds__aside .ds__pre-aside{display:flex;flex-direction:column;align-items:start;position:sticky;top:0;padding-top:var(--app-toolbar-height);justify-content:space-between;height:100vh;border-right:.5px solid var(--surface);background:var(--surface);z-index:2}.ds__aside .ds__pre-aside .end-list{border-top:1px solid var(--secondary)}.ds__aside .ds__pre-aside ul{list-style:none;padding:0;margin:0}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -543,6 +654,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

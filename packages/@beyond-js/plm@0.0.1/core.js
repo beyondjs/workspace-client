@@ -1,10 +1,10 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.tables = _exports.realtime = _exports.hmr = _exports.auth = _exports.TableSpecs = _exports.NotSet = _exports.ListUpdateFilterReport = _exports.ItemsProperty = _exports.ItemSpecs = _exports.ItemSelectorProperty = _exports.ItemProperty = _exports.Item = _exports.DataSource = _exports.ConditionOperand = _exports.CollectionSpecs = _exports.CollectionProperty = _exports.Collection = void 0;
+  _exports.tables = _exports.realtime = _exports.hmr = _exports.auth = _exports.__beyond_pkg = _exports.TableSpecs = _exports.NotSet = _exports.ListUpdateFilterReport = _exports.ItemsProperty = _exports.ItemSpecs = _exports.ItemSelectorProperty = _exports.ItemProperty = _exports.Item = _exports.DataSource = _exports.ConditionOperand = _exports.CollectionSpecs = _exports.CollectionProperty = _exports.Collection = void 0;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -7110,6 +7110,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kern
     (require || prop === 'tables') && (_exports.tables = tables = require ? require('./tables/tables').tables : value);
   };
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

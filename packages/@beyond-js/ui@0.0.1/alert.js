@@ -1,11 +1,11 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.BeyondAlert = BeyondAlert;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -100,7 +100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/alert', '.beyondalert{padding:15px;color:#fff;margin:10px 0;margin-bottom:20px;display:grid;align-items:center;align-content:center;border-radius:2px;box-shadow:0 10px 13px -7px #000,0 2px 11px 3px transparent}.beyondalert.alert-icon,.beyondalert.alert-icon-left{grid-template-columns:auto 1fr}.beyondalert.alert-icon-right{grid-template-columns:1fr auto}._beyond-alert{border-radius:5px;margin:10px 0;padding:10px}._beyond-alert .alert-icon{padding:0 10px;display:flex}._beyond-alert h3{margin:0;text-transform:uppercase}._beyond-alert p{margin:0;text-transform:uppercase}._beyond-alert.info{background-color:gray}._beyond-alert.success{background:green}._beyond-alert.danger,._beyond-alert.error{background:red}._beyond-alert.warning{background:#ff0}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/alert', '.beyondalert{padding:15px;color:#fff;margin:10px 0;margin-bottom:20px;display:grid;align-items:center;align-content:center;border-radius:2px;box-shadow:0 10px 13px -7px #000,0 2px 11px 3px transparent}.beyondalert.alert-icon,.beyondalert.alert-icon-left{grid-template-columns:auto 1fr}.beyondalert.alert-icon-right{grid-template-columns:1fr auto}.beyond-alert{padding:1rem;font-size:.75rem;position:relative;display:grid;align-items:center;align-content:center;border-radius:2px}.beyond-alert .alert-icon{padding:0 10px;display:flex}.beyond-alert h3,.beyond-alert p{margin:0}.beyond-alert .alert-icon{padding:0 10px;display:flex}.beyond-alert.alert-icon,.beyond-alert.alert-icon-left{grid-template-columns:auto 1fr}.beyond-alert.alert-icon-right{grid-template-columns:1fr auto}.beyond-alert.alert-info{background:var(--info);color:var(--text-on-info,var(--text-color))}.beyond-alert.alert-success{background:var(--success);color:var(--text-on-success,var(--text-color))}.beyond-alert.alert-danger,.beyond-alert.alert-error{background:var(--danger);color:var(--text-on-danger,var(--text-color))}.beyond-alert.alert-warning{background:var(--warning);color:var(--text-on-warning,var(--text-color))}.beyond-alert .beyond-alert__close-icon{height:.8rem;width:.8rem;position:absolute;top:15px;right:15px}.beyond-alert .beyond-alert__close-icon svg{height:.6rem;width:.6rem}.beyond-alert.hiding-component{opacity:0;transition:all .3s ease-in-out}.beyond-alert.hiding-component *{display:none;transition:all 150ms ease-in-out}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -110,6 +110,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

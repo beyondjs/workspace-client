@@ -1,10 +1,10 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.txt = _exports.hmr = void 0;
+  _exports.txt = _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -61,6 +61,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     (require || prop === 'txt') && (_exports.txt = txt = require ? require('./txt').txt : value);
   };
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

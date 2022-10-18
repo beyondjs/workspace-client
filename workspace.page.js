@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.0.22/texts", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/uploader-components", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/settings.code", "@beyond-js/dashboard@0.0.1/projects-board.code", "@beyond-js/dashboard@0.0.1/project-create.code", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/project-board.code", "@beyond-js/dashboard@0.0.1/aside.code", "@beyond-js/dashboard@0.0.1/ds-navigator", "@beyond-js/dashboard@0.0.1/ds-panels", "@beyond-js/dashboard@0.0.1/ds-notifications.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/module-view.code", "@beyond-js/dashboard@0.0.1/module-create.code", "@beyond-js/dashboard@0.0.1/layout-header"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/uploader-components", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/settings.code", "@beyond-js/dashboard@0.0.1/projects-board.code", "@beyond-js/dashboard@0.0.1/project-create.code", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/project-board.code", "@beyond-js/dashboard@0.0.1/static-board.code", "@beyond-js/dashboard@0.0.1/aside.code", "@beyond-js/dashboard@0.0.1/ds-navigator", "@beyond-js/dashboard@0.0.1/ds-panels", "@beyond-js/dashboard@0.0.1/ds-notifications.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/module-view.code", "@beyond-js/dashboard@0.0.1/module-create.code", "@beyond-js/dashboard@0.0.1/layout-header", "@beyond-js/dashboard@0.0.1/compilation-modal"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25, dependency_26, dependency_27) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -7,7 +7,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   _exports.ContextMenu = void 0;
   _exports.DSWorkspace = DSWorkspace;
   _exports.Page = Page;
-  _exports.hmr = _exports.Workspace = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.Workspace = _exports.PortManager = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -65,42 +65,46 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     CompileBoard
   } = dependency_16;
   const {
-    ApplicationBoard,
-    StaticBoard,
-    ApplicationConfig
+    ApplicationBoard
   } = dependency_17;
   const {
-    WorspaceAside
+    StaticBoard
   } = dependency_18;
   const {
-    NavigatorBoard
+    WorspaceAside
   } = dependency_19;
+  const {
+    NavigatorBoard
+  } = dependency_20;
   const {
     PanelsManager,
     Panels
-  } = dependency_20;
+  } = dependency_21;
   const {
     DSNotifications,
     NotificationPanel
-  } = dependency_21;
+  } = dependency_22;
   const {
     DSBoards,
     DSPreAside,
     DSWorkspaceContext,
     useDSWorkspaceContext
-  } = dependency_22;
-  const {
-    ModuleBoard
   } = dependency_23;
   const {
-    CreateModuleForm
+    ModuleBoard
   } = dependency_24;
   const {
-    DsHeaderBar
+    CreateModule
   } = dependency_25;
+  const {
+    DsHeaderBar
+  } = dependency_26;
+  const {
+    CompilationModal
+  } = dependency_27;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -118,7 +122,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/uploader-components', dependency_10], ['@beyond-js/dashboard/breadcrumb.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/settings.code', dependency_13], ['@beyond-js/dashboard/projects-board.code', dependency_14], ['@beyond-js/dashboard/project-create.code', dependency_15], ['@beyond-js/dashboard/project-compile.code', dependency_16], ['@beyond-js/dashboard/project-board.code', dependency_17], ['@beyond-js/dashboard/aside.code', dependency_18], ['@beyond-js/dashboard/ds-navigator', dependency_19], ['@beyond-js/dashboard/ds-panels', dependency_20], ['@beyond-js/dashboard/ds-notifications.code', dependency_21], ['@beyond-js/dashboard/ds-contexts', dependency_22], ['@beyond-js/dashboard/module-view.code', dependency_23], ['@beyond-js/dashboard/module-create.code', dependency_24], ['@beyond-js/dashboard/layout-header', dependency_25]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/uploader-components', dependency_10], ['@beyond-js/dashboard/breadcrumb.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/settings.code', dependency_13], ['@beyond-js/dashboard/projects-board.code', dependency_14], ['@beyond-js/dashboard/project-create.code', dependency_15], ['@beyond-js/dashboard/project-compile.code', dependency_16], ['@beyond-js/dashboard/project-board.code', dependency_17], ['@beyond-js/dashboard/static-board.code', dependency_18], ['@beyond-js/dashboard/aside.code', dependency_19], ['@beyond-js/dashboard/ds-navigator', dependency_20], ['@beyond-js/dashboard/ds-panels', dependency_21], ['@beyond-js/dashboard/ds-notifications.code', dependency_22], ['@beyond-js/dashboard/ds-contexts', dependency_23], ['@beyond-js/dashboard/module-view.code', dependency_24], ['@beyond-js/dashboard/module-create.code', dependency_25], ['@beyond-js/dashboard/layout-header', dependency_26], ['@beyond-js/dashboard/compilation-modal', dependency_27]]);
 
   const {
     module
@@ -206,7 +210,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
           }
         }
       });
-      DSPreAside.addItems('bottom', {
+      DSPreAside.addItems('top', {
         add: {
           action: () => this.workspace.setState({
             addModule: true
@@ -323,35 +327,38 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     (() => {
       DSBoards.add('application', {
         control: ApplicationBoard,
-        label: 'app'
-      });
-      DSBoards.add('applicationConfig', {
-        control: ApplicationConfig,
-        label: 'appConfig'
+        label: 'app',
+        icon: 'project'
       });
       DSBoards.add('module', {
         control: ModuleBoard,
-        label: 'module'
+        label: 'module',
+        icon: 'module'
       });
       DSBoards.add('static', {
         control: StaticBoard,
-        label: 'static'
+        label: 'static',
+        icon: 'photoSize'
       });
       DSBoards.add('settings', {
         control: ConfigBoard,
-        label: 'settings'
+        label: 'settings',
+        icon: 'setting'
       });
       DSBoards.add('applications', {
         control: ApplicationsBoard,
-        label: 'apps'
+        label: 'apps',
+        icons: 'apps'
       });
       DSBoards.add('navigator', {
         control: NavigatorBoard,
-        label: 'navigator'
+        label: 'navigator',
+        icon: 'navigator'
       });
       DSBoards.add('compile', {
         control: CompileBoard,
-        label: 'compile'
+        label: 'compile',
+        icon: 'compile'
       });
     })();
 
@@ -377,10 +384,33 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     };
   }
   /************
+  FILE: port.js
+  ************/
+
+
+  class PortManager extends ReactiveModel {
+    #port;
+
+    port() {
+      return this.#port;
+    }
+
+    set port(value) {
+      if (isNaN(value)) {
+        throw Error('the port must be a number');
+      }
+
+      if (value === this.#port) return;
+      this.#port = value;
+    }
+
+  }
+  /************
   FILE: tree.js
   ************/
 
 
+  _exports.PortManager = PortManager;
   const TREE = {
     APPS: {
       tree: {
@@ -430,11 +460,13 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }
 
     load() {
+      //TODO @ftovar cambiar por url ingreasada en el workspace por el usuario, desde donde vaya a inspeccionar el workspace
+      const url = `http://localhost:4000/uploader`;
       const uploader = new JidaUploader({
         type: 'image',
         name: 'images',
         params: {},
-        url: `${beyond.baseUrl}/uploader`,
+        url: url,
         input: {
           name: 'images',
           multiple: true
@@ -641,8 +673,18 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       return this.#wd;
     }
 
+    #portManager;
+
     constructor(specs = {}) {
       super();
+      this.#portManager = new PortManager(); // if (this.#portManager.port) {
+      //     this.initialise();
+      // }
+
+      this.initialise(specs);
+    }
+
+    initialise(specs) {
       this.#applications = new Applications(TREE.APPS);
       this.#dashboard = Dashboard;
       this.#user = new DSUser(this.#dashboard);
@@ -1202,6 +1244,10 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
     const showProjectForm = () => setShowModal(true);
 
+    const [showCompilationModal, setShowCompilationModal] = React.useState(false);
+
+    const toggleCompilationModal = () => setShowCompilationModal(!showCompilationModal);
+
     useBinder([workspace], () => setState({
       ready: workspace.ready,
       ...workspace.state
@@ -1260,6 +1306,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       panels,
       ready: workspace.ready,
       panel: panels.active,
+      toggleCompilationModal,
       showProjectForm,
       showModuleForm: () => setState({
         addModule: true
@@ -1274,11 +1321,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     }, /*#__PURE__*/React.createElement(Panels, null)))), showModal && /*#__PURE__*/React.createElement(ApplicationCreate, {
       workspace: workspace,
       closeModal: () => setShowModal(false)
-    }), state.addModule && /*#__PURE__*/React.createElement(CreateModuleForm, {
+    }), state.addModule && /*#__PURE__*/React.createElement(CreateModule, {
       workspace: workspace,
       onClose: () => workspace.setState({
         addModule: false
       })
+    }), showCompilationModal && /*#__PURE__*/React.createElement(CompilationModal, {
+      workspace: workspace,
+      onClose: () => setShowCompilationModal(false)
     }));
   }
   /**********
@@ -1286,7 +1336,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/workspace.page', '.beyond-alert{border-radius:0}.beyond-alert .beyond-alert_content{display:grid;align-items:center}.beyond-alert ul{display:grid;list-style:none;padding:0;margin:0;align-items:center}.beyond-alert ul li:first-letter{text-transform:uppercase}.preload-container .circle span{position:absolute;top:0;left:0;bottom:0;right:0;border-radius:50%;background:#050910;height:400px;width:400px;margin:auto;animation:pulse 2.5s linear infinite;animation-delay:calc(.5s * var(--i));transition:all .3s ease-in}@keyframes pulse{0%{transform:scale(1);opacity:.5}90%{transform:scale(3);opacity:.75}100%{transform:scale(4);opacity:0}}.preload-container.finishing .beyond-element-image{position:absolute;margin:auto;z-index:10;transition:all 1.3s ease-in-out;animation:appear 2s 1;overflow:hidden}.preload-container.finishing .animation-container{height:100%;width:100%;transform:rotate(0);transition:all .3s linear}.preload-container.finishing .animation-container .line{animation:0;transition:all .1s linear;opacity:0}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container{animation:twist .9s 1;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container .ds-preload__icon{height:88px;left:-22px}@keyframes appear{0%{height:0;width:0}90%{height:auto;width:auto;opacity:1}}@keyframes twist{from{transform:rotate(0)}to{transform:rotate(360deg);opacity:0}}.preload-container .beyond-element-image{opacity:0;position:absolute;margin:auto}.preload-container .animation-container{position:relative;height:50%;transition:all .3s ease-in;width:50%;transform:rotate(30deg)}.preload-container .animation-container .animate-svg__container{align-items:center;justify-content:center;display:flex;position:absolute;top:0;left:0;bottom:0;right:0}.preload-container .animation-container .animate-svg__container .ds-preload__icon{z-index:20;height:150px;width:150px;margin:auto;animation:rotate 2s linear infinite;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container .animation-container .line{position:absolute;height:100px;width:2px;border:2px solid;z-index:1;margin:15px;transform:rotate(30deg);animation:move .3s infinite;animation-fill-mode:forwards}.preload-container .animation-container .line.line-one{margin-top:-100px;margin-left:-200px}.preload-container .animation-container .line.line-one-two{margin-top:-280px;margin-left:-80px;border-color:rgba(255,255,200,.1)}.preload-container .animation-container .line.line-three{margin-left:-20px;border-color:rgba(255,255,200,.1);margin-top:-150px;display:none}.preload-container .animation-container .line.line-two{margin-left:200px;margin-top:150px}.preload-container .animation-container .line.line-two-two{border-color:rgba(255,255,200,.1);margin-left:130px;margin-top:30px}@keyframes move{from{transform:translateY(-150px)}to{transform:translateY(150px)}}@keyframes rotate{0%{transform:rotate(0)}13%{transform:rotate(30deg) scale(1.1)}26%{transform:rotate(45deg) scale(1.01)}39%{transform:rotate(30deg) scale(1)}50%{transform:rotate(0) scale(1.1)}63%{transform:rotate(-30deg) scale(1.01)}76%{transform:rotate(-45deg) scale(1.02)}89%{transform:rotate(-30deg)}}.container__early__form{display:flex;align-items:center;justify-content:center;height:100vh;justify-items:center;flex-direction:column;max-width:500px;margin:auto;-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form 0%{opacity:0}.container__early__form 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .warning-text{color:var(--beyond-warning-color);-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form .warning-text 0%{opacity:0}.container__early__form .warning-text 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .logo img{max-width:200px}.container__early__form header{text-align:center;margin-bottom:30px}.container__early__form header h1{font-size:20px;margin-left:1rem}.container__early__form.ending .elements__section{opacity:.1}.container__early__form.ending.ending-left .elements__section{-webkit-animation-name:fadeOutLeft;-moz-animation-name:fadeOutLeft;-ms-animation-name:fadeOutLeft;-o-animation-name:fadeOutLeft;animation-name:fadeOutLeft;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-moz-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-ms-keyframes fadeOutLeft{.container__early__form.ending.ending-left .elements__section 0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.container__early__form.ending.ending-left .elements__section 100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-o-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}.container__early__form .elements__section{display:flex;justify-content:center;flex-direction:column;align-items:center}.container__early__form form{width:100%}.container__early__form form .form-group{display:flex;border-radius:4px}.container__early__form form .form-group .form-sub-group{position:relative}.container__early__form form .form-group .form-sub-group:last-child{flex-grow:1}.container__early__form form .form-group .form-sub-group .beyond-element-input{color:var(--beyond-text-on-primary)}.container__early__form form .form-group .form-sub-group label{position:absolute;top:0;left:0;cursor:text;transform-origin:0 0;transition:all .3s}.container__early__form form .upper-text{text-transform:uppercase}.container__early__form form .form__actions{margin:40px 0;display:flex;justify-items:center;align-content:center;justify-content:center}.container__early__form form .form__actions .beyond-button{height:40px;width:60%}.container__early__form form .form__actions .beyond-button[disabled]{opacity:.2}.container__early__form form .early__message{font-size:1.1rem;padding:0 20px;text-align:center;color:var(--beyond-primary-color)}.early-access__container{display:flex;align-items:center;justify-content:center;flex-direction:column;width:100%}.early-access__container header h1{color:var(--beyond-primary-color)}.early-access__container form{display:grid;gap:15px}.early-access__container form label{display:inline-grid;text-align:center;font-size:1.4rem}.early-access__container form input{margin-top:30px;border:1px solid var(--beyond-primary-color);background:0 0;padding:15px;border-radius:15px;font-size:1.5rem;color:var(--beyond-primary-color);text-transform:uppercase;text-align:center;outline:0}.app__empty__container{height:100%;width:100%;display:flex;justify-content:center;align-items:top;padding-top:15%}.ds-footer-bar{grid-area:footer;z-index:8;position:fixed;bottom:0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;left:0;right:0;padding:8px 15px;background:var(--ds-secondary-bg);display:flex;justify-content:space-between;align-items:center}.ds-footer-bar *{font-size:10px;padding:0}.ds-footer-bar h1,.ds-footer-bar h2,.ds-footer-bar h3,.ds-footer-bar p{padding:0;margin:0}.ds-footer-bar span{display:inline-flex;padding:0 5px}.ds-footer-bar .primary-text{color:var(--beyond-primary-color)}.ds-footer-bar .beyond-button{background:#000;border:0;color:#fff}.ds__main-container{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color);z-index:1}.preload-container{height:100vh;width:100vw;overflow:hidden}.ds-application-view-layout{display:grid;height:100%;grid-template-areas:"toolbar toolbar" "errors errors" "aside panel";grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;overflow:hidden}.ds-application-view-layout .ds-toolbar{grid-area:toolbar;z-index:2}.ds-application-view-layout .ds__aside{grid-area:aside}.ds-application-view-layout .ds__workspace__errors{grid-area:errors}.ds-application-view-layout .ds__main-content{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color)}.dashboard-layout .ds-toolbar .toolbar__aside__logo{background:url("/images/logo.png") no-repeat center center var(--ds-secondary-bg);background-size:50%;width:274px;display:flex;align-items:center;justify-content:center;height:50px}.dashboard-layout.aside-hidden .ds-toolbar .toolbar__aside__logo{width:54px;background-image:url("/images/beyond-iso.png");background-size:35%;overflow:hidden}.dashboard-layout .ds-toolbar{display:flex;position:sticky;justify-content:flex-start;align-items:center;gap:20px;height:50px;top:0;transition:all .3s linear;background:var(--beyond-secondary-dark-color)}.dashboard-layout .ds-toolbar .group-items-toolbar{display:flex;justify-content:space-between;width:100%;height:100%;align-items:center}.dashboard-layout .ds-toolbar .group-items-toolbar .right__panel{display:flex;gap:15px;place-items:center;height:100%}.dashboard-layout .ds-toolbar .ds-editor__module-name{display:flex;gap:15px;align-items:center}.dashboard-layout .ds-toolbar .ds-editor__module-name .beyond-icon{fill:#fff}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/workspace.page', '.preload-container .circle span{position:absolute;top:0;left:0;bottom:0;right:0;border-radius:50%;background:#050910;height:400px;width:400px;margin:auto;animation:pulse 2.5s linear infinite;animation-delay:calc(.5s * var(--i));transition:all .3s ease-in}@keyframes pulse{0%{transform:scale(1);opacity:.5}90%{transform:scale(3);opacity:.75}100%{transform:scale(4);opacity:0}}.preload-container.finishing .beyond-element-image{position:absolute;margin:auto;z-index:10;transition:all 1.3s ease-in-out;animation:appear 2s 1;overflow:hidden}.preload-container.finishing .animation-container{height:100%;width:100%;transform:rotate(0);transition:all .3s linear}.preload-container.finishing .animation-container .line{animation:0;transition:all .1s linear;opacity:0}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container{animation:twist .9s 1;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container .ds-preload__icon{height:88px;left:-22px}@keyframes appear{0%{height:0;width:0}90%{height:auto;width:auto;opacity:1}}@keyframes twist{from{transform:rotate(0)}to{transform:rotate(360deg);opacity:0}}.preload-container .beyond-element-image{opacity:0;position:absolute;margin:auto}.preload-container .animation-container{position:relative;height:50%;transition:all .3s ease-in;width:50%;transform:rotate(30deg)}.preload-container .animation-container .animate-svg__container{align-items:center;justify-content:center;display:flex;position:absolute;top:0;left:0;bottom:0;right:0}.preload-container .animation-container .animate-svg__container .ds-preload__icon{z-index:20;height:150px;width:150px;margin:auto;animation:rotate 2s linear infinite;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container .animation-container .line{position:absolute;height:100px;width:2px;border:2px solid;z-index:1;margin:15px;transform:rotate(30deg);animation:move .3s infinite;animation-fill-mode:forwards}.preload-container .animation-container .line.line-one{margin-top:-100px;margin-left:-200px}.preload-container .animation-container .line.line-one-two{margin-top:-280px;margin-left:-80px;border-color:rgba(255,255,200,.1)}.preload-container .animation-container .line.line-three{margin-left:-20px;border-color:rgba(255,255,200,.1);margin-top:-150px;display:none}.preload-container .animation-container .line.line-two{margin-left:200px;margin-top:150px}.preload-container .animation-container .line.line-two-two{border-color:rgba(255,255,200,.1);margin-left:130px;margin-top:30px}@keyframes move{from{transform:translateY(-150px)}to{transform:translateY(150px)}}@keyframes rotate{0%{transform:rotate(0)}13%{transform:rotate(30deg) scale(1.1)}26%{transform:rotate(45deg) scale(1.01)}39%{transform:rotate(30deg) scale(1)}50%{transform:rotate(0) scale(1.1)}63%{transform:rotate(-30deg) scale(1.01)}76%{transform:rotate(-45deg) scale(1.02)}89%{transform:rotate(-30deg)}}.container__early__form{display:flex;align-items:center;justify-content:center;height:100vh;justify-items:center;flex-direction:column;max-width:500px;margin:auto;-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form 0%{opacity:0}.container__early__form 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .warning-text{color:var(--beyond-warning-color);-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form .warning-text 0%{opacity:0}.container__early__form .warning-text 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .logo img{max-width:200px}.container__early__form header{text-align:center;margin-bottom:30px}.container__early__form header h1{font-size:20px;margin-left:1rem}.container__early__form.ending .elements__section{opacity:.1}.container__early__form.ending.ending-left .elements__section{-webkit-animation-name:fadeOutLeft;-moz-animation-name:fadeOutLeft;-ms-animation-name:fadeOutLeft;-o-animation-name:fadeOutLeft;animation-name:fadeOutLeft;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-moz-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-ms-keyframes fadeOutLeft{.container__early__form.ending.ending-left .elements__section 0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.container__early__form.ending.ending-left .elements__section 100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-o-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}.container__early__form .elements__section{display:flex;justify-content:center;flex-direction:column;align-items:center}.container__early__form form{width:100%}.container__early__form form .form-group{display:flex;border-radius:4px}.container__early__form form .form-group .form-sub-group{position:relative}.container__early__form form .form-group .form-sub-group:last-child{flex-grow:1}.container__early__form form .form-group .form-sub-group .beyond-element-input{color:var(--beyond-text-on-primary)}.container__early__form form .form-group .form-sub-group label{position:absolute;top:0;left:0;cursor:text;transform-origin:0 0;transition:all .3s}.container__early__form form .upper-text{text-transform:uppercase}.container__early__form form .form__actions{margin:40px 0;display:flex;justify-items:center;align-content:center;justify-content:center}.container__early__form form .form__actions .beyond-button{height:40px;width:60%}.container__early__form form .form__actions .beyond-button[disabled]{opacity:.2}.container__early__form form .early__message{font-size:1.1rem;padding:0 20px;text-align:center;color:var(--beyond-primary-color)}.early-access__container{display:flex;align-items:center;justify-content:center;flex-direction:column;width:100%}.early-access__container header h1{color:var(--beyond-primary-color)}.early-access__container form{display:grid;gap:15px}.early-access__container form input{margin-top:30px;border:1px solid var(--beyond-primary-color);background:0 0;padding:15px;border-radius:15px;font-size:1.5rem;color:var(--beyond-primary-color);text-transform:uppercase;text-align:center;outline:0}.app__empty__container{height:100%;width:100%;display:flex;justify-content:center;align-items:top;padding-top:15%}.ds-footer-bar{grid-area:footer;z-index:8;position:fixed;bottom:0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;left:0;right:0;padding:8px 15px;background:var(--ds-secondary-bg);display:flex;justify-content:space-between;align-items:center}.ds-footer-bar *{font-size:10px;padding:0}.ds-footer-bar h1,.ds-footer-bar h2,.ds-footer-bar h3,.ds-footer-bar p{padding:0;margin:0}.ds-footer-bar span{display:inline-flex;padding:0 5px}.ds-footer-bar .primary-text{color:var(--beyond-primary-color)}.ds-footer-bar .beyond-button{background:#000;border:0;color:#fff}.ds__main-container{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color);z-index:1}.preload-container{height:100vh;width:100vw;overflow:hidden}.ds-application-view-layout{display:grid;height:100%;grid-template-areas:"aside toolbar" "aside errors" "aside panel";grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;overflow:hidden}.ds-application-view-layout .ds-toolbar{grid-area:toolbar;z-index:1}.ds-application-view-layout .ds__aside{grid-area:aside}.ds-application-view-layout .ds__workspace__errors{grid-area:errors}.ds-application-view-layout .ds__main-content{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--background)}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -1296,6 +1346,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

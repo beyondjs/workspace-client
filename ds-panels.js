@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -9,7 +9,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   _exports.Panels = Panels;
   _exports.PanelsManager = void 0;
   _exports.TabIcon = TabIcon;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -51,7 +51,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   } = dependency_11;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -309,7 +309,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         throw new Error('The file requires the module or moduleId parameter');
       }
 
-      if (module && elementType !== 'template') {
+      if (elementType !== 'template') {
         /**
          * TODO: @julio unifies the way to get parameters in the function and simplifies it.
          *
@@ -399,7 +399,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       const tabName = specs.name ? specs.name : specs.moduleId ? specs.moduleId : specs.label ? labelName : name;
       const id = specs.id || specs.name || tabName;
       const projectId = name === 'application' ? specs.id : specs.projectId;
+
+      if (projectId) {
+        const project = await projectsFactory.get(projectId);
+        label = project.name;
+      }
+
       const finalSpecs = {
+        icon: control.icon,
         projectId: specs.projectId,
         // @todo: restructure specs
         id,
@@ -409,16 +416,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         path: name,
         control: control.control,
         specs
-      }; // if (projectId) {
-      //     const application = await projectsFactory.get(projectId);
-      //     finalSpecs.label = application.name;
-      //
-      // }
-      // console.log(9.1, finalSpecs)
-
-      this.tabs.set(id, finalSpecs); //the activeItem is used by the Panel View component to understand which board must be shown.
-      // this.#activeItem = id;
-
+      };
+      this.tabs.set(id, finalSpecs);
       this.activeItem = id;
       this.triggerEvent('panel.updated');
       this.triggerEvent();
@@ -577,7 +576,6 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
      *
      * @param boards
      * @param workspace
-     * @param data
      */
 
     constructor(boards, workspace) {
@@ -686,6 +684,16 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       this.#items = newOrder;
       this.triggerEvent();
     }
+    /**
+     * Checks if a board is opened
+     * @param name
+     * @returns {any}
+     */
+
+
+    boardOpened(id) {
+      return [...this.#items.values()].find(item => item.tabs.has(id));
+    }
 
   }
 
@@ -715,22 +723,16 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   function TabIcon({
     item
   }) {
-    let icon = 'setting';
-
-    if (item.type !== 'editor') {
-      let name = item.name === 'applications' ? 'apps' : item.name === 'application' ? 'project' : item.name;
-      icon = DS_ICONS.hasOwnProperty(name) ? name : icon;
-    }
-
+    let icon = item.icon ?? 'apps';
     window.ds = DS_ICONS;
 
     if (item.type === 'editor') {
       icon = DS_ICONS.hasOwnProperty(`processor.${item.processor}`) ? `file.${item.processor}` : 'code';
     }
 
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DSIcon, {
+    return /*#__PURE__*/React.createElement(DSIcon, {
       icon: icon
-    }));
+    });
   }
   /******
   tab.jsx
@@ -824,9 +826,11 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     return /*#__PURE__*/React.createElement("div", _extends({
       ref: ref,
       "data-context": "tab"
-    }, attrs), /*#__PURE__*/React.createElement(TabIcon, {
+    }, attrs), /*#__PURE__*/React.createElement("div", {
+      className: "tab__content"
+    }, /*#__PURE__*/React.createElement(TabIcon, {
       item: item
-    }), name, /*#__PURE__*/React.createElement(IconTab, null), showContextMenu && /*#__PURE__*/React.createElement(DSContextMenu, {
+    }), /*#__PURE__*/React.createElement("span", null, name)), /*#__PURE__*/React.createElement(IconTab, null), showContextMenu && /*#__PURE__*/React.createElement(DSContextMenu, {
       unmount: toggleContextMenu,
       specs: showContextMenu
     }, /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement(ItemMenu, {
@@ -883,7 +887,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
    *
    * Each panel can contain multiple boards/tabs. The view suscribes by itself
    * to the model changes and is updated from that changes without wait for
-   * appContext changes.
+   * ProjectContext changes.
    * @param panel
    * @returns {JSX.Element}
    * @constructor
@@ -902,6 +906,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     } = state;
     const tab = panel.tabs.get(panel.activeItem);
     const ref = React.useRef(null);
+    const {
+      total
+    } = useWorkspacePanelsContext();
     useBinder([panel], () => {
       setState({ ...state,
         total: panel.tabs.size,
@@ -934,13 +941,14 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       panel: panel
     };
     if (tab.type === 'editor') specs.editor = panel.editor;
+    const clsPanel = `panel__container${total > 1 ? ' panel__container--divided' : ''}`;
     return /*#__PURE__*/React.createElement("div", {
       ref: ref,
       className: "ds__panel"
     }, /*#__PURE__*/React.createElement("section", {
       className: "ds__tabs-container"
     }, tabs), /*#__PURE__*/React.createElement(BeyondScrollContainer, {
-      className: "panel__container"
+      className: clsPanel
     }, /*#__PURE__*/React.createElement(Control, _extends({}, specs, {
       specs: tab.specs,
       tab: tab
@@ -992,6 +1000,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       value: {
         addPanel,
         panels: panels,
+        total: panels.items.size,
         panel: panels.active
       }
     }, /*#__PURE__*/React.createElement("div", {
@@ -1034,7 +1043,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/ds-panels', '.ds__content-panel{padding:20px;width:100%}.ds__content-panel header{border-bottom:1px solid var(--beyond-primary-accent-color);margin-bottom:30px}.ds__content-panel .form-column{display:flex;gap:10px;align-items:center}.ds__content-panel .form-column select{background:0 0;color:var(--beyond-text-on-secondary);padding:8px}.ds__content-panel .form-column select option{color:#000}.panels__container .ds__panel{display:grid;grid-template-rows:auto 1fr;width:100%;flex-grow:0;box-shadow:var(--shadow-5);overflow:auto;height:100%}.panels__container .ds__panel .panels__container{box-shadow:-1px -4px 25px -3px rgba(0,0,0,.8)}.panels__container .ds__panel+.ds__panel{border-left:solid 2px #050910}@media (max-width:600px){.panels__container .ds__panel{flex-direction:row}}.panels__container .ds__panel>div{min-height:100%}.panels__container .ds-panels__actions{position:absolute;top:0;right:15px;z-index:1;height:34px}.panels__container .ds-panels__actions .beyond-icon-button{height:100%;width:30px;background:0 0;fill:#FFFFFF}.ds-application-view-layout .panels__container{display:grid;width:100%;height:calc(100vh - 50px);overflow:hidden;position:relative;z-index:2}.ds-application-view-layout .panels__container.panels--vertical{grid-auto-flow:row}.ds-application-view-layout .ds__tabs-container{display:flex;background:var(--beyond-secondary-color)}.ds-application-view-layout .ds__tabs-container .ds__tab{height:34px;padding:8px 15px;background:#1a1a1a;display:flex;gap:8px;border-bottom:2px solid transparent;align-items:center;font-size:.9rem;cursor:pointer}.ds-application-view-layout .ds__tabs-container .ds__tab:hover{background:var(--ds-tabs-hover)}.ds-application-view-layout .ds__tabs-container .ds__tab:hover .beyond-icon.tab__icon{stroke-width:15px;stroke:#fff}.ds-application-view-layout .ds__tabs-container .ds__tab.item-active{border-left:.5px solid var(--ds-tabs-hover);border-right:.5px solid var(--ds-tabs-hover);border-bottom-color:#ff8056;background:var(--ds-tabs-hover)}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon-button.tab__icon{margin:0 -10px 0 0;height:15px;width:15px;padding:0}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon-button.tab__icon.tab--unpublished:not(:hover){background:var(--beyond-primary-color);border-radius:50%;fill:var(--beyond-primary-color)}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon{height:.8rem;width:.8rem;transition:all .2s linear;fill:#fff}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon:hover{stroke-width:15px;stroke:#fff}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/ds-panels', '.ds__content-panel{padding:20px;width:100%}.ds__content-panel header{border-bottom:1px solid var(--beyond-primary-accent-color);margin-bottom:30px}.ds__content-panel .form-column{display:flex;gap:10px;align-items:center}.ds__content-panel .form-column select{background:0 0;color:var(--beyond-text-on-secondary);padding:8px}.ds__content-panel .form-column select option{color:#000}.panels__container .ds__panel{display:grid;grid-template-rows:auto 1fr;width:100%;flex-grow:0;box-shadow:var(--shadow-5);overflow:auto;height:100%}.panels__container .ds__panel .panels__container{box-shadow:-1px -4px 25px -3px rgba(0,0,0,.8)}.panels__container .ds__panel+.ds__panel{border-left:solid 2px #050910}.panels__container .ds__panel .board__container,.panels__container .ds__panel .tab__container{padding:2.5rem}@media (max-width:600px){.panels__container .ds__panel{flex-direction:row}}.panels__container .ds__panel>div{min-height:100%}.panels__container .ds-panels__actions{position:absolute;top:0;right:15px;z-index:1;height:34px}.panels__container .ds-panels__actions .beyond-icon-button{height:100%;width:30px;background:0 0;fill:#FFFFFF}.ds-application-view-layout .panels__container{display:grid;width:100%;height:calc(100vh - var(--app-toolbar-height));overflow:hidden;position:relative;z-index:2}.ds-application-view-layout .panels__container.panels--vertical{grid-auto-flow:row}.ds-application-view-layout .ds__tabs-container{display:flex;background:var(--surface)}.ds-application-view-layout .ds__tabs-container .ds__tab{height:34px;padding:0 .5rem;display:flex;position:relative;gap:.5rem;color:var(--secondary);align-items:center;font-size:.75rem;cursor:pointer;border:1px solid transparent;border-right:1px solid var(--secondary)}.ds-application-view-layout .ds__tabs-container .ds__tab:not(:first-child){border-left:1px solid var(--secondary)}.ds-application-view-layout .ds__tabs-container .ds__tab.item-active,.ds-application-view-layout .ds__tabs-container .ds__tab:hover{background:var(--ds-tabs-hover);border:1px solid transparent;color:var(--text-color)}.ds-application-view-layout .ds__tabs-container .ds__tab.item-active .beyond-icon.tab__icon,.ds-application-view-layout .ds__tabs-container .ds__tab:hover .beyond-icon.tab__icon{stroke-width:15px;stroke:var(--text-on-primary)}.ds-application-view-layout .ds__tabs-container .ds__tab .tab__content{display:flex;align-items:center;gap:.5rem}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon-button.tab__icon{height:.6rem;width:.6rem;fill:var(--secondary);color:var(--text-color)}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon{height:.6rem;width:.6rem;transition:all .2s linear;fill:#fff}.ds-application-view-layout .ds__tabs-container .ds__tab .beyond-icon:hover{stroke-width:15px;stroke:#fff}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -1044,6 +1053,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

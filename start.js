@@ -1,4 +1,4 @@
-define(["exports", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/transversals", "@beyond-js/kernel@0.0.22/core", "@beyond-js/kernel@0.0.22/routing", "@beyond-js/widgets@0.0.10/render", "@beyond-js/backend@0.0.10/client", "@beyond-js/dashboard@0.0.1/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
+define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/transversals", "@beyond-js/kernel@0.1.0/core", "@beyond-js/kernel@0.1.0/routing", "@beyond-js/widgets@0.0.10/render", "@beyond-js/backend@0.0.10/client", "@beyond-js/dashboard@0.0.1/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -66,9 +66,9 @@ define(["exports", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/icons",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/icon/pages/icons",
+    "bundle": "@beyond-js/ui@0.0.1/page-icons",
     "vdir": false,
-    "layout": "editor"
+    "layout": "dashboard"
   }, {
     "route": "/beyond/ui/image",
     "bundle": "@beyond-js/ui@0.0.1/unnamed/image/page",
@@ -213,9 +213,14 @@ define(["exports", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/
     "layout": "dashboard"
   }, {
     "route": "/test",
-    "bundle": "@beyond-js/dashboard@0.0.1/unnamed/test",
+    "bundle": "@beyond-js/dashboard@0.0.1/test",
     "vdir": false,
     "layout": "default"
+  }, {
+    "route": "/ui",
+    "bundle": "@beyond-js/dashboard@0.0.1/workspace-ui",
+    "vdir": false,
+    "layout": "dashboard"
   }, {
     "route": "/",
     "bundle": "@beyond-js/dashboard@0.0.1/workspace.page",
@@ -354,7 +359,7 @@ define(["exports", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+      const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
@@ -412,7 +417,7 @@ define(["exports", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+      const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************

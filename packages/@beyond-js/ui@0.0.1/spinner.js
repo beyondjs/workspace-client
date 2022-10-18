@@ -1,11 +1,11 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.BeyondSpinner = BeyondSpinner;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -117,7 +117,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/spinner', '@keyframes rotator{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(270deg);transform:rotate(270deg)}}@keyframes introfade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}@keyframes pathgrow{0%{stroke-width:1}50%{stroke-width:6}100%{stroke-width:1}}@keyframes dash{0%{stroke-dashoffset:227}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}100%{stroke-dashoffset:227;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}.beyond-element-spinner{top:40px;vertical-align:top;height:15px;width:15px;-webkit-animation:rotator 2.4s linear infinite;animation:rotator 2.4s linear infinite}@keyframes primary-colors{0%{stroke:#FF8056}25%{stroke:#ff612d}50%{stroke:#ffa689}75%{stroke:#ff612d}100%{stroke:#FF8056}}@keyframes colors{0%{stroke:#FF8056}25%{stroke:#ff612d}50%{stroke:#ffa689}75%{stroke:#ff612d}100%{stroke:#FF8056}}@keyframes secondary-colors{0%{stroke:#121F36}25%{stroke:#080d17}50%{stroke:#1f355c}75%{stroke:#080d17}100%{stroke:#121F36}}@keyframes accent-colors{0%{stroke:#A2000A}25%{stroke:#790007}50%{stroke:#d5000d}75%{stroke:#790007}100%{stroke:#A2000A}}@keyframes on-primary{0%{stroke:#fff}25%{stroke:#ebebeb}50%{stroke:white}75%{stroke:#ebebeb}100%{stroke:#fff}}.beyond-element-spinner .path{stroke-dasharray:227;opacity:0;stroke-dashoffset:0;-webkit-transform-origin:center;-ms-transform-origin:center;transform-origin:center;-webkit-animation-delay:1s;animation-delay:1s;animation:dash 2.4s ease-in-out infinite,colors 5.6s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}.beyond-element-spinner.custom-color .path{animation:dash 2.4s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}.beyond-element-spinner.primary .path{animation:dash 2.4s ease-in-out infinite,primary-colors 5.6s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}.beyond-element-spinner.on-primary .path{animation:dash 2.4s ease-in-out infinite,on-primary 5.6s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}.beyond-element-spinner.secondary .path{animation:dash 2.4s ease-in-out infinite,secondary-colors 5.6s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}.beyond-element-spinner.accent .path{animation:dash 2.4s ease-in-out infinite,accent-colors 5.6s ease-in-out infinite,pathgrow 2.4s ease-in-out infinite,introfade 2.4s linear infinite}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/spinner', '@keyframes rotator{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(270deg);transform:rotate(270deg)}}@keyframes introfade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}@keyframes pathgrow{0%{stroke-width:1}50%{stroke-width:6}100%{stroke-width:1}}@keyframes dash{0%{stroke-dashoffset:227}50%{stroke-dashoffset:46.75;-webkit-transform:rotate(135deg);transform:rotate(135deg)}100%{stroke-dashoffset:227;-webkit-transform:rotate(450deg);transform:rotate(450deg)}}.beyond-element-spinner{top:40px;vertical-align:top;height:15px;width:15px;-webkit-animation:rotator 1.4s linear infinite;animation:rotator 1.4s linear infinite}@keyframes primary-colors{0%{stroke:#FF8056}25%{stroke:#ff612d}50%{stroke:#ffa689}75%{stroke:#ff612d}100%{stroke:#FF8056}}@keyframes colors{0%{stroke:#FF8056}25%{stroke:#ff612d}50%{stroke:#ffa689}75%{stroke:#ff612d}100%{stroke:#FF8056}}@keyframes secondary-colors{0%{stroke:#121F36}25%{stroke:#080d17}50%{stroke:#1f355c}75%{stroke:#080d17}100%{stroke:#121F36}}@keyframes accent-colors{0%{stroke:#A2000A}25%{stroke:#790007}50%{stroke:#d5000d}75%{stroke:#790007}100%{stroke:#A2000A}}@keyframes on-primary{0%{stroke:#fff}25%{stroke:#ebebeb}50%{stroke:white}75%{stroke:#ebebeb}100%{stroke:#fff}}.beyond-element-spinner .path{stroke-dasharray:227;opacity:0;stroke-dashoffset:0;-webkit-transform-origin:center;-ms-transform-origin:center;transform-origin:center;-webkit-animation-delay:1s;animation-delay:1s;animation:dash 1.4s ease-in-out infinite,colors 5.6s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}.beyond-element-spinner.custom-color .path{animation:dash 1.4s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}.beyond-element-spinner.primary .path{animation:dash 1.4s ease-in-out infinite,primary-colors 5.6s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}.beyond-element-spinner.on-primary .path{animation:dash 1.4s ease-in-out infinite,on-primary 5.6s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}.beyond-element-spinner.secondary .path{animation:dash 1.4s ease-in-out infinite,secondary-colors 5.6s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}.beyond-element-spinner.accent .path{animation:dash 1.4s ease-in-out infinite,accent-colors 5.6s ease-in-out infinite,pathgrow 1.4s ease-in-out infinite,introfade 1.4s linear infinite}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -127,6 +127,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

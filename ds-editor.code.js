@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "emmet-monaco-es@5.1.2", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/hooks"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "emmet-monaco-es@5.1.2", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/hooks"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   });
   _exports.Editor = void 0;
   _exports.EditorView = EditorView;
-  _exports.MonacoDependency = void 0;
+  _exports.__beyond_pkg = _exports.MonacoDependency = void 0;
   _exports.getEditorManager = getEditorManager;
   _exports.monacoDependency = _exports.hmr = void 0;
 
@@ -33,7 +33,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   } = dependency_7;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -62,9 +62,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   JS PROCESSOR
   ***********/
 
-  /*************************
-  FILE: bundle-dependency.js
-  *************************/
+  /**************************************
+  FILE: dependencies\bundle-dependency.js
+  **************************************/
 
   /**
    * beyond_context
@@ -76,9 +76,9 @@ import {Bundle, Module} from '@beyond-js/kernel/bundle/ts';
 export const bundle = <Bundle>null;
 export const module = <Module>null;
 `;
-  /******************
-  FILE: dependency.js
-  ******************/
+  /*******************************
+  FILE: dependencies\dependency.js
+  *******************************/
 
   /***
    * Loads the monaco dependency
@@ -191,9 +191,9 @@ export const module = <Module>null;
 
   _exports.MonacoDependency = MonacoDependency;
   const monacoDependency = new MonacoDependency();
-  /**************
-  FILE: editor.js
-  **************/
+  /*************
+  FILE: index.js
+  *************/
 
   /**
    *  Represents the editor instance
@@ -513,7 +513,7 @@ export const module = <Module>null;
             return;
           }
 
-          this.setDependency(item.declaration.code, item.resource);
+          this.setDependency(item.declaration.code, item.specifier);
         });
       });
     };
@@ -810,9 +810,9 @@ export const module = <Module>null;
     managers.set(project.id, editorManager);
     return editorManager;
   }
-  /**************
-  FILE: models.js
-  **************/
+  /*********************
+  FILE: models\models.js
+  *********************/
 
 
   class Models extends ReactiveModel {
@@ -870,9 +870,9 @@ export const module = <Module>null;
     }
 
   }
-  /****************
-  FILE: settings.js
-  ****************/
+  /*************************
+  FILE: settings\settings.js
+  *************************/
 
 
   class Settings extends ReactiveModel {
@@ -1044,7 +1044,7 @@ export const module = <Module>null;
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/ds-editor.code', '.ds-editor__container{display:flex;flex-wrap:wrap;flex-basis:100%;position:relative;width:100%;height:100%}.ds-editor__container .vs-editor{width:100%;height:100%}.ds-editor__container:not(:last-child){border-right:1px solid var(--beyond-primary-dark-color)}.ds-editor__container .ds-editor__icons{position:absolute;right:20px;top:20px;z-index:200;fill:var(--beyond-primary-dark-color)}.beyond-element-modal.ds-modal .ds-modal-editor{padding:30px}.beyond-element-modal.ds-modal .ds-modal-editor form{width:100%;display:grid;grid-gap:15px}.beyond-element-modal.ds-modal .ds-modal-editor .beyond-alert{margin-bottom:30px}.beyond-element-modal.ds-modal .ds-modal-editor input{border:1px solid #e4e5dc;outline:0;padding:8px;width:100%}.beyond-element-modal.ds-modal .ds-modal-editor input:focus,.beyond-element-modal.ds-modal .ds-modal-editor input:hover{border:1px solid #82837f}.beyond-element-modal.ds-modal .ds-modal-editor .actions{display:grid;justify-items:center}.beyond-element-modal.ds-modal .ds-modal-editor .actions .beyond-button{margin-top:30px;min-width:200px}.ds-page.ds-editor-page .preload-content{display:flex;height:100%;width:100%;align-items:center;justify-content:center}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/ds-editor.code', '.ds-editor__container{display:flex;flex-wrap:wrap;flex-basis:100%;position:relative;width:100%;height:100%}.ds-editor__container .vs-editor{width:100%;height:100%}.ds-editor__container:not(:last-child){border-right:1px solid var(--beyond-primary-dark-color)}.ds-editor__container .ds-editor__icons{position:absolute;right:20px;top:20px;z-index:200;fill:var(--beyond-primary-dark-color)}.beyond-element-modal.ds-modal .ds-modal-editor{padding:30px}.beyond-element-modal.ds-modal .ds-modal-editor form{width:100%;display:grid;grid-gap:15px}.beyond-element-modal.ds-modal .ds-modal-editor input{border:1px solid #e4e5dc;outline:0;padding:8px;width:100%}.beyond-element-modal.ds-modal .ds-modal-editor input:focus,.beyond-element-modal.ds-modal .ds-modal-editor input:hover{border:1px solid #82837f}.beyond-element-modal.ds-modal .ds-modal-editor .actions{display:grid;justify-items:center}.beyond-element-modal.ds-modal .ds-modal-editor .actions .beyond-button{margin-top:30px;min-width:200px}.ds-page.ds-editor-page .preload-content{display:flex;height:100%;width:100%;align-items:center;justify-content:center}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -1054,6 +1054,8 @@ export const module = <Module>null;
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

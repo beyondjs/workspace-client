@@ -1,11 +1,11 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/select", "@beyond-js/ui@0.0.1/import"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/select", "@beyond-js/ui@0.0.1/import"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.Page = Page;
-  _exports.hmr = _exports.View = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.View = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -299,7 +299,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
 
   _exports.View = View;
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/unnamed/form/page', '#beyond-elements-form-page{margin:auto;overflow:auto;color:#fff}#beyond-elements-form-page header p{color:#b7b7b6;width:80%}#beyond-elements-form-page .beyond-checkbox .checkmark{height:15px;width:22px}#beyond-elements-form-page .beyond-element-input label{font-size:12px;color:#fff}#beyond-elements-form-page .beyond-element-input input{border-bottom:1px solid #fff}#beyond-elements-form-page .form-container{overflow:auto;position:relative}#beyond-elements-form-page .beyond-element-radio label:before{top:4px;border:2px solid #fff}#beyond-elements-form-page .beyond-element-radio label:after{background:#e36152}#beyond-elements-form-page .beyond-element-textarea textarea{border-radius:10px;color:#000}#beyond-elements-form-page .beyond-element-textarea textarea::placeholder{color:gray}#beyond-elements-form-page .select-options{border:solid 2px #fff}#beyond-elements-form-page .select-options svg{fill:white}#beyond-elements-form-page .beyond-element-radio label:after{top:8px;left:4px;width:7px;height:7px}#beyond-elements-form-page .radio-horizontal{display:contents}#beyond-elements-form-page .beyond-element-input{margin-top:5px}#beyond-elements-form-page button{margin:auto}#beyond-elements-form-page .container-buttons{display:inline-flex}#beyond-elements-form-page .container-buttons button{margin-right:15px;height:55px}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/unnamed/form/page', '#beyond-elements-form-page{margin:auto;overflow:auto;color:#fff}#beyond-elements-form-page header p{color:#b7b7b6;width:80%}#beyond-elements-form-page .beyond-checkbox .checkmark{height:15px;width:22px}#beyond-elements-form-page .beyond-element-input input{border-bottom:1px solid #fff}#beyond-elements-form-page .form-container{overflow:auto;position:relative}#beyond-elements-form-page .beyond-element-radio label:before{top:4px;border:2px solid #fff}#beyond-elements-form-page .beyond-element-radio label:after{background:#e36152}#beyond-elements-form-page .beyond-element-textarea textarea{border-radius:10px;color:#000}#beyond-elements-form-page .beyond-element-textarea textarea::placeholder{color:gray}#beyond-elements-form-page .select-options{border:solid 2px #fff}#beyond-elements-form-page .select-options svg{fill:white}#beyond-elements-form-page .beyond-element-radio label:after{top:8px;left:4px;width:7px;height:7px}#beyond-elements-form-page .radio-horizontal{display:contents}#beyond-elements-form-page .beyond-element-input{margin-top:5px}#beyond-elements-form-page button{margin:auto}#beyond-elements-form-page .container-buttons{display:inline-flex}#beyond-elements-form-page .container-buttons button{margin-right:15px;height:55px}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -309,6 +309,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

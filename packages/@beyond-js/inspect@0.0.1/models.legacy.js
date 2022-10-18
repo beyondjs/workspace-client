@@ -1,13 +1,13 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBundleBuilder = _exports.ApplicationBuilder = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBundleBuilder = _exports.ApplicationBuilder = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/plm", null], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -341,7 +341,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     }
 
     set scope(value) {
-      if (value === this.#scope || typeof value !== 'string') return;
+      if (value === this.#scope || !['string', 'undefined'].includes(typeof value)) return;
       this.#scope = value;
       this.triggerEvent();
     }
@@ -398,7 +398,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
 
 
     get valid() {
-      let invalid = !!this.#required.find(field => !this[field]);
+      let invalid = !!this.#required.find(field => {
+        return !this[field];
+      });
       if (invalid) return false;
       return true;
     }
@@ -466,6 +468,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     parent.fetching = true;
 
     try {
+      console.log(11, parent);
       const validation = validate(parent);
       if (!validation) return;
       const response = await module.execute('builder/project/create', parent.getters);
@@ -776,7 +779,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
           error: undefined
         });
 
-        params.applicationId = this._applicationId;
+        params.projectId = this._applicationId;
         params.bundles = [this._type];
         params.processors = Array.from(this._processors.keys());
         const action = params.template ? '/builder/module/clone' : '/builder/module/create';
@@ -863,6 +866,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle"], function (_expo
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

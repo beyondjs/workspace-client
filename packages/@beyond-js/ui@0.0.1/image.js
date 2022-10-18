@@ -1,10 +1,10 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.BeyondImage = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.BeyondImage = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -182,7 +182,11 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         });
       }
 
-      if (!this.state.error && !this.state.loaded) cls += ' beyond-element-image-preload ';
+      if (!this.state.error && !this.state.loaded) {
+        cls += ' beyond-element-image-preload ';
+        output = /*#__PURE__*/React.createElement("div", null);
+      }
+
       if (!this.state.htmlLoaded) cls += ' beyond-element-image-preload';
       return /*#__PURE__*/React.createElement("figure", _extends({
         "data-src": this.state.src,
@@ -199,7 +203,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
 
   _exports.BeyondImage = BeyondImage;
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/image', '.beyond-element-image{position:relative}.beyond-element-image.beyond-element-image-error,.beyond-element-image.beyond-element-image-preload{background:gray;display:block}.beyond-element-image.cover-image img{width:100%;height:100%;object-fit:cover}.beyond-element-image.contain img{object-fit:contain}.beyond-element-image.fill img{object-fit:fill}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/image', '.beyond-element-image{position:relative}.beyond-element-image.beyond-element-image-error,.beyond-element-image.beyond-element-image-preload{background:var(--beyond-preload-background);display:block}.beyond-element-image.cover-image img{width:100%;height:100%;object-fit:cover}.beyond-element-image.contain img{object-fit:contain}.beyond-element-image.fill img{object-fit:fill}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -209,6 +213,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

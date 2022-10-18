@@ -1,13 +1,13 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kernel@0.0.22/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.Texts = _exports.CurrentTexts = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.Texts = _exports.CurrentTexts = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/backend", "0.0.10"], ["@beyond-js/kernel", "0.0.22"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/backend", "0.0.10"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -17,7 +17,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kern
 
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/kernel@0.0.22/texts"
+      "vspecifier": "@beyond-js/kernel@0.1.0/texts"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -370,6 +370,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "@beyond-js/kern
     (require || prop === 'Texts') && (_exports.Texts = Texts = require ? require('./texts').Texts : value);
   };
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

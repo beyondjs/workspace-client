@@ -1,10 +1,13 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/ui@0.0.1/form", "@beyond-js/kernel@0.0.22/texts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/ui@0.0.1/form", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/dashboard@0.0.1/hooks"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.CreateModuleForm = void 0;
+  _exports.CreateModule = CreateModule;
+  _exports.FirstStep = FirstStep;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
+  _exports.useSubmit = useSubmit;
 
   /*************
   LEGACY IMPORTS
@@ -22,6 +25,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   const {
     DSIcon,
     DSIconButton,
+    IconInfo,
     BeyondAlert,
     DSSpinner
   } = dependency_6;
@@ -34,9 +38,15 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   const {
     CurrentTexts
   } = dependency_8;
+  const {
+    BeyondScrollContainer
+  } = dependency_9;
+  const {
+    useBinder
+  } = dependency_10;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.0.22"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", null], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -54,7 +64,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/modal', dependency_3], ['@beyond-js/ui/spinner', dependency_4], ['@beyond-js/inspect/models.legacy', dependency_5], ['@beyond-js/dashboard/core-components', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/kernel/texts', dependency_8]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/modal', dependency_3], ['@beyond-js/ui/spinner', dependency_4], ['@beyond-js/inspect/models.legacy', dependency_5], ['@beyond-js/dashboard/core-components', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/kernel/texts', dependency_8], ['@beyond-js/ui/perfect-scrollbar', dependency_9], ['@beyond-js/dashboard/hooks', dependency_10]]);
 
   const {
     module
@@ -86,34 +96,127 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
   const CreateModuleContext = React.createContext();
 
   const useCreateModuleContext = () => React.useContext(CreateModuleContext);
-  /*********
-  create.jsx
-  *********/
+  /**************
+  first\index.jsx
+  **************/
 
 
-  const CreateModuleForm = ({
-    workspace,
-    onClose
-  }) => {
-    const [state, setState] = React.useState({});
-    const [template, setTemplate] = React.useState(false);
+  function FirstStep() {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement(LeftPanel, null), /*#__PURE__*/React.createElement(RightPanel, null));
+  }
+  /*******************
+  first\left-panel.jsx
+  *******************/
 
-    const selectOrigin = origin => {
+
+  function LeftPanel() {
+    const {
+      model,
+      texts,
+      setPosition
+    } = useCreateModuleContext();
+
+    const onClick = () => setPosition('second');
+
+    return /*#__PURE__*/React.createElement("section", {
+      className: "left__panel"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "info-container"
+    }, /*#__PURE__*/React.createElement("h3", null, texts.title), /*#__PURE__*/React.createElement("p", {
+      className: "p2"
+    }, texts.subtitle)), /*#__PURE__*/React.createElement("footer", {
+      className: "action-container"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      onClick: onClick,
+      disabled: !model.origin,
+      className: "btn-large btn primary beyond-button"
+    }, texts.actions.next)));
+  }
+  /********************
+  first\right-panel.jsx
+  ********************/
+
+
+  function RightPanel() {
+    const {
+      showFormModal
+    } = useCreateModuleContext();
+    return /*#__PURE__*/React.createElement("section", {
+      className: "right__panel"
+    }, /*#__PURE__*/React.createElement(Templates, null));
+  }
+  /************************
+  first\templates\index.jsx
+  ************************/
+
+
+  function Templates() {
+    const {
+      model
+    } = useCreateModuleContext();
+
+    const onClick = event => {
+      const target = event.currentTarget;
+      const items = target.closest('.cards__container').querySelectorAll('.ds-card');
+      Array.from(items).forEach(item => item.classList.remove('selected'));
+      target.classList.add('selected');
       const {
-        controller: {
-          model
-        }
-      } = state;
+        origin
+      } = target.dataset;
       model.origin = origin;
       model.cleanType();
-      setTemplate(false);
     };
 
-    const close = () => window.setTimeout(() => {
-      setState({});
-      onClose();
-    }, 300);
+    return /*#__PURE__*/React.createElement("div", {
+      className: "cards__container"
+    }, /*#__PURE__*/React.createElement(Template, {
+      onClick: onClick,
+      dataOrigin: "bundles"
+    }), /*#__PURE__*/React.createElement(Template, {
+      onClick: onClick,
+      dataOrigin: "templates"
+    }));
+  }
+  /***************************
+  first\templates\template.jsx
+  ***************************/
 
+
+  function Template({
+    onClick,
+    dataOrigin
+  }) {
+    const {
+      texts,
+      model
+    } = useCreateModuleContext();
+    const isSelected = model.origin === dataOrigin;
+    const selectedClass = `ds-card ${isSelected ? ' selected' : ''}`;
+    return /*#__PURE__*/React.createElement("section", {
+      className: selectedClass,
+      onClick: onClick,
+      "data-origin": dataOrigin
+    }, /*#__PURE__*/React.createElement("h4", null, texts.types[dataOrigin].title), /*#__PURE__*/React.createElement("p", null, texts.types[dataOrigin].description));
+  }
+  /********
+  index.jsx
+  ********/
+
+
+  function CreateModule({
+    workspace,
+    onClose
+  }) {
+    const [state, setState] = React.useState({});
+    const [template, setSelectedTemplate] = React.useState(false);
+    const [position, setPosition] = React.useState('first');
+    const controls = {
+      first: FirstStep,
+      second: Types,
+      third: ThirdStep
+    };
     React.useEffect(() => {
       const controller = new Controller(workspace);
 
@@ -134,152 +237,184 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         application
       }
     } = state;
-    const origin = model.origin;
+
+    const close = () => window.setTimeout(() => {
+      setState({});
+      onClose();
+    }, 300);
+
     const value = {
       texts,
-      origin,
+      onClose,
       close,
-      template,
-      selectOrigin,
+      setPosition,
       bundle: bundleType,
       model,
       workspace,
-      application,
-      selectTemplate: template => setTemplate(template)
+      template,
+      application: application.application,
+      project: application,
+      selectTemplate: template => setSelectedTemplate(template)
     };
-    const output = /*#__PURE__*/React.createElement("div", {
-      className: "ds-create-module"
-    }, /*#__PURE__*/React.createElement("header", {
-      className: "ds-modal_header"
-    }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h4", null, texts.title), /*#__PURE__*/React.createElement("h5", {
-      className: "primary-color"
-    }, texts.subtitle))), /*#__PURE__*/React.createElement("section", {
-      className: "ds-modal_content"
-    }, /*#__PURE__*/React.createElement(Types, null), origin && value.model.type && /*#__PURE__*/React.createElement(Form, null)));
+    const Control = controls[position];
     return /*#__PURE__*/React.createElement(CreateModuleContext.Provider, {
       value: value
     }, /*#__PURE__*/React.createElement(BeyondModal, {
       className: "md modal-md ds-modal",
       show: true,
       onClose: close
-    }, output));
-  };
-  /*************************
-  form\additional-fields.jsx
-  *************************/
-
-
-  _exports.CreateModuleForm = CreateModuleForm;
-
-  function AdditionalFields({
-    children
-  }) {
-    const [additional, setAdditional] = React.useState(false);
-    const {
-      texts
-    } = useCreateModuleContext();
-
-    const onAdditional = () => setAdditional(!additional);
-
-    const cls = additional ? 'show' : '';
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h5", {
-      className: "link title-separator",
-      onClick: onAdditional
-    }, texts.additionalFeatures), /*#__PURE__*/React.createElement("div", {
-      className: `additional-config ${cls}`
-    }, children));
+    }, /*#__PURE__*/React.createElement(Control, null)));
   }
-  /*************
-  form\aside.jsx
-  *************/
+  /***************
+  second\index.jsx
+  ***************/
+
+  /**
+   *
+   * @returns {JSX.Element|null}
+   * @constructor
+   */
 
 
-  function AsideForm() {
+  function Types() {
     const {
-      origin,
-      texts,
-      selectOrigin,
-      template
+      model
     } = useCreateModuleContext();
-    if (!template) return null;
-    const templateData = texts[origin].options[parseInt(template.index)];
 
-    const cleanType = () => selectOrigin(undefined);
+    if (!model.origin) {
+      console.warn('the origin of the module type must be selected');
+      return null;
+    }
 
-    const icon = origin === 'template' ? 'appTemplate' : 'newApp';
-    return /*#__PURE__*/React.createElement("aside", {
-      className: "ds-create-module__breadcrumb-form"
-    }, /*#__PURE__*/React.createElement(DSIcon, {
-      icon: icon
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "breadcrumb"
-    }, /*#__PURE__*/React.createElement("a", {
-      onClick: cleanType
-    }, texts.types[origin].title), "\\", /*#__PURE__*/React.createElement("a", {
-      onClick: () => selectOrigin(origin)
-    }, templateData.title)));
+    return /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement(Actions, null), /*#__PURE__*/React.createElement(Options, null));
   }
   /********************
-  form\blank-fields.jsx
+  second\left-panel.jsx
   ********************/
 
 
-  function BlankFields({
-    state,
-    disabled
-  }) {
+  function Actions() {
     const {
-      bundle,
+      texts,
+      model: {
+        origin
+      },
       model,
-      origin,
-      texts
+      setPosition
     } = useCreateModuleContext();
-    /**
-     * Use by multilanguage and server fields
-     * @param event
-     */
 
-    const toggleRadio = event => {
+    const onClick = event => {
       const target = event.currentTarget;
-      const newValue = {};
-      newValue[target.name] = target.checked;
-      model.bundle.set(target.name, target.checked);
+      event.preventDefault();
+      setPosition(target.dataset.step);
     };
 
-    if (origin === 'templates') return null;
-    const processorStyles = bundle !== 'ts' && bundle !== 'bridge';
-    return /*#__PURE__*/React.createElement("div", {
-      className: "item item_switch flex-container"
-    }, processorStyles && /*#__PURE__*/React.createElement("div", {
-      className: "switch-option"
-    }, /*#__PURE__*/React.createElement(BeyondSwitch, _extends({
-      name: "styles"
-    }, disabled, {
-      checked: state.styles,
-      value: state.styles,
-      onChange: toggleRadio
-    })), /*#__PURE__*/React.createElement("label", null, texts.form.styles), /*#__PURE__*/React.createElement(DSIconButton, _extends({
-      icon: "info"
-    }, disabled, {
-      className: "gray circle",
-      title: texts.help.titles.styles
-    }))), /*#__PURE__*/React.createElement("div", {
-      className: "switch-option"
-    }, /*#__PURE__*/React.createElement(BeyondSwitch, _extends({
-      name: "multilanguage"
-    }, disabled, {
-      value: state.multilanguage,
-      onChange: toggleRadio
-    })), /*#__PURE__*/React.createElement("label", null, texts.form.multilanguage), /*#__PURE__*/React.createElement(DSIconButton, _extends({
-      icon: "info"
-    }, disabled, {
-      className: "gray circle",
-      title: texts.help.titles.text
-    }))));
+    return /*#__PURE__*/React.createElement("section", {
+      className: "left__panel"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "info-container"
+    }, /*#__PURE__*/React.createElement("h3", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", {
+      className: "p2"
+    }, texts.types[origin].description)), /*#__PURE__*/React.createElement("footer", {
+      className: "action-container"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      className: "secondary",
+      "data-step": "first",
+      onClick: onClick
+    }, texts.actions.back), /*#__PURE__*/React.createElement(BeyondButton, {
+      disabled: !model.type,
+      "data-step": "third",
+      onClick: onClick,
+      className: "primary"
+    }, texts.actions.next)));
   }
-  /*************************************
-  form\bundles\additional-processors.jsx
-  *************************************/
+  /***********************
+  second\options\index.jsx
+  ***********************/
+
+  /**
+   * STEP 2
+   *
+   * @returns {JSX.Element|null}
+   * @constructor
+   */
+
+
+  function Options() {
+    const {
+      texts,
+      model: {
+        origin
+      }
+    } = useCreateModuleContext();
+    const {
+      options
+    } = texts[origin];
+    if (!options) return null;
+    const output = options.map((option, index) => {
+      return /*#__PURE__*/React.createElement(Option, {
+        key: `${option.id}-${origin}-${index}`,
+        option: option,
+        index: index
+      });
+    });
+    return /*#__PURE__*/React.createElement("section", {
+      className: "right__panel"
+    }, /*#__PURE__*/React.createElement(BeyondScrollContainer, null, /*#__PURE__*/React.createElement("ul", {
+      className: "ds__list"
+    }, output)));
+  }
+  /************************
+  second\options\option.jsx
+  ************************/
+
+
+  function Option({
+    option,
+    index
+  }) {
+    const {
+      origin,
+      selectTemplate,
+      template,
+      model
+    } = useCreateModuleContext();
+    const isSelected = template.template === option.id;
+    const selectedClass = isSelected ? 'selected' : '';
+
+    const onClick = event => {
+      const target = event.currentTarget;
+      event.stopPropagation();
+      event.preventDefault();
+      const {
+        template
+      } = target.dataset;
+      if (origin === 'templates') model.setTemplate(template);else model.setType(template);
+      selectTemplate({
+        index: target.dataset.index,
+        template: target.dataset.template
+      });
+    };
+
+    return /*#__PURE__*/React.createElement("li", {
+      "data-template": option.id,
+      "data-index": index,
+      onClick: onClick,
+      className: `list__item list__item__vertical  ${selectedClass}`
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "ds-list__header"
+    }, /*#__PURE__*/React.createElement(DSIcon, {
+      icon: "settings"
+    }), /*#__PURE__*/React.createElement("h5", null, option.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, option.description)), isSelected && /*#__PURE__*/React.createElement(DSIcon, {
+      className: "ds-item__check__icon",
+      icon: "check"
+    }));
+  }
+  /**************************************
+  third\bundles\additional-processors.jsx
+  **************************************/
 
 
   function AdditionalProcessors() {
@@ -321,101 +456,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       className: "link title-separator"
     }, texts.processors), output);
   }
-  /**********************
-  form\bundles\bridge.jsx
-  **********************/
-
-
-  function FormBridge({
-    state,
-    handleChange
-  }) {
-    const {
-      bundle,
-      model,
-      texts
-    } = useCreateModuleContext();
-    if (bundle !== 'bridge') return null;
-    const fields = /*#__PURE__*/React.createElement(BlankFields, {
-      state: state
-    });
-    const inputsAttrs = {};
-    if (model.fetching) inputsAttrs.disabled = true;
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
-      children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
-  }
-  /********************
-  form\bundles\code.jsx
-  ********************/
-
-
-  function FormCode({
-    state,
-    handleChange
-  }) {
-    const {
-      bundle,
-      model,
-      texts
-    } = useCreateModuleContext();
-    if (bundle !== 'code') return null;
-    const inputsAttrs = {};
-    if (model.fetching) inputsAttrs.disabled = true;
-    const fields = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "title"
-    }, inputsAttrs, {
-      label: texts.form.title,
-      placeholder: texts.placeholder.title,
-      value: state.title,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "description"
-    }, inputsAttrs, {
-      label: texts.form.description,
-      placeholder: texts.placeholder.description,
-      value: state.description,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
-      state: state
-    }));
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
-      children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
-  }
-  /**********************
-  form\bundles\layout.jsx
-  **********************/
+  /***********************
+  third\bundles\layout.jsx
+  ***********************/
 
 
   function FormLayout({
@@ -480,9 +523,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       children: fields
     }), /*#__PURE__*/React.createElement(FormFooter, null));
   }
-  /***************************
-  form\bundles\page\layout.jsx
-  ***************************/
+  /****************************
+  third\bundles\page\layout.jsx
+  ****************************/
 
 
   function FormLayoutSection({
@@ -519,9 +562,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       onChange: handleChange
     }), /*#__PURE__*/React.createElement("option", null, texts.page.input.layout.placeholder), items));
   }
-  /*************************
-  form\bundles\page\page.jsx
-  *************************/
+  /**************************
+  third\bundles\page\page.jsx
+  **************************/
 
 
   function FormPage({
@@ -629,9 +672,105 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       children: fields
     }), /*#__PURE__*/React.createElement(FormFooter, null));
   }
-  /*********************
-  form\bundles\start.jsx
-  *********************/
+  /*****************************
+  third\bundles\types\bridge.jsx
+  *****************************/
+
+
+  function FormBridge({
+    state,
+    handleChange
+  }) {
+    const {
+      bundle,
+      model,
+      texts
+    } = useCreateModuleContext();
+    if (bundle !== 'bridge') return null;
+    const fields = /*#__PURE__*/React.createElement(BlankFields, {
+      state: state
+    });
+    const inputsAttrs = {};
+    if (model.fetching) inputsAttrs.disabled = true;
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "item"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      required: true,
+      name: "name"
+    }, inputsAttrs, {
+      label: texts.form.name,
+      placeholder: texts.placeholder.name,
+      value: state.name,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "help-block"
+    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
+      children: fields
+    }), /*#__PURE__*/React.createElement(FormFooter, null));
+  }
+  /***************************
+  third\bundles\types\code.jsx
+  ***************************/
+
+
+  function FormCode({
+    state,
+    handleChange
+  }) {
+    const {
+      bundle,
+      model,
+      texts
+    } = useCreateModuleContext();
+    if (bundle !== 'code') return null;
+    const inputsAttrs = {};
+    if (model.fetching) inputsAttrs.disabled = true;
+    const fields = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "item two-columns"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      name: "title"
+    }, inputsAttrs, {
+      label: texts.form.title,
+      placeholder: texts.placeholder.title,
+      value: state.title,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "help-block"
+    }, texts.help.title)), /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      name: "description"
+    }, inputsAttrs, {
+      label: texts.form.description,
+      placeholder: texts.placeholder.description,
+      value: state.description,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "help-block"
+    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
+      state: state
+    }));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "item"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      required: true,
+      name: "name"
+    }, inputsAttrs, {
+      label: texts.form.name,
+      placeholder: texts.placeholder.name,
+      value: state.name,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "help-block"
+    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
+      children: fields
+    }), /*#__PURE__*/React.createElement(FormFooter, null));
+  }
+  /****************************
+  third\bundles\types\start.jsx
+  ****************************/
 
 
   function FormStart({
@@ -685,9 +824,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       children: fields
     }), /*#__PURE__*/React.createElement(FormFooter, null));
   }
-  /**************************
-  form\bundles\typescript.jsx
-  **************************/
+  /*********************************
+  third\bundles\types\typescript.jsx
+  *********************************/
 
 
   function FormTypescript({
@@ -725,9 +864,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       disabled: disabled
     }));
   }
-  /**********************
-  form\bundles\widget.jsx
-  **********************/
+  /*****************************
+  third\bundles\types\widget.jsx
+  *****************************/
 
 
   function FormWidget({
@@ -772,42 +911,89 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
       children: fields
     }), /*#__PURE__*/React.createElement(FormFooter, null));
   }
-  /**************
-  form\footer.jsx
-  **************/
+  /*********************************
+  third\fields\additional-fields.jsx
+  *********************************/
 
 
-  function FormFooter({
+  function AdditionalFields({
+    children
+  }) {
+    const [additional, setAdditional] = React.useState(false);
+    const {
+      texts
+    } = useCreateModuleContext();
+
+    const onAdditional = () => {
+      setAdditional(!additional);
+    };
+
+    const cls = additional ? 'show' : '';
+    return /*#__PURE__*/React.createElement(React.Fragment, null, children && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "form__separator__legend",
+      onClick: onAdditional
+    }, texts.additionalFeatures), /*#__PURE__*/React.createElement("div", {
+      className: `additional-config ${cls}`
+    }, children)));
+  }
+  /****************************
+  third\fields\blank-fields.jsx
+  ****************************/
+
+
+  function BlankFields({
+    state,
     disabled
   }) {
     const {
+      bundle,
       model,
+      origin,
       texts
     } = useCreateModuleContext();
-    const [isValid, setIsValid] = React.useState(model.bundle?.valid);
-    React.useEffect(() => {
-      const onChange = () => setIsValid(model.bundle.valid);
+    /**
+     * Use by multilanguage and server fields
+     * @param event
+     */
 
-      model.bundle?.bind('change', onChange);
-      return () => model.bundle && model.bundle?.unbind('change', onChange);
-    });
-    const attrs = {};
-    if (!isValid) attrs.disabled = true;
-    return /*#__PURE__*/React.createElement("footer", {
-      className: "align-right ds-modal__actions"
-    }, model.fetching ? /*#__PURE__*/React.createElement(BeyondSpinner, {
-      fetching: true
-    }) : /*#__PURE__*/React.createElement(BeyondButton, _extends({}, attrs, {
-      className: "btn primary",
-      type: "submit"
-    }), texts.form.button));
+    const toggleRadio = event => {
+      const target = event.currentTarget;
+      const newValue = {};
+      newValue[target.name] = target.checked;
+      model.bundle.set(target.name, target.checked);
+    };
+
+    if (origin === 'templates') return null;
+    const processorStyles = bundle !== 'ts' && bundle !== 'bridge';
+    return /*#__PURE__*/React.createElement("div", {
+      className: "item item_switch flex-container"
+    }, processorStyles && /*#__PURE__*/React.createElement("div", {
+      className: "ds-switch__container"
+    }, /*#__PURE__*/React.createElement("label", null, texts.form.styles, /*#__PURE__*/React.createElement(BeyondSwitch, _extends({
+      name: "styles"
+    }, disabled, {
+      checked: state.styles,
+      value: state.styles,
+      onChange: toggleRadio
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.titles.styles
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "ds-switch__container"
+    }, /*#__PURE__*/React.createElement("label", null, texts.form.multilanguage, /*#__PURE__*/React.createElement(BeyondSwitch, _extends({
+      name: "multilanguage"
+    }, disabled, {
+      value: state.multilanguage,
+      onChange: toggleRadio
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.titles.text
+    }))));
   }
-  /************
-  form\form.jsx
-  ************/
+  /**************
+  third\index.jsx
+  **************/
 
 
-  function Form() {
+  function ThirdStep() {
     const {
       application: {
         application
@@ -820,20 +1006,156 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     } = useCreateModuleContext();
     if (!template) return null;
     const spinner = React.useRef();
-    const [error, setError] = React.useState();
     const [initial, setInitial] = React.useState(true);
     const tpl = template.template;
     const styles = tpl === 'page' || tpl === 'widget' || tpl === 'layout' || tpl === 'code';
     const [state, setState] = React.useState({
       styles: styles
     });
-    const [fetching, setFetching] = React.useState(false);
     const disabled = {};
+    const [onSubmit, error, fetching] = useSubmit(model);
     React.useEffect(() => {
       if (fetching) {
         window.setTimeout(() => spinner.current?.classList.toggle('container-hidden'), 100);
       }
     }, [fetching]);
+
+    const handleChange = event => {
+      const target = event.currentTarget;
+      const value = {};
+      let fieldValue = target.value;
+
+      if (target.name === 'name' || target.name === 'element') {
+        fieldValue = fieldValue.replace(/ /g, '-');
+      } //Seteamos el valor por defecto del estado
+
+
+      if (initial) {
+        model.bundle.set('styles', state.styles);
+        setInitial(false);
+      }
+
+      value[target.name] = fieldValue;
+      const newState = { ...state,
+        ...value
+      };
+      model.bundle.set(target.name, fieldValue);
+      setState(newState);
+    };
+
+    if (fetching) disabled.disabled = true;
+    const props = {
+      state,
+      setState,
+      handleChange,
+      disabled
+    };
+    return /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement(ThirdStepLeftPanel, {
+      onSubmit: onSubmit
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "right__panel"
+    }, error && /*#__PURE__*/React.createElement(BeyondAlert, {
+      type: "error",
+      message: error
+    }), /*#__PURE__*/React.createElement(BeyondForm, {
+      onSubmit: onSubmit
+    }, /*#__PURE__*/React.createElement(FormPage, props), /*#__PURE__*/React.createElement(FormWidget, props), /*#__PURE__*/React.createElement(FormLayout, props), /*#__PURE__*/React.createElement(FormCode, props), /*#__PURE__*/React.createElement(FormStart, props), /*#__PURE__*/React.createElement(FormBridge, props), /*#__PURE__*/React.createElement(FormTypescript, props)), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
+      ref: spinner,
+      active: true,
+      className: "absolute-container container-hidden"
+    })));
+  }
+  /*************************
+  third\structure\footer.jsx
+  *************************/
+
+
+  function FormFooter({
+    disabled
+  }) {
+    return null; // const {model, texts} = useCreateModuleContext();
+    // const [isValid, setIsValid] = React.useState(model.bundle?.valid);
+    // React.useEffect(() => {
+    //     const onChange = () => setIsValid(model.bundle.valid);
+    //     model.bundle?.bind('change', onChange);
+    //     return () => model.bundle && model.bundle?.unbind('change', onChange);
+    // });
+    //
+    // const attrs = {};
+    // if (!isValid) attrs.disabled = true;
+    //
+    // return (
+    //     <footer className="align-right ds-modal__actions">
+    //         {model.fetching ?
+    //          <BeyondSpinner fetching/> :
+    //          <BeyondButton {...attrs} className="btn primary" type="submit">
+    //              {texts.form.button}
+    //          </BeyondButton>
+    //         }
+    //     </footer>
+    // )
+  }
+  /*****************************
+  third\structure\left-panel.jsx
+  *****************************/
+
+
+  function ThirdStepLeftPanel({
+    onSubmit
+  }) {
+    const {
+      model,
+      model: {
+        origin
+      },
+      texts,
+      template,
+      setPosition
+    } = useCreateModuleContext();
+    const [isValid, setIsValid] = React.useState(model.bundle?.valid);
+    useBinder([model], () => setIsValid(model.bundle.valid));
+    if (!template) return null;
+
+    const onClick = event => {
+      const target = event.currentTarget;
+      event.preventDefault();
+      setPosition(target.dataset.step);
+    };
+
+    const attrs = {};
+    if (!isValid) attrs.disabled = true;
+    return /*#__PURE__*/React.createElement("aside", {
+      className: "left__panel"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "info-container"
+    }, /*#__PURE__*/React.createElement("h3", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", {
+      className: "p2"
+    }, texts.types[origin].description)), /*#__PURE__*/React.createElement("footer", {
+      className: "action-container"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      className: "secondary",
+      "data-step": "second",
+      onClick: onClick
+    }, texts.actions.back), /*#__PURE__*/React.createElement(BeyondButton, _extends({}, attrs, {
+      onClick: onSubmit,
+      className: "primary"
+    }), texts.actions.next)));
+  }
+  /*******************
+  third\use-submit.jsx
+  *******************/
+
+
+  function useSubmit() {
+    const {
+      model,
+      application,
+      close
+    } = useCreateModuleContext();
+    const [error, setError] = React.useState();
+    const [fetching, setFetching] = React.useState(false);
 
     const onSubmit = async event => {
       event.preventDefault();
@@ -869,187 +1191,12 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
         setFetching(false);
         close();
       } catch (exc) {
+        console.error("Aaj", exc);
         setError(exc.error);
       }
     };
 
-    const handleChange = event => {
-      const target = event.currentTarget;
-      const value = {};
-      let fieldValue = target.value;
-
-      if (target.name === 'name' || target.name === 'element') {
-        fieldValue = fieldValue.replace(/ /g, '-');
-      } //Seteamos el valor por defecto del estado
-
-
-      if (initial) {
-        model.bundle.set('styles', state.styles);
-        setInitial(false);
-      }
-
-      value[target.name] = fieldValue;
-      const newState = { ...state,
-        ...value
-      };
-      model.bundle.set(target.name, fieldValue);
-      setState(newState);
-    };
-
-    if (fetching) disabled.disabled = true;
-    const props = {
-      state,
-      setState,
-      handleChange,
-      disabled
-    };
-    return /*#__PURE__*/React.createElement(React.Fragment, null, error && /*#__PURE__*/React.createElement(BeyondAlert, {
-      type: "error",
-      message: error
-    }), /*#__PURE__*/React.createElement(AsideForm, null), /*#__PURE__*/React.createElement("div", {
-      className: "ds-create-module__template-form"
-    }, /*#__PURE__*/React.createElement(BeyondForm, {
-      onSubmit: onSubmit
-    }, /*#__PURE__*/React.createElement(FormPage, props), /*#__PURE__*/React.createElement(FormWidget, props), /*#__PURE__*/React.createElement(FormLayout, props), /*#__PURE__*/React.createElement(FormCode, props), /*#__PURE__*/React.createElement(FormStart, props), /*#__PURE__*/React.createElement(FormBridge, props), /*#__PURE__*/React.createElement(FormTypescript, props)), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
-      ref: spinner,
-      active: true,
-      className: "absolute-container container-hidden"
-    })));
-  }
-  /**********
-  options.jsx
-  **********/
-
-  /**
-   * STEP 2
-   *
-   * @returns {JSX.Element|null}
-   * @constructor
-   */
-
-
-  function Options() {
-    const {
-      origin,
-      texts,
-      selectTemplate,
-      model
-    } = useCreateModuleContext();
-    const {
-      options
-    } = texts[origin];
-
-    if (!options) {
-      return null;
-    }
-
-    const onClick = event => {
-      const target = event.currentTarget;
-      event.stopPropagation();
-      event.preventDefault();
-      const items = target.closest('.ds-create-module_template-list').querySelectorAll('.template-list__item');
-      Array.from(items).forEach(item => item.classList.remove('active'));
-      target.classList.add('active');
-      const {
-        template
-      } = target.dataset;
-      if (origin === 'templates') model.setTemplate(template);else model.setType(template);
-      selectTemplate({
-        index: target.dataset.index,
-        template: target.dataset.template
-      });
-    };
-
-    const output = options.map(({
-      id,
-      title,
-      description,
-      icon
-    }, index) => {
-      icon = 'settings';
-      return /*#__PURE__*/React.createElement("section", {
-        "data-template": id,
-        "data-index": index,
-        onClick: onClick,
-        className: "template-list__item",
-        key: `${id}-${origin}-${index}`
-      }, /*#__PURE__*/React.createElement(DSIcon, {
-        icon: icon
-      }), /*#__PURE__*/React.createElement("h5", null, title), /*#__PURE__*/React.createElement("p", null, description));
-    });
-    return /*#__PURE__*/React.createElement("section", {
-      className: "ds-create-module_template-list"
-    }, output);
-  }
-  /********
-  types.jsx
-  ********/
-
-  /**
-   *
-   * @returns {JSX.Element|null}
-   * @constructor
-   */
-
-
-  function Types() {
-    const {
-      texts,
-      selectOrigin,
-      model
-    } = useCreateModuleContext();
-    const [origin, setOrigin] = React.useState(model.origin);
-    const [type, setType] = React.useState(model.type);
-    React.useEffect(() => {
-      setType(model.type);
-      setOrigin(model.origin);
-    }, [model.type, model.origin]);
-
-    const onClick = event => {
-      const target = event.currentTarget;
-      const items = target.closest('.block_types').querySelectorAll('.link');
-      Array.from(items).forEach(item => item.classList.remove('active'));
-      target.classList.add('active');
-      const {
-        origin
-      } = target.dataset;
-      selectOrigin(origin);
-      setOrigin(origin);
-    };
-
-    const cleanType = () => {
-      setOrigin(undefined);
-      selectOrigin(undefined);
-    };
-
-    if (model.type && model.origin) return null;
-
-    if (!model.origin) {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "block_types"
-      }, /*#__PURE__*/React.createElement("figure", {
-        onClick: onClick,
-        "data-origin": "bundles",
-        className: "link"
-      }, /*#__PURE__*/React.createElement(DSIcon, {
-        icon: "appTemplate"
-      }), /*#__PURE__*/React.createElement("h4", null, texts.types.bundles.title), /*#__PURE__*/React.createElement("p", null, texts.types.bundles.description)), /*#__PURE__*/React.createElement("figure", {
-        onClick: onClick,
-        "data-origin": "templates",
-        className: "link"
-      }, /*#__PURE__*/React.createElement(DSIcon, {
-        icon: "newApp"
-      }), /*#__PURE__*/React.createElement("h4", null, texts.types.templates.title), /*#__PURE__*/React.createElement("p", null, texts.types.templates.description)));
-    }
-
-    const icon = origin === 'template' ? 'appTemplate' : 'newApp';
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("figure", {
-      onClick: cleanType,
-      "data-origin": "bundles",
-      className: "block-types__selected"
-    }, /*#__PURE__*/React.createElement(DSIcon, {
-      icon: icon
-    }), /*#__PURE__*/React.createElement("figcaption", null, /*#__PURE__*/React.createElement("h4", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", null, texts.types[origin].description))), /*#__PURE__*/React.createElement(Options, null));
+    return [onSubmit, error, fetching];
   }
   /***********
   JS PROCESSOR
@@ -1131,6 +1278,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 

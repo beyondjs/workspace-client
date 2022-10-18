@@ -1,11 +1,11 @@
-define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/import"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/import"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.Page = Page;
-  _exports.hmr = void 0;
+  _exports.hmr = _exports.__beyond_pkg = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -29,7 +29,7 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/ui@0.0.1/unnamed/icon/pages/icons"
+      "vspecifier": "@beyond-js/ui@0.0.1/page-icons"
     },
     "type": "page"
   }, _amd_module.uri).package();
@@ -60,9 +60,9 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     };
     return _extends.apply(this, arguments);
   }
-  /**********
-  control.jsx
-  **********/
+  /********
+  index.jsx
+  ********/
 
 
   class Control extends React.Component {
@@ -105,20 +105,15 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
 
 
   function Page() {
-    this.render = function () {
-      const wrapper = document.createElement('span');
-      const specs = {};
-      ReactDOM.render(React.createElement(Control, specs), wrapper);
-      this.container.id = 'beyond-element-icons-page';
-      this.container.appendChild(wrapper);
-    };
+    ReactDOM.render(React.createElement(Control, specs), this.container);
+    this.container.id = 'beyond-element-icons-page';
   }
   /**********
   SCSS STYLES
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/unnamed/icon/pages/icons', '#beyond-element-icons-page .icon-container{text-align:left}#beyond-element-icons-page .icon-container .icon-list{margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;background:#121f36}#beyond-element-icons-page .icon-container .icon-list path{fill:white}#beyond-element-icons-page .icon-container .icon-list .icon-element{text-align:center;padding:20px;font-size:16px;display:grid;grid-gap:10px;transition:.8s background-color;cursor:pointer;fill:white}#beyond-element-icons-page .icon-container .icon-list .icon-element:hover{background:#e36152;color:#fff;fill:#FFFFFF}#beyond-element-icons-page .icon-container .icon-list .icon-element .beyond-icon{margin:auto}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/page-icons', '#beyond-element-icons-page .icon-container{text-align:left}#beyond-element-icons-page .icon-container .icon-list{margin-top:20px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;background:#121f36}#beyond-element-icons-page .icon-container .icon-list path{fill:white}#beyond-element-icons-page .icon-container .icon-list .icon-element{text-align:center;padding:20px;font-size:16px;display:grid;grid-gap:10px;transition:.8s background-color;cursor:pointer;fill:white}#beyond-element-icons-page .icon-container .icon-list .icon-element:hover{background:#e36152;color:#fff;fill:#FFFFFF}#beyond-element-icons-page .icon-container .icon-list .icon-element .beyond-icon{margin:auto}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
@@ -128,6 +123,8 @@ define(["exports", "module", "@beyond-js/kernel@0.0.22/bundle", "react@16.14.0",
     value
   }) {};
 
+  const __beyond_pkg = __pkg;
+  _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
 
