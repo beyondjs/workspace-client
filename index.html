@@ -37,7 +37,7 @@
     requirejs.config({waitSeconds: 30});
     const paths = {'@beyond-js/dashboard@0.0.1': baseUrl.endsWith('/') ? baseUrl.slice(0, baseUrl.length - 1) : baseUrl};
     requirejs.config({baseUrl: '/packages', paths});
-    require(["@beyond-js/kernel@0.1.0/styles","@beyond-js/local@0.0.1/main"], () => brequire('@beyond-js/local/main').local.register(4000));
+    require(["@beyond-js/kernel@0.1.0/styles"]);
     require(['@beyond-js/dashboard@0.0.1/start']);
     </script>
     
