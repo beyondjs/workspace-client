@@ -2,7 +2,7 @@ define(["react-is@16.13.1"], (dep_0) => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["react-is","16.13.1"],["hoist-non-react-statics","3.3.2"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["react-is@16.13.1", dep_0]]);
@@ -164,7 +164,7 @@ var require_hoist_non_react_statics_cjs = __commonJS({
     module2.exports = hoistNonReactStatics;
   }
 
-}); // .beyond/uimport/temp/hoist-non-react-statics.3.3.2.js
+}); // .beyond/uimport/hoist-non-react-statics.3.3.2.js
 
 
 var hoist_non_react_statics_3_3_2_exports = {};

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap);
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap");
 :root {
   --font-family: 'Rubik', sans-serif;
   --secondary-font-family: 'Roboto', sans-serif;
@@ -10,7 +10,7 @@
   --gray-dark: #5E5F5C;
   --gray: #82837F;
   --gray-light: #E4E5DC;
-  --border-radius-base: 8px;
+  --border-radius-base: 1rem;
   ---alert-e4c888: #E4C888;
   ---warning-eb8b6b: #EB8B6B;
   ---acept-6aac7d: #6AAC7D;
@@ -136,7 +136,7 @@
   --success: #8EC254;
   --warning: #e4c888;
   --danger: var(--primary-dark);
-  --error: #f04141;
+  --error: var(--primary-dark);
   --preload: var(--secondary);
   --text-on-warning: var(--secondary-accent);
   --text-on-success: var(--secondary-accent); }
@@ -2265,6 +2265,8 @@ progress {
 
 .flex-container, .empty-container {
   display: flex; }
+  .flex-container.flex-items-grow > *, .flex-items-grow.empty-container > * {
+    flex-grow: 1; }
   .flex-container.flex-end, .flex-end.empty-container {
     justify-content: end; }
   .flex-container.flex-space, .flex-space.empty-container {
@@ -2449,9 +2451,11 @@ html {
   html h2, html .h2 {
     font-size: 26px; }
   html h3, html .h3 {
-    font-size: 18px; }
+    font-size: 1.5rem;
+    font-weight: bold; }
   html h4, html .h4 {
     font-size: 1rem;
+    font-weight: bold;
     letter-spacing: .16px; }
   html h5, html .h5 {
     font-size: 14px; }
@@ -2642,14 +2646,22 @@ body .no-pd {
 body .mt-15 {
   margin-top: 15px; }
 
+body .mt-30 {
+  margin-top: 2rem; }
+
 body .mt-100 {
   margin-top: 100px; }
 
 body .relative__container {
   position: relative; }
 
-.ds__board .beyond-alert {
+.beyond-alert {
   padding: 1rem 2.5rem; }
+  .beyond-alert h3 {
+    display: flex;
+    gap: 1rem; }
+    .beyond-alert h3 .beyond-element-spinner {
+      border-color: var(--text-on-secondary); }
 
 .badge-list {
   display: flex;
@@ -2807,27 +2819,6 @@ body .relative__container {
     align-items: center; }
     .list__selectable .item__list.item--selected, .list__selectable .item__list:hover {
       background: var(--ds-bg-selected); }
-
-.cards__container {
-  display: grid;
-  gap: 1rem;
-  list-style: none; }
-  .cards__container > section, .cards__container .ds-card {
-    background: var(--surface);
-    border-radius: var(--border-radius-base);
-    padding: 1.5rem;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-    cursor: pointer; }
-    .cards__container > section .ds-card__header, .cards__container .ds-card .ds-card__header {
-      display: flex;
-      gap: .5rem;
-      align-items: center; }
-    .cards__container > section .p1, .cards__container > section h4, .cards__container > section p, .cards__container > section div, .cards__container .ds-card .p1, .cards__container .ds-card h4, .cards__container .ds-card p, .cards__container .ds-card div {
-      padding: 0; }
-    .cards__container > section.selected, .cards__container > section:hover, .cards__container .ds-card.selected, .cards__container .ds-card:hover {
-      border-color: var(--secondary);
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2); }
 
 .ds-empty-container {
   display: flex;
@@ -3014,65 +3005,104 @@ html {
     left: 0;
     top: 5px; }
 
+.cards__container {
+  display: grid;
+  gap: 1rem;
+  list-style: none; }
+  .cards__container > section, .cards__container .ds-card {
+    background: var(--background);
+    border-radius: var(--border-radius-base);
+    padding: 1.5rem;
+    border: 1px solid transparent;
+    transition: all 200ms linear;
+    cursor: pointer; }
+    .cards__container > section .ds-card__header, .cards__container .ds-card .ds-card__header {
+      display: flex;
+      gap: .5rem;
+      align-items: center; }
+    .cards__container > section .p1, .cards__container > section h4, .cards__container > section p, .cards__container > section div, .cards__container .ds-card .p1, .cards__container .ds-card h4, .cards__container .ds-card p, .cards__container .ds-card div {
+      padding: 0; }
+    .cards__container > section.selected, .cards__container > section:hover, .cards__container .ds-card.selected, .cards__container .ds-card:hover {
+      border-color: var(--secondary);
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2); }
+
+.beyond-element-modal.ds-modal .ds-modal__content .close-icon, .beyond-element-modal.ds-modal .modal-content .close-icon {
+  position: absolute;
+  background: var(--secondary);
+  color: var(--text-on-secondary);
+  fill: var(--text-on-secondary);
+  border-radius: 50%;
+  height: .75rem;
+  width: .75rem;
+  font-size: .7rem;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 1rem; }
+
+.beyond-element-modal.ds-modal.ds-modal--actions .ds-modal__content, .beyond-element-modal.ds-modal.ds-modal--actions .modal-content {
+  display: grid; }
+
+.beyond-element-modal.ds-modal.ds-modal--lg .ds-modal__content, .beyond-element-modal.ds-modal.ds-modal--lg .modal-content {
+  height: 70vh; }
+
+.beyond-element-modal.ds-modal.ds-modal--sm .ds-modal__content, .beyond-element-modal.ds-modal.ds-modal--sm .modal-content {
+  height: 50vh; }
+
 .beyond-element-modal.ds-modal .ds-modal__content, .beyond-element-modal.ds-modal .modal-content {
   border: 1px solid var(--element-border-color);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 3rem 2rem;
   width: 100%;
-  max-width: 700px;
+  display: block;
+  grid-gap: 1rem;
+  max-width: 900px;
   color: var(--text-color);
-  max-height: 90vh; }
-  .beyond-element-modal.ds-modal .ds-modal__content .beyond-perfect-scrollbar, .beyond-element-modal.ds-modal .modal-content .beyond-perfect-scrollbar {
-    max-height: 70vh;
-    position: relative; }
-  .beyond-element-modal.ds-modal .ds-modal__content input, .beyond-element-modal.ds-modal .modal-content input {
-    color: var(--text-color); }
-  .beyond-element-modal.ds-modal .ds-modal__content, .beyond-element-modal.ds-modal .ds-modal__content .ds-modal_content, .beyond-element-modal.ds-modal .modal-content, .beyond-element-modal.ds-modal .modal-content .ds-modal_content {
-    background: var(--background); }
-  .beyond-element-modal.ds-modal .ds-modal__content .beyond-input, .beyond-element-modal.ds-modal .ds-modal__content label, .beyond-element-modal.ds-modal .modal-content .beyond-input, .beyond-element-modal.ds-modal .modal-content label {
-    color: var(text-color); }
-  .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon-button, .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon, .beyond-element-modal.ds-modal .modal-content .beyond-icon-button, .beyond-element-modal.ds-modal .modal-content .beyond-icon {
-    fill: var(--text-color); }
-  .beyond-element-modal.ds-modal .ds-modal__content .ds-list__header, .beyond-element-modal.ds-modal .modal-content .ds-list__header {
-    display: flex;
-    gap: .5rem;
-    align-items: center; }
-  .beyond-element-modal.ds-modal .ds-modal__content .fade-in, .beyond-element-modal.ds-modal .modal-content .fade-in {
-    -webkit-animation-name: fadeIn;
-    -moz-animation-name: fadeIn;
-    -ms-animation-name: fadeIn;
-    -o-animation-name: fadeIn;
-    animation-name: fadeIn;
-    -webkit-animation-iteration-count: 1;
-    -moz-animation-iteration-count: 1;
-    -ms-animation-iteration-count: 1;
-    -o-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-    -webkit-animation-duration: 1s;
-    -moz-animation-duration: 1s;
-    -ms-animation-duration: 1s;
-    -o-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-delay: 0s;
-    -moz-animation-delay: 0s;
-    -ms-animation-delay: 0s;
-    -o-animation-delay: 0s;
-    animation-delay: 0s;
-    -webkit-animation-timing-function: ease;
-    -moz-animation-timing-function: ease;
-    -ms-animation-timing-function: ease;
-    -o-animation-timing-function: ease;
-    animation-timing-function: ease;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    -ms-animation-fill-mode: both;
-    -o-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden; }
+  max-height: 90vh;
+  background: var(--surface); }
+
+.beyond-element-modal.ds-modal .ds-list__header {
+  display: flex;
+  gap: .5rem;
+  align-items: center; }
+
+.beyond-element-modal.ds-modal .fade-in {
+  -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
+  -ms-animation-name: fadeIn;
+  -o-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  -ms-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  -ms-animation-timing-function: ease;
+  -o-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden; }
 
 @-webkit-keyframes fadeIn {
   0% {
@@ -3087,9 +3117,9 @@ html {
     opacity: 1; } }
 
 @-ms-keyframes fadeIn {
-  .beyond-element-modal.ds-modal .ds-modal__content .fade-in 0%, .beyond-element-modal.ds-modal .modal-content .fade-in 0% {
+  .beyond-element-modal.ds-modal .fade-in 0% {
     opacity: 0; }
-  .beyond-element-modal.ds-modal .ds-modal__content .fade-in 100%, .beyond-element-modal.ds-modal .modal-content .fade-in 100% {
+  .beyond-element-modal.ds-modal .fade-in 100% {
     opacity: 1; } }
 
 @-o-keyframes fadeIn {
@@ -3103,30 +3133,60 @@ html {
     opacity: 0; }
   100% {
     opacity: 1; } }
-  .beyond-element-modal.ds-modal .ds-modal__content .beyond-perfect-scrollbar, .beyond-element-modal.ds-modal .modal-content .beyond-perfect-scrollbar {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 50px; }
+
+.beyond-element-modal.ds-modal .beyond-perfect-scrollbar {
+  width: calc(100% + 1rem);
+  height: 100%;
+  padding-bottom: 50px;
+  left: 0;
+  max-height: 70vh;
+  padding-right: 1rem;
+  right: -1rem;
+  position: relative; }
+
+.beyond-element-modal.ds-modal .ds-modal__footer {
+  display: flex;
+  align-items: end;
+  gap: .5rem;
+  justify-content: end; }
+
+.beyond-element-modal.ds-modal .modal-content form, .beyond-element-modal.ds-modal .ds-modal__content form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%; }
+  .beyond-element-modal.ds-modal .modal-content form .beyond-alert, .beyond-element-modal.ds-modal .ds-modal__content form .beyond-alert {
+    margin: 1rem 0; }
+  .beyond-element-modal.ds-modal .modal-content form .item, .beyond-element-modal.ds-modal .ds-modal__content form .item {
+    margin: .5rem 0; }
+
+.beyond-element-modal.ds-modal .modal-content input, .beyond-element-modal.ds-modal .ds-modal__content input {
+  color: var(--text-color); }
 
 .beyond-element-modal.ds-modal .modal-content .ds-switch__container, .beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container {
-  display: flex; }
+  display: flex;
+  gap: 1rem; }
   .beyond-element-modal.ds-modal .modal-content .ds-switch__container label, .beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container label {
     display: flex;
     gap: .5rem;
     align-items: center; }
 
+.beyond-element-modal.ds-modal .modal-content .beyond-input, .beyond-element-modal.ds-modal .modal-content label, .beyond-element-modal.ds-modal .ds-modal__content .beyond-input, .beyond-element-modal.ds-modal .ds-modal__content label {
+  color: var(text-color); }
+
+.beyond-element-modal.ds-modal .modal-content .beyond-icon-button, .beyond-element-modal.ds-modal .modal-content .beyond-icon, .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon-button, .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon {
+  fill: var(--text-color); }
+
 .beyond-element-modal.ds-modal .modal-content .form__separator__legend, .beyond-element-modal.ds-modal .ds-modal__content .form__separator__legend {
-  border-bottom: 1px solid var(--primary);
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: bold;
   padding: .5rem 0;
-  margin: 1rem 0;
+  margin: 3rem 0 0;
   display: flex;
   justify-content: space-between; }
 
 .beyond-element-modal.ds-modal .modal-content .input__info__container, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container {
   position: relative;
-  margin: 1rem 0;
-  padding-top: 1rem;
   display: grid;
   align-items: center; }
   .beyond-element-modal.ds-modal .modal-content .input__info__container:not(.select__container) .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container:not(.select__container) .form__info {
@@ -3138,24 +3198,43 @@ html {
   .beyond-element-modal.ds-modal .modal-content .input__info__container .form__select, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .form__select {
     border: none;
     border-bottom: 1px solid var(--text-color); }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container.select__container, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container.select__container {
-    align-items: start;
-    grid-template-columns: 1fr auto; }
-    .beyond-element-modal.ds-modal .modal-content .input__info__container.select__container .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container.select__container .form__info {
-      right: 2rem; }
+  .beyond-element-modal.ds-modal .modal-content .input__info__container.select__container .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container.select__container .form__info {
+    right: 3rem;
+    position: absolute;
+    bottom: .5rem; }
   .beyond-element-modal.ds-modal .modal-content .input__info__container .beyond-element-input, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .beyond-element-input {
     margin: .5rem 0 0 0; }
 
 .beyond-element-modal.ds-modal .modal-content .input__feedback__msg, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg {
-  margin-bottom: 2rem; }
+  margin-bottom: 1rem; }
   .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed {
-    position: absolute; }
+    position: absolute;
+    bottom: -1rem;
+    font-size: .60rem; }
+    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text-success, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text-success {
+      color: var(--success); }
+    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text {
+      color: var(--error); }
+
+.beyond-element-modal.ds-modal .modal-content .ds-modal__footer .beyond-button, .beyond-element-modal.ds-modal .ds-modal__content .ds-modal__footer .beyond-button {
+  height: 36px; }
+
+/**
+  Styles for inputs with SVG help icon
+ */
+.section-group {
+  position: relative; }
+  .section-group svg {
+    fill: var(--beyond-gray-dark-color);
+    cursor: pointer; }
+  .section-group .beyond-icon.form__info {
+    position: absolute;
+    right: 0;
+    top: 15px; }
 
 .modal-content .ds__list {
-  background: var(--background);
   list-style: none;
-  width: 100%;
-  padding: 1rem; }
+  width: 100%; }
   .modal-content .ds__list li {
     cursor: pointer;
     border-bottom: 1px solid var(--app-element-border-color-1);
@@ -3171,7 +3250,7 @@ html {
       right: 1rem;
       top: calc(50% - 12px); }
     .modal-content .ds__list li:hover {
-      opacity: .8; }
+      background: var(--background); }
     .modal-content .ds__list li.list__item__vertical {
       flex-direction: column;
       align-items: start; }
@@ -3201,55 +3280,65 @@ html {
         height: 35px !important;
         margin: 0; }
 
-.ds-modal .modal__panels {
-  display: grid;
-  grid-template-columns: 25% 1fr;
-  grid-gap: 2rem;
-  width: 100%;
-  position: relative;
-  max-height: 80vh; }
-  .ds-modal .modal__panels.modal__panels--auto {
-    grid-template-columns: auto 1fr; }
-  .ds-modal .modal__panels .left__panel {
+.ds-modal {
+  overflow: hidden; }
+  .ds-modal .modal__panels {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between; }
-    .ds-modal .modal__panels .left__panel header h3 {
-      display: flex;
-      gap: 1rem;
-      margin-left: calc(-2rem - 1px);
-      padding: 12px 2rem;
-      border-left: 2px solid var(--primary);
-      color: var(--primary); }
-      .ds-modal .modal__panels .left__panel header h3 .beyond-icon-button {
-        fill: var--primary; }
-    .ds-modal .modal__panels .left__panel footer {
-      display: flex;
-      gap: 1rem; }
-  .ds-modal .modal__panels .right__panel {
+    gap: 1.5rem;
+    width: 100%;
+    height: 100%;
+    position: relative;
     overflow: hidden; }
-    .ds-modal .modal__panels .right__panel .beyond-perfect-scrollbar {
-      padding-bottom: 0; }
-    .ds-modal .modal__panels .right__panel ul {
-      list-style: none; }
-      .ds-modal .modal__panels .right__panel ul li .select-option {
-        background: var(--background);
-        border: 1px solid transparent;
-        cursor: pointer;
-        border-radius: 10px;
-        width: 100%;
-        margin: 1.2rem 0;
-        padding: 2rem 3rem; }
-        .ds-modal .modal__panels .right__panel ul li .select-option:hover, .ds-modal .modal__panels .right__panel ul li .select-option.selected {
-          border: 1px solid var(--element-border-color); }
-        .ds-modal .modal__panels .right__panel ul li .select-option h5 {
-          color: var(--text-title-color);
-          font-weight: 600;
-          padding: 0;
-          margin: .5rem 0; }
-        .ds-modal .modal__panels .right__panel ul li .select-option p {
-          color: var(--text-color);
-          margin: 0; }
+    .ds-modal .modal__panels.modal__panels--full {
+      height: 100%; }
+    .ds-modal .modal__panels .left__panel {
+      display: flex;
+      width: 25%;
+      flex-direction: column; }
+      .ds-modal .modal__panels .left__panel header h3 {
+        display: flex;
+        gap: 1rem;
+        margin-left: calc(-2rem - 1px);
+        padding: 0 0 12px 2rem;
+        border-left: 2px solid var(--primary);
+        color: var(--primary); }
+        .ds-modal .modal__panels .left__panel header h3 .beyond-icon-button {
+          fill: var--primary; }
+      .ds-modal .modal__panels .left__panel footer {
+        display: flex;
+        gap: 1rem; }
+    .ds-modal .modal__panels .right__panel {
+      overflow: hidden;
+      flex-grow: 1;
+      width: 70%; }
+      .ds-modal .modal__panels .right__panel.right__panel--actions {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        flex-grow: 1;
+        align-content: space-between; }
+      .ds-modal .modal__panels .right__panel .beyond-perfect-scrollbar {
+        padding-bottom: 0; }
+      .ds-modal .modal__panels .right__panel ul {
+        list-style: none; }
+        .ds-modal .modal__panels .right__panel ul li .select-option {
+          background: var(--background);
+          border: 1px solid transparent;
+          cursor: pointer;
+          border-radius: 10px;
+          width: 100%;
+          margin: 1.2rem 0;
+          padding: 2rem 3rem; }
+          .ds-modal .modal__panels .right__panel ul li .select-option:hover, .ds-modal .modal__panels .right__panel ul li .select-option.selected {
+            border: 1px solid var(--element-border-color); }
+          .ds-modal .modal__panels .right__panel ul li .select-option h5 {
+            color: var(--text-title-color);
+            font-weight: 600;
+            padding: 0;
+            margin: .5rem 0; }
+          .ds-modal .modal__panels .right__panel ul li .select-option p {
+            color: var(--text-color);
+            margin: 0; }
 
 .not-found .go-back {
   padding-top: 20px;
@@ -3292,62 +3381,81 @@ html {
     .ds-info-component .ds-info__header .expand-icon svg {
       fill: var(--beyond-secondary-color); }
 
-.ds-select .ds-select__control,
-.ds-select .ds-select-container {
-  border: 1px solid transparent;
-  box-shadow: none; }
-  .ds-select .ds-select__control:focus, .ds-select .ds-select__control:hover,
+.ds-select {
+  /**
+  text selected, placeholder
+  */ }
+  .ds-select .ds-select__input-container,
+  .ds-select .ds-select__single-value,
+  .ds-select .ds-select__control {
+    background: transparent;
+    color: var(--text-color);
+    outline: 0; }
+  .ds-select .ds-select__control {
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--app-border-color); }
+  .ds-select .ds-select__control.ds-select__control--is-focused, .ds-select .ds-select__control:focus, .ds-select .ds-select__control:hover,
+  .ds-select .ds-select-container.ds-select__control--is-focused,
   .ds-select .ds-select-container:focus,
   .ds-select .ds-select-container:hover {
-    border: 1px solid transparent; }
-
-.ds-select.ds-select-container, .ds-select .ds-select-container, .ds-select .ds-select__control,
-.ds-select .ds-select__menu-list,
-.ds-select .ds-select__menu {
-  cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--background);
-  color: var(--text-color);
-  outline: 0; }
-  .ds-select.ds-select-container .ds-select__option.active, .ds-select .ds-select-container .ds-select__option.active, .ds-select .ds-select__control .ds-select__option.active,
-  .ds-select .ds-select__menu-list .ds-select__option.active,
-  .ds-select .ds-select__menu .ds-select__option.active {
-    background: red; }
-  .ds-select.ds-select-container .ds-select__single-value,
-  .ds-select.ds-select-container .ds-select__input-container,
-  .ds-select.ds-select-container .ds-select__placeholder,
-  .ds-select.ds-select-container input, .ds-select .ds-select-container .ds-select__single-value,
-  .ds-select .ds-select-container .ds-select__input-container,
-  .ds-select .ds-select-container .ds-select__placeholder,
-  .ds-select .ds-select-container input, .ds-select .ds-select__control .ds-select__single-value,
-  .ds-select .ds-select__control .ds-select__input-container,
-  .ds-select .ds-select__control .ds-select__placeholder,
-  .ds-select .ds-select__control input,
-  .ds-select .ds-select__menu-list .ds-select__single-value,
-  .ds-select .ds-select__menu-list .ds-select__input-container,
-  .ds-select .ds-select__menu-list .ds-select__placeholder,
-  .ds-select .ds-select__menu-list input,
-  .ds-select .ds-select__menu .ds-select__single-value,
-  .ds-select .ds-select__menu .ds-select__input-container,
-  .ds-select .ds-select__menu .ds-select__placeholder,
-  .ds-select .ds-select__menu input {
-    color: var(--text-color); }
-  .ds-select.ds-select-container .ds-select__option--is-focused, .ds-select .ds-select-container .ds-select__option--is-focused, .ds-select .ds-select__control .ds-select__option--is-focused,
-  .ds-select .ds-select__menu-list .ds-select__option--is-focused,
-  .ds-select .ds-select__menu .ds-select__option--is-focused {
-    background: transparent; }
-  .ds-select.ds-select-container .ds-select__option--is-selected,
-  .ds-select.ds-select-container .ds-select__option:hover, .ds-select .ds-select-container .ds-select__option--is-selected,
-  .ds-select .ds-select-container .ds-select__option:hover, .ds-select .ds-select__control .ds-select__option--is-selected,
-  .ds-select .ds-select__control .ds-select__option:hover,
-  .ds-select .ds-select__menu-list .ds-select__option--is-selected,
-  .ds-select .ds-select__menu-list .ds-select__option:hover,
-  .ds-select .ds-select__menu .ds-select__option--is-selected,
-  .ds-select .ds-select__menu .ds-select__option:hover {
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--app-border-color);
+    box-shadow: none; }
+  .ds-select.ds-select-container, .ds-select .ds-select-container,
+  .ds-select .ds-select__menu-list,
+  .ds-select .ds-select__menu {
+    cursor: pointer;
     background: var(--background);
-    cursor: pointer; }
+    border: 1px solid transparent;
+    border-radius: 0;
+    border-bottom: 1px solid var(--app-border-color);
+    color: var(--text-color);
+    outline: 0; }
+    .ds-select.ds-select-container .ds-select__option.active, .ds-select .ds-select-container .ds-select__option.active,
+    .ds-select .ds-select__menu-list .ds-select__option.active,
+    .ds-select .ds-select__menu .ds-select__option.active {
+      background: red; }
+    .ds-select.ds-select-container:focus, .ds-select.ds-select-container:hover, .ds-select .ds-select-container:focus, .ds-select .ds-select-container:hover,
+    .ds-select .ds-select__menu-list:focus,
+    .ds-select .ds-select__menu-list:hover,
+    .ds-select .ds-select__menu:focus,
+    .ds-select .ds-select__menu:hover {
+      border: 1px solid transparent;
+      border-bottom: 1px solid var(--app-border-color); }
+    .ds-select.ds-select-container .ds-select__single-value,
+    .ds-select.ds-select-container .ds-select__input-container,
+    .ds-select.ds-select-container .ds-select__placeholder,
+    .ds-select.ds-select-container input, .ds-select .ds-select-container .ds-select__single-value,
+    .ds-select .ds-select-container .ds-select__input-container,
+    .ds-select .ds-select-container .ds-select__placeholder,
+    .ds-select .ds-select-container input,
+    .ds-select .ds-select__menu-list .ds-select__single-value,
+    .ds-select .ds-select__menu-list .ds-select__input-container,
+    .ds-select .ds-select__menu-list .ds-select__placeholder,
+    .ds-select .ds-select__menu-list input,
+    .ds-select .ds-select__menu .ds-select__single-value,
+    .ds-select .ds-select__menu .ds-select__input-container,
+    .ds-select .ds-select__menu .ds-select__placeholder,
+    .ds-select .ds-select__menu input {
+      color: var(--text-color); }
+    .ds-select.ds-select-container .ds-select__option--is-focused, .ds-select .ds-select-container .ds-select__option--is-focused,
+    .ds-select .ds-select__menu-list .ds-select__option--is-focused,
+    .ds-select .ds-select__menu .ds-select__option--is-focused {
+      background: var(--surface); }
+    .ds-select.ds-select-container .ds-select__option--is-selected,
+    .ds-select.ds-select-container .ds-select__option:hover, .ds-select .ds-select-container .ds-select__option--is-selected,
+    .ds-select .ds-select-container .ds-select__option:hover,
+    .ds-select .ds-select__menu-list .ds-select__option--is-selected,
+    .ds-select .ds-select__menu-list .ds-select__option:hover,
+    .ds-select .ds-select__menu .ds-select__option--is-selected,
+    .ds-select .ds-select__menu .ds-select__option:hover {
+      background: var(--surface);
+      cursor: pointer; }
 
 .ds-tabs__container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
   border-bottom: 1px solid var(--app-border-color); }
   .ds-tabs__container .ds-tabs__list {
     list-style: none;
@@ -3363,9 +3471,6 @@ html {
   border-bottom: 2px solid var(--beyond-gray-color);
   margin: 0 2.5rem;
   padding: 2rem 0 0 0; }
-
-.ds-tabs__board {
-  padding: 1rem .5rem; }
 
 .ds-tabs__container .ds-tabs__list .ds-tabs__tab {
   border-bottom: 1px solid transparent; }

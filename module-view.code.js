@@ -63,7 +63,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_11;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -1159,7 +1159,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       onClick: togglePath
     }), /*#__PURE__*/React.createElement("span", null, am.module.specifier))), /*#__PURE__*/React.createElement("div", {
       className: "module-view__header__rows"
-    }, /*#__PURE__*/React.createElement(ModulePlatforms, null), /*#__PURE__*/React.createElement(CSpecs, null))));
+    }, /*#__PURE__*/React.createElement(ModulePlatforms, null), /*#__PURE__*/React.createElement(CSpecs, null)), /*#__PURE__*/React.createElement("div", {
+      className: "module-view__header__section"
+    }, /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: "declarations",
+      onClick: model.generateDeclarations
+    }))));
   }
   /************************
   header\platforms\edit.jsx
@@ -1346,7 +1351,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
       workspace.getModuleManager(specs.projectId, specs.moduleId).then(set);
     }, [specs.projectId, specs.moduleId]);
-    useBinder([model], () => setReady(model.ready));
+    useBinder([model], () => setReady(model.ready)); //TODO: @julio remove this logic
+
     React.useEffect(() => {
       if ([undefined, null].includes(specs?.moduleId)) return;
       moduleManager.load(specs.moduleId).then(model => {
@@ -1665,7 +1671,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__container header{padding:1rem .5rem}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__container header{padding:1rem .5rem}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr auto;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

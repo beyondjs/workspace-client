@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["object-assign","4.1.1"],["prop-types","15.8.1"],["react","16.14.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -1702,7 +1702,7 @@ var require_react = __commonJS({
     }
   }
 
-}); // .beyond/uimport/temp/react.16.14.0.js
+}); // .beyond/uimport/react.16.14.0.js
 
 
 var react_16_14_0_exports = {};

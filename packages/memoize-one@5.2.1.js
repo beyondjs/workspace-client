@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["memoize-one","5.2.1"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -41,7 +41,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/memoize-one.5.2.1.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/memoize-one.5.2.1.js
 
 
 var memoize_one_5_2_1_exports = {};
@@ -112,7 +112,7 @@ function memoizeOne(resultFn, isEqual2) {
   return memoized;
 }
 
-var memoize_one_esm_default = memoizeOne; // .beyond/uimport/temp/memoize-one.5.2.1.js
+var memoize_one_esm_default = memoizeOne; // .beyond/uimport/memoize-one.5.2.1.js
 
 var memoize_one_5_2_1_default = memoize_one_esm_default;
 module.exports = __toCommonJS(memoize_one_5_2_1_exports);

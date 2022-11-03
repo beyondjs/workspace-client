@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["@babel/runtime","7.19.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -41,7 +41,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/@babel/runtime/helpers/esm/setPrototypeOf.7.19.0.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/@babel/runtime/helpers/esm/setPrototypeOf.7.19.0.js
 
 
 var setPrototypeOf_7_19_0_exports = {};
@@ -57,7 +57,7 @@ function _setPrototypeOf(o, p) {
     return o2;
   };
   return _setPrototypeOf(o, p);
-} // .beyond/uimport/temp/@babel/runtime/helpers/esm/setPrototypeOf.7.19.0.js
+} // .beyond/uimport/@babel/runtime/helpers/esm/setPrototypeOf.7.19.0.js
 
 
 var setPrototypeOf_7_19_0_default = _setPrototypeOf;

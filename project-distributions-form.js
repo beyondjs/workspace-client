@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "react-select@5.4.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "react-select@5.4.0", "@beyond-js/ui@0.0.1/perfect-scrollbar"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -10,7 +10,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   _exports.DistributionForm = DistributionForm;
   _exports.DistributionModalAlert = DistributionModalAlert;
   _exports.DistributionPorts = DistributionPorts;
-  _exports.LeftPanel = LeftPanel;
+  _exports.FormActions = FormActions;
   _exports.MainDistributionFields = MainDistributionFields;
   _exports.PortField = PortField;
   _exports.hmr = _exports.__beyond_pkg = void 0;
@@ -47,9 +47,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     BeyondSpinner
   } = dependency_8;
   const Select = dependency_9.default;
+  const {
+    BeyondScrollContainer
+  } = dependency_10;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -66,7 +69,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/dashboard/core-components', dependency_4], ['@beyond-js/dashboard/ds-select', dependency_5], ['@beyond-js/ui/modal', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['react-select', dependency_9]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/dashboard/core-components', dependency_4], ['@beyond-js/dashboard/ds-select', dependency_5], ['@beyond-js/ui/modal', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['react-select', dependency_9], ['@beyond-js/ui/perfect-scrollbar', dependency_10]]);
 
   const {
     module
@@ -115,7 +118,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         html,
         css,
         js,
-        bundler
+        mode
       },
       checkSwitch,
       handleChange,
@@ -130,9 +133,19 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       }
     } = useDistributionsFormContext();
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "item item__select input__info__container select__container"
+    }, /*#__PURE__*/React.createElement(DSSelect, {
+      placeholder: label,
+      name: "mode",
+      options: options,
+      value: mode,
+      onChange: handleChange
+    }), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: tooltip
+    })), /*#__PURE__*/React.createElement("div", {
       className: "switch-item-group"
     }, /*#__PURE__*/React.createElement("header", null, compress), /*#__PURE__*/React.createElement("div", {
-      className: "elements"
+      className: "elements ds-switch__container"
     }, /*#__PURE__*/React.createElement("label", null, " HTML ", /*#__PURE__*/React.createElement(BeyondSwitch, {
       name: "html",
       value: html,
@@ -145,30 +158,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       name: "js",
       value: js,
       onChange: checkSwitch
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "item item__select input__info__container  select__container"
-    }, /*#__PURE__*/React.createElement(DSSelect, {
-      label: label,
-      placeholder: "Select",
-      name: "mode",
-      options: options,
-      value: bundler,
-      onSelect: handleChange
-    }), /*#__PURE__*/React.createElement(IconInfo, {
-      msg: tooltip
-    })));
-  }
-
-  async function created() {
-    try {
-      const {
-        slug
-      } = this.$route.params;
-      await axios.get(this.postsUrl + slug);
-      this.posts = response.data;
-    } catch (e) {
-      console.log(e);
-    }
+    })))));
   }
   /************************
   advanced-fields\index.jsx
@@ -229,21 +219,54 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "input-group-distributions"
     }, !!ssrOptions.length && /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement("label", null, texts.ssr), /*#__PURE__*/React.createElement(DSSelect, {
-      label: "Select...",
+    }, /*#__PURE__*/React.createElement(DSSelect, {
+      label: texts.ssr,
       value: ssr,
       name: "ssr",
       options: ssrOptions,
-      onSelect: handleChange
+      onChange: handleChange
     })), !!backendOptions.length && /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement("label", null, texts.backend), /*#__PURE__*/React.createElement(DSSelect, {
+    }, /*#__PURE__*/React.createElement(DSSelect, {
       value: backend,
-      label: "Select...",
+      label: texts.backend,
       name: "backend",
       options: backendOptions,
-      onSelect: handleChange
+      onChange: handleChange
     })));
+  }
+  /***************
+  form-actions.jsx
+  ***************/
+
+
+  /*bundle*/
+  function FormActions() {
+    const {
+      onSubmit,
+      texts: {
+        actions
+      },
+      formValues,
+      fetching
+    } = useDistributionsFormContext();
+    const {
+      name,
+      platform
+    } = formValues;
+    const disabled = {};
+    const formValid = name && platform;
+    if (!formValid) disabled.disabled = true;
+    return /*#__PURE__*/React.createElement("footer", {
+      className: "ds-modal__footer"
+    }, /*#__PURE__*/React.createElement(BeyondButton, _extends({}, disabled, {
+      onClick: onSubmit,
+      className: "btn primary beyond-button waves-effect",
+      type: "button"
+    }), fetching ? /*#__PURE__*/React.createElement(BeyondSpinner, {
+      className: "on-primary",
+      fetching: true
+    }) : actions.add));
   }
   /********
   index.jsx
@@ -313,6 +336,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       error,
       checkSwitch
     };
+    const {
+      title,
+      header
+    } = texts.modal;
     return /*#__PURE__*/React.createElement(BeyondModal, {
       show: true,
       onClose: close,
@@ -320,52 +347,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     }, /*#__PURE__*/React.createElement(DistributionsFormContext.Provider, {
       value: value
     }, /*#__PURE__*/React.createElement("main", {
-      className: "modal__panels "
-    }, /*#__PURE__*/React.createElement(LeftPanel, null), /*#__PURE__*/React.createElement(BeyondForm, {
-      onSubmit: onSubmit,
-      className: "right__panel"
-    }, /*#__PURE__*/React.createElement(DistributionModalAlert, null), /*#__PURE__*/React.createElement(MainDistributionFields, null), /*#__PURE__*/React.createElement(BackendSettings, null), /*#__PURE__*/React.createElement(DistributionPorts, null), /*#__PURE__*/React.createElement(AdvancedFieldsSection, null)))));
-  }
-  /*************
-  left-panel.jsx
-  *************/
-
-
-  function LeftPanel() {
-    const {
-      onSubmit,
-      texts: {
-        modal: {
-          title,
-          header
-        },
-        actions
-      },
-      formValues,
-      fetching
-    } = useDistributionsFormContext();
-    const {
-      name,
-      platform,
-      environment
-    } = formValues;
-    const disabled = {};
-    const formValid = name && platform;
-    if (!formValid) disabled.disabled = true;
-    return /*#__PURE__*/React.createElement("section", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement("div", {
       className: "left__panel"
     }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h3", null, title), /*#__PURE__*/React.createElement("p", {
       className: "p2"
-    }, header)), /*#__PURE__*/React.createElement("footer", {
-      className: "ds-modal__actions"
-    }, /*#__PURE__*/React.createElement(BeyondButton, _extends({}, disabled, {
-      onClick: onSubmit,
-      className: "btn primary beyond-button waves-effect",
-      type: "button"
-    }), fetching ? /*#__PURE__*/React.createElement(BeyondSpinner, {
-      className: "on-primary",
-      fetching: true
-    }) : actions.add)));
+    }, header))), /*#__PURE__*/React.createElement(BeyondForm, {
+      onSubmit: onSubmit,
+      className: "right__panel right__panel--actions"
+    }, /*#__PURE__*/React.createElement(BeyondScrollContainer, null, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement(DistributionModalAlert, null), /*#__PURE__*/React.createElement(MainDistributionFields, null), /*#__PURE__*/React.createElement(BackendSettings, null), /*#__PURE__*/React.createElement(DistributionPorts, null), /*#__PURE__*/React.createElement(AdvancedFieldsSection, null)), /*#__PURE__*/React.createElement(FormActions, null))))));
   }
   /**************
   main-fields.jsx
@@ -378,7 +368,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       formValues: {
         name,
         platform,
-        environment
+        environment,
+        newDistribution
       },
       handleChange
     } = useDistributionsFormContext();
@@ -408,19 +399,22 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       value: 'production',
       label: texts.props.environment.production
     }];
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item input__info__container"
+    return /*#__PURE__*/React.createElement("fieldset", null, /*#__PURE__*/React.createElement("h4", null, texts.modal.formHeader), /*#__PURE__*/React.createElement("div", {
+      className: "item"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
     }, /*#__PURE__*/React.createElement(BeyondInput, {
       name: "name",
       label: texts.props.name.label,
       placeholder: texts.props.name.label,
       required: true,
       value: name,
-      onChange: handleChange
+      onChange: handleChange,
+      disabled: !newDistribution
     }), /*#__PURE__*/React.createElement(IconInfo, {
       msg: texts.props.name.tooltip
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "input-group-distributions"
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "item"
     }, /*#__PURE__*/React.createElement("div", {
       className: "item item__select input__info__container select__container"
     }, /*#__PURE__*/React.createElement(DSSelect, {
@@ -475,10 +469,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       platform
     } = useDistributionsFormContext();
     const [isValid, setIsValid] = React.useState(false);
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("fieldset", null, /*#__PURE__*/React.createElement("div", {
       className: "form__separator__legend"
     }, ports.title), /*#__PURE__*/React.createElement("div", {
-      className: "input-group-distributions three-columns"
+      className: "flex-container flex-items-grow"
     }, /*#__PURE__*/React.createElement(PortField, {
       name: "bundles"
     }), ['ssr', 'backend'].includes(platform) && /*#__PURE__*/React.createElement(PortField, {
@@ -549,7 +543,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-distributions-form', '.distributions-modal{background-color:rgba(0,0,0,.8)}.distributions-modal .modal-content form{padding:20px!important}.distributions-modal .form__separator__legend{border-bottom:1px solid var(--primary);font-size:1.1rem;padding:.5rem 0;margin:.5rem 0;display:flex;justify-content:space-between}.distributions-modal .switch-item-group{display:grid;padding:15px 0}.distributions-modal .switch-item-group .elements{display:flex;gap:2rem}.distributions-modal .switch-item-group label{display:inline-flex;gap:8px;align-items:center}.distributions-modal .item.item__select{padding-top:15px}.distributions-modal .item .selects-distributions{display:grid;grid-template-columns:repeat(2,1fr)}.distributions-modal .item .selects-distributions .distributions-select .form__select{width:95%}.distributions-modal .item .selects-distributions .distributions-select .form__select .form__select__options{background-color:var(--beyond-secondary-dark-color);z-index:100}.distributions-modal .item .selects-distributions .distributions-select .form__select .form__select__options .option{color:#fff}.distributions-modal .item .input-switch-distributions{display:flex;margin-top:15px;justify-content:start;gap:6rem}.distributions-modal .item .input-switch-distributions .switch-item{justify-self:center}.distributions-modal .div-botton-distributions{display:flex;justify-content:flex-end}.distributions-modal .div-botton-distributions .beyond-button{border-radius:5px;width:7rem}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-distributions-form', '.distributions-modal{color:var(--text-color)}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

@@ -2,7 +2,7 @@ define(["@babel/runtime@7.19.0/helpers/esm/arrayLikeToArray","@babel/runtime@7.1
 
 const bimport = specifier => {
 	const dependencies = new Map([["@babel/runtime","7.19.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["@babel/runtime@7.19.0/helpers/esm/arrayLikeToArray", dep_0],["@babel/runtime@7.19.0/helpers/esm/arrayWithoutHoles", dep_1],["@babel/runtime@7.19.0/helpers/esm/iterableToArray", dep_2],["@babel/runtime@7.19.0/helpers/esm/unsupportedIterableToArray", dep_3],["@babel/runtime@7.19.0/helpers/esm/nonIterableSpread", dep_4]]);
@@ -55,7 +55,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/@babel/runtime/helpers/esm/toConsumableArray.7.19.0.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/@babel/runtime/helpers/esm/toConsumableArray.7.19.0.js
 
 
 var toConsumableArray_7_19_0_exports = {};
@@ -75,7 +75,7 @@ var import_nonIterableSpread = __toESM(require("@babel/runtime@7.19.0/helpers/es
 
 function _toConsumableArray(arr) {
   return (0, import_arrayWithoutHoles.default)(arr) || (0, import_iterableToArray.default)(arr) || (0, import_unsupportedIterableToArray.default)(arr) || (0, import_nonIterableSpread.default)();
-} // .beyond/uimport/temp/@babel/runtime/helpers/esm/toConsumableArray.7.19.0.js
+} // .beyond/uimport/@babel/runtime/helpers/esm/toConsumableArray.7.19.0.js
 
 
 var toConsumableArray_7_19_0_default = _toConsumableArray;

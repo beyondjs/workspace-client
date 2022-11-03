@@ -56,7 +56,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_13;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -108,15 +108,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     distribution,
     texts
   }) => {
+    if (['ios', 'android'].includes(distribution.platform)) return null;
     const [status, setStatus] = React.useState(distribution.launcher?.status);
     const [fetching, setFetching] = React.useState(false);
     const {
       launcher
     } = distribution;
     const isWeb = ['web'].includes(distribution.platform);
-    const action = launcher.status === 'running' ? 'stop' : 'start';
-    if (['ios', 'android'].includes(distribution.platform)) return null;
-    useBinder([launcher], () => setStatus(distribution.launcher.status));
+    const action = launcher?.status === 'running' ? 'stop' : 'start';
+    useBinder([launcher], () => setStatus(distribution.launcher?.status));
 
     const onClick = async event => {
       event.stopPropagation();
@@ -148,7 +148,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       onClick: onClick
     };
 
-    if (fetching || launcher.status === 'initialising') {
+    if (fetching || launcher?.status === 'initialising') {
       return /*#__PURE__*/React.createElement("div", {
         className: "distribution__actions"
       }, /*#__PURE__*/React.createElement("button", {
@@ -161,7 +161,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
     return /*#__PURE__*/React.createElement("div", {
       className: "distribution__actions"
-    }, launcher.status === 'running' && /*#__PURE__*/React.createElement(DSIconButton, {
+    }, launcher?.status === 'running' && /*#__PURE__*/React.createElement(DSIconButton, {
       icon: "replay",
       "data-action": "restart"
     }), /*#__PURE__*/React.createElement(DSIconButton, _extends({}, attrs, {
@@ -223,7 +223,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       onClick: handleClick,
       className: "btn primary beyond-button waves-effect"
     }, texts.actions.add)), /*#__PURE__*/React.createElement("ul", {
-      className: "list-distributions "
+      className: "list-distributions"
     }, output), modal && /*#__PURE__*/React.createElement(DistributionForm, {
       distribution: distribution,
       application: application,
@@ -286,7 +286,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-distributions.code', '.ds__panel .container-distributions .ds-card{display:flex;justify-content:space-between;background-color:var(--surface);padding:2rem;font-size:.875rem;position:relative}.ds__panel .container-distributions .ds-card h4{color:var(--text-color)}.ds__panel .container-distributions .ds-card .distribution__actions{position:absolute;bottom:1rem;right:1rem}.ds__panel .container-distributions .ds-card .distribution__actions .beyond-icon-button .beyond-icon{height:20px;width:20px;fill:var(--text-color)}.ds__panel .container-distributions .header-distributions{display:flex;justify-content:space-between}.ds__panel .container-distributions .header-distributions .beyond-button{width:7rem;height:3rem}.ds__panel .container-distributions .list-distributions{list-style-type:none;padding:0;margin-top:1rem;display:grid;grid-template-columns:repeat(3,1fr);grid-gap:1rem;color:var(--secondary-text-color)}.distributions-modal .input-group-distributions{display:grid;grid-gap:1rem;grid-template-columns:repeat(2,1fr)}.distributions-modal .input-group-distributions.three-columns{grid-template-columns:repeat(3,1fr)}.distributions-modal .input-group-distributions input[type=number]::-webkit-inner-spin-button,.distributions-modal .input-group-distributions input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.distributions-modal .input-group-distributions .port .form__info{right:.5rem!important}.distributions-modal .input-group-distributions .port .beyond-element-input{font-size:15px;width:98%}.distributions-modal .input-group-distributions .port .beyond-element-input input{appearance:none;-webkit-appearance:none}.distributions-modal .input-group-distributions .beyond-checkbox{flex-direction:column-reverse;align-items:flex-start;margin:auto}.distributions-modal .input-group-distributions .beyond-checkbox .checkmark{height:18px;width:18px}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-distributions.code', '.ds__panel .container-distributions .ds-card{display:flex;justify-content:space-between;background-color:var(--surface);padding:2rem;font-size:.875rem;position:relative}.ds__panel .container-distributions .ds-card h4{color:var(--text-color)}.ds__panel .container-distributions .ds-card .distribution__actions{position:absolute;bottom:1rem;right:1rem}.ds__panel .container-distributions .ds-card .distribution__actions .beyond-icon-button .beyond-icon{height:20px;width:20px;fill:var(--text-color)}.ds__panel .container-distributions{display:grid;grid-gap:1rem}.ds__panel .container-distributions .header-distributions{display:flex;justify-content:space-between;gap:1rem}.ds__panel .container-distributions .list-distributions{list-style-type:none;padding:0;margin-top:1rem;display:grid;grid-template-columns:repeat(3,1fr);grid-gap:1rem;color:var(--secondary-text-color)}.distributions-modal .input-group-distributions{display:grid;grid-gap:1rem;grid-template-columns:repeat(2,1fr)}.distributions-modal .input-group-distributions.three-columns{grid-template-columns:repeat(3,1fr)}.distributions-modal .input-group-distributions input[type=number]::-webkit-inner-spin-button,.distributions-modal .input-group-distributions input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.distributions-modal .input-group-distributions .port .form__info{right:.5rem!important}.distributions-modal .input-group-distributions .port .beyond-element-input{font-size:15px;width:98%}.distributions-modal .input-group-distributions .port .beyond-element-input input{appearance:none;-webkit-appearance:none}.distributions-modal .input-group-distributions .beyond-checkbox{flex-direction:column-reverse;align-items:flex-start;margin:auto}.distributions-modal .input-group-distributions .beyond-checkbox .checkmark{height:18px;width:18px}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

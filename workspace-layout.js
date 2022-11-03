@@ -39,7 +39,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_10;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -49,7 +49,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@0.0.1/unnamed/layout/dashboard"
+      "vspecifier": "@beyond-js/dashboard@0.0.1/workspace-layout"
     },
     "type": "layout"
   }, _amd_module.uri).package();
@@ -264,7 +264,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/unnamed/layout/dashboard', '.ds-modal.ds-modal-doc .modal-content .img-list{display:flex;gap:15px;justify-content:center}.ds-modal.ds-modal-doc .modal-content .img-list .beyond-element-image img{object-fit:cover;height:50px;width:50px}.beyond-dashboard-layout{min-width:800px;overflow-x:hidden}.beyond-dashboard-layout .dashboard-scroll-container{height:100vh;display:grid;grid-template-rows:auto 1fr auto;transition:all .3s ease-in}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/workspace-layout', '.ds-modal.ds-modal-doc .modal-content .img-list{display:flex;gap:15px;justify-content:center}.ds-modal.ds-modal-doc .modal-content .img-list .beyond-element-image img{object-fit:cover;height:50px;width:50px}.beyond-dashboard-layout{min-width:800px;overflow-x:hidden}.beyond-dashboard-layout .dashboard-scroll-container{height:100vh;display:grid;grid-template-rows:auto 1fr auto;transition:all .3s ease-in}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

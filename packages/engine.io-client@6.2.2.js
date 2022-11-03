@@ -2,7 +2,7 @@ define(["engine.io-parser@5.0.4","@socket.io/component-emitter@3.1.0"], (dep_0, 
 
 const bimport = specifier => {
 	const dependencies = new Map([["engine.io-parser","5.0.4"],["@socket.io/component-emitter","3.1.0"],["engine.io-client","6.2.2"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["engine.io-parser@5.0.4", dep_0],["@socket.io/component-emitter@3.1.0", dep_1]]);
@@ -43,7 +43,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/engine.io-client.6.2.2.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/engine.io-client.6.2.2.js
 
 
 var engine_io_client_6_2_2_exports = {};

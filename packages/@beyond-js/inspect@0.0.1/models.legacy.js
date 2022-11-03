@@ -4,10 +4,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.__beyond_pkg = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBundleBuilder = _exports.ApplicationBuilder = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.Widget = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBuilder = _exports.ElementWidget = _exports.ApplicationBuilder = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/plm", null], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -509,20 +509,248 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       base.processed = true;
     }
   }
-  /************************************
-  FILE: builder\bundle\module-bundle.js
-  ************************************/
+  /*****************************
+  FILE: builder\bundle\bundle.js
+  *****************************/
+
+  /**
+   * Represents a module that could be created and only has a bundle
+   */
+
+
+  class BundleBuilder extends ReactiveModel {
+    #widgets = ['widget', 'layout', 'page'];
+    _id;
+
+    get id() {
+      return `${this.moduleId}//${this._type}`;
+    }
+
+    get moduleId() {
+      const name = this.#widgets.includes(this.type) ? this.#widget.get('name') : this.name;
+      const path = `application//${this._applicationId}//${this.type === 'layout' ? 'layouts/' : ''}`;
+      return `${path}${name.replace(/ /g, '-')}`;
+    }
+
+    _type;
+
+    get type() {
+      return this._type;
+    }
+
+    _name;
+
+    get name() {
+      return this._name ?? '';
+    }
+
+    _error;
+
+    get error() {
+      return this._error;
+    }
+
+    _vdir;
+
+    get vdir() {
+      return this._vdir ?? 0;
+    }
+
+    _structure;
+
+    get structure() {
+      return this._structure;
+    }
+
+    _route = "/";
+
+    get route() {
+      return this._route;
+    }
+
+    _title;
+    _description;
+    _styles;
+    _fields;
+    _layoutId;
+    _applicationId;
+    _multilanguage = false;
+    _processors = new Map();
+    /**
+     * Define if the module to create is a predefined template.
+     * @private
+     */
+
+    _template;
+    #widget;
+
+    get valid() {
+      const structure = this._structure;
+
+      if (['page', 'widget', 'layout'].includes(this._type)) {
+        return this.#widget.valid;
+      }
+
+      if (!structure.required) return true;
+      const keepEmpty = structure.required.filter(property => !this[`_${property}`]);
+      return !keepEmpty.length;
+    }
+
+    set type(type) {
+      if (type === this._type) return;
+
+      if (this.#widgets.includes(type)) {
+        this.#widget.type = type;
+        this._type = type;
+        return;
+      }
+
+      this._type = type;
+      if (!this._type) return this.triggerEvent();
+      this._structure = Structures[this._type];
+      this._fields = Structures.module.fields.concat(this._structure.fields);
+      this.triggerEvent();
+    }
+
+    get template() {
+      return this._template;
+    }
+
+    set template(template) {
+      if (template === this._template) return;
+      this._template = template;
+      this.triggerEvent();
+    }
+
+    constructor(applicationId) {
+      super();
+      this.#widget = new Widget();
+      this.#widget.bind('change', this.triggerEvent);
+      this._applicationId = applicationId;
+    }
+
+    set(property, value) {
+      if (this.#widgets.includes(this._type)) {
+        this.#widget.set(property, value);
+        return;
+      }
+
+      this._set(property, value);
+    }
+
+    setMultilanguage(value) {
+      if (value === this._multilanguage) return;
+      this._multilanguage = value;
+      this.triggerEvent();
+    }
+
+    get additionalProcessors() {
+      return [{
+        id: 'vue',
+        name: 'Vue'
+      }, {
+        id: 'svelte',
+        name: 'Svelte'
+      }];
+    }
+
+    get processors() {
+      return Array.from(this._processors.keys());
+    }
+
+    addProcessor(value) {
+      if (this._processors.has(value)) return;
+
+      this._processors.set(value, true);
+
+      this.triggerEvent();
+    }
+
+    removeProcessor(value) {
+      if (!this._processors.has(value)) return;
+
+      this._processors.delete(value);
+
+      this.triggerEvent();
+    }
+
+    clearProcessors() {
+      this._processors.clear();
+
+      this.triggerEvent();
+    }
+
+    getProperties() {
+      let params = {};
+      params.projectId = this._applicationId;
+      params.bundles = [this._type];
+      params.processors = Array.from(this._processors.keys());
+
+      if (this.#widgets.includes(this._type)) {
+        return { ...params,
+          ...this.#widget.structure
+        };
+      }
+
+      this._fields.forEach(field => {
+        const key = `_${field}`;
+        if (this[key]) params[field] = this[key];
+      });
+    }
+
+    async publish() {
+      try {
+        const params = this.getProperties();
+
+        this._set({
+          fetching: true,
+          error: undefined
+        });
+
+        const action = params.template ? '/builder/module/clone' : '/builder/module/create';
+        this._styles && params.processors.push('sass');
+        const response = await module.execute(action, params);
+
+        if (response.error) {
+          this._set({
+            error: response.error
+          });
+
+          return response;
+        }
+
+        this._set({
+          fetching: false
+        });
+
+        return true;
+      } catch (exc) {
+        console.error(1, exc);
+      }
+    }
+
+  }
+  /*****************************
+  FILE: builder\bundle\module.js
+  *****************************/
 
   /**
    * Manager to create bundles
    */
 
 
-  class ModuleBundleBuilder extends ReactiveModel {
+  class ModuleBuilder extends ReactiveModel {
     #bundle;
     #applicationId;
     #PROCESSORS = ['sass', 'less'];
     #BUNDLES = ['page', 'widget', 'layout', 'code', 'start', 'bridge', 'typescript'];
+    /**
+     * TODO: change logic @julio
+     *
+     * Defines the available templates
+     * @type {Readonly<{page: {id: string, bundle: string}, server_page: {id: string, bundle: string}, mobile_login: {id: string, bundle: string}}>}
+     */
+
     #TEMPLATES = Object.freeze({
       page: {
         'id': 'page',
@@ -573,7 +801,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
     constructor(applicationId) {
       super(applicationId);
       this.#applicationId = applicationId;
-      this.#bundle = new ModuleBundle(this.#applicationId);
+      this.#bundle = new BundleBuilder(this.#applicationId);
       this.#bundle.bind('change', this.triggerEvent);
     }
 
@@ -601,214 +829,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
     }
 
   }
-  /*****************************
-  FILE: builder\bundle\module.js
-  *****************************/
-
-  /**
-   * Represents a module that could be create and only has a bundle
-   */
-
-
-  _exports.ModuleBundleBuilder = ModuleBundleBuilder;
-
-  class ModuleBundle extends ReactiveModel {
-    _id;
-
-    get id() {
-      return `${this.moduleId}//${this._type}`;
-    }
-
-    get moduleId() {
-      return `application//${this._applicationId}//${this.name.replace(/ /g, '-')}`;
-    }
-
-    _type;
-
-    get type() {
-      return this._type;
-    }
-
-    _name;
-
-    get name() {
-      return this._name ?? '';
-    }
-
-    _element;
-
-    get element() {
-      return this._element ?? '';
-    }
-
-    _error;
-
-    get error() {
-      return this._error;
-    }
-
-    _vdir;
-
-    get vdir() {
-      return this._vdir ?? 0;
-    }
-
-    _structure;
-
-    get structure() {
-      return this._structure;
-    }
-
-    _route = "/";
-
-    get route() {
-      return this._route;
-    }
-
-    _author;
-    _developer;
-    _title;
-    _description;
-    _styles;
-    _fields;
-    _layoutId;
-    _applicationId;
-    _server = false;
-    _multilanguage = false;
-    _processors = new Map();
-    /**
-     * Define if the module to create is a predefined template.
-     * @private
-     */
-
-    _template;
-
-    get valid() {
-      const structure = this._structure;
-      if (!structure.required) return true;
-      const keepEmpty = structure.required.filter(property => !this[`_${property}`]);
-      return !keepEmpty.length;
-    }
-
-    constructor(applicationId) {
-      super();
-      this._applicationId = applicationId;
-    }
-
-    set type(type) {
-      if (type === this._type) return;
-      this._type = type;
-      if (!this._type) return this.triggerEvent();
-      this._structure = Structures[this._type];
-      this._fields = Structures.module.fields.concat(this._structure.fields);
-      this.triggerEvent();
-    }
-
-    get template() {
-      return this._template;
-    }
-
-    set template(template) {
-      if (template === this._template) return;
-      this._template = template;
-      this.triggerEvent();
-    }
-
-    set(property, value) {
-      this._set(property, value);
-    }
-
-    setMultilanguage(value) {
-      if (value === this._multilanguage) return;
-      this._multilanguage = value;
-      this.triggerEvent();
-    }
-
-    get additionalProcessors() {
-      return [{
-        id: 'vue',
-        name: 'Vue'
-      }, {
-        id: 'svelte',
-        name: 'Svelte'
-      }];
-    }
-
-    get processors() {
-      return Array.from(this._processors.keys());
-    }
-
-    addProcessor(value) {
-      if (this._processors.has(value)) return;
-
-      this._processors.set(value, true);
-
-      this.triggerEvent();
-    }
-
-    removeProcessor(value) {
-      if (!this._processors.has(value)) return;
-
-      this._processors.delete(value);
-
-      this.triggerEvent();
-    }
-
-    clearProcessors() {
-      this._processors.clear();
-
-      this.triggerEvent();
-    }
-
-    async publish() {
-      const params = {};
-
-      this._fields.forEach(field => {
-        const key = `_${field}`;
-        if (this[key]) params[field] = this[key];
-      });
-
-      if (params.element) params.element = {
-        name: params.element
-      };
-      if (this._type === 'layout') params.id = params.name;
-
-      try {
-        this._set({
-          fetching: true,
-          error: undefined
-        });
-
-        params.projectId = this._applicationId;
-        params.bundles = [this._type];
-        params.processors = Array.from(this._processors.keys());
-        const action = params.template ? '/builder/module/clone' : '/builder/module/create';
-        this._styles && params.processors.push('sass');
-        const response = await module.execute(action, params);
-
-        if (response.error) {
-          this._set({
-            error: response.error
-          });
-
-          return response;
-        }
-
-        this._set({
-          fetching: false
-        });
-
-        return true;
-      } catch (exc) {
-        console.error(1, exc);
-      }
-    }
-
-  }
   /********************************
   FILE: builder\bundle\processor.js
   ********************************/
 
+
+  _exports.ModuleBuilder = ModuleBuilder;
 
   class BundleProcessor extends ReactiveModel {
     constructor(type) {
@@ -858,6 +884,128 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       required: ['name']
     }
   };
+  /******************************************
+  FILE: builder\bundle\types\element\index.js
+  ******************************************/
+
+  class ElementWidget extends ReactiveModel {
+    #pattern = /[a-z]+-[a-z]+/g;
+    #properties = {
+      name: '',
+      id: undefined,
+      route: ''
+    };
+
+    get valid() {
+      return !!this.#properties.name.match(this.#pattern);
+    }
+
+    get structure() {
+      let output = {};
+      if (!!this.#properties.id) output.id = this.#properties.id;
+      output.name = this.#properties.name;
+      return output;
+    }
+
+    set(key, value) {
+      if (!this.#properties.hasOwnProperty(key)) return;
+      this.#properties[key] = value;
+      this.triggerEvent();
+    }
+
+    get(property) {
+      if (!this.#properties.hasOwnProperty(key)) return;
+      return this.#properties[property];
+    }
+
+  }
+  /***********************************
+  FILE: builder\bundle\types\widget.js
+  ***********************************/
+
+
+  _exports.ElementWidget = ElementWidget;
+
+  class Widget extends ReactiveModel {
+    #fields = [];
+    #types = ['widget', 'page', 'layout'];
+    #type;
+    _name;
+    _id;
+    #properties = {
+      name: '',
+      id: undefined,
+      route: ''
+    };
+
+    get type() {
+      return this.#type;
+    }
+
+    set type(value) {
+      if (value === this.#type || !this.#types.includes(value)) return;
+      this.#type = value;
+      this.triggerEvent();
+    }
+
+    #element;
+
+    get element() {
+      return this.#element.structure;
+    }
+
+    get structure() {
+      return { ...this.#properties,
+        element: { ...this.#element.structure
+        }
+      };
+    }
+
+    #validation;
+
+    get validation() {
+      this.#validation = Structures[this._type];
+    }
+    /**
+     * Returns the structure of the widget to validate
+     *
+     * This method is added while the whole refactor is done, the logic needs to change.
+     */
+
+
+    get valid() {
+      const structure = Structures[this.#type];
+
+      const validate = property => property !== 'element' && [undefined].includes(this.#properties[property]);
+
+      const isInvalid = structure.required.some(validate);
+      return !isInvalid && this.#element.valid;
+    }
+
+    constructor() {
+      super();
+      this.#element = new ElementWidget();
+      this.#element.bind('change', this.triggerEvent);
+    }
+
+    set(key, value) {
+      if (key.startsWith('element.')) {
+        return this.#element.set(key.split('.')[1], value);
+      }
+
+      if (!this.#properties.hasOwnProperty(key)) return;
+      this.#properties[key] = value;
+      this.triggerEvent();
+    }
+
+    get(property) {
+      if (!this.#properties.hasOwnProperty(property)) return;
+      return this.#properties[property];
+    }
+
+  }
+
+  _exports.Widget = Widget;
   const ims = new Map(); // Module exports
 
   __pkg.exports.process = function ({

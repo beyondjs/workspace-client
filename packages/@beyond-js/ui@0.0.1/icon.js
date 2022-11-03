@@ -71,14 +71,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       let {
         tippy
       } = this.props;
-      if (!tippy) tippy = {};
-      this.tippy = await bimport('tippy');
+      if (!tippy) tippy = {}; // this.tippy = await bimport('tippy');
 
       if (!this._button?.current) {
         return;
-      }
+      } // this.tippy(this._button.current, tippy);
 
-      this.tippy(this._button.current, tippy);
     }
 
     get button() {
@@ -159,10 +157,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     }
 
     async componentDidMount() {
-      if (!this.props.title) return;
-      this.tippy = await bimport('tippy');
-      if (!this.icon?.current) return;
-      this.tippy(this.icon.current);
+      if (!this.props.title) return; // this.tippy = await bimport('tippy');
+
+      if (!this.icon?.current) return; // this.tippy(this.icon.current);
     }
 
     render() {

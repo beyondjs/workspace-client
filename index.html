@@ -13,7 +13,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     
     <script>
-    window.__app_package = {"specifier":"@beyond-js/dashboard","vspecifier":"@beyond-js/dashboard@0.0.1","version":"0.0.1"};
+    window.__app_package = {"specifier":"@beyond-js/dashboard","vspecifier":"@beyond-js/dashboard@0.0.1","version":"0.0.1","dependencies":[["@beyond-js/inspect","0.0.1"],["@beyond-js/plm","0.0.1"],["@beyond-js/ui","0.0.1"],["@beyond-js/local","0.1.0"],["@beyond-js/kernel","0.1.0"],["@beyond-js/widgets","0.1.0"],["@beyond-js/backend","0.1.0"],["dayjs","1.11.5"],["emmet-monaco-es","5.1.2"],["monaco-editor","0.33.0"],["react","16.14.0"],["react-dom","16.14.0"],["react-select","5.4.0"],["react-split","2.0.14"],["socket.io-client","4.5.2"],["split.js","1.6.5"],["tippy.js","6.2.5"],["waves","0.1.1"],["@beyond-js/dashboard","0.0.1"]]};
     
     // Set global baseDir and baseUrl variables
     const baseDir = window.baseDir = '/';
@@ -32,7 +32,7 @@
     </script>
     
     
-    <script src="/packages/@beyond-js/kernel/vendor/require.min.js"></script>
+    <script src="/packages/@beyond-js/kernel@0.1.0/vendor/require.min.js"></script>
     <script>
     const paths = {'@beyond-js/dashboard@0.0.1': baseUrl.endsWith('/') ? baseUrl.slice(0, baseUrl.length - 1) : baseUrl};
     requirejs.config({baseUrl: '/packages', paths});

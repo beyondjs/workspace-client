@@ -66,7 +66,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_15;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -110,7 +110,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     texts
   }) {
     const {
-      toggleCompilationModal
+      toggleProcessModal
     } = useDSWorkspaceContext();
     return /*#__PURE__*/React.createElement("div", {
       className: "flex-center flex-row-container full-height"
@@ -118,7 +118,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "flex-container flex-center"
     }, /*#__PURE__*/React.createElement(BeyondButton, {
       className: "primary",
-      onClick: toggleCompilationModal
+      onClick: toggleProcessModal
     }, texts.actions.compile, /*#__PURE__*/React.createElement(DSIcon, {
       icon: "compile"
     }))));
@@ -139,9 +139,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const [compiling, setCompiling] = React.useState(null);
     const [ready, texts] = useTextsBinder(__pkg.bundle.module.specifier);
     const {
-      builder
+      process
     } = project.application;
-    useBinder([builder], () => setStatus(builder.processed));
+    useBinder([process], () => setStatus(process.processed));
     if (!ready) return /*#__PURE__*/React.createElement(DsFetchingBlock, null);
 
     if (props.specs.projectId !== project.application.id) {
@@ -161,10 +161,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       setStatus,
       compiling,
       setCompiling,
-      messages: builder.messages
+      messages: process.messages
     };
 
-    if (!builder.processing && !builder.processed && builder.messages) {
+    if (!process) {
+      console.log('ney');
+      return null;
+    }
+
+    if (!process.processing && !process.processed && process.messages) {
       return /*#__PURE__*/React.createElement(Empty, {
         texts: texts
       });
@@ -230,19 +235,20 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     } = useCompilerContext();
     const dist = application.deployment.distributions.get(selected);
     const {
-      builder
+      process
     } = application;
-    const errors = application.builder.messages.filter(message => message.error);
+    const errors = application.process.messages.filter(message => message.error);
     const path = `${application.path}/.beyond/builds/${dist.name}`.replace(/\\/g, '/');
     const types = ['error', 'success', 'warning'];
-    const type = types[1];
-    const alert = type === 'warning' ? 'process' : type;
-    const isProcessing = builder.status === 'processing' || builder.fetching;
+    const type = process.processing ? types[2] : process.errors.length ? types[0] : types[1];
+    const isProcessing = process.processing;
+    const message = isProcessing ? texts.alerts.processing : texts.alerts[type];
     return /*#__PURE__*/React.createElement(BeyondAlert, {
       type: type
-    }, /*#__PURE__*/React.createElement("h3", null, isProcessing && /*#__PURE__*/React.createElement(DSSpinner, {
-      active: true
-    }), texts.alerts[alert]));
+    }, /*#__PURE__*/React.createElement("h4", null, isProcessing && /*#__PURE__*/React.createElement(BeyondSpinner, {
+      active: true,
+      className: "on-primary"
+    }), message));
   }
   /*******************************
   sections\detail\use-compiler.jsx
@@ -250,7 +256,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
 
   function useCompiler(container, application) {
-    useBinder([application.builder], () => {
+    useBinder([application.process], () => {
       const list = container.current.querySelector('.compile__trace__all-list');
       const errorList = container.current.querySelector('.compile__trace__error-list');
 
@@ -269,7 +275,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         errors,
         processing,
         messages
-      } = application.builder;
+      } = application.process;
       messages && setMessage(messages);
       errors && setMessage(errors, true);
     });
@@ -323,9 +329,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const {
       texts: {
         sections
-      },
-      project: {
-        builder
       }
     } = useCompilerContext();
     const texts = sections[name];
@@ -343,7 +346,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-compile.code', '.compile__trace__list{list-style:none;display:none;gap:2px;padding:0;transition:all 150ms ease-in}.compile__trace__list li{padding:4px;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds__board.board__compile .compilation__card{max-width:800px;margin:auto}.ds__board.board__compile .compilation__card.compilation__card--disabled{opacity:.6}.ds__board.board__compile .compilation__card.compilation__card--disabled header{cursor:default}.ds__board.board__compile .compilation__card header{display:flex;gap:.5rem;border-bottom:1px solid var(--separator-color);cursor:pointer;align-items:center}.ds__board.board__compile .compilation__card header .beyond-icon{fill:var(--text-color)}.ds__board.board__compile .compilation__card header h5{display:flex;gap:.5rem;align-items:center;font-size:13px;margin:0}.ds__board.board__compile .compilation__card .card__detail{background:var(--secondary-accent-20);padding:1rem;color:var(--secondary-text-color);display:none}.ds__board.board__compile .compilation__card .card__detail.opened{display:grid;transition:all 150ms ease-in}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-compile.code', '.compile__trace__list{list-style:none;display:none;gap:2px;padding:0;transition:all 150ms ease-in}.compile__trace__list li{padding:4px;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds__board.board__compile .compilation__card{max-width:800px;margin:auto}.ds__board.board__compile .compilation__card.compilation__card--disabled{opacity:.6}.ds__board.board__compile .compilation__card.compilation__card--disabled header{cursor:default}.ds__board.board__compile .compilation__card header{display:flex;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--separator-color);cursor:pointer;align-items:center}.ds__board.board__compile .compilation__card header .beyond-icon{fill:var(--text-color)}.ds__board.board__compile .compilation__card header h5{display:flex;gap:.5rem;align-items:center;font-size:13px;margin:0}.ds__board.board__compile .compilation__card .card__detail{background:var(--secondary-accent-20);padding:1rem;color:var(--secondary-text-color);display:none}.ds__board.board__compile .compilation__card .card__detail.opened{display:grid;transition:all 150ms ease-in}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

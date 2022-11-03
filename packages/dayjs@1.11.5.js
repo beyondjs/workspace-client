@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["dayjs","1.11.5"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -398,7 +398,7 @@ var require_dayjs_min = __commonJS({
     });
   }
 
-}); // .beyond/uimport/temp/dayjs.1.11.5.js
+}); // .beyond/uimport/dayjs.1.11.5.js
 
 
 var dayjs_1_11_5_exports = {};

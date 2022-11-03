@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["scheduler","0.19.1"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -848,7 +848,7 @@ var require_scheduler = __commonJS({
     }
   }
 
-}); // .beyond/uimport/temp/scheduler.0.19.1.js
+}); // .beyond/uimport/scheduler.0.19.1.js
 
 
 var scheduler_0_19_1_exports = {};

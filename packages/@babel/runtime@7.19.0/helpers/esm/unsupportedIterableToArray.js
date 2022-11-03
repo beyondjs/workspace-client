@@ -2,7 +2,7 @@ define(["@babel/runtime@7.19.0/helpers/esm/arrayLikeToArray"], (dep_0) => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["@babel/runtime","7.19.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["@babel/runtime@7.19.0/helpers/esm/arrayLikeToArray", dep_0]]);
@@ -55,7 +55,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/@babel/runtime/helpers/esm/unsupportedIterableToArray.7.19.0.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/@babel/runtime/helpers/esm/unsupportedIterableToArray.7.19.0.js
 
 
 var unsupportedIterableToArray_7_19_0_exports = {};
@@ -74,7 +74,7 @@ function _unsupportedIterableToArray(o, minLen) {
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return Array.from(o);
   if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0, import_arrayLikeToArray.default)(o, minLen);
-} // .beyond/uimport/temp/@babel/runtime/helpers/esm/unsupportedIterableToArray.7.19.0.js
+} // .beyond/uimport/@babel/runtime/helpers/esm/unsupportedIterableToArray.7.19.0.js
 
 
 var unsupportedIterableToArray_7_19_0_default = _unsupportedIterableToArray;

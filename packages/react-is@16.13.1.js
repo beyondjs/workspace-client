@@ -2,7 +2,7 @@ define([], () => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["react-is","16.13.1"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 const require = () => void 0;
 // Prevent esbuild from considering the context to be amd
@@ -255,7 +255,7 @@ var require_react_is = __commonJS({
     }
   }
 
-}); // .beyond/uimport/temp/react-is.16.13.1.js
+}); // .beyond/uimport/react-is.16.13.1.js
 
 
 var react_is_16_13_1_exports = {};

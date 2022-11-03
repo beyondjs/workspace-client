@@ -56,7 +56,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_13;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -611,29 +611,39 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   function AsidePreload() {
     return /*#__PURE__*/React.createElement("aside", {
-      className: "ds__aside hide-detail"
+      className: "ds__aside hide-detail is-fetching"
     }, /*#__PURE__*/React.createElement("section", {
       className: "ds__pre-aside"
     }, /*#__PURE__*/React.createElement("ul", {
       className: "start-list"
     }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "folder"
+      disabled: true,
+      icon: "apps"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "project"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "pinup"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "bookmark"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "add"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "photoSize"
+    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      disabled: true,
+      icon: "setting"
     }))), /*#__PURE__*/React.createElement("ul", {
       className: "end-list"
     }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "add",
-      disabled: true
+      disabled: true,
+      icon: "newProject"
     })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "add",
-      disabled: true
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "add",
-      disabled: true
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "folder",
-      disabled: true
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "settings",
+      icon: "setting",
       disabled: true
     })))), /*#__PURE__*/React.createElement("div", {
       className: "ds__aside__detail"

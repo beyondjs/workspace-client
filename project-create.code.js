@@ -6,8 +6,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   });
   _exports.ApplicationCreate = void 0;
   _exports.BlankList = BlankList;
-  _exports.CreateContent = CreateContent;
-  _exports.CreateProjectLeftPanel = CreateProjectLeftPanel;
   _exports.TemplateList = TemplateList;
   _exports.VersionInput = VersionInput;
   _exports.hmr = _exports.__beyond_pkg = void 0;
@@ -65,7 +63,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_14;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -115,29 +113,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   const CreateProjectContext = React.createContext();
 
   const useCreateProjectContext = () => React.useContext(CreateProjectContext);
-  /**********
-  content.jsx
-  **********/
-
-
-  function CreateContent() {
-    const {
-      type,
-      createController
-    } = useCreateProjectContext();
-    if (!createController.ready) return null;
-    const Control = type ? SecondStep : FirstStep;
-
-    const onSubmit = event => {
-      event.preventDefault();
-      model.create();
-    };
-
-    return /*#__PURE__*/React.createElement(BeyondForm, {
-      onSubmit: onSubmit,
-      className: "modal__panels"
-    }, /*#__PURE__*/React.createElement(Control, null));
-  }
   /********
   index.jsx
   ********/
@@ -180,8 +155,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         window.setTimeout(() => spinner.current?.classList.toggle('container-hidden'), 100);
       }
     }, [fetching]);
+    const Control = type ? SecondStep : FirstStep;
     const texts = createController.texts;
-    const cls = `ds-modal ${model.fetching ? ' is' : ''}`;
+    let cls = `ds-modal ds-modal--lg ${model.fetching ? ' is' : ''}`;
+    if (type) cls = `${cls} ds-modal--actions`;
     const contextValue = {
       createController,
       type,
@@ -193,13 +170,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       selectedView,
       setSelectedView
     };
+    if (!createController.ready) return null;
     return /*#__PURE__*/React.createElement(CreateProjectContext.Provider, {
       value: contextValue
     }, /*#__PURE__*/React.createElement(BeyondModal, {
       show: true,
       onClose: closeModal,
       className: cls
-    }, /*#__PURE__*/React.createElement(CreateContent, null), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
+    }, /*#__PURE__*/React.createElement(Control, null), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
       ref: spinner,
       active: true,
       className: "absolute-container container-hidden"
@@ -220,7 +198,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       },
       selectedView
     } = useCreateProjectContext();
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels modal__panels--full"
+    }, /*#__PURE__*/React.createElement("section", {
       className: "left__panel"
     }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h3", null, texts.types.titles.empty), /*#__PURE__*/React.createElement("p", {
       className: "p2"
@@ -409,13 +389,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     })), /*#__PURE__*/React.createElement(IconInfo, {
       msg: texts.description.info
     })), /*#__PURE__*/React.createElement("div", {
-      className: "switch-option"
-    }, /*#__PURE__*/React.createElement(BeyondSwitch, {
+      className: "ds-switch__container"
+    }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement(BeyondSwitch, {
       name: "npm",
       checked: model.npm,
       value: model.npm,
       onChange: toggleRadio
-    }), /*#__PURE__*/React.createElement("label", null, texts.npm))));
+    }), texts.npm))));
   }
   /*********************
   steps\second\index.jsx
@@ -433,30 +413,25 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       },
       fetching
     } = useCreateProjectContext();
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(CreateProjectLeftPanel, null), /*#__PURE__*/React.createElement(DetailApp, {
-      type: type
-    }));
-  }
-  /**************************
-  steps\second\left-panel.jsx
-  **************************/
 
+    const onSubmit = event => {
+      event.preventDefault();
+      model.create();
+    };
 
-  function CreateProjectLeftPanel() {
-    const {
-      type,
-      setType,
-      texts: {
-        form: texts,
-        actions
-      },
-      fetching
-    } = useCreateProjectContext();
     const btnAttrs = {};
     if (!model.valid || fetching) btnAttrs.disabled = true;
-    return /*#__PURE__*/React.createElement("section", {
+    return /*#__PURE__*/React.createElement(BeyondForm, {
+      onSubmit: onSubmit
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement("section", {
       className: "left__panel"
-    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h3", null, texts.types.titles.empty), /*#__PURE__*/React.createElement("h4", null, texts.types[type].title), /*#__PURE__*/React.createElement("p", null, texts.types[type].description)), /*#__PURE__*/React.createElement("footer", null, /*#__PURE__*/React.createElement(BeyondButton, _extends({}, btnAttrs, {
+    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h3", null, texts.types.titles.empty), /*#__PURE__*/React.createElement("h4", null, texts.types[type].title), /*#__PURE__*/React.createElement("p", null, texts.types[type].description))), /*#__PURE__*/React.createElement(DetailApp, {
+      type: type
+    })), /*#__PURE__*/React.createElement("footer", {
+      className: "ds-modal__footer"
+    }, /*#__PURE__*/React.createElement(BeyondButton, _extends({}, btnAttrs, {
       className: "btn-large btn primary",
       type: "submit"
     }), fetching ? /*#__PURE__*/React.createElement(BeyondSpinner, {
@@ -465,63 +440,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     }) : actions.submit), /*#__PURE__*/React.createElement(BeyondButton, {
       onClick: () => setType(undefined)
     }, " ", actions.back, " ")));
-  }
-  /**************************
-  steps\second\port-field.jsx
-  **************************/
-
-
-  function PortField({
-    name,
-    identifier
-  }) {
-    const {
-      texts: {
-        form: texts
-      },
-      model
-    } = useCreateProjectContext();
-    const [valid, setValid] = React.useState();
-    const clsPortLabel = `fade-in ${valid === 'success' ? 'form__text-success' : 'form__text-error'}`;
-
-    const handleChange = (event, pattern) => {
-      const target = event.target;
-      let {
-        name,
-        value
-      } = target;
-      if (pattern) value = value.replace(pattern, '-');
-      model[name] = value;
-
-      if (value.length === 4) {
-        checkPort();
-      }
-    };
-
-    const checkPort = async () => {
-      const port = model[name];
-      if (!port) return;
-      const isValid = await model.checkPort(port);
-      setValid(isValid ? 'success' : 'error');
-    };
-
-    return /*#__PURE__*/React.createElement(BeyondInput, {
-      name: name,
-      label: texts.ports[identifier].label,
-      className: "icon-right form__field-port",
-      type: "text",
-      placeholder: texts.ports[identifier].label,
-      maxLength: 4,
-      value: model[name],
-      onChange: handleChange
-    }, /*#__PURE__*/React.createElement(DSIconButton, {
-      tabIndex: "-1",
-      icon: "refresh",
-      className: "primary",
-      title: texts.ports.tooltip
-    }), valid && /*#__PURE__*/React.createElement("span", {
-      className: clsPortLabel
-    }, texts.ports[valid]));
   }
   /*****************************
   steps\second\version-input.jsx
@@ -619,7 +537,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   SCSS STYLES
   **********/
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-create.code', '.ds-modal.ds-app-create_modal .ds-create-app__fields{padding:20px 60px}.right__panel.projects__types .ds-tabs__container{border-bottom:2px solid var(--beyond-gray-color);width:100%;padding:0;margin:0 0 1rem 0}.right__panel.projects__types .ds-tabs__container .ds-tabs__list{padding:0;display:grid;grid-template-columns:repeat(2,1fr)}.right__panel.projects__types .ds-tabs__container .ds-tabs__list .ds-tabs__tab{padding:0}.right__panel.projects__types .ds-tabs__container .ds-tabs__list .ds-tabs__tab button{padding:1.2rem 1rem 1rem 1rem}.section-group{position:relative}.section-group svg{fill:var(--beyond-gray-dark-color);cursor:pointer}.section-group .beyond-icon.form__info{position:absolute;right:0;top:15px}.beyond-element-modal .modal__panels .projects__types .ds-tabs__board .beyond-perfect-scrollbar{max-height:70vh}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-create.code', '.xx{color:red}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

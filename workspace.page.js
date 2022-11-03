@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/uploader-components", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/settings.code", "@beyond-js/dashboard@0.0.1/projects-board.code", "@beyond-js/dashboard@0.0.1/project-create.code", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/project-board.code", "@beyond-js/dashboard@0.0.1/static-board.code", "@beyond-js/dashboard@0.0.1/aside.code", "@beyond-js/dashboard@0.0.1/ds-navigator", "@beyond-js/dashboard@0.0.1/ds-panels", "@beyond-js/dashboard@0.0.1/ds-notifications.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/module-view.code", "@beyond-js/dashboard@0.0.1/module-create.code", "@beyond-js/dashboard@0.0.1/layout-header", "@beyond-js/dashboard@0.0.1/compilation-modal"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25, dependency_26, dependency_27) {
+define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/uploader-components", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/settings.code", "@beyond-js/dashboard@0.0.1/projects-board.code", "@beyond-js/dashboard@0.0.1/project-create.code", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/project-board.code", "@beyond-js/dashboard@0.0.1/static-board.code", "@beyond-js/dashboard@0.0.1/aside.code", "@beyond-js/dashboard@0.0.1/ds-navigator", "@beyond-js/dashboard@0.0.1/ds-panels", "@beyond-js/dashboard@0.0.1/ds-notifications.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/module-view.code", "@beyond-js/dashboard@0.0.1/module-create.code", "@beyond-js/dashboard@0.0.1/layout-header", "@beyond-js/dashboard@0.0.1/modal-distribution-select", "@beyond-js/backend@0.1.0/client"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25, dependency_26, dependency_27, dependency_28) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -102,9 +102,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   const {
     CompilationModal
   } = dependency_27;
+  const {
+    backends
+  } = dependency_28;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -122,7 +125,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/uploader-components', dependency_10], ['@beyond-js/dashboard/breadcrumb.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/settings.code', dependency_13], ['@beyond-js/dashboard/projects-board.code', dependency_14], ['@beyond-js/dashboard/project-create.code', dependency_15], ['@beyond-js/dashboard/project-compile.code', dependency_16], ['@beyond-js/dashboard/project-board.code', dependency_17], ['@beyond-js/dashboard/static-board.code', dependency_18], ['@beyond-js/dashboard/aside.code', dependency_19], ['@beyond-js/dashboard/ds-navigator', dependency_20], ['@beyond-js/dashboard/ds-panels', dependency_21], ['@beyond-js/dashboard/ds-notifications.code', dependency_22], ['@beyond-js/dashboard/ds-contexts', dependency_23], ['@beyond-js/dashboard/module-view.code', dependency_24], ['@beyond-js/dashboard/module-create.code', dependency_25], ['@beyond-js/dashboard/layout-header', dependency_26], ['@beyond-js/dashboard/compilation-modal', dependency_27]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/uploader-components', dependency_10], ['@beyond-js/dashboard/breadcrumb.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/settings.code', dependency_13], ['@beyond-js/dashboard/projects-board.code', dependency_14], ['@beyond-js/dashboard/project-create.code', dependency_15], ['@beyond-js/dashboard/project-compile.code', dependency_16], ['@beyond-js/dashboard/project-board.code', dependency_17], ['@beyond-js/dashboard/static-board.code', dependency_18], ['@beyond-js/dashboard/aside.code', dependency_19], ['@beyond-js/dashboard/ds-navigator', dependency_20], ['@beyond-js/dashboard/ds-panels', dependency_21], ['@beyond-js/dashboard/ds-notifications.code', dependency_22], ['@beyond-js/dashboard/ds-contexts', dependency_23], ['@beyond-js/dashboard/module-view.code', dependency_24], ['@beyond-js/dashboard/module-create.code', dependency_25], ['@beyond-js/dashboard/layout-header', dependency_26], ['@beyond-js/dashboard/modal-distribution-select', dependency_27], ['@beyond-js/backend/client', dependency_28]]);
 
   const {
     module
@@ -208,9 +211,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
           tippy: {
             placement: 'right'
           }
-        }
-      });
-      DSPreAside.addItems('top', {
+        },
         add: {
           action: () => this.workspace.setState({
             addModule: true
@@ -325,10 +326,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   function Page() {
     (() => {
-      DSBoards.add('application', {
+      DSBoards.add('project', {
         control: ApplicationBoard,
         label: 'app',
-        icon: 'project'
+        icon: 'project',
+        type: 'project'
       });
       DSBoards.add('module', {
         control: ModuleBoard,
@@ -391,7 +393,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   class PortManager extends ReactiveModel {
     #port;
 
-    port() {
+    get port() {
       return this.#port;
     }
 
@@ -402,6 +404,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
       if (value === this.#port) return;
       this.#port = value;
+    }
+
+    constructor() {
+      super(); // backends.register('@beyond-js/inspect', 'http://localhost:4000');
     }
 
   }
@@ -757,6 +763,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
      */
 
     openBoard = (name, specs) => {
+      console.log(8, specs);
       this.#panels.active.add(name, specs);
     };
     openApp = async (id, specs) => {
@@ -766,7 +773,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         id,
         name: `app.${id}`
       };
-      this.openBoard('application', specs);
+      this.openBoard('project', specs);
     };
 
     closeApp(id) {
@@ -1244,9 +1251,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
     const showProjectForm = () => setShowModal(true);
 
-    const [showCompilationModal, setShowCompilationModal] = React.useState(false);
+    const [showProjectActionsModal, setProjectActionsModal] = React.useState(false);
 
-    const toggleCompilationModal = () => setShowCompilationModal(!showCompilationModal);
+    const toggleProcessModal = () => setProjectActionsModal(!showProjectActionsModal);
 
     useBinder([workspace], () => setState({
       ready: workspace.ready,
@@ -1255,7 +1262,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     React.useEffect(() => {
       DSPreAside.addToTop("projects", {
         icon: 'apps',
-        title: 'Projectos',
+        title: 'Proyectos',
         tippy: {
           placement: 'right'
         },
@@ -1306,7 +1313,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       panels,
       ready: workspace.ready,
       panel: panels.active,
-      toggleCompilationModal,
+      toggleProcessModal,
       showProjectForm,
       showModuleForm: () => setState({
         addModule: true
@@ -1326,9 +1333,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       onClose: () => workspace.setState({
         addModule: false
       })
-    }), showCompilationModal && /*#__PURE__*/React.createElement(CompilationModal, {
+    }), showProjectActionsModal && /*#__PURE__*/React.createElement(CompilationModal, {
       workspace: workspace,
-      onClose: () => setShowCompilationModal(false)
+      onClose: () => setProjectActionsModal(false)
     }));
   }
   /**********

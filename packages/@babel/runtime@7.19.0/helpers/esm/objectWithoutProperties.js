@@ -2,7 +2,7 @@ define(["@babel/runtime@7.19.0/helpers/esm/objectWithoutPropertiesLoose"], (dep_
 
 const bimport = specifier => {
 	const dependencies = new Map([["@babel/runtime","7.19.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["@babel/runtime@7.19.0/helpers/esm/objectWithoutPropertiesLoose", dep_0]]);
@@ -55,7 +55,7 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/temp/@babel/runtime/helpers/esm/objectWithoutProperties.7.19.0.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/@babel/runtime/helpers/esm/objectWithoutProperties.7.19.0.js
 
 
 var objectWithoutProperties_7_19_0_exports = {};
@@ -84,7 +84,7 @@ function _objectWithoutProperties(source, excluded) {
   }
 
   return target;
-} // .beyond/uimport/temp/@babel/runtime/helpers/esm/objectWithoutProperties.7.19.0.js
+} // .beyond/uimport/@babel/runtime/helpers/esm/objectWithoutProperties.7.19.0.js
 
 
 var objectWithoutProperties_7_19_0_default = _objectWithoutProperties;

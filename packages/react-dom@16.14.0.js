@@ -2,7 +2,7 @@ define(["react@16.14.0","scheduler@0.19.1"], (dep_0, dep_1) => {
 
 const bimport = specifier => {
 	const dependencies = new Map([["object-assign","4.1.1"],["prop-types","15.8.1"],["react","16.14.0"],["scheduler","0.19.1"],["react-dom","16.14.0"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["react@16.14.0", dep_0],["scheduler@0.19.1", dep_1]]);
@@ -21067,7 +21067,7 @@ var require_react_dom = __commonJS({
     }
   }
 
-}); // .beyond/uimport/temp/react-dom.16.14.0.js
+}); // .beyond/uimport/react-dom.16.14.0.js
 
 
 var react_dom_16_14_0_exports = {};

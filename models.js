@@ -32,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
   } = dependency_5;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -3158,7 +3158,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
         }
 
         if (!module && item.kind !== 'bundle') {
-          console.log("invalid item", item);
+          console.warn("invalid item", item);
           return false;
         }
 
@@ -3969,6 +3969,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
       await this.#am.createFile(params);
     }
 
+    async generateDeclarations() {
+      console.log('generate declarations....');
+    }
+
   }
   /**********************
   FILE: module\manager.js
@@ -4355,6 +4359,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
           //todo: obtener
           platform: "",
           environment: "",
+          newDistribution: true,
           compress: "",
           default: ""
         }
@@ -4517,11 +4522,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
       }; // DSNotifications.register(this.application.errors, specs);
     };
 
-    async compile(id) {
+    async process(id, actions) {
       try {
-        this.processing = true;
-        const distribution = this.application.deployment.distributions.get(id);
-        await this.application.builder.build(distribution.values);
+        this.processing = true; // TODO: @felix setAction
+
+        console.log('id, actions', id, actions);
+        await this.application.process.run(id, actions); // const distribution = this.application.deployment.distributions.get(id);
+        // await this.application.builder.build(distribution.values);
+
         this.processing = false;
         this.triggerEvent('compilation.change');
       } catch (e) {}

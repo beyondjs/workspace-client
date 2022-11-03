@@ -2,7 +2,7 @@ define(["@babel/runtime@7.19.0/helpers/esm/extends","react@16.14.0","react-is@16
 
 const bimport = specifier => {
 	const dependencies = new Map([["@babel/runtime","7.19.0"],["object-assign","4.1.1"],["prop-types","15.8.1"],["react","16.14.0"],["@emotion/sheet","1.2.0"],["stylis","4.0.13"],["@emotion/weak-memoize","0.3.0"],["@emotion/memoize","0.8.0"],["@emotion/cache","11.10.3"],["react-is","16.13.1"],["hoist-non-react-statics","3.3.2"],["@emotion/react","11.10.4"],["@emotion/utils","1.2.0"],["@emotion/hash","0.9.0"],["@emotion/unitless","0.8.0"],["@emotion/serialize","1.1.0"],["@emotion/use-insertion-effect-with-fallbacks","1.0.0"],["scheduler","0.19.1"],["react-dom","16.14.0"],["react-select","5.4.0"],["memoize-one","5.2.1"]]);
-	globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
+	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
 const dependencies = new Map([["@babel/runtime@7.19.0/helpers/esm/extends", dep_0],["react@16.14.0", dep_1],["react-is@16.13.1", dep_2],["hoist-non-react-statics@3.3.2", dep_3],["@babel/runtime@7.19.0/helpers/esm/taggedTemplateLiteral", dep_4],["@babel/runtime@7.19.0/helpers/esm/objectWithoutPropertiesLoose", dep_5],["@babel/runtime@7.19.0/helpers/esm/objectWithoutProperties", dep_6],["@babel/runtime@7.19.0/helpers/esm/arrayWithHoles", dep_7],["@babel/runtime@7.19.0/helpers/esm/iterableToArrayLimit", dep_8],["@babel/runtime@7.19.0/helpers/esm/arrayLikeToArray", dep_9],["@babel/runtime@7.19.0/helpers/esm/unsupportedIterableToArray", dep_10],["@babel/runtime@7.19.0/helpers/esm/nonIterableRest", dep_11],["@babel/runtime@7.19.0/helpers/esm/slicedToArray", dep_12],["@babel/runtime@7.19.0/helpers/esm/typeof", dep_13],["@babel/runtime@7.19.0/helpers/esm/classCallCheck", dep_14],["@babel/runtime@7.19.0/helpers/esm/createClass", dep_15],["@babel/runtime@7.19.0/helpers/esm/setPrototypeOf", dep_16],["@babel/runtime@7.19.0/helpers/esm/inherits", dep_17],["@babel/runtime@7.19.0/helpers/esm/defineProperty", dep_18],["scheduler@0.19.1", dep_19],["react-dom@16.14.0", dep_20],["@babel/runtime@7.19.0/helpers/esm/arrayWithoutHoles", dep_21],["@babel/runtime@7.19.0/helpers/esm/iterableToArray", dep_22],["@babel/runtime@7.19.0/helpers/esm/nonIterableSpread", dep_23],["@babel/runtime@7.19.0/helpers/esm/toConsumableArray", dep_24],["memoize-one@5.2.1", dep_25]]);
@@ -2820,7 +2820,7 @@ var require_emotion_react_cjs = __commonJS({
     }
   }
 
-}); // .beyond/uimport/temp/react-select.5.4.0.js
+}); // .beyond/uimport/react-select.5.4.0.js
 
 
 var react_select_5_4_0_exports = {};
@@ -7201,7 +7201,7 @@ var NonceProvider = /* @__PURE__ */function (_Component) {
   return NonceProvider2;
 }(import_react6.Component);
 
-var react_select_esm_default = StateManagedSelect; // .beyond/uimport/temp/react-select.5.4.0.js
+var react_select_esm_default = StateManagedSelect; // .beyond/uimport/react-select.5.4.0.js
 
 var react_select_5_4_0_default = react_select_esm_default;
 module.exports = __toCommonJS(react_select_5_4_0_exports);

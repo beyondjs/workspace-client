@@ -4,9 +4,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
+  _exports.AditionalInformation = AditionalInformation;
   _exports.CreateModule = CreateModule;
   _exports.FirstStep = FirstStep;
+  _exports.FooterSecondStep = FooterSecondStep;
+  _exports.ModuleFormContext = void 0;
+  _exports.SubpathInput = SubpathInput;
+  _exports.WebComponentInput = WebComponentInput;
   _exports.hmr = _exports.__beyond_pkg = void 0;
+  _exports.useHandleChange = useHandleChange;
+  _exports.useModuleFormContext = void 0;
   _exports.useSubmit = useSubmit;
 
   /*************
@@ -20,7 +27,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_4;
   const {
     ReactiveModel,
-    ModuleBundleBuilder
+    ModuleBuilder
   } = dependency_5;
   const {
     DSIcon,
@@ -42,11 +49,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     BeyondScrollContainer
   } = dependency_9;
   const {
-    useBinder
+    useBinder,
+    useController
   } = dependency_10;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -96,56 +104,36 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   const CreateModuleContext = React.createContext();
 
   const useCreateModuleContext = () => React.useContext(CreateModuleContext);
+
+  /*bundle*/
+  const ModuleFormContext = React.createContext();
+  _exports.ModuleFormContext = ModuleFormContext;
+
+  /*bundle*/
+  const useModuleFormContext = () => React.useContext(ModuleFormContext);
   /**************
   first\index.jsx
   **************/
 
 
+  _exports.useModuleFormContext = useModuleFormContext;
+
   function FirstStep() {
+    const {
+      texts,
+      model
+    } = useCreateModuleContext();
     return /*#__PURE__*/React.createElement("div", {
       className: "modal__panels"
-    }, /*#__PURE__*/React.createElement(LeftPanel, null), /*#__PURE__*/React.createElement(RightPanel, null));
-  }
-  /*******************
-  first\left-panel.jsx
-  *******************/
-
-
-  function LeftPanel() {
-    const {
-      model,
-      texts,
-      setPosition
-    } = useCreateModuleContext();
-
-    const onClick = () => setPosition('second');
-
-    return /*#__PURE__*/React.createElement("section", {
+    }, /*#__PURE__*/React.createElement("section", {
       className: "left__panel"
     }, /*#__PURE__*/React.createElement("header", {
       className: "info-container"
     }, /*#__PURE__*/React.createElement("h3", null, texts.title), /*#__PURE__*/React.createElement("p", {
       className: "p2"
-    }, texts.subtitle)), /*#__PURE__*/React.createElement("footer", {
-      className: "action-container"
-    }, /*#__PURE__*/React.createElement(BeyondButton, {
-      onClick: onClick,
-      disabled: !model.origin,
-      className: "btn-large btn primary beyond-button"
-    }, texts.actions.next)));
-  }
-  /********************
-  first\right-panel.jsx
-  ********************/
-
-
-  function RightPanel() {
-    const {
-      showFormModal
-    } = useCreateModuleContext();
-    return /*#__PURE__*/React.createElement("section", {
+    }, texts.subtitle))), /*#__PURE__*/React.createElement("section", {
       className: "right__panel"
-    }, /*#__PURE__*/React.createElement(Templates, null));
+    }, /*#__PURE__*/React.createElement(Templates, null)));
   }
   /************************
   first\templates\index.jsx
@@ -154,7 +142,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   function Templates() {
     const {
-      model
+      model,
+      setPosition
     } = useCreateModuleContext();
 
     const onClick = event => {
@@ -167,6 +156,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       } = target.dataset;
       model.origin = origin;
       model.cleanType();
+      setPosition('second');
     };
 
     return /*#__PURE__*/React.createElement("div", {
@@ -217,6 +207,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       second: Types,
       third: ThirdStep
     };
+    const Control = controls[position];
     React.useEffect(() => {
       const controller = new Controller(workspace);
 
@@ -256,14 +247,39 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       project: application,
       selectTemplate: template => setSelectedTemplate(template)
     };
-    const Control = controls[position];
     return /*#__PURE__*/React.createElement(CreateModuleContext.Provider, {
       value: value
     }, /*#__PURE__*/React.createElement(BeyondModal, {
-      className: "md modal-md ds-modal",
+      className: "ds-modal--lg ds-modal",
       show: true,
       onClose: close
     }, /*#__PURE__*/React.createElement(Control, null)));
+  }
+  /****************
+  second\footer.jsx
+  ****************/
+
+
+  function FooterSecondStep() {
+    const {
+      texts,
+      model,
+      setPosition
+    } = useCreateModuleContext();
+
+    const onClick = event => {
+      const target = event.currentTarget;
+      event.preventDefault();
+      setPosition(target.dataset.step);
+    };
+
+    return /*#__PURE__*/React.createElement("footer", {
+      className: "ds-modal__footer action-container"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      className: "secondary",
+      "data-step": "first",
+      onClick: onClick
+    }, texts.actions.back));
   }
   /***************
   second\index.jsx
@@ -288,47 +304,27 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
     return /*#__PURE__*/React.createElement("div", {
       className: "modal__panels"
-    }, /*#__PURE__*/React.createElement(Actions, null), /*#__PURE__*/React.createElement(Options, null));
+    }, /*#__PURE__*/React.createElement(LeftPanelTwo, null), /*#__PURE__*/React.createElement(Options, null));
   }
   /********************
   second\left-panel.jsx
   ********************/
 
 
-  function Actions() {
+  function LeftPanelTwo() {
     const {
       texts,
       model: {
         origin
-      },
-      model,
-      setPosition
+      }
     } = useCreateModuleContext();
-
-    const onClick = event => {
-      const target = event.currentTarget;
-      event.preventDefault();
-      setPosition(target.dataset.step);
-    };
-
     return /*#__PURE__*/React.createElement("section", {
       className: "left__panel"
     }, /*#__PURE__*/React.createElement("header", {
       className: "info-container"
     }, /*#__PURE__*/React.createElement("h3", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", {
       className: "p2"
-    }, texts.types[origin].description)), /*#__PURE__*/React.createElement("footer", {
-      className: "action-container"
-    }, /*#__PURE__*/React.createElement(BeyondButton, {
-      className: "secondary",
-      "data-step": "first",
-      onClick: onClick
-    }, texts.actions.back), /*#__PURE__*/React.createElement(BeyondButton, {
-      disabled: !model.type,
-      "data-step": "third",
-      onClick: onClick,
-      className: "primary"
-    }, texts.actions.next)));
+    }, texts.types[origin].description)));
   }
   /***********************
   second\options\index.jsx
@@ -361,10 +357,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       });
     });
     return /*#__PURE__*/React.createElement("section", {
-      className: "right__panel"
+      className: "right__panel right__panel--actions"
     }, /*#__PURE__*/React.createElement(BeyondScrollContainer, null, /*#__PURE__*/React.createElement("ul", {
       className: "ds__list"
-    }, output)));
+    }, output)), /*#__PURE__*/React.createElement(FooterSecondStep, null));
   }
   /************************
   second\options\option.jsx
@@ -379,7 +375,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       origin,
       selectTemplate,
       template,
-      model
+      model,
+      setPosition
     } = useCreateModuleContext();
     const isSelected = template.template === option.id;
     const selectedClass = isSelected ? 'selected' : '';
@@ -396,6 +393,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         index: target.dataset.index,
         template: target.dataset.template
       });
+      setPosition('third');
     };
 
     return /*#__PURE__*/React.createElement("li", {
@@ -411,50 +409,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "ds-item__check__icon",
       icon: "check"
     }));
-  }
-  /**************************************
-  third\bundles\additional-processors.jsx
-  **************************************/
-
-
-  function AdditionalProcessors() {
-    const {
-      model,
-      bundle,
-      texts
-    } = useCreateModuleContext();
-    if (bundle !== 'page' && bundle !== 'widget' && bundle !== 'layout') return null;
-
-    const toggleRadio = event => {
-      const target = event.currentTarget;
-      const newValue = {};
-      newValue[target.name] = target.checked;
-
-      if (!target.checked) {
-        model.bundle.removeProcessor(target.name);
-        return;
-      }
-
-      model.bundle.clearProcessors();
-      model.bundle.addProcessor(target.name);
-    };
-
-    const output = [];
-    model.bundle.additionalProcessors.forEach(processor => {
-      output.push( /*#__PURE__*/React.createElement("div", {
-        key: processor.id,
-        className: "switch-option"
-      }, /*#__PURE__*/React.createElement(BeyondSwitch, {
-        name: processor.id,
-        onChange: toggleRadio,
-        checked: model.bundle.processors.includes(processor.id)
-      }), /*#__PURE__*/React.createElement("label", null, processor.name)));
-    });
-    return /*#__PURE__*/React.createElement("div", {
-      className: "item item_switch flex-container"
-    }, /*#__PURE__*/React.createElement("h5", {
-      className: "link title-separator"
-    }, texts.processors), output);
   }
   /***********************
   third\bundles\layout.jsx
@@ -473,55 +427,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     if (bundle !== 'layout') return null;
     const inputsAttrs = {};
     if (model.fetching) inputsAttrs.disabled = true;
-    const fields = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "title"
-    }, inputsAttrs, {
-      label: texts.form.title,
-      placeholder: texts.placeholder.title,
-      value: state.title,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "description"
-    }, inputsAttrs, {
-      label: texts.form.description,
-      placeholder: texts.placeholder.description,
-      value: state.description,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
-      state: state
-    }));
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "element"
-    }, inputsAttrs, {
-      label: texts.form.webcomponent,
-      placeholder: texts.placeholder.webcomponent,
-      value: state.element,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.webcomponent)), /*#__PURE__*/React.createElement(AdditionalProcessors, {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null), /*#__PURE__*/React.createElement(WebComponentInput, null), /*#__PURE__*/React.createElement(AdditionalProcessors, {
       state: state
-    })), /*#__PURE__*/React.createElement(AdditionalFields, {
-      children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    })), /*#__PURE__*/React.createElement(AdditionalFields, null, /*#__PURE__*/React.createElement("div", {
+      className: "item two-columns"
+    }, /*#__PURE__*/React.createElement(AditionalInformation, null)), /*#__PURE__*/React.createElement(BlankFields, {
+      state: state
+    })));
   }
   /****************************
   third\bundles\page\layout.jsx
@@ -533,12 +447,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     disabled
   }) {
     const {
-      application,
+      project,
       origin,
       texts
     } = useCreateModuleContext();
     if (origin === 'templates') return null;
-    const layouts = application.modules.getItems({
+    const layouts = project.modules.getItems({
       bundle: 'layout'
     });
     const items = layouts.map(layout => {
@@ -594,83 +508,32 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       handleChange(event);
     };
 
-    const fields = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FormLayoutSection, {
-      disabled: disabled,
-      handleChange: handleChange
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "title"
-    }, disabled, {
-      label: texts.form.title,
-      placeholder: texts.placeholder.title,
-      value: state.title,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "description"
-    }, disabled, {
-      label: texts.form.description,
-      placeholder: texts.placeholder.description,
-      value: state.description,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
-      state: state,
-      setState: handleChange
-    }));
     const inputsAttrs = {};
     if (model.fetching) inputsAttrs.disabled = true;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, disabled, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({}, inputsAttrs, {
-      name: "element",
-      label: texts.form.webcomponent,
-      placeholder: texts.placeholder.webcomponent,
-      value: state.element,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.webcomponent))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null), /*#__PURE__*/React.createElement(WebComponentInput, null)), /*#__PURE__*/React.createElement("div", {
       className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({}, inputsAttrs, {
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({}, inputsAttrs, {
       name: "route",
       required: true,
       value: route,
       onChange: handlePage,
       label: texts.form.url,
       placeholder: texts.placeholder.url
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.url)), /*#__PURE__*/React.createElement("div", {
-      className: "item-vdir"
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: "vdir"
-    }, "N\xFAmero de parametros de url?"), /*#__PURE__*/React.createElement("input", _extends({
-      type: "number",
-      defaultValue: model.bundle.vdir,
-      name: "vdir",
-      required: true,
-      value: state.vdir
-    }, inputsAttrs, {
-      onChange: handleChange
-    }))), /*#__PURE__*/React.createElement(AdditionalProcessors, {
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.url
+    })), /*#__PURE__*/React.createElement(AdditionalProcessors, {
       state: state
-    })), /*#__PURE__*/React.createElement(AdditionalFields, {
-      children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    })), /*#__PURE__*/React.createElement(AdditionalFields, null, /*#__PURE__*/React.createElement(FormLayoutSection, {
+      disabled: disabled,
+      handleChange: handleChange
+    }), /*#__PURE__*/React.createElement(AditionalInformation, null), /*#__PURE__*/React.createElement(BlankFields, {
+      state: state,
+      setState: handleChange
+    })));
   }
   /*****************************
   third\bundles\types\bridge.jsx
@@ -694,19 +557,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     if (model.fetching) inputsAttrs.disabled = true;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null)), /*#__PURE__*/React.createElement(AdditionalFields, {
       children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    }));
   }
   /***************************
   third\bundles\types\code.jsx
@@ -736,9 +589,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       placeholder: texts.placeholder.title,
       value: state.title,
       onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.title)), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.title
+    })), /*#__PURE__*/React.createElement("div", {
       className: "section-group"
     }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
       name: "description"
@@ -747,26 +600,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       placeholder: texts.placeholder.description,
       value: state.description,
       onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.description
+    }))), /*#__PURE__*/React.createElement(BlankFields, {
       state: state
     }));
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null)), /*#__PURE__*/React.createElement(AdditionalFields, {
       children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    }));
   }
   /****************************
   third\bundles\types\start.jsx
@@ -785,44 +628,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     if (bundle !== 'start') return null;
     const inputsAttrs = {};
     if (model.fetching) inputsAttrs.disabled = true;
-    const fields = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-      className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "title"
-    }, inputsAttrs, {
-      label: texts.form.title,
-      placeholder: texts.placeholder.title,
-      value: state.title,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "description"
-    }, inputsAttrs, {
-      label: texts.form.description,
-      placeholder: texts.placeholder.description,
-      value: state.description,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.description))), /*#__PURE__*/React.createElement(BlankFields, {
-      state: state
-    }));
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
-      children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    }, /*#__PURE__*/React.createElement(SubpathInput, null)), /*#__PURE__*/React.createElement(AdditionalFields, null, /*#__PURE__*/React.createElement(AditionalInformation, null), /*#__PURE__*/React.createElement(BlankFields, {
+      state: state
+    })));
   }
   /*********************************
   third\bundles\types\typescript.jsx
@@ -847,21 +657,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     if (model.fetching) inputsAttrs.disabled = true;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item"
-    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, disabled, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement(AdditionalFields, {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null)), /*#__PURE__*/React.createElement(AdditionalFields, {
       disabled: disabled,
       children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, {
-      disabled: disabled
     }));
   }
   /*****************************
@@ -886,30 +684,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     });
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "item two-columns"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      required: true,
-      name: "name"
-    }, inputsAttrs, {
-      label: texts.form.name,
-      placeholder: texts.placeholder.name,
-      value: state.name,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.name)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(BeyondInput, _extends({
-      name: "element"
-    }, inputsAttrs, {
-      label: texts.form.webcomponent,
-      placeholder: texts.placeholder.webcomponent,
-      value: state.element,
-      onChange: handleChange
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "help-block"
-    }, texts.help.webcomponent)), /*#__PURE__*/React.createElement(AdditionalProcessors, {
+    }, /*#__PURE__*/React.createElement(SubpathInput, null), /*#__PURE__*/React.createElement(WebComponentInput, null), /*#__PURE__*/React.createElement(AdditionalProcessors, {
       state: state
     })), /*#__PURE__*/React.createElement(AdditionalFields, {
       children: fields
-    }), /*#__PURE__*/React.createElement(FormFooter, null));
+    }));
   }
   /*********************************
   third\fields\additional-fields.jsx
@@ -929,7 +708,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     };
 
     const cls = additional ? 'show' : '';
-    return /*#__PURE__*/React.createElement(React.Fragment, null, children && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("fieldset", null, children && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "form__separator__legend",
       onClick: onAdditional
     }, texts.additionalFeatures), /*#__PURE__*/React.createElement("div", {
@@ -988,6 +767,158 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       msg: texts.help.titles.text
     }))));
   }
+  /********************************************
+  third\fields\inputs\additional-processors.jsx
+  ********************************************/
+
+
+  function AdditionalProcessors() {
+    const {
+      model,
+      bundle,
+      texts
+    } = useCreateModuleContext();
+    if (bundle !== 'page' && bundle !== 'widget' && bundle !== 'layout') return null;
+
+    const toggleRadio = event => {
+      const target = event.currentTarget;
+      const newValue = {};
+      newValue[target.name] = target.checked;
+
+      if (!target.checked) {
+        model.bundle.removeProcessor(target.name);
+        return;
+      }
+
+      model.bundle.clearProcessors();
+      model.bundle.addProcessor(target.name);
+    };
+
+    const output = [];
+    model.bundle.additionalProcessors.forEach(processor => {
+      output.push( /*#__PURE__*/React.createElement("div", {
+        key: processor.id,
+        className: "ds-switch__container"
+      }, /*#__PURE__*/React.createElement("label", null, processor.name, /*#__PURE__*/React.createElement(BeyondSwitch, {
+        name: processor.id,
+        onChange: toggleRadio,
+        checked: model.bundle.processors.includes(processor.id)
+      }))));
+    });
+    return /*#__PURE__*/React.createElement("div", {
+      className: "item flex-container flex-center-y mt-30"
+    }, /*#__PURE__*/React.createElement("h5", {
+      className: "link title-separator"
+    }, texts.processors), output);
+  }
+  /**********************************
+  third\fields\inputs\information.jsx
+  **********************************/
+
+
+  function AditionalInformation() {
+    const {
+      handleChange,
+      texts,
+      disabled,
+      state
+    } = useModuleFormContext();
+    return /*#__PURE__*/React.createElement("div", {
+      className: "item two-columns"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      name: "title"
+    }, disabled, {
+      label: texts.form.title,
+      placeholder: texts.placeholder.title,
+      value: state.title,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.title
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      name: "description"
+    }, disabled, {
+      label: texts.form.description,
+      placeholder: texts.placeholder.description,
+      value: state.description,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.description
+    })));
+  }
+  /******************************
+  third\fields\inputs\subpath.jsx
+  ******************************/
+
+
+  function SubpathInput() {
+    const {
+      state,
+      handleChange,
+      texts,
+      disabled
+    } = useModuleFormContext();
+    return /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({
+      required: true,
+      name: "name"
+    }, disabled, {
+      label: texts.form.name,
+      placeholder: texts.placeholder.name,
+      value: state.name,
+      onChange: handleChange
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.name
+    }));
+  }
+  /***********************************
+  third\fields\inputs\webcomponent.jsx
+  ***********************************/
+
+
+  function WebComponentInput() {
+    const {
+      state,
+      handleChange,
+      texts,
+      disabled
+    } = useModuleFormContext();
+    const [valid, setValid] = React.useState();
+
+    const onChange = event => {
+      const {
+        value
+      } = event.currentTarget;
+      const exp = /[a-z]+-[a-z]+/g;
+      setValid(!!value.match(exp));
+      const fieldValue = value.replace(/ /g, '-');
+      handleChange(event);
+    };
+
+    const attrs = { ...disabled,
+      value: state.element,
+      name: 'element.name',
+      label: texts.form.webcomponent,
+      placeholder: texts.placeholder.webcomponent
+    };
+
+    if (valid !== undefined && !valid) {
+      attrs.hasError = true;
+      attrs.errorMessage = texts.form.errors.element;
+    }
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "section-group"
+    }, /*#__PURE__*/React.createElement(BeyondInput, _extends({}, attrs, {
+      onChange: onChange
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.webcomponent
+    }));
+  }
   /**************
   third\index.jsx
   **************/
@@ -998,7 +929,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       application: {
         application
       },
-      close,
+      bundle,
       model,
       workspace,
       template,
@@ -1006,19 +937,120 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     } = useCreateModuleContext();
     if (!template) return null;
     const spinner = React.useRef();
-    const [initial, setInitial] = React.useState(true);
     const tpl = template.template;
-    const styles = tpl === 'page' || tpl === 'widget' || tpl === 'layout' || tpl === 'code';
-    const [state, setState] = React.useState({
-      styles: styles
-    });
+    const {
+      state,
+      setState,
+      handleChange
+    } = useHandleChange(tpl, model);
     const disabled = {};
-    const [onSubmit, error, fetching] = useSubmit(model);
+    let [onSubmit, error, fetching] = useSubmit(model);
     React.useEffect(() => {
       if (fetching) {
         window.setTimeout(() => spinner.current?.classList.toggle('container-hidden'), 100);
       }
     }, [fetching]);
+    if (fetching) disabled.disabled = true;
+    const props = {
+      state,
+      setState,
+      handleChange,
+      disabled
+    };
+    return /*#__PURE__*/React.createElement(ModuleFormContext.Provider, {
+      value: {
+        texts,
+        workspace,
+        ...props
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels"
+    }, /*#__PURE__*/React.createElement(ThirdStepLeftPanel, null), /*#__PURE__*/React.createElement("div", {
+      className: "right__panel right__panel--actions"
+    }, /*#__PURE__*/React.createElement(BeyondScrollContainer, null, /*#__PURE__*/React.createElement(BeyondForm, {
+      onSubmit: onSubmit
+    }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h4", null, texts.thirdTitle, ": ", bundle), error && /*#__PURE__*/React.createElement(BeyondAlert, {
+      type: "error",
+      message: error
+    }), /*#__PURE__*/React.createElement(FormPage, props), /*#__PURE__*/React.createElement(FormWidget, props), /*#__PURE__*/React.createElement(FormLayout, props), /*#__PURE__*/React.createElement(FormCode, props), /*#__PURE__*/React.createElement(FormStart, props), /*#__PURE__*/React.createElement(FormBridge, props), /*#__PURE__*/React.createElement(FormTypescript, props)), /*#__PURE__*/React.createElement(FormFooter, {
+      onSubmit: onSubmit
+    })), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
+      ref: spinner,
+      active: true,
+      className: "absolute-container container-hidden"
+    })))));
+  }
+  /*************************
+  third\structure\footer.jsx
+  *************************/
+
+
+  function FormFooter({
+    onSubmit
+  }) {
+    const {
+      model,
+      texts,
+      setPosition
+    } = useCreateModuleContext();
+    const [isValid, setIsValid] = React.useState(model.bundle?.valid);
+    useBinder([model], () => setIsValid(model.bundle.valid));
+
+    const onClick = event => {
+      const target = event.currentTarget;
+      event.preventDefault();
+      setPosition(target.dataset.step);
+    };
+
+    const attrs = {};
+    if (!isValid) attrs.disabled = true;
+    return /*#__PURE__*/React.createElement("footer", {
+      className: "ds-modal__footer"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      className: "secondary",
+      "data-step": "second",
+      onClick: onClick
+    }, texts.actions.back), /*#__PURE__*/React.createElement(BeyondButton, _extends({}, attrs, {
+      type: "submit",
+      onClick: onSubmit,
+      className: "primary"
+    }), texts.actions.next));
+  }
+  /*****************************
+  third\structure\left-panel.jsx
+  *****************************/
+
+
+  function ThirdStepLeftPanel() {
+    const {
+      model: {
+        origin
+      },
+      texts,
+      template,
+      setPosition
+    } = useCreateModuleContext();
+    if (!template) return null;
+    return /*#__PURE__*/React.createElement("aside", {
+      className: "left__panel"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "info-container"
+    }, /*#__PURE__*/React.createElement("h3", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", {
+      className: "p2"
+    }, texts.types[origin].description)));
+  }
+  /**************************
+  third\use-handle-change.jsx
+  **************************/
+
+
+  /*bundle*/
+  function useHandleChange(tpl, model) {
+    const styles = tpl === 'page' || tpl === 'widget' || tpl === 'layout' || tpl === 'code';
+    const [state, setState] = React.useState({
+      styles: styles
+    });
+    const [initial, setInitial] = React.useState(true);
 
     const handleChange = event => {
       const target = event.currentTarget;
@@ -1027,8 +1059,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
       if (target.name === 'name' || target.name === 'element') {
         fieldValue = fieldValue.replace(/ /g, '-');
-      } //Seteamos el valor por defecto del estado
-
+      }
 
       if (initial) {
         model.bundle.set('styles', state.styles);
@@ -1043,105 +1074,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       setState(newState);
     };
 
-    if (fetching) disabled.disabled = true;
-    const props = {
+    return {
       state,
       setState,
-      handleChange,
-      disabled
+      handleChange
     };
-    return /*#__PURE__*/React.createElement("div", {
-      className: "modal__panels"
-    }, /*#__PURE__*/React.createElement(ThirdStepLeftPanel, {
-      onSubmit: onSubmit
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "right__panel"
-    }, error && /*#__PURE__*/React.createElement(BeyondAlert, {
-      type: "error",
-      message: error
-    }), /*#__PURE__*/React.createElement(BeyondForm, {
-      onSubmit: onSubmit
-    }, /*#__PURE__*/React.createElement(FormPage, props), /*#__PURE__*/React.createElement(FormWidget, props), /*#__PURE__*/React.createElement(FormLayout, props), /*#__PURE__*/React.createElement(FormCode, props), /*#__PURE__*/React.createElement(FormStart, props), /*#__PURE__*/React.createElement(FormBridge, props), /*#__PURE__*/React.createElement(FormTypescript, props)), fetching && /*#__PURE__*/React.createElement(DSSpinner, {
-      ref: spinner,
-      active: true,
-      className: "absolute-container container-hidden"
-    })));
-  }
-  /*************************
-  third\structure\footer.jsx
-  *************************/
-
-
-  function FormFooter({
-    disabled
-  }) {
-    return null; // const {model, texts} = useCreateModuleContext();
-    // const [isValid, setIsValid] = React.useState(model.bundle?.valid);
-    // React.useEffect(() => {
-    //     const onChange = () => setIsValid(model.bundle.valid);
-    //     model.bundle?.bind('change', onChange);
-    //     return () => model.bundle && model.bundle?.unbind('change', onChange);
-    // });
-    //
-    // const attrs = {};
-    // if (!isValid) attrs.disabled = true;
-    //
-    // return (
-    //     <footer className="align-right ds-modal__actions">
-    //         {model.fetching ?
-    //          <BeyondSpinner fetching/> :
-    //          <BeyondButton {...attrs} className="btn primary" type="submit">
-    //              {texts.form.button}
-    //          </BeyondButton>
-    //         }
-    //     </footer>
-    // )
-  }
-  /*****************************
-  third\structure\left-panel.jsx
-  *****************************/
-
-
-  function ThirdStepLeftPanel({
-    onSubmit
-  }) {
-    const {
-      model,
-      model: {
-        origin
-      },
-      texts,
-      template,
-      setPosition
-    } = useCreateModuleContext();
-    const [isValid, setIsValid] = React.useState(model.bundle?.valid);
-    useBinder([model], () => setIsValid(model.bundle.valid));
-    if (!template) return null;
-
-    const onClick = event => {
-      const target = event.currentTarget;
-      event.preventDefault();
-      setPosition(target.dataset.step);
-    };
-
-    const attrs = {};
-    if (!isValid) attrs.disabled = true;
-    return /*#__PURE__*/React.createElement("aside", {
-      className: "left__panel"
-    }, /*#__PURE__*/React.createElement("header", {
-      className: "info-container"
-    }, /*#__PURE__*/React.createElement("h3", null, texts.types[origin].title), /*#__PURE__*/React.createElement("p", {
-      className: "p2"
-    }, texts.types[origin].description)), /*#__PURE__*/React.createElement("footer", {
-      className: "action-container"
-    }, /*#__PURE__*/React.createElement(BeyondButton, {
-      className: "secondary",
-      "data-step": "second",
-      onClick: onClick
-    }, texts.actions.back), /*#__PURE__*/React.createElement(BeyondButton, _extends({}, attrs, {
-      onClick: onSubmit,
-      className: "primary"
-    }), texts.actions.next)));
   }
   /*******************
   third\use-submit.jsx
@@ -1152,7 +1089,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const {
       model,
       application,
-      close
+      close,
+      texts
     } = useCreateModuleContext();
     const [error, setError] = React.useState();
     const [fetching, setFetching] = React.useState(false);
@@ -1163,14 +1101,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       try {
         if (model.type === 'page' && application.routes().includes(model.bundle.route)) {
           setError(`${texts.form.errors.route} ${model.bundle.route}`);
-          return;
-        }
-
-        const exp = /[a-z]+-[a-z]+/g;
-        const widgets = ['widget', 'page', 'layout'];
-
-        if (widgets.includes(model.type) && !model.bundle.element.match(exp)) {
-          setError(`${texts.form.errors.element}`);
           return;
         }
 
@@ -1191,7 +1121,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         setFetching(false);
         close();
       } catch (exc) {
-        console.error("Aaj", exc);
+        console.trace(100, exc);
         setError(exc.error);
       }
     };
@@ -1253,7 +1183,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       super();
       this._workspace = workspace;
       this._application = workspace.application;
-      const model = new ModuleBundleBuilder(workspace.application.application.id);
+      const model = new ModuleBuilder(workspace.application.application.id);
       this._model = model;
       model.bind('change', this.triggerEvent);
       const module = __pkg.bundle.module.specifier;
@@ -1263,13 +1193,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     }
 
   }
-  /**********
-  SCSS STYLES
-  **********/
 
-
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/module-create.code', '.ds-create-module .ds-create-module__breadcrumb-form{display:flex;gap:15px;padding:15px;align-items:center;background:var(--beyond-primary-light-color)}.ds-create-module .ds-create-module__breadcrumb-form .beyond-icon{width:44px;height:44px}.ds-create-module .ds-create-module__breadcrumb-form .breadcrumb{display:flex;align-items:center;transition:.2s all ease-in}.ds-create-module .ds-create-module__breadcrumb-form .breadcrumb a{display:inline-grid;padding:5px;cursor:pointer;transition:all .2s linear}.ds-create-module .ds-create-module__breadcrumb-form .breadcrumb a:hover{text-decoration:underline}.ds-create-module .ds-create-module__template-form{padding:20px 40px}.ds-create-module .ds-create-module__template-form .additional-config{display:none}.ds-create-module .ds-create-module__template-form .additional-config.show{display:block}.ds-create-module .two-columns{display:grid;grid-gap:5px;grid-template-columns:1fr 1fr}.ds-create-module .three-columns{display:grid;grid-gap:5px;grid-template-columns:1fr 1fr 1fr}.ds-create-module .text-right{justify-content:end;text-align:right}.ds-create-module .steps{display:grid;grid-template-columns:1fr 1fr;justify-content:center;cursor:pointer}.ds-create-module .steps div{padding:15px;background:#f0f0f0}.ds-create-module .steps div.active{background:var(--beyond-primary-accent-color);color:#fff}.ds-create-module form{display:grid;grid-template-columns:auto}.ds-create-module form .item{margin-top:15px}.ds-create-module form .item.two-columns{display:grid;grid-template-columns:1fr 1fr}.ds-create-module form .switch-option{display:flex;align-items:center;grid-gap:8px}.ds-create-module form .radio-group{display:grid}.ds-create-module form .item-vdir{display:flex;align-items:center;gap:8px;justify-content:center}.ds-create-module form .item-vdir input[type=number]{background:#f0f0f0;border:0;outline:0;padding:8px;width:90px}.ds-create-module form .title-separator{border-bottom:1px solid #f0f0f0}.ds-create-module footer{display:block;text-align:right}.ds-create-module .layout-selection{display:flex;width:100%;justify-content:center;flex-direction:column}.ds-create-module .layout-selection select{outline:0;padding:8px;width:100%;border:1px #82837f}.ds-create-module .ds-create-module_template-list{display:flex;max-width:100%;grid-gap:8px;flex-wrap:wrap;justify-content:center;align-self:start;transition:all .2s ease-in-out}.ds-create-module .ds-create-module_template-list .template-list__item{padding:40px;min-width:200px;flex:1 1 0;cursor:pointer}.ds-create-module .ds-create-module_template-list .template-list__item.active,.ds-create-module .ds-create-module_template-list .template-list__item:hover{background:#e4e5dc;transition:all .2s ease-in}');
-  legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 
   __pkg.exports.process = function ({

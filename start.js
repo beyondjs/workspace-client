@@ -1,4 +1,4 @@
-define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/transversals", "@beyond-js/kernel@0.1.0/core", "@beyond-js/kernel@0.1.0/routing", "@beyond-js/widgets@0.0.10/render", "@beyond-js/backend@0.0.10/client", "@beyond-js/dashboard@0.0.1/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
+define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/transversals", "@beyond-js/kernel@0.1.0/core", "@beyond-js/kernel@0.1.0/routing", "@beyond-js/widgets@0.1.0/render", "@beyond-js/backend@0.1.0/client", "@beyond-js/dashboard@0.0.1/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -82,16 +82,6 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
   }, {
     "route": "/beyond/ui/instruction",
     "bundle": "@beyond-js/ui@0.0.1/unnamed/instruction/page",
-    "vdir": false,
-    "layout": "beyond-ui"
-  }, {
-    "route": "/beyond/ui/popper",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/libs/popper/page",
-    "vdir": false,
-    "layout": "beyond-ui"
-  }, {
-    "route": "/beyond/ui/tippy",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/libs/tippy/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
@@ -179,11 +169,6 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "vdir": false,
     "layout": "beyond-ui"
   }, {
-    "route": "/beyond/ui/waves",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/waves/page",
-    "vdir": false,
-    "layout": "beyond-ui"
-  }, {
     "route": "/beyond/dashboard/icons",
     "bundle": "@beyond-js/dashboard@0.0.1/unnamed/components/core/page",
     "vdir": false
@@ -194,11 +179,6 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
   }, {
     "route": "/beyond/uploader",
     "bundle": "@beyond-js/dashboard@0.0.1/unnamed/components/uploader/page",
-    "vdir": false,
-    "layout": "dashboard"
-  }, {
-    "route": "/application/create",
-    "bundle": "@beyond-js/dashboard@0.0.1/unnamed/project/create/page",
     "vdir": false,
     "layout": "dashboard"
   }, {
@@ -215,7 +195,7 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "route": "/",
     "bundle": "@beyond-js/dashboard@0.0.1/workspace.page",
     "vdir": true,
-    "layout": "dashboard"
+    "layout": "workspace"
   }]);
   /*************
   BUNDLE: LAYOUT
@@ -225,119 +205,13 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "name": "beyond-ui",
     "bundle": "@beyond-js/ui@0.0.1/layout-main"
   }, {
-    "name": "dashboard",
-    "bundle": "@beyond-js/dashboard@0.0.1/unnamed/layout/dashboard"
+    "name": "workspace",
+    "bundle": "@beyond-js/dashboard@0.0.1/workspace-layout"
   }, {
     "name": "editor",
     "bundle": "@beyond-js/dashboard@0.0.1/unnamed/layout/editor"
   }]);
   const bundles = [];
-  /***************************
-  MODULE: @beyond-js/ui/popper
-  ***************************/
-
-  bundles.push([{
-    "module": {
-      "vspecifier": "@beyond-js/ui@0.0.1/popper"
-    },
-    "type": "start"
-  }, function (ims, exports) {
-    const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
-      return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
-    };
-    /***********************
-    INTERNAL MODULE: ./start
-    ***********************/
-
-
-    ims.set('./start', {
-      hash: 4081685260,
-      creator: function (require, exports) {
-        "use strict";
-
-        ((config, vendorPath) => {
-          const paths = {
-            '@popperjs/core': `${globalThis.baseUrl}${vendorPath}/popper.min`
-          };
-          config({
-            paths
-          });
-        })(requirejs.config, `packages/@beyond-js/ui/popper/vendor`);
-      }
-    });
-  }]);
-  /**************************
-  MODULE: @beyond-js/ui/tippy
-  **************************/
-
-  bundles.push([{
-    "module": {
-      "vspecifier": "@beyond-js/ui@0.0.1/tippy",
-      "multibundle": true
-    },
-    "type": "start"
-  }, function (ims, exports) {
-    const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
-      return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
-    };
-    /***********************
-    INTERNAL MODULE: ./start
-    ***********************/
-
-
-    ims.set('./start', {
-      hash: 566926840,
-      creator: function (require, exports) {
-        "use strict";
-
-        ((config, vendorPath) => {
-          const paths = {
-            'tippy': `${globalThis.baseUrl}${vendorPath}/tippy.umd`
-          };
-          config({
-            paths
-          });
-        })(requirejs.config, `packages/@beyond-js/ui/tippy/vendor`);
-      }
-    });
-  }]);
-  /**************************
-  MODULE: @beyond-js/ui/waves
-  **************************/
-
-  bundles.push([{
-    "module": {
-      "vspecifier": "@beyond-js/ui@0.0.1/waves"
-    },
-    "type": "start"
-  }, function (ims, exports) {
-    const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/ui", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
-      return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
-    };
-    /***********************
-    INTERNAL MODULE: ./start
-    ***********************/
-
-
-    ims.set('./start', {
-      hash: 1633388636,
-      creator: function (require, exports) {
-        "use strict";
-
-        ((config, vendorPath) => {
-          const paths = {
-            waves: `${globalThis.baseUrl}${vendorPath}/waves.min`
-          };
-          config({
-            paths
-          });
-        })(requirejs.config, `packages/@beyond-js/ui/waves/vendor`);
-      }
-    });
-  }]);
   /**********************************
   MODULE: @beyond-js/dashboard/boards
   **********************************/
@@ -349,7 +223,7 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
@@ -407,7 +281,7 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.0.1"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.0.10"], ["@beyond-js/backend", "0.0.10"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
