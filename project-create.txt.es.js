@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('.');
+  }, _amd_module.uri).package('es');
 
   ;
 
@@ -36,101 +36,110 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 145407678,
+    hash: 1716435997,
     creator: function (require, exports) {
       exports.txt = {
-        "subtitle": "Select what you want to do",
+        "subtitle": "Indique que tipo de aplicación desea crear",
+        "created": "Aplicación creada",
         "actions": {
-          "submit": "Create",
-          "back": "Back"
+          "submit": "Crear",
+          "back": "Volver"
         },
-        "created": "Application created",
         "form": {
           "scope": {
-            "label": "Project name (specifier)",
-            "info": "Follows the NPM standar, examples: \"@scope/package-name\" or \"package-name\" instead."
+            "label": "Nombre del proyecto (Especificador)",
+            "info": "Ejemplos: \"@organizacion/nombre-paquete\" o \"nombre-paquete\""
           },
           "version": {
-            "label": "Version",
-            "info": "Initial version of the project"
+            "label": "Versión",
+            "info": "Versión inicial del proyecto"
           },
           "title": {
-            "label": "Add a title to your new project",
-            "info": "Commercial or user friendly name for the project"
+            "label": "Titulo",
+            "info": "Nombre comercial para tu proyecto"
           },
           "description": {
-            "label": "Description",
-            "info": "Here you can explain the purpose of your project (useful if you will publish it to NPM)"
+            "label": "Descripción",
+            "info": "Aquí puede explicar el propósito de su proyecto (útil si lo publicará en NPM)"
           },
           "types": {
             "titles": {
-              "empty": "Create Project",
-              "overview": "Indicate what type of application you want to create and start your experience",
-              "create": "CREATE",
-              "back": "BACK"
+              "empty": "Crear Proyecto",
+              "overview": "Indique qué tipo de aplicación desea crear e inicie su experiencia",
+              "create": "CREAR",
+              "back": "VOLVER"
             },
             "empty": {
-              "description": "A configured and blank project is created so that you can define what you consider necessary from scratch."
+              "title": "Proyecto en blanco",
+              "description": "Configuración mínima para comenzar a crear.."
             },
             "node": {
-              "title": "Node Project",
-              "description": "Project that will be compiled to be executed in a Node.js environment."
+              "title": "Aplicación Node",
+              "description": "Aplicación que se compilará para ejecutarse en un entorno Node.js."
             },
             "backend": {
               "title": "Backend",
-              "description": "Node.js project that exposes communication interfaces to be consumed by both web clients and other backends"
+              "description": "Crea un servicio node que pueda ser consumido por proyectos via websocket"
             },
             "web": {
               "title": "Web",
-              "description": "Web, Android, iOS project. Both the client code and the backend code coexist in the same  project."
+              "description": "Aplicación web, Android, iOS. Tanto el código de cliente como el código de backend coexisten en la misma aplicación."
             },
             "express": {
               "title": "Express template",
-              "description": "Create an express server in the simplest way possible"
+              "description": "Crea un servidor express de la manera mas simple posible"
             },
             "library": {
               "title": "Library",
-              "description": " Container of client and server modules to be consumed by other projects.."
+              "description": "Contenedor de módulos cliente y servidor para ser consumidos por otras proyectos."
             },
             "web-backend": {
               "title": "Web con Backend",
-              "description": "Web App with backend."
+              "description": "Aplicación web con conexión backend."
             },
             "board": {
-              "title": "Board template",
-              "description": "Template with Trello style to start coding."
+              "title": "Plantillas Basicas",
+              "description": "Plantilla básica optimizada para enfocarte en empezar a trabar en los modulos de tu SPA."
+            },
+            "list": {
+              "title": "Task App",
+              "description": "Plantilla básica optimizada para enfocarte en empezar a trabar en los modulos de tu SPA."
+            },
+            "typescript": {
+              "title": "Aplicación typescript",
+              "description": "Se crea una aplicación configurada y en blanco para que puedas definir lo que consideres necesario desde cero."
             },
             "react": {
-              "title": "React starter app",
-              "description": "React configured and ready to use."
+              "title": "Aplicación react",
+              "description": "Aplicación básica configurada para crear módulos con React"
             },
             "svelte": {
               "title": "Svelte",
-              "description": "Svelte configured and ready to use."
+              "description": "Proyecto web con Svelte configurado."
             },
             "vue": {
-              "title": "Vue App",
-              "description": "Svelte configured and ready to use."
+              "title": "Aplicación Vue",
+              "description": "Proyecto con dependencias vue configuradas para empezar a desarrollar."
             },
             "web-backend-app": {
-              "title": "Template Web-Backend App",
-              "description": "Web App template with backend."
+              "title": "Plantilla Web con Backend",
+              "description": "Plantilla básica de app web con conexión backend."
             }
           },
-          "npm": "Install npm dependencies?",
+          "npm": "¿Instalar las dependencias por defecto del proyecto?",
           "actions": {
-            "submit": "Create"
+            "submit": "Crear"
           }
         },
         "tabs": {
-          "community": "Community",
-          "blank": "Blank",
-          "template": "Templates"
+          "community": "Comunidad",
+          "blank": "Espacio en blanco",
+          "template": "Plantillas"
         },
         "errors": {
-          "title": "An error has ocurred",
-          "APP_EXISTS": "A folder with this name already exists in your directory",
-          "PROJECT_IDENTIFIER": "the project identifier must have the following structure:  \"@scope/package-name\" or \"package-name\""
+          "title": "Ha ocurrido un error",
+          "APP_EXISTS": "Ya existe una carpeta con ese nombre en su directorio",
+          "PROJECT_IDENTIFIER": "El especificador del proyecto debe tener la siguiente estructura:  \"@scope/package-name\" or \"package-name\""
         }
       };
     }

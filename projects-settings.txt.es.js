@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('.');
+  }, _amd_module.uri).package('es');
 
   ;
 
@@ -36,20 +36,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3449210140,
+    hash: 762036597,
     creator: function (require, exports) {
       exports.txt = {
         "errors": {
           "noSelected": "the application selected does not has distributions",
-          "ALREADY_EXISTS": "A distribution with this configuration already exists",
-          "PORT_USED": "There is already a distribution with the indicated port"
+          "ALREADY_EXISTS": "Ya existe una distribución con esta configuración",
+          "PORT_USED": "Ya existe una distribución con el puerto indicado"
         },
-        "name": "Distribution name",
+        "name": "Nombre",
         "platform": {
-          "applications": {
-            "select": "Project"
-          },
-          "label": "Platform",
+          "label": "Plataforma",
           "options": {
             "web": "Web",
             "backend": "Backend",
@@ -58,26 +55,29 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
             "ssr": "SSR",
             "node": "Node"
           },
-          "environment": "Environment",
+          "environment": "Entorno",
+          "checkType": "Comprobación de tipos",
           "port": {
-            "label": "Port",
-            "error": "Port isn't available",
-            "success": "Port checked and available",
+            "label": "Puerto",
+            "error": "El puerto no está disponible",
+            "success": "Puerto disponible",
             "tooltip": "Check port"
+          },
+          "ts": "TS",
+          "default": "default",
+          "ssr": "ssr",
+          "titleModal": "Creememos Una nueva distribucion",
+          "modalHeader": "Elige la configuracion para la distribucion",
+          "compress": "Comprimir",
+          "add": "Añadir",
+          "title": "Distribuciones",
+          "environments": {
+            "dev": "Development",
+            "prod": "Production"
+          },
+          "applications": {
+            "select": "Proyecto"
           }
-        },
-        "ts": "TS",
-        "default": "default",
-        "checkType": "Check types",
-        "ssr": "SSR",
-        "titleModal": "Let's add a new distribution",
-        "modalHeader": "Configure",
-        "compress": "Compress",
-        "add": "Add",
-        "title": "Distributions",
-        "environments": {
-          "dev": "Development",
-          "prod": "Production"
         }
       };
     }

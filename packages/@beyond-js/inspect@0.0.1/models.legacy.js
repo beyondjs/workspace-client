@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   });
   _exports.hmr = _exports.__beyond_pkg = _exports.Widget = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBuilder = _exports.ElementWidget = _exports.ApplicationBuilder = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/plm", null], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {

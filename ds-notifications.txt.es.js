@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('.');
+  }, _amd_module.uri).package('es');
 
   ;
 
@@ -36,21 +36,21 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 122501845,
+    hash: 2301818330,
     creator: function (require, exports) {
       exports.txt = {
         "empty": "There is no items",
-        "title": "Notifications",
+        "title": "Notificaciones",
         "projects": {
-          "title": "Projects",
-          "scanned": "scanned",
-          "noName": "unknown project"
+          "title": "Proyectos",
+          "scanned": "revisados",
+          "noName": "proyecto no reconodido"
         },
         "item": {
-          "line": "Line",
-          "file": "File",
+          "line": "Línea",
+          "file": "Fila",
           "diagnostics": {
-            "totalDependencies": "errors on dependencies"
+            "totalDependencies": "errores en dependencias"
           }
         }
       };

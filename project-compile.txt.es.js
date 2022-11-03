@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('.');
+  }, _amd_module.uri).package('es');
 
   ;
 
@@ -36,31 +36,43 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3601775301,
+    hash: 2809956670,
     creator: function (require, exports) {
       exports.txt = {
         "sections": {
           "error": {
-            "title": "Summary of errors"
+            "title": "Detalle de Errores"
           },
           "status": {
-            "title": "Compilation status"
+            "title": "Estatus de compilación"
           }
         },
         "empty": {
           "title": "There is no compilation in process"
         },
-        "title": "Compilation",
+        "title": "Compilación",
         "start": {
-          "title": "Select a distribution"
+          "title": "Selecciona una distribución"
         },
         "actions": {
-          "compile": "Compile",
-          "declarations": "generate declarations",
-          "addDistribution": "Add distribution",
-          "new": "Create new compilation",
-          "add": "Add distribution",
-          "process": "Process"
+          "declarations": "Generar declaraciones",
+          "compile": "Compilar",
+          "addDistribution": "Agregar distribución",
+          "new": "Nueva compilación",
+          "add": "Agregar distribución",
+          "process": "Procesar"
+        },
+        "log": {
+          "title": "Estado de la compilación",
+          "errorLog": "Resumen de errores obtenidos en el proceso de compilación"
+        },
+        "alerts": {
+          "error": "Compilacion generada con errores",
+          "success": "Compilación generada exitosamente",
+          "processing": "Compilando proyecto."
+        },
+        "finished": {
+          "directory": "Directorio de ubicación"
         },
         "name": "Distribution name",
         "platform": {
@@ -80,18 +92,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
             "success": "Port checked and available",
             "tooltip": "Check port"
           }
-        },
-        "log": {
-          "title": "Compilation Status",
-          "errorLog": "Summary of errors obtained in building process"
-        },
-        "alerts": {
-          "error": "Build generated with errors",
-          "success": "Build has been done successfully",
-          "processing": "Building project"
-        },
-        "finished": {
-          "directory": "Location directory"
         },
         "ts": "TS",
         "default": "default",

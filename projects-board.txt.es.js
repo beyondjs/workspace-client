@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('.');
+  }, _amd_module.uri).package('es');
 
   ;
 
@@ -36,45 +36,38 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 1560692901,
+    hash: 2224261874,
     creator: function (require, exports) {
       exports.txt = {
         "empty": {
-          "title": "Welcome to BeyondJS",
-          "subtitle": "Let's start with your first project",
-          "info": "What's that?"
+          "title": "Bienvenido a BeyondJS",
+          "subtitle": "Crea tu primera aplicación",
+          "info": "¿Que es esto?"
         },
         "header": {
-          "title": "Projects",
-          "projectsTitle": "Projects",
-          "applications": "Projects",
-          "libraries": "Libraries",
-          "elements": "Elements",
-          "titleHeader": "Project name goes here title",
-          "showApps": "Show APP Information",
-          "filtersTitle": "Filters Bundles",
-          "selectView": "Select View",
-          "welcome": "Welcome:",
-          "logIn": "Log In:"
-        },
-        "applications": {
-          "libraries": "Libraries",
-          "libAssoc": "Associated libraries",
-          "modules": "Modules",
-          "modAssoc": "Associated modules"
+          "title": "Proyectos",
+          "projectsTitle": "Proyectos",
+          "applications": "Proyectos",
+          "elements": "Elementos",
+          "titleHeader": "El nombre del proyecto va aquí",
+          "showApps": "Información del proyecto",
+          "filtersTitle": "Filtro",
+          "selectView": "Vista",
+          "welcome": "Bienvenido:",
+          "logIn": "Inicio de sesion:"
         },
         "application": {
-          "description": "Does not have description"
+          "description": "No posee descripcion"
         },
         "actions": {
-          "play": "Play",
-          "stop": "Stop",
-          "restart": "Restart",
-          "details": "Details",
-          "compile": "Compile",
-          "publish": "Publish",
-          "create": "Create project",
-          "download": "Download"
+          "play": "Arrancar",
+          "stop": "Detener",
+          "restart": "Reiniciar",
+          "details": "Detaalles",
+          "compile": "Compilar",
+          "publish": "Publicar",
+          "create": "Crear proyecto",
+          "download": "Descargar"
         }
       };
     }
