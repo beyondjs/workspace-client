@@ -14,10 +14,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   _exports.hmr = _exports.__beyond_pkg = void 0;
   _exports.useCompiler = useCompiler;
   _exports.useCompilerContext = void 0;
-
   /*************
   LEGACY IMPORTS
   *************/
+
   const {
     DsBreadcrumb
   } = dependency_3;
@@ -64,16 +64,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   const {
     useTextsBinder
   } = dependency_15;
-
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
-
   const {
     Bundle: __Bundle
   } = dependency_0;
-
   const __pkg = new __Bundle({
     "module": {
       "vspecifier": "@beyond-js/dashboard@0.0.1/project-compile",
@@ -81,11 +78,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     },
     "type": "code"
   }, _amd_module.uri).package();
-
   ;
-
   __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/dashboard/breadcrumb.code', dependency_3], ['@beyond-js/ui/icon', dependency_4], ['@beyond-js/inspect/models.legacy', dependency_5], ['@beyond-js/ui/alert', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/dashboard/ds-contexts', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/core-components', dependency_13], ['@beyond-js/kernel/texts', dependency_14], ['@beyond-js/dashboard/texts-binder', dependency_15]]);
-
   const {
     module
   } = __pkg.bundle;
@@ -97,15 +91,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   const CompilerContext = React.createContext();
   _exports.CompilerContext = CompilerContext;
-
   const useCompilerContext = () => React.useContext(CompilerContext);
+
   /********
   empty.jsx
   ********/
-
-
   _exports.useCompilerContext = useCompilerContext;
-
   function Empty({
     texts
   }) {
@@ -123,10 +114,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       icon: "compile"
     }))));
   }
+
   /********
   index.jsx
   ********/
-
 
   function CompileBoard(props) {
     const [fetching, setFetching] = React.useState();
@@ -143,12 +134,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     } = project.application;
     useBinder([process], () => setStatus(process.processed));
     if (!ready) return /*#__PURE__*/React.createElement(DsFetchingBlock, null);
-
     if (props.specs.projectId !== project.application.id) {
       throw Error('the project is not loaded');
     }
-
-    const finalTexts = { ...props.texts,
+    const finalTexts = {
+      ...props.texts,
       ...texts
     };
     const contextValue = {
@@ -163,18 +153,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       setCompiling,
       messages: process.messages
     };
-
     if (!process) {
-      console.log('ney');
+      console.warn('not process', process);
       return null;
     }
-
     if (!process.processing && !process.processed && process.messages) {
       return /*#__PURE__*/React.createElement(Empty, {
         texts: texts
       });
     }
-
     return /*#__PURE__*/React.createElement(CompilerContext.Provider, {
       value: contextValue
     }, /*#__PURE__*/React.createElement(DSBoard, {
@@ -183,10 +170,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "ds-container"
     }, /*#__PURE__*/React.createElement(DetailSection, null), /*#__PURE__*/React.createElement(ErrorSection, null))));
   }
+
   /************************
   sections\detail\index.jsx
   ************************/
-
 
   function DetailSection() {
     const {
@@ -197,9 +184,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     } = useCompilerContext();
     const container = React.useRef(null);
     const [toggle, setToggle] = React.useState(false);
-
     const onClickHeader = () => setToggle(!toggle);
-
     const cls = `card__detail${toggle ? ' opened' : ''}`;
     useCompiler(container, application);
     const items = messages.map((message, key) => {
@@ -220,10 +205,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "compile__trace__list compile__trace__all-list"
     }, items)));
   }
+
   /**************************
   sections\detail\message.jsx
   **************************/
-
 
   function Message() {
     const {
@@ -250,16 +235,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "on-primary"
     }), message));
   }
+
   /*******************************
   sections\detail\use-compiler.jsx
   *******************************/
-
 
   function useCompiler(container, application) {
     useBinder([application.process], () => {
       const list = container.current.querySelector('.compile__trace__all-list');
       const errorList = container.current.querySelector('.compile__trace__error-list');
-
       const setMessage = (entries, error) => {
         const size = entries.length;
         if (!size) return;
@@ -269,7 +253,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         item.innerHTML = message.text;
         list.appendChild(item);
       };
-
       const {
         processed,
         errors,
@@ -280,10 +263,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       errors && setMessage(errors, true);
     });
   }
+
   /***********************
   sections\error\index.jsx
   ***********************/
-
 
   function ErrorSection() {
     const {
@@ -299,12 +282,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     }, message.text));
     const errors = !!items.length;
     const containerCls = `compilation__card${!errors ? ' compilation__card--disabled' : ''}`;
-
     const onClickHeader = () => {
       if (!errors) return;
       setToggle(!toggle);
     };
-
     return /*#__PURE__*/React.createElement("article", {
       className: containerCls,
       onClick: onClickHeader
@@ -316,10 +297,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "compile__trace__list compile__trace__all-list"
     }, output)));
   }
+
   /************************
   sections\header\index.jsx
   ************************/
-
 
   function HeaderSection({
     name,
@@ -341,29 +322,26 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       className: "header__detail"
     }));
   }
+
   /**********
   SCSS STYLES
   **********/
-
-
   const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-compile.code', '.compile__trace__list{list-style:none;display:none;gap:2px;padding:0;transition:all 150ms ease-in}.compile__trace__list li{padding:4px;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds__board.board__compile .compilation__card{max-width:800px;margin:auto}.ds__board.board__compile .compilation__card.compilation__card--disabled{opacity:.6}.ds__board.board__compile .compilation__card.compilation__card--disabled header{cursor:default}.ds__board.board__compile .compilation__card header{display:flex;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--separator-color);cursor:pointer;align-items:center}.ds__board.board__compile .compilation__card header .beyond-icon{fill:var(--text-color)}.ds__board.board__compile .compilation__card header h5{display:flex;gap:.5rem;align-items:center;font-size:13px;margin:0}.ds__board.board__compile .compilation__card .card__detail{background:var(--secondary-accent-20);padding:1rem;color:var(--secondary-text-color);display:none}.ds__board.board__compile .compilation__card .card__detail.opened{display:grid;transition:all 150ms ease-in}');
   legacyStyles.appendToDOM();
-  const ims = new Map(); // Module exports
+  const ims = new Map();
 
+  // Module exports
   __pkg.exports.process = function ({
     require,
     prop,
     value
   }) {};
-
   const __beyond_pkg = __pkg;
   _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
-
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
   _exports.hmr = hmr;
-
   __pkg.initialise(ims);
 });

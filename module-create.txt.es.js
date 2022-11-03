@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,125 +36,122 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 381182120,
+    hash: 4193170316,
     creator: function (require, exports) {
       exports.txt = {
-        "title": "Creación de un nuevo módulo",
-        "subtitle": "Indica que tipo de modulo desea crear",
-        "additionalFeatures": "Configuración adicional",
+        "title": "Create a new module",
+        "subtitle": "What kind of module do you need?",
+        "additionalFeatures": "Additional Configuration",
         "types": {
           "bundles": {
-            "title": "Modulo en blanco",
-            "description": "Se crea una aplicación configurada y en blanco para que puedas definir lo que consideres necesario desde cero."
+            "title": "Blank module",
+            "description": "Empty module to start from nothing."
           },
           "templates": {
             "title": "Basic template",
-            "description": "Elige una de las plantillas bases de los tipos de modulo para que puedas guiarte y avanzar de manera simple"
+            "description": "Choose one of the base templates of the module types so that you can guide yourself and advance in a simple way"
           }
         },
         "actions": {
-          "changeModuleType": "Cambiar tipo de modulo",
-          "next": "Siguiente",
-          "back": "Volver"
+          "changeModuleType": "Change module type",
+          "next": "Next",
+          "back": "Back"
         },
         "templates": {
-          "title": "Plantilla",
+          "title": "Template",
           "options": [{
             "id": "page",
-            "title": "Página en blanco",
-            "description": "Módulo de página basico para web",
+            "title": "Blank page",
+            "description": "Blank page for web projects",
             "icon": "web"
           }, {
             "id": "server_page",
-            "title": "Módulo con servicio node",
-            "description": "Página con servicio y conexión webSocket implementada",
+            "title": "Module with node service",
+            "description": "Page with service and WebSocket connection implemented",
             "icon": "server"
           }, {
             "id": "mobile_login",
             "title": "Mobile login",
-            "description": "Pagina con diseño login para aplicación de telefonos",
+            "description": "Basic design for mobile projects",
             "icon": "mobile"
           }]
         },
         "bundles": {
-          "title": "Tipo de modulo",
+          "title": "Bundle type",
           "options": [{
             "id": "page",
             "title": "Página",
-            "description": "Un modulo que puede ser accedido por medio de una URL."
+            "description": "A module that can be accessed via a URL"
           }, {
             "id": "widget",
             "title": "Widget",
-            "description": "Exporta un componente web que permite trabajar bajo arquitecturas de micro-frontends o Islands."
+            "description": "Exports a web component that allows working under micro-frontends or Islands architectures."
           }, {
             "id": "layout",
             "title": "Layout",
             "description": "Permite definir la estructura general de varias páginas y compartir elementos en común de la aplicación"
           }, {
             "id": "code",
-            "title": "Código",
-            "description": "Tiene multiples funciones. Puede ser un componente react que será utilizado en múltiples páginas y modulos, o puede ser código para manejo de modelos y lógica."
+            "title": "Code",
+            "description": "Multipurpose. You can be a logic module or with a graphical interface."
           }, {
             "id": "bridge",
             "title": "Bridge",
-            "description": "Módulos que permiten integrar lógica backend con el cliente por medio de websockets automáticamente "
+            "description": "Modules that allow to integrate backend logic with the client through websockets automatically"
           }, {
             "id": "ts",
             "title": "Typescript",
-            "description": "Ideal para implementar cualquier tipo de lógica que solo requira código typescript y no otros procesadores."
+            "description": "Ideal for implementing any type of logic that only requires typescript code and no other processors."
           }, {
             "id": "start",
             "title": "Start",
-            "description": "Permiten agregar lógica que debe ejecutarse al principio de la aplicación."
+            "description": "They allow you to add logic that must be executed at the beginning of the application."
           }]
         },
         "page": {
-          "queryString": "Número de parametros de url?",
           "layout": "Layout",
+          "queryString": "Url parameters?",
           "input": {
             "layout": {
-              "placeholder": "Seleccione."
+              "placeholder": "Select."
             }
           }
         },
-        "processors": "Procesadores",
-        "thirdTitle": "Tipo de bundle",
+        "processors": "Processors",
+        "thirdTitle": "Bundle type",
         "form": {
           "steps": {
-            "first": "Datos Generales",
-            "second": "Detalles del módulo"
+            "first": "General data",
+            "second": "Module details"
           },
           "name": "Subpath",
-          "description": "Descripción",
-          "title": "Titulo",
-          "developer": "Desarrollador",
-          "webcomponent": "Nombre del Web Component",
-          "multilanguage": "¿Archivo de texto?",
-          "server": "¿Código servidor?",
-          "styles": "¿Hojas de estilo?",
+          "description": "Description",
+          "title": "Title",
+          "multilanguage": "translations?",
+          "webcomponent": "Web Component name",
+          "server": "Server code",
+          "styles": "Styles",
           "url": "URL",
-          "button": "CREAR",
+          "button": "Create",
           "errors": {
-            "route": "Ya existe un modulo con esta ruta definida:",
-            "element": "El nombre del web component debe tener dos palabras separadas por '-'"
+            "route": "There is already a module with this defined path:",
+            "element": "The web component name must have two words separated by '-'"
           }
         },
         "placeholder": {
-          "name": "Define un nombre con la caracteristica principal de tu modulo",
-          "title": "Mi modulo con beyondJS",
-          "description": "Este modulo tiene potencial",
-          "developer": "Tu nombre de desarrollador",
-          "webcomponent": "web-component",
-          "button": "button"
+          "name": "Define a semantic name for your module",
+          "title": "My beyondJs module",
+          "description": "Add a description of your module",
+          "button": "button",
+          "webcomponent": "web-component"
         },
         "help": {
-          "name": "El nombre del modulo define el nombre de la carpeta.",
-          "description": "Una descripción de que hace el modulo",
-          "title": "Titulo a utilizar",
-          "developer": "El desarrollador es el autor, es necesario agregarlo para poder utilizarlo como dependencia en otro modulo.",
-          "url": "Define un nombre para tu ruta por defecto",
-          "styles": "Las hojas de estilo, por defecto se manejan con sass.",
-          "webcomponent": "Es el nombre de la etiqueta HTML que se utilizará para incluirlo. Debe estar en minúsculas y con dos palabras separadas por '-'",
+          "name": "The module name defines the folder name and the import path.",
+          "description": "A description of what the module does",
+          "title": "A title to use",
+          "url": "The URL to navigate to your module in the app",
+          "styles": "The style sheets, by default, are handled with sass.",
+          "webcomponent": "Is the name of the HTML tag which going to be used to include it. Must be in lowercase and with two words separated by '-'",
           "titles": {
             "text": "Definicion en el module.json para archivos de textos",
             "server": "Definicion en el module.json para backend del modulo",

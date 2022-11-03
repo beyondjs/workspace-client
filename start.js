@@ -8,17 +8,13 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
   const {
     Transversal
   } = brequire('@beyond-js/kernel/transversals');
-
   const __beyond_transversal = new Transversal('start', '');
-
   _exports.__beyond_transversal = __beyond_transversal;
-
   __beyond_transversal.dependencies.update([['@beyond-js/kernel/transversals', dependency_1], ['@beyond-js/kernel/core', dependency_2], ['@beyond-js/kernel/routing', dependency_3], ['@beyond-js/widgets/render', dependency_4], ['@beyond-js/backend/client', dependency_5], ['@beyond-js/dashboard/config', dependency_6]]);
+
   /***********
   BUNDLE: PAGE
   ***********/
-
-
   routing.config.pages.register([{
     "route": "/indexdb",
     "bundle": "@beyond-js/plm@0.0.1/unnamed/core/cache/indexeddb/tests/page",
@@ -197,10 +193,10 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     "vdir": true,
     "layout": "workspace"
   }]);
+
   /*************
   BUNDLE: LAYOUT
   *************/
-
   routing.config.layouts.register([{
     "name": "beyond-ui",
     "bundle": "@beyond-js/ui@0.0.1/layout-main"
@@ -230,7 +226,6 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     INTERNAL MODULE: ./start
     ***********************/
 
-
     ims.set('./start', {
       hash: 3864758461,
       creator: function (require, exports) {
@@ -240,23 +235,18 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
           value: true
         });
         exports.DSBoards = void 0;
-
         var _core = require("@beyond-js/kernel/core");
+
         /*bundle*/
-
-
         const DSBoards = new class extends _core.Events {
           #items = new Map();
-
           get items() {
             return this.#items;
           }
-
           add(identifier, specs) {
             this.items.set(identifier, specs);
             this.trigger('board.added');
           }
-
         }();
         exports.DSBoards = DSBoards;
       }
@@ -270,6 +260,7 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
       dependencies: ['@beyond-js/kernel/core']
     };
   }]);
+
   /**********************************
   MODULE: @beyond-js/dashboard/monaco
   **********************************/
@@ -288,22 +279,17 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
     INTERNAL MODULE: ./start
     ***********************/
 
-
     ims.set('./start', {
       hash: 2670471276,
       creator: function (require, exports) {
         "use strict";
 
         var _client = require("@beyond-js/backend/client");
-
         var _config = require("@beyond-js/dashboard/config");
-
         _client.backends.register('@beyond-js/inspect', 'http://localhost:4000');
-
         const {
           local
         } = _config.default;
-
         (function (config) {
           config({
             paths: {
@@ -317,8 +303,6 @@ define(["exports", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/tr
       dependencies: ['@beyond-js/backend/client', '@beyond-js/dashboard/config']
     };
   }]);
-
   __beyond_transversal.initialise(bundles);
-
   routing.setup(1);
 });

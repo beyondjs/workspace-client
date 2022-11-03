@@ -8,10 +8,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   _exports.DSWorkspace = DSWorkspace;
   _exports.Page = Page;
   _exports.hmr = _exports.__beyond_pkg = _exports.Workspace = _exports.PortManager = void 0;
-
   /*************
   LEGACY IMPORTS
   *************/
+
   const {
     BeyondImage
   } = dependency_3;
@@ -105,16 +105,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   const {
     backends
   } = dependency_28;
-
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
-
   const {
     Bundle: __Bundle
   } = dependency_0;
-
   const __pkg = new __Bundle({
     "module": {
       "vspecifier": "@beyond-js/dashboard@0.0.1/workspace",
@@ -122,11 +119,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     },
     "type": "page"
   }, _amd_module.uri).package();
-
   ;
-
   __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/uploader-components', dependency_10], ['@beyond-js/dashboard/breadcrumb.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/settings.code', dependency_13], ['@beyond-js/dashboard/projects-board.code', dependency_14], ['@beyond-js/dashboard/project-create.code', dependency_15], ['@beyond-js/dashboard/project-compile.code', dependency_16], ['@beyond-js/dashboard/project-board.code', dependency_17], ['@beyond-js/dashboard/static-board.code', dependency_18], ['@beyond-js/dashboard/aside.code', dependency_19], ['@beyond-js/dashboard/ds-navigator', dependency_20], ['@beyond-js/dashboard/ds-panels', dependency_21], ['@beyond-js/dashboard/ds-notifications.code', dependency_22], ['@beyond-js/dashboard/ds-contexts', dependency_23], ['@beyond-js/dashboard/module-view.code', dependency_24], ['@beyond-js/dashboard/module-create.code', dependency_25], ['@beyond-js/dashboard/layout-header', dependency_26], ['@beyond-js/dashboard/modal-distribution-select', dependency_27], ['@beyond-js/backend/client', dependency_28]]);
-
   const {
     module
   } = __pkg.bundle;
@@ -142,53 +136,43 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   class WorkspaceAside extends ReactiveModel {
     #preaside;
-
     get preaside() {
       return this.#preaside;
     }
-
     #panel;
-
     get panel() {
       return this.#panel;
     }
-
     #projectItems;
-
     get projectItems() {
       return this.#projectItems;
     }
-
     #workspace;
-
     get workspace() {
       return this.#workspace;
     }
-
     constructor(parent) {
       super();
       this.#workspace = parent;
       this.#workspace.bind('change', this.#binder);
       this.#binder();
     }
-
     #binder = () => {
       if (!this.workspace.ready) return;
       if (!!this.workspace.active === this.#projectItems) return;
       this.workspace.active ? this.addProjectItems() : this.removeProjectItems();
     };
-
     removeProjectItems() {
       this.#projectItems = false;
       DSPreAside.remove(['application', 'module', 'favorites', 'add', 'template', 'statics']);
     }
-
     addProjectItems() {
       this.#projectItems = true;
       DSPreAside.addItems('top', {
         application: {
           action: name => {
-            this.setActive(name); // this.workspace.openBoard(name);
+            this.setActive(name);
+            // this.workspace.openBoard(name);
           },
           icon: 'project',
           title: 'Aplicación',
@@ -251,56 +235,46 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       });
       this.triggerEvent();
     }
-
     setActive = (item, params = {}) => {
       if (!this.workspace.active) {
         console.error('there is any application selected');
         return;
       }
-
       this.#panel = this.panel !== item ? item : undefined;
       this.triggerEvent();
       this.triggerEvent('aside.updated');
     };
-
     load(data = {}) {
       if (!data?.panel) return;
       this.#panel = data.panel;
       this.triggerEvent();
     }
-
   }
+
   /********************
   FILE: context-menu.js
   ********************/
 
-
   class ContextMenu extends ReactiveModel {
     _event;
-
     get event() {
       return this._event;
     }
-
     get currentTarget() {
       return this.event?.currentTarget;
     }
-
     get target() {
       return this.event?.target;
     }
-
     constructor() {
       super();
       this.init();
     }
-
     init() {
       window.oncontextmenu = event => {
         this._event = event;
         const target = event.target;
         const parentContext = target.closest('[data-context]');
-
         if (target.dataset.context || parentContext) {
           event.preventDefault();
           event.stopPropagation();
@@ -309,21 +283,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
           this.triggerEvent(`fired.${event}`);
           return;
         }
-
         if (target.classList.contains('ds-context-menu') || target.closest('.ds-context-menu')) {
           this.triggerEvent('closed');
         }
       };
     }
-
   }
+
   /************
   FILE: page.js
   ************/
-
-
   _exports.ContextMenu = ContextMenu;
-
   function Page() {
     (() => {
       DSBoards.add('project', {
@@ -363,17 +333,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         icon: 'compile'
       });
     })();
-
     const specs = {};
-
     if (this.qs.has('application_id')) {
       specs.id = this.qs.get('application_id');
     }
-
     if (this.qs.has('animation')) {
       specs.animation = this.qs.get('animation');
     }
-
     const workspace = new Workspace(specs);
     ReactDOM.render(React.createElement(DSWorkspace, {
       workspace,
@@ -381,41 +347,37 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       ...specs
     }), this.container);
     this.container.classList.add('ds-home-page');
+    this.show = () => {
 
-    this.show = () => {// controller.createApp = this.vdir === 'create_app';
+      // controller.createApp = this.vdir === 'create_app';
     };
   }
+
   /************
   FILE: port.js
   ************/
 
-
   class PortManager extends ReactiveModel {
     #port;
-
     get port() {
       return this.#port;
     }
-
     set port(value) {
       if (isNaN(value)) {
         throw Error('the port must be a number');
       }
-
       if (value === this.#port) return;
       this.#port = value;
     }
-
     constructor() {
-      super(); // backends.register('@beyond-js/inspect', 'http://localhost:4000');
+      super();
+      // backends.register('@beyond-js/inspect', 'http://localhost:4000');
     }
-
   }
+
   /************
   FILE: tree.js
   ************/
-
-
   _exports.PortManager = PortManager;
   const TREE = {
     APPS: {
@@ -432,31 +394,23 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   class UploaderController extends ReactiveModel {
     _uploader;
-
     get uploader() {
       return this._uploader;
     }
-
     _workspace;
     _model;
-
     get application() {
       return this._workspace?.application;
     }
-
     _ready;
-
     get ready() {
       return this._ready;
     }
-
     _interval;
     _items = new Map();
-
     get items() {
       return this._items;
     }
-
     constructor(workspace) {
       super();
       this._workspace = workspace;
@@ -464,7 +418,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.loadImages = this.loadImages.bind(this);
       this.load();
     }
-
     load() {
       //TODO @ftovar cambiar por url ingreasada en el workspace por el usuario, desde donde vaya a inspeccionar el workspace
       const url = `http://localhost:4000/uploader`;
@@ -483,7 +436,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       uploader.bind('file.loaded', this.loadImages);
       this._ready = true;
     }
-
     loadImages() {
       const {
         files
@@ -492,32 +444,27 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       clearInterval(this._interval);
       this._interval = window.setTimeout(this.triggerEvent, 0);
     }
-
     create(selector, dragAndDrop = undefined, model) {
       this._model = model;
       this.uploader.create(selector);
       if (dragAndDrop) this.uploader.addDragAndDrop(dragAndDrop);
       this.triggerEvent();
     }
-
     deleteItem(name) {
       const item = this.items.get(name);
       item.delete();
       this.items.delete(name);
       this.triggerEvent();
     }
-
     async _loadEnd() {
       try {
         this._fetching = true;
         this.triggerEvent();
         const model = this._model;
-
         const getType = () => {
           if (model.table.name === 'applications') return 'application';
           return model.table.name === 'modules' ? 'module' : 'overwrite';
         };
-
         const type = getType();
         type !== 'overwrite' && (await model.checkStatic());
         const specs = {
@@ -525,28 +472,25 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
           type: type
         };
         const response = await this._uploader.publish(specs);
-
         for (const item of response.data) {
           if (!item.name) continue;
           const instance = this.getInstance(type, item);
           type === 'overwrite' && model.upload({
             origin: model.filename,
             overwrite: item.name
-          }); //No existe el item ya que es un overwrite lo que se esta cargando
+          });
 
+          //No existe el item ya que es un overwrite lo que se esta cargando
           if (!instance) continue;
-
           const update = async () => {
             if (!instance.found) return;
             this.items.set(item.name, instance);
             instance.off('change', update);
             this.triggerEvent();
           };
-
           instance.on('change', update);
           instance.fetch();
         }
-
         this._fetching = false;
         this.triggerEvent();
         this.triggerEvent('loadSuccess');
@@ -554,7 +498,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         console.error(e);
       }
     }
-
     getInstance(type, item) {
       if (type === 'overwrite') return;
       const id = type === 'module' ? this._model.id : `application//${this._model.id}`;
@@ -566,130 +509,97 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       const Model = type === 'module' ? ModuleStatic : ApplicationStatic;
       return new Model(specs);
     }
-
   }
+
   /*****************
   FILE: workspace.js
   *****************/
 
-
   const Workspace = class extends ReactiveModel {
     #contextMenu;
-
     get contextMenu() {
       return this.#contextMenu;
     }
-
     get types() {
       return [{}];
     }
-
     #panels;
-
     get panels() {
       return this.#panels;
     }
-
     #uploader;
-
     get uploader() {
       return this.#uploader;
     }
-
     #active;
-
     get active() {
       return this.#active;
     }
-
     set active(value) {
       if (value === this.active) return;
       this.#active = value;
       this.triggerEvent();
     }
-
     get application() {
       return this.#active;
     }
-
     get project() {
       return this.#active;
     }
-
     #appsOpened = new Set();
     #applications;
-
     get applications() {
       return this.#applications;
     }
-
     #store;
     #firstTime = true;
     #loaded;
-
     get ready() {
       if (this.#dsmodel?.ready && this.#firstTime && this.applications.tree.landed) this.#firstTime = false;
       const isReady = this.#user.validated && (!this.#firstTime || this.applications.tree.landed);
       return isReady && this.#texts.ready && this.#loaded;
     }
-
     #texts;
-
     get texts() {
       return this.#texts?.value;
     }
-
     #state = {};
-
     get state() {
       return this.#state;
     }
-
     #dashboard;
-
     get dashboard() {
       return this.#dashboard;
     }
-
     #dsmodel;
-
     get dsmodel() {
       return this.#dsmodel;
     }
-
     #aside;
-
     get aside() {
       return this.#aside;
     }
+
     /**
      * @property {DSUser}
      */
-
-
     #user;
-
     get user() {
       return this.#user;
     }
-
     #wd;
-
     get wd() {
       return this.#wd;
     }
-
     #portManager;
-
     constructor(specs = {}) {
       super();
-      this.#portManager = new PortManager(); // if (this.#portManager.port) {
+      this.#portManager = new PortManager();
+      // if (this.#portManager.port) {
       //     this.initialise();
       // }
-
       this.initialise(specs);
     }
-
     initialise(specs) {
       this.#applications = new Applications(TREE.APPS);
       this.#dashboard = Dashboard;
@@ -705,12 +615,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.#texts.bind('change', this.triggerEvent);
       this.#load(specs);
     }
-
     #addNotifications = () => {
       if (!this.applications.tree.landed) return;
       DSNotifications.start(this.applications.items);
     };
-
     async #load() {
       this.#wd = await Dashboard.getWD();
       await this.#dsmodel.initialise(this.#wd);
@@ -718,17 +626,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.#store = DSModel.db.store('workspace');
       let data = await this.#store.get(this.#wd);
       const apps = Array.from(data.opened.values());
-
       if (!!apps.length) {
         const promises = apps.map(id => projectsFactory.get(id));
         await Promise.all(promises);
       }
-
       if (data.activeApp) {
         this.#active = await projectsFactory.get(data.activeApp);
         if (this.#active.application.found) this.#appsOpened.add(data.activeApp);else data = await DSModel.reset(this.#wd);
       }
-
       this.#contextMenu = new ContextMenu();
       this.#uploader = new UploaderController(this);
       this.#aside = new WorkspaceAside(this);
@@ -740,7 +645,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.#loaded = true;
       this.triggerEvent();
     }
-
     #save = () => {
       this.#store.save({
         wd: this.#wd,
@@ -756,31 +660,29 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.#state = Object.assign(this.#state, state);
       this.triggerEvent();
     };
+
     /**
      * Opens a board into the active panel
      * @param name
      * @param specs
      */
-
     openBoard = (name, specs) => {
-      console.log(8, specs);
       this.#panels.active.add(name, specs);
     };
     openApp = async (id, specs) => {
       this.active = await this.getProject(id);
       this.#appsOpened.add(id);
-      specs = { ...specs,
+      specs = {
+        ...specs,
         id,
         name: `app.${id}`
       };
       this.openBoard('project', specs);
     };
-
     closeApp(id) {
       this.#appsOpened.delete(id);
       this.#save();
     }
-
     openNavigator(id, url, newTab = true) {
       const {
         panels,
@@ -791,16 +693,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         url,
         id: `navigator.${performance.now()}`
       };
-
       if (panels.items.size === 1) {
         this.panels.add('navigator', specs);
         return;
       }
-
       const toActivateId = panels.active.id > 1 ? panels.active.id - 1 : 2;
       panels.active = panels.items.get(toActivateId);
       this.openBoard('navigator', specs);
     }
+
     /**
      * @deprecated application is a term that is not currently used. the correct name is project.
      * @param id
@@ -808,28 +709,23 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
      * @param element
      * @returns {unknown}
      */
-
-
     getApplication(id, moduleId, element) {
       if ([undefined, NaN].includes(id)) return;
       return projectsFactory.get(parseInt(id), moduleId, element);
     }
-
     getProject(id) {
       return projectsFactory.get(parseInt(id));
     }
-
     async getModuleManager(projectId, moduleId) {
       const project = await this.getProject(projectId);
       const module = await project.moduleManager.load(moduleId);
       return module;
     }
+
     /**
      *
      * @param specs
      */
-
-
     openFile = specs => {
       /**
        * Must be the PLM application object.
@@ -847,28 +743,24 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     };
   };
   _exports.Workspace = Workspace;
-
   function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
-
         for (var key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
         }
       }
-
       return target;
     };
     return _extends.apply(this, arguments);
   }
+
   /******
   404.jsx
   ******/
-
-
   function Error404() {
     const {
       texts
@@ -881,7 +773,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   /*************
   app-errors.jsx
   *************/
-
 
   function AppErrors() {
     const {
@@ -906,7 +797,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   developer-form.jsx
   *****************/
 
-
   function DeveloperForm({
     texts,
     workspace
@@ -916,25 +806,24 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       email: ""
     });
     const ref = React.useRef();
-
     const handleInputChange = event => {
       const target = event.currentTarget;
       const data = {};
       data[target.name] = target.value;
-      setState(state => ({ ...state,
+      setState(state => ({
+        ...state,
         ...data
       }));
     };
-
     const handleSubmit = async e => {
       e.preventDefault();
-      setState({ ...state,
+      setState({
+        ...state,
         fetching: true
       });
       const container = ref.current;
       container.closest('html').classList.toggle('is-processing');
       container.classList.toggle('is-fetching');
-
       try {
         window.setTimeout(async () => {
           await workspace.register(state.name, state.email);
@@ -948,7 +837,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       } catch (e) {
         console.error(e);
       } // reset()
-
     };
 
     React.useEffect(() => {
@@ -1015,7 +903,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   icon.jsx
   *******/
 
-
   function IconLogo() {
     return /*#__PURE__*/React.createElement("div", {
       className: "ds-preload__icon-container"
@@ -1040,7 +927,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   preload.jsx
   **********/
 
-
   function AppPreload() {
     return /*#__PURE__*/React.createElement("div", {
       className: "ds-application-view-layout"
@@ -1051,7 +937,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   /*********************
   preload\collection.jsx
   *********************/
-
 
   function PreloadCollection({
     header
@@ -1072,7 +957,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   preload\header.jsx
   *****************/
 
-
   const PreloadHeader = ({
     title
   }) => {
@@ -1085,7 +969,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   /***********************
   preload\item-preload.jsx
   ***********************/
-
 
   function PreloadItem() {
     return /*#__PURE__*/React.createElement("div", {
@@ -1128,14 +1011,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   preload\welcome.jsx
   ******************/
 
-
   const PreloadWelcome = ({
     workspace,
     setReady,
     animation
   }) => {
     const ref = React.useRef();
-
     const onChange = () => {
       const container = ref.current;
       if (!workspace.ready) return;
@@ -1144,7 +1025,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         window.setTimeout(() => setReady(true), 800);
       }, 1500);
     };
-
     useBinder([workspace], onChange);
     React.useEffect(() => document.querySelector('body').classList.add('no-scroll'), []);
     if (animation) return /*#__PURE__*/React.createElement("div", {
@@ -1202,7 +1082,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   toolbar.jsx
   **********/
 
-
   function Toolbar() {
     const {
       workspace: {
@@ -1212,11 +1091,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     } = useDSWorkspaceContext();
     const cls = "primary";
     const items = [['Home', () => workspace.openBoard('applications')]];
-
     if (application) {
       items.push([`${application.application.name}`, () => workspace.openApp(application.application.id)]);
     }
-
     return /*#__PURE__*/React.createElement("section", {
       className: `ds-toolbar ${cls}`
     }, /*#__PURE__*/React.createElement("div", {
@@ -1235,7 +1112,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   workspace.jsx
   ************/
 
-
   function DSWorkspace({
     workspace,
     animation
@@ -1243,18 +1119,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const [state, setState] = React.useState({});
     const [showModal, setShowModal] = React.useState(false);
     const [ready, setReady] = React.useState(false);
-
     const navigateModule = route => setState({
       navigator: route,
       openNavigator: true
     });
-
     const showProjectForm = () => setShowModal(true);
-
     const [showProjectActionsModal, setProjectActionsModal] = React.useState(false);
-
     const toggleProcessModal = () => setProjectActionsModal(!showProjectActionsModal);
-
     useBinder([workspace], () => setState({
       ready: workspace.ready,
       ...workspace.state
@@ -1289,7 +1160,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         }
       });
     }, []);
-
     if (!workspace.ready || !ready) {
       return /*#__PURE__*/React.createElement(PreloadWelcome, {
         setReady: setReady,
@@ -1297,7 +1167,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         workspace: workspace
       });
     }
-
     const {
       texts,
       applications,
@@ -1338,29 +1207,26 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       onClose: () => setProjectActionsModal(false)
     }));
   }
+
   /**********
   SCSS STYLES
   **********/
-
-
   const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/workspace.page', '.preload-container .circle span{position:absolute;top:0;left:0;bottom:0;right:0;border-radius:50%;background:#050910;height:400px;width:400px;margin:auto;animation:pulse 2.5s linear infinite;animation-delay:calc(.5s * var(--i));transition:all .3s ease-in}@keyframes pulse{0%{transform:scale(1);opacity:.5}90%{transform:scale(3);opacity:.75}100%{transform:scale(4);opacity:0}}.preload-container.finishing .beyond-element-image{position:absolute;margin:auto;z-index:10;transition:all 1.3s ease-in-out;animation:appear 2s 1;overflow:hidden}.preload-container.finishing .animation-container{height:100%;width:100%;transform:rotate(0);transition:all .3s linear}.preload-container.finishing .animation-container .line{animation:0;transition:all .1s linear;opacity:0}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container{animation:twist .9s 1;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container .ds-preload__icon{height:88px;left:-22px}@keyframes appear{0%{height:0;width:0}90%{height:auto;width:auto;opacity:1}}@keyframes twist{from{transform:rotate(0)}to{transform:rotate(360deg);opacity:0}}.preload-container .beyond-element-image{opacity:0;position:absolute;margin:auto}.preload-container .animation-container{position:relative;height:50%;transition:all .3s ease-in;width:50%;transform:rotate(30deg)}.preload-container .animation-container .animate-svg__container{align-items:center;justify-content:center;display:flex;position:absolute;top:0;left:0;bottom:0;right:0}.preload-container .animation-container .animate-svg__container .ds-preload__icon{z-index:20;height:150px;width:150px;margin:auto;animation:rotate 2s linear infinite;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container .animation-container .line{position:absolute;height:100px;width:2px;border:2px solid;z-index:1;margin:15px;transform:rotate(30deg);animation:move .3s infinite;animation-fill-mode:forwards}.preload-container .animation-container .line.line-one{margin-top:-100px;margin-left:-200px}.preload-container .animation-container .line.line-one-two{margin-top:-280px;margin-left:-80px;border-color:rgba(255,255,200,.1)}.preload-container .animation-container .line.line-three{margin-left:-20px;border-color:rgba(255,255,200,.1);margin-top:-150px;display:none}.preload-container .animation-container .line.line-two{margin-left:200px;margin-top:150px}.preload-container .animation-container .line.line-two-two{border-color:rgba(255,255,200,.1);margin-left:130px;margin-top:30px}@keyframes move{from{transform:translateY(-150px)}to{transform:translateY(150px)}}@keyframes rotate{0%{transform:rotate(0)}13%{transform:rotate(30deg) scale(1.1)}26%{transform:rotate(45deg) scale(1.01)}39%{transform:rotate(30deg) scale(1)}50%{transform:rotate(0) scale(1.1)}63%{transform:rotate(-30deg) scale(1.01)}76%{transform:rotate(-45deg) scale(1.02)}89%{transform:rotate(-30deg)}}.container__early__form{display:flex;align-items:center;justify-content:center;height:100vh;justify-items:center;flex-direction:column;max-width:500px;margin:auto;-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form 0%{opacity:0}.container__early__form 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .warning-text{color:var(--beyond-warning-color);-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form .warning-text 0%{opacity:0}.container__early__form .warning-text 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .logo img{max-width:200px}.container__early__form header{text-align:center;margin-bottom:30px}.container__early__form header h1{font-size:20px;margin-left:1rem}.container__early__form.ending .elements__section{opacity:.1}.container__early__form.ending.ending-left .elements__section{-webkit-animation-name:fadeOutLeft;-moz-animation-name:fadeOutLeft;-ms-animation-name:fadeOutLeft;-o-animation-name:fadeOutLeft;animation-name:fadeOutLeft;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-moz-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-ms-keyframes fadeOutLeft{.container__early__form.ending.ending-left .elements__section 0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.container__early__form.ending.ending-left .elements__section 100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-o-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}.container__early__form .elements__section{display:flex;justify-content:center;flex-direction:column;align-items:center}.container__early__form form{width:100%}.container__early__form form .form-group{display:flex;border-radius:4px}.container__early__form form .form-group .form-sub-group{position:relative}.container__early__form form .form-group .form-sub-group:last-child{flex-grow:1}.container__early__form form .form-group .form-sub-group .beyond-element-input{color:var(--beyond-text-on-primary)}.container__early__form form .form-group .form-sub-group label{position:absolute;top:0;left:0;cursor:text;transform-origin:0 0;transition:all .3s}.container__early__form form .upper-text{text-transform:uppercase}.container__early__form form .form__actions{margin:40px 0;display:flex;justify-items:center;align-content:center;justify-content:center}.container__early__form form .form__actions .beyond-button{height:40px;width:60%}.container__early__form form .form__actions .beyond-button[disabled]{opacity:.2}.container__early__form form .early__message{font-size:1.1rem;padding:0 20px;text-align:center;color:var(--beyond-primary-color)}.early-access__container{display:flex;align-items:center;justify-content:center;flex-direction:column;width:100%}.early-access__container header h1{color:var(--beyond-primary-color)}.early-access__container form{display:grid;gap:15px}.early-access__container form input{margin-top:30px;border:1px solid var(--beyond-primary-color);background:0 0;padding:15px;border-radius:15px;font-size:1.5rem;color:var(--beyond-primary-color);text-transform:uppercase;text-align:center;outline:0}.app__empty__container{height:100%;width:100%;display:flex;justify-content:center;align-items:top;padding-top:15%}.ds-footer-bar{grid-area:footer;z-index:8;position:fixed;bottom:0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;left:0;right:0;padding:8px 15px;background:var(--ds-secondary-bg);display:flex;justify-content:space-between;align-items:center}.ds-footer-bar *{font-size:10px;padding:0}.ds-footer-bar h1,.ds-footer-bar h2,.ds-footer-bar h3,.ds-footer-bar p{padding:0;margin:0}.ds-footer-bar span{display:inline-flex;padding:0 5px}.ds-footer-bar .primary-text{color:var(--beyond-primary-color)}.ds-footer-bar .beyond-button{background:#000;border:0;color:#fff}.ds__main-container{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color);z-index:1}.preload-container{height:100vh;width:100vw;overflow:hidden}.ds-application-view-layout{display:grid;height:100%;grid-template-areas:"aside toolbar" "aside errors" "aside panel";grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;overflow:hidden}.ds-application-view-layout .ds-toolbar{grid-area:toolbar;z-index:1}.ds-application-view-layout .ds__aside{grid-area:aside}.ds-application-view-layout .ds__workspace__errors{grid-area:errors}.ds-application-view-layout .ds__main-content{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--background)}');
   legacyStyles.appendToDOM();
-  const ims = new Map(); // Module exports
+  const ims = new Map();
 
+  // Module exports
   __pkg.exports.process = function ({
     require,
     prop,
     value
   }) {};
-
   const __beyond_pkg = __pkg;
   _exports.__beyond_pkg = __beyond_pkg;
   const hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
-
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
   _exports.hmr = hmr;
-
   __pkg.initialise(ims);
 });

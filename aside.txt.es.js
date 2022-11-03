@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,7 +36,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3331859340,
+    hash: 2522268892,
     creator: function (require, exports) {
       exports.txt = {
         "favorites": {
@@ -60,7 +60,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
         },
         "empty": "Selecciona un modulo para que puedas ver su contenido",
         "list": {
-          "empty": "No hay elementos"
+          "empty": "No elements"
         },
         "backend": {
           "title": "Backend code",
@@ -80,27 +80,19 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
           "form": {
             "title": "Selecciona una image o arrastrala.",
             "errors": {
-              "invalidFile": " El archivo subido no es válido, por favor verifiquelo y vuelva a intentarlo"
+              "invalidFile": "The uploaded file is invalid, please verify and try again"
             },
             "header": {
-              "title": "Agrega un archivo",
-              "detail": "Selecciona un archivo como recurso estatico"
+              "title": "Add file",
+              "detail": "As static resource"
             },
             "actions": {
-              "close": "Cerrar"
+              "close": "Close"
             }
           }
         },
         "dependencies": {
           "title": "Dependencies"
-        },
-        "template": {
-          "title": "Template",
-          "description": "El template permite definir la configuración de estilos general de la aplicación y los overwrites.",
-          "styles": {
-            "title": "Estilos",
-            "description": "Estilos generales de la aplicación, que serán compartidos entre todos los módulos."
-          }
         },
         "overwrites": {
           "title": "Overwrites",
@@ -130,7 +122,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
           "rename": "Rename",
           "errors": {
             "EXT_INVALID": "Extensión no válida",
-            "default": "Ha ocurrido un error, reinicie el servicio y vuelva a intentarlo"
+            "default": "An error has occurred, please restart the service and try again"
           },
           "itemActions": {
             "create": {
@@ -180,37 +172,37 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
                 },
                 "name": {
                   "label": "Web Component Name",
-                  "error": "Invalid Name"
+                  "error": "The web component name must be has the next structure: 'web-component'"
                 },
                 "layoutId": {
-                  "label": "Identificador del Layout",
-                  "error": "El identificador no es valido"
+                  "label": "Layout identifier",
+                  "error": "The layout identifier is not valid"
                 }
               }
             },
             "actions": {
-              "save": "Agregar bundle",
+              "save": "Add bundle",
               "next": "Continuar"
             }
           },
           "static": {
             "title": "Static files",
             "form": {
-              "title": "Selecciona una imagen o arrastrala.",
+              "title": "Select an image or drag it.",
               "errors": {
-                "invalidFile": " El archivo subido no es válido, por favor verifiquelo y vuelva a intentarlo"
+                "invalidFile": "The uploaded file is invalid, please verify and try again"
               },
               "header": {
-                "title": "Agrega un archivo",
-                "detail": "Selecciona un archivo como recurso estatico"
+                "title": "Add file",
+                "detail": "As static resource"
               },
               "actions": {
-                "close": "Cerrar"
+                "close": "Close"
               }
             }
           },
           "module": {
-            "title": "Módulos anclados",
+            "title": "Pinned module",
             "empty": {
               "title": "Select a module",
               "description": "Go to the application tab and select the module you want to use as a work table"
@@ -220,11 +212,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
             "application": "Application",
             "global": "Globals",
             "processors": "Processors",
-            "title": "Template",
-            "description": "El template permite definir la configuración de estilos general de la aplicación y los overwrites.",
+            "description": "The template allows you to define the general style settings of the application and the overwrites.",
             "styles": {
-              "title": "Estilos",
-              "description": "Estilos generales de la aplicación, que serán compartidos entre todos los módulos."
+              "title": "Styles",
+              "description": "General styles of the application, which will be shared among all modules."
             }
           }
         }

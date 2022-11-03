@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,93 +36,100 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 631614332,
+    hash: 3006961032,
     creator: function (require, exports) {
       exports.txt = {
         "actions": {
-          "navigate": "Navegar",
-          "process": "Acciones del proyecto",
-          "editDescription": "Editar descripción",
-          "generatingDeclarations": "Generando...",
-          "publish": "Publicar",
-          "declarations": "Generar declaraciones",
-          "start": "Iniciar",
-          "stop": "Detener",
-          "restart": "Reiniciar"
+          "navigate": "Navigate",
+          "process": "Project actions",
+          "editDescription": "Edit description",
+          "generatingDeclarations": "generating...",
+          "publish": "Publish",
+          "update": "Update dependencies",
+          "declarations": "Generate declarations",
+          "start": "Play",
+          "stop": "Stop",
+          "restart": "Restart"
         },
         "scanner": {
-          "title": "modulos analizados"
+          "title": "scanned modules"
         },
         "application": {
           "info": {
-            "description": "Descripción",
-            "title": "Titulo",
-            "name": "Nombre",
+            "description": "Description",
+            "title": "Title",
+            "name": "Name",
             "empty": {
-              "description": "La aplicación no posee descripción",
-              "title": "Agrega un titulo para tu aplicación",
-              "name": "Agrega un nombre para tu aplicación"
+              "description": "The application does not have a description",
+              "title": "Add a title",
+              "name": "Add a name"
             }
           },
           "tabs": {
-            "modules": "Módulos",
-            "distributions": "Distribuciones",
-            "settings": "Configuración"
+            "modules": "Modules",
+            "distributions": "Distributions",
+            "settings": "Settings"
           },
           "actions": {
-            "save": "Guardar",
-            "close": "Cerrar"
+            "save": "Save",
+            "close": "Close"
           },
           "error404": "Application not found"
         },
         "process": {
-          "title": "Procesos",
+          "title": "Processes",
           "start": {
-            "title": "Selecciona una distribución para realizar la compilación"
+            "title": "Select a distribution to compile"
           },
-          "empty": "No hay distribuciones añadidas. Cree uno con la plataforma y las especificaciones que desea construir.",
+          "empty": "No hay distribuciones agregadas. Por favor, crea una con la plataforma y especificaciones que desees compilar.",
           "actions": {
             "market": "Marketplace",
-            "compile": "Compilar",
-            "declarations": "Generar declaraciones"
+            "compile": "Compile",
+            "declarations": "Generate declarations"
           }
         },
         "distribution": {
-          "environment": "Entorno",
+          "environment": "Environment",
           "ts": "TS",
-          "platform": "Plataforma",
+          "platform": "Platform",
           "ssr": "SSR",
           "ports": {
-            "title": "Puertos",
-            "http": "Puerto Http",
-            "inspect": "Puerto de Inspección ",
-            "bundles": "Puerto DevServer"
+            "title": "Ports settings",
+            "http": "Http server",
+            "inspect": "Inspect port",
+            "bundles": "DevServer port"
           },
           "empty": {
             "title": "Distributions",
-            "messages": {
-              "execute": "Es necesario agregar una distribución con la plataforma en la que desees ejecutar el proyecto",
-              "compile": "Es necesario agregar una distribución con la plataforma en la que desees compilar el proyecto"
+            "execute": {
+              "title": "Execute project",
+              "message": "You need to add a distribution with the platform you want to run the project on",
+              "action": "Add distribution"
+            },
+            "compile": {
+              "title": "Compile project",
+              "message": "You need to add a distribution with the platform you want to build the project on",
+              "action": "Add distribution"
             }
           }
         },
         "modules": {
           "actions": {
-            "add": "Crear modulo",
-            "navigate": "Navegar"
+            "add": "Create module",
+            "navigate": "Navigate"
           },
           "empty": {
             "new": {
-              "title": "¡Excelente! Ya creamos tu aplicación",
-              "description": "En <b class=\"primary-color\">BeyondJS</b> todo se maneja con modulos. Avancemos creando el primero."
+              "title": "Good! your project has already been created",
+              "description": "All in BeyondJS is about modules. Let's create the first one."
             },
             "application": {
-              "title": "Aun no existen módulos en tu aplicación",
-              "description": "Demos el primer paso"
+              "title": "There are no modules in your application yet ",
+              "description": "Let's start with the first step"
             },
             "filter": {
-              "title": "No posees módulos para este tipo bundle",
-              "description": "Crea el primero"
+              "title": "The project does not have modules for this type of bundle",
+              "description": "Create a module"
             }
           }
         },
@@ -133,7 +140,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
           "subtitle": "Resumen"
         },
         "header": {
-          "searcher": "¿Que buscas?"
+          "searcher": "What are you looking for?"
         },
         "titles": {
           "modules": "Modules",

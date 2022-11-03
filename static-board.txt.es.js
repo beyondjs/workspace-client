@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,11 +36,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 1328562761,
+    hash: 1979140967,
     creator: function (require, exports) {
       exports.txt = {
         "actions": {
-          "copy": "Copiar directorio"
+          "copy": "Copy path"
         }
       };
     }

@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,23 +36,23 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3120734056,
+    hash: 1098882464,
     creator: function (require, exports) {
       exports.txt = {
         "errors": {
           "noSelected": "the application selected does not has distributions",
-          "ALREADY_EXISTS": "Ya existe una distribución con esta configuración",
-          "PORT_USED": "Ya existe una distribución con el puerto indicado"
+          "ALREADY_EXISTS": "A distribution with this configuration already exists",
+          "PORT_USED": "There is already a distribution with the indicated port"
         },
         "modal": {
-          "title": "Creememos Una nueva distribucion",
-          "header": "Elige la configuracion para la distribucion",
-          "formHeader": "Configuración general"
+          "title": "Let's add a new distribution",
+          "header": "Configure",
+          "formHeader": "General Settings"
         },
         "actions": {
-          "add": "Añadir"
+          "add": "Add"
         },
-        "callToAction": "Para ejecutar tu proyecto, presiona el botón de ejecución en la distribución que desees utilizar. ",
+        "callToAction": "To run your project, press the run button on the distribution you want to use.",
         "platforms": {
           "web": "Web",
           "backend": "Backend",
@@ -64,12 +64,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
         },
         "props": {
           "name": {
-            "label": "Nombre de la distribución",
-            "tooltip": "Nombre identificador"
+            "label": "Distribution name",
+            "tooltip": "Identifier name"
           },
           "platform": {
-            "label": "Plataforma",
-            "tooltip": "Corresponde a la plataforma en la cual se desea distribuir el codigo"
+            "label": "Platform",
+            "tooltip": "Corresponds to the platform on which you want to distribute the code"
           },
           "environment": {
             "label": "Entorno",
@@ -77,34 +77,35 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
             "production": "Producción"
           },
           "ports": {
-            "title": "Configuración de puertos",
-            "label": "Puerto",
-            "error": "El puerto no está disponible",
-            "success": "Puerto disponible",
+            "title": "Ports settings",
             "http": {
-              "label": "Puerto servidor HTTP",
-              "tooltip": "Puerto sobre el cúal correrá el servidor http encargado del SSR."
+              "label": "Http server",
+              "tooltip": "Port on which the http server in charge of the SSR will run."
             },
             "inspect": {
-              "label": "Puerto de inspección",
-              "tooltip": "Permitirá realizar inspección de código por medio de las dev tools"
+              "label": "Inspect port",
+              "tooltip": "It will allow code inspection through the dev tools"
             },
             "bundles": {
-              "label": "Puerto DevServer",
-              "tooltip": "El DevServer retorna todos los recursos solicitados en el proceso de desarrollo"
-            }
+              "label": "DevServer port",
+              "tooltip": "The DevServer returns all the resources requested in the development process"
+            },
+            "label": "Port",
+            "error": "Port isn't available",
+            "success": "Port checked and available",
+            "tooltip": "Check port"
           },
           "backend": "Backend",
           "ts": "TS",
-          "ssr": "ssr",
+          "ssr": "SSR",
+          "compress": "Compress",
           "default": "default",
-          "compress": "Comprimir",
-          "checkType": "Comprobación de tipos",
+          "checkType": "Check types",
           "bundler": {
-            "label": "Formato de Módulos",
-            "tooltip": "Formato utilizado para el empaquetamiento de bundles"
+            "label": "Modules format",
+            "tooltip": "Format used for bundle packaging"
           },
-          "advancedSettings": "Configuracion avanzada"
+          "advancedSettings": "Advanced settings"
         }
       };
     }

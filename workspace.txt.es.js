@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,37 +36,43 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 2426178277,
+    hash: 2586773101,
     creator: function (require, exports) {
       exports.txt = {
         "process": {
-          "title": "Procesos",
+          "title": "Processes",
           "start": {
-            "title": "Selecciona una distribución para realizar la compilación"
+            "title": "Select a distribution to compile"
           },
-          "empty": "No hay distribuciones añadidas. Cree uno con la plataforma y las especificaciones que desea construir.",
+          "empty": "No hay distribuciones agregadas. Por favor, crea una con la plataforma y especificaciones que desees compilar.",
           "actions": {
             "market": "Marketplace",
-            "compile": "Compilar",
-            "declarations": "Generar declaraciones"
+            "compile": "Compile",
+            "declarations": "Generate declarations"
           }
         },
         "distribution": {
-          "environment": "Entorno",
+          "environment": "Environment",
           "ts": "TS",
-          "platform": "Plataforma",
+          "platform": "Platform",
           "ssr": "SSR",
           "ports": {
-            "title": "Puertos",
-            "http": "Puerto Http",
-            "inspect": "Puerto de Inspección ",
-            "bundles": "Puerto DevServer"
+            "title": "Ports settings",
+            "http": "Http server",
+            "inspect": "Inspect port",
+            "bundles": "DevServer port"
           },
           "empty": {
             "title": "Distributions",
-            "messages": {
-              "execute": "Es necesario agregar una distribución con la plataforma en la que desees ejecutar el proyecto",
-              "compile": "Es necesario agregar una distribución con la plataforma en la que desees compilar el proyecto"
+            "execute": {
+              "title": "Execute project",
+              "message": "You need to add a distribution with the platform you want to run the project on",
+              "action": "Add distribution"
+            },
+            "compile": {
+              "title": "Compile project",
+              "message": "You need to add a distribution with the platform you want to build the project on",
+              "action": "Add distribution"
             }
           }
         },
@@ -81,17 +87,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
               "splitRight": "Split Right",
               "splitDown": "Split Down",
               "close": "Close",
-              "closeAll": "Cerrar las otras pestañas"
+              "closeAll": "Close other tabs"
             },
             "labels": {
-              "apps": "Proyectos",
-              "navigator": "Navegador",
-              "compile": "Compilador",
-              "static": "Estaticos",
-              "app": "Aplicación",
-              "appConfig": "Configuración",
-              "module": "Modulo",
-              "settings": "Preferencias"
+              "apps": "Projects",
+              "navigator": "navigator",
+              "compile": "Compile app",
+              "static": "Static",
+              "app": "Application",
+              "appConfig": "Application config",
+              "module": "Module",
+              "settings": "Settings"
             }
           }
         }

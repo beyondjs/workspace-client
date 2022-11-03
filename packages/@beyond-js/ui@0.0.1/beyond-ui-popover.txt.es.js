@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,10 +36,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 1258571467,
+    hash: 3319962393,
     creator: function (require, exports) {
       exports.txt = {
-        "title": "Lista tipo Trello con BeyondJS"
+        "title": "Trello list with BeyondJS",
+        "list": {
+          "placeholder": "Agrega el nombre de la tarjeta",
+          "actions": {
+            "card": "Agregar tarjeta",
+            "save": "Guardar"
+          }
+        }
       };
     }
   });

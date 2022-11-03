@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,7 +36,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3644816266,
+    hash: 51649135,
     creator: function (require, exports) {
       exports.txt = {
         "title": "Editor",
@@ -54,7 +54,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
         },
         "tabs": {
           "general": "General",
-          "apps": "Proyectos"
+          "apps": "Projects"
         },
         "actions": {
           "save": "Save"

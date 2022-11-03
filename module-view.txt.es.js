@@ -21,7 +21,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
       "multibundle": true
     },
     "type": "txt"
-  }, _amd_module.uri).package('es');
+  }, _amd_module.uri).package('.');
 
   ;
 
@@ -36,56 +36,58 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 83293035,
+    hash: 1071558211,
     creator: function (require, exports) {
       exports.txt = {
-        "title": "Titulo del modulo",
-        "name": "Nombre del modulo",
-        "path": "Directorio",
+        "title": "Module title",
+        "name": "Module name",
         "description": "Descripción",
         "empty": {
-          "title": "Este modulo no tiene un nombre, agregale uno!",
-          "description": "Agrega una description"
+          "title": "This module does not have name, add one",
+          "description": "Add a description"
         },
         "hmr": "HMR",
+        "path": "Path",
         "platforms": {
           "total": "Total ",
-          "label": "plataformas",
+          "label": "platforms",
           "selected": {
-            "unique": "seleccionada",
-            "multiple": "seleccionadas"
+            "unique": "selected",
+            "multiple": "selected"
           },
           "actions": {
             "save": "Save"
           }
         },
         "labels": {
-          "consumers": "Consumidores",
-          "dependencies": "Dependencias",
-          "totalFiles": "Archivos totales",
-          "distributions": "Distribuciones",
-          "settings": "Configuracion",
-          "bundles": "Bundles"
+          "consumers": "Consumers",
+          "dependencies": "Dependencies",
+          "totalFiles": "total Files",
+          "bundles": "Bundles",
+          "distributions": "Distributions",
+          "settings": "Configuration",
+          "empty": "No elements"
         },
         "bundles": {
-          "selectCspec": "Seleccione la distribución para poder analizar el código de sus bundles.",
+          "selectCspec": "Select the distribution to be able to analyze the code of your package.",
           "state": {
             "errors": "Errors",
-            "wanrings": "Warnings",
+            "warnings": "Warnings",
             "date": "Module validated on"
           }
         },
         "diagnostics": {
-          "generalTitle": "Errores Generales",
+          "generalTitle": "General errors",
           "title": "Errors and warnings in bundle ",
           "general": "General",
           "files": "Files",
           "overwrites": "Overwrites",
           "dependencies": "Dependencies",
-          "fetching": "Validando diagnosticos del módulo",
-          "ready": "Módulo validado el"
+          "fetching": "Checking diagnostics module.",
+          "ready": "Módulo checked on "
         },
         "processors": {
+          "label": "Processors",
           "alerts": "Errors and Warnings",
           "jsx": "JSX Code",
           "js": "JS / Javascript Code",
@@ -115,17 +117,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
           }
         },
         "dependencies": {
-          "legend": "Dependencias encontrados",
-          "callToAction": "No hay dependencias cargados",
+          "legend": "Dependencies found.",
+          "callToAction": "There is not dependencies loaded",
           "actions": {
-            "load": "Validar"
+            "load": "Validate"
           }
         },
         "consumers": {
-          "legend": "Consumidores encontrados",
-          "callToAction": "No hay consumidores cargados",
+          "legend": "Consumers found.",
+          "callToAction": "No consumers loaded",
           "actions": {
-            "load": "Validar"
+            "load": "Validate"
           }
         }
       };
