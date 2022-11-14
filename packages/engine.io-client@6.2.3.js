@@ -1,7 +1,7 @@
 define(["engine.io-parser@5.0.4","@socket.io/component-emitter@3.1.0"], (dep_0, dep_1) => {
 
 const bimport = specifier => {
-	const dependencies = new Map([["engine.io-parser","5.0.4"],["@socket.io/component-emitter","3.1.0"],["engine.io-client","6.2.2"]]);
+	const dependencies = new Map([["engine.io-parser","5.0.4"],["@socket.io/component-emitter","3.1.0"],["engine.io-client","6.2.3"]]);
 	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
@@ -43,15 +43,16 @@ var __toCommonJS = /* @__PURE__ */(cache => {
   return (module2, temp) => {
     return cache && cache.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache && cache.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/engine.io-client.6.2.2.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/engine.io-client.6.2.3.js
 
 
-var engine_io_client_6_2_2_exports = {};
+var engine_io_client_6_2_3_exports = {};
 
-__export(engine_io_client_6_2_2_exports, {
+__export(engine_io_client_6_2_3_exports, {
   Socket: () => Socket,
   Transport: () => Transport,
   installTimerFunctions: () => installTimerFunctions,
+  nextTick: () => nextTick,
   parse: () => parse,
   protocol: () => protocol2,
   transports: () => transports
@@ -792,11 +793,11 @@ function pathNames(obj, path) {
   const regx = /\/{2,9}/g,
         names = path.replace(regx, "/").split("/");
 
-  if (path.substr(0, 1) == "/" || path.length === 0) {
+  if (path.slice(0, 1) == "/" || path.length === 0) {
     names.splice(0, 1);
   }
 
-  if (path.substr(path.length - 1, 1) == "/") {
+  if (path.slice(-1) == "/") {
     names.splice(names.length - 1, 1);
   }
 
@@ -878,12 +879,14 @@ var Socket = class extends import_component_emitter3.Emitter {
 
     if (typeof addEventListener === "function") {
       if (this.opts.closeOnBeforeunload) {
-        addEventListener("beforeunload", () => {
+        this.beforeunloadEventListener = () => {
           if (this.transport) {
             this.transport.removeAllListeners();
             this.transport.close();
           }
-        }, false);
+        };
+
+        addEventListener("beforeunload", this.beforeunloadEventListener, false);
       }
 
       if (this.hostname !== "localhost") {
@@ -1244,6 +1247,7 @@ var Socket = class extends import_component_emitter3.Emitter {
       this.transport.removeAllListeners();
 
       if (typeof removeEventListener === "function") {
+        removeEventListener("beforeunload", this.beforeunloadEventListener, false);
         removeEventListener("offline", this.offlineEventListener, false);
       }
 
@@ -1271,7 +1275,7 @@ var Socket = class extends import_component_emitter3.Emitter {
 Socket.protocol = import_engine4.protocol; // node_modules/engine.io-client/build/esm/index.js
 
 var protocol2 = Socket.protocol;
-module.exports = __toCommonJS(engine_io_client_6_2_2_exports);
+module.exports = __toCommonJS(engine_io_client_6_2_3_exports);
 };
 
 code(module, require);

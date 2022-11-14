@@ -1,11 +1,11 @@
-define(["engine.io-parser@5.0.4","@socket.io/component-emitter@3.1.0","engine.io-client@6.2.2","socket.io-parser@4.2.1"], (dep_0, dep_1, dep_2, dep_3) => {
+define(["engine.io-parser@5.0.4","@socket.io/component-emitter@3.1.0","engine.io-client@6.2.3","socket.io-parser@4.2.1"], (dep_0, dep_1, dep_2, dep_3) => {
 
 const bimport = specifier => {
-	const dependencies = new Map([["engine.io-parser","5.0.4"],["@socket.io/component-emitter","3.1.0"],["engine.io-client","6.2.2"],["socket.io-client","4.5.2"],["socket.io-parser","4.2.1"]]);
+	const dependencies = new Map([["engine.io-parser","5.0.4"],["@socket.io/component-emitter","3.1.0"],["engine.io-client","6.2.3"],["socket.io-client","4.5.3"],["socket.io-parser","4.2.1"]]);
 	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
-const dependencies = new Map([["engine.io-parser@5.0.4", dep_0],["@socket.io/component-emitter@3.1.0", dep_1],["engine.io-client@6.2.2", dep_2],["socket.io-parser@4.2.1", dep_3]]);
+const dependencies = new Map([["engine.io-parser@5.0.4", dep_0],["@socket.io/component-emitter@3.1.0", dep_1],["engine.io-client@6.2.3", dep_2],["socket.io-parser@4.2.1", dep_3]]);
 const require = dependency => dependencies.get(dependency);
 // Prevent esbuild from considering the context to be amd
 const define = void 0;
@@ -55,22 +55,22 @@ var __toCommonJS = /* @__PURE__ */(cache2 => {
   return (module2, temp) => {
     return cache2 && cache2.get(module2) || (temp = __reExport(__markAsModule({}), module2, 1), cache2 && cache2.set(module2, temp), temp);
   };
-})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/socket.io-client.4.5.2.js
+})(typeof WeakMap !== "undefined" ? /* @__PURE__ */new WeakMap() : 0); // .beyond/uimport/socket.io-client.4.5.3.js
 
 
-var socket_io_client_4_5_2_exports = {};
+var socket_io_client_4_5_3_exports = {};
 
-__export(socket_io_client_4_5_2_exports, {
+__export(socket_io_client_4_5_3_exports, {
   Manager: () => Manager,
   Socket: () => Socket,
   connect: () => lookup,
-  default: () => socket_io_client_4_5_2_default,
+  default: () => socket_io_client_4_5_3_default,
   io: () => lookup,
   protocol: () => import_socket4.protocol
 }); // node_modules/socket.io-client/build/esm/url.js
 
 
-var import_engine = require("engine.io-client@6.2.2");
+var import_engine = require("engine.io-client@6.2.3");
 
 function url(uri, path = "", loc) {
   let obj = uri;
@@ -566,7 +566,7 @@ Backoff.prototype.setJitter = function (jitter) {
 }; // node_modules/socket.io-client/build/esm/manager.js
 
 
-var import_engine2 = require("engine.io-client@6.2.2");
+var import_engine2 = require("engine.io-client@6.2.3");
 
 var parser = __toESM(require("socket.io-parser@4.2.1"), 0);
 
@@ -732,12 +732,14 @@ var Manager = class extends import_component_emitter2.Emitter {
     try {
       this.decoder.add(data);
     } catch (e) {
-      this.onclose("parse error");
+      this.onclose("parse error", e);
     }
   }
 
   ondecoded(packet) {
-    this.emitReserved("packet", packet);
+    (0, import_engine2.nextTick)(() => {
+      this.emitReserved("packet", packet);
+    }, this.setTimeoutFn);
   }
 
   onerror(err) {
@@ -891,10 +893,10 @@ Object.assign(lookup, {
   Socket,
   io: lookup,
   connect: lookup
-}); // .beyond/uimport/socket.io-client.4.5.2.js
+}); // .beyond/uimport/socket.io-client.4.5.3.js
 
-var socket_io_client_4_5_2_default = lookup;
-module.exports = __toCommonJS(socket_io_client_4_5_2_exports);
+var socket_io_client_4_5_3_default = lookup;
+module.exports = __toCommonJS(socket_io_client_4_5_3_exports);
 };
 
 code(module, require);
