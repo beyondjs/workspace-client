@@ -208,11 +208,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       title: `total: ${project.errors.length}`,
       className: "circle error__icon",
       onClick: event => compile(event, 'client', project)
-    }), /*#__PURE__*/React.createElement(DSIconButton, {
-      icon: "compile",
-      title: texts.actions.compile,
-      className: "circle",
-      onClick: event => compile(event, 'client', project)
     }));
   }
   /******************
