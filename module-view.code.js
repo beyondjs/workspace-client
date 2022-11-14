@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.5", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/texts-binder", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/tabs", "@beyond-js/ui@0.0.1/preload-text"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.5", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/texts-binder", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/tabs", "@beyond-js/ui@0.0.1/preload-text"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -63,7 +63,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_11;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -1342,14 +1342,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const module = __pkg.bundle.module.specifier;
     const [textsReady, texts] = useTextsBinder(module);
     React.useEffect(() => {
-      const project = workspace.getProject(specs.projectId);
-      setProject(project);
+      workspace.getProject(specs.projectId).then(project => {
+        setProject(project);
 
-      const set = module => {
-        setModel(module);
-      };
+        const set = module => {
+          setModel(module);
+        };
 
-      workspace.getModuleManager(specs.projectId, specs.moduleId).then(set);
+        workspace.getModuleManager(specs.projectId, specs.moduleId).then(set);
+      });
     }, [specs.projectId, specs.moduleId]);
     useBinder([model], () => setReady(model.ready)); //TODO: @julio remove this logic
 

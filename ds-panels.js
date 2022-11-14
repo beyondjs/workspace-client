@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/database", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/models"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -27,8 +27,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     useDSWorkspaceContext
   } = dependency_5;
   const {
-    DSModel,
-    projectsFactory
+    DSModel
   } = dependency_6;
   const {
     TemplateApplicationsSource
@@ -49,9 +48,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     getEditorManager,
     EditorView
   } = dependency_11;
+  const {
+    projectsFactory
+  } = dependency_12;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -68,7 +70,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/perfect-scrollbar', dependency_3], ['@beyond-js/inspect/models.legacy', dependency_4], ['@beyond-js/dashboard/ds-contexts', dependency_5], ['@beyond-js/dashboard/models', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/core-components', dependency_8], ['@beyond-js/dashboard/hooks', dependency_9], ['@beyond-js/dashboard/context-menu', dependency_10], ['@beyond-js/dashboard/ds-editor.code', dependency_11]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/perfect-scrollbar', dependency_3], ['@beyond-js/inspect/reactive-model', dependency_4], ['@beyond-js/dashboard/ds-contexts', dependency_5], ['@beyond-js/dashboard/database', dependency_6], ['@beyond-js/inspect/models.ts', dependency_7], ['@beyond-js/dashboard/core-components', dependency_8], ['@beyond-js/dashboard/hooks', dependency_9], ['@beyond-js/dashboard/context-menu', dependency_10], ['@beyond-js/dashboard/ds-editor.code', dependency_11], ['@beyond-js/dashboard/models', dependency_12]]);
 
   const {
     module
@@ -305,11 +307,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
         active
       } = specs;
 
-      if (!module && !moduleId && elementType !== 'template') {
+      if (!module && !moduleId && !elementType.startsWith('template')) {
         throw new Error('The file requires the module or moduleId parameter');
       }
 
-      if (elementType !== 'template') {
+      if (!elementType.startsWith('template')) {
         /**
          * TODO: @julio unifies the way to get parameters in the function and simplifies it.
          *
@@ -395,14 +397,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       }
 
       let label = specs.label ? specs.label : control.label;
-      const labelName = specs.label ? `${name}.${label.toLowerCase().replace(/ /g, '-')}` : undefined;
-      const tabName = specs.name ? specs.name : specs.moduleId ? specs.moduleId : specs.label ? labelName : name;
-      const id = specs.id || specs.name || tabName;
+      const id = specs.id || specs.name || label;
       const projectId = name === 'application' ? specs.id : specs.projectId;
 
       if (projectId) {
         const project = await projectsFactory.get(projectId);
-        label = project.name;
       }
 
       const finalSpecs = {
@@ -774,8 +773,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     const ref = React.useRef();
     let label = typeof item === 'string' ? item : item.label;
     if (!label && item.type !== 'editor' && item.path !== 'module') label = texts.labels[item.label];
-    const [name, setName] = React.useState(label);
     if (panel.activeItem !== id) attrs.onClick = () => changeTab(item);
+    const [name, setName] = React.useState(label);
 
     const changeTab = item => panel.changeTab(item);
 
@@ -790,7 +789,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
     useBinder([contextMenu], openContextMenu, 'fired.tab');
     useBinder([contextMenu], () => toggleContextMenu(false), 'closed');
-    useBinder([panel], () => setName(panel.tabs.get(id).label), `tab.change.${id}`);
     useBinder([panel, panel.editor], () => {
       if (item.type !== 'editor') return;
       if (item.source.id !== panel.editor.source?.id) return;

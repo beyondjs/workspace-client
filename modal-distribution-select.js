@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/dashboard@0.0.1/breadcrumb.code", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/kernel@0.1.1/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -15,48 +15,50 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     DsBreadcrumb
   } = dependency_3;
   const {
-    Application,
-    ReactiveModel
+    Application
   } = dependency_4;
   const {
-    BeyondAlert
+    ReactiveModel
   } = dependency_5;
+  const {
+    BeyondAlert
+  } = dependency_6;
   const {
     BeyondButton,
     BeyondSwitch
-  } = dependency_6;
-  const {
-    BeyondModal
   } = dependency_7;
   const {
-    BeyondSpinner
+    BeyondModal
   } = dependency_8;
+  const {
+    BeyondSpinner
+  } = dependency_9;
   const {
     useDSWorkspaceContext,
     ProjectContext,
     useProjectContext
-  } = dependency_9;
-  const {
-    useBinder
   } = dependency_10;
   const {
-    projectsFactory
+    useBinder
   } = dependency_11;
+  const {
+    projectsFactory
+  } = dependency_12;
   const {
     DSIconButton,
     DSBoard,
     DsFetchingBlock,
     DSIcon
-  } = dependency_12;
-  const {
-    CurrentTexts
   } = dependency_13;
   const {
-    BeyondScrollContainer
+    CurrentTexts
   } = dependency_14;
+  const {
+    BeyondScrollContainer
+  } = dependency_15;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -73,7 +75,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/dashboard/breadcrumb.code', dependency_3], ['@beyond-js/inspect/models.legacy', dependency_4], ['@beyond-js/ui/alert', dependency_5], ['@beyond-js/ui/form', dependency_6], ['@beyond-js/ui/modal', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/dashboard/ds-contexts', dependency_9], ['@beyond-js/dashboard/hooks', dependency_10], ['@beyond-js/dashboard/models', dependency_11], ['@beyond-js/dashboard/core-components', dependency_12], ['@beyond-js/kernel/texts', dependency_13], ['@beyond-js/ui/perfect-scrollbar', dependency_14]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/dashboard/breadcrumb.code', dependency_3], ['@beyond-js/inspect/models.code', dependency_4], ['@beyond-js/inspect/reactive-model', dependency_5], ['@beyond-js/ui/alert', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/dashboard/ds-contexts', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/core-components', dependency_13], ['@beyond-js/kernel/texts', dependency_14], ['@beyond-js/ui/perfect-scrollbar', dependency_15]]);
 
   const {
     module
@@ -123,7 +125,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       };
       onClose();
       workspace.active.process(selected, {
-        compile,
+        build: compile,
         declarations
       });
       if (workspace.panels.items.size === 1) return workspace.panels.add('compile', specs);
@@ -135,10 +137,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       workspace.openBoard('compile', specs);
     };
 
+    const disabled = selected && (compile || declarations);
     return /*#__PURE__*/React.createElement("footer", {
       className: "ds-modal__footer action-container"
     }, /*#__PURE__*/React.createElement(BeyondButton, {
-      disabled: !selected,
+      disabled: !disabled,
       className: "btn primary",
       onClick: process
     }, texts.actions.compile));

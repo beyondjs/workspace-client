@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/ds-select", "react-select@5.4.0", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/models", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.0/texts", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/tabs"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/popover", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/modal", "@beyond-js/dashboard@0.0.1/ds-select", "react-select@5.4.0", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/database", "@beyond-js/dashboard@0.0.1/tooltip", "@beyond-js/dashboard@0.0.1/uploader-workspace", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/context-menu", "@beyond-js/dashboard@0.0.1/project-distributions.code", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.1/texts", "@beyond-js/dashboard@0.0.1/project-compile.code", "@beyond-js/dashboard@0.0.1/tabs"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -93,7 +93,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_24;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -111,7 +111,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.legacy', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/ds-select', dependency_11], ['react-select', dependency_12], ['@beyond-js/dashboard/hooks', dependency_13], ['@beyond-js/dashboard/models', dependency_14], ['@beyond-js/dashboard/tooltip', dependency_15], ['@beyond-js/dashboard/uploader-workspace', dependency_16], ['@beyond-js/dashboard/ds-editor.code', dependency_17], ['@beyond-js/dashboard/core-components', dependency_18], ['@beyond-js/dashboard/context-menu', dependency_19], ['@beyond-js/dashboard/project-distributions.code', dependency_20], ['@beyond-js/dashboard/ds-contexts', dependency_21], ['@beyond-js/kernel/texts', dependency_22], ['@beyond-js/dashboard/project-compile.code', dependency_23], ['@beyond-js/dashboard/tabs', dependency_24]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/reactive-model', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/image', dependency_5], ['@beyond-js/ui/icon', dependency_6], ['@beyond-js/ui/popover', dependency_7], ['@beyond-js/ui/spinner', dependency_8], ['@beyond-js/ui/preload-text', dependency_9], ['@beyond-js/ui/modal', dependency_10], ['@beyond-js/dashboard/ds-select', dependency_11], ['react-select', dependency_12], ['@beyond-js/dashboard/hooks', dependency_13], ['@beyond-js/dashboard/database', dependency_14], ['@beyond-js/dashboard/tooltip', dependency_15], ['@beyond-js/dashboard/uploader-workspace', dependency_16], ['@beyond-js/dashboard/ds-editor.code', dependency_17], ['@beyond-js/dashboard/core-components', dependency_18], ['@beyond-js/dashboard/context-menu', dependency_19], ['@beyond-js/dashboard/project-distributions.code', dependency_20], ['@beyond-js/dashboard/ds-contexts', dependency_21], ['@beyond-js/kernel/texts', dependency_22], ['@beyond-js/dashboard/project-compile.code', dependency_23], ['@beyond-js/dashboard/tabs', dependency_24]]);
 
   const {
     module
@@ -167,13 +167,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       return this.#currentId;
     }
 
-    start(workspace, appId, moduleId, element) {
+    async start(workspace, appId) {
       if (this.#application && this.currentId !== appId) {
         this.#application.unbind('change', this.triggerEvent);
         this.#application = undefined;
       }
 
-      const model = workspace.getProject(appId);
+      const module = __pkg.bundle.module.specifier;
+      this.#texts = new CurrentTexts(module, true);
+      this.#texts.bind('change', this.triggerEvent);
+      const model = await workspace.getProject(appId);
       this.#currentId = appId;
       model.bind('change', this.triggerEvent);
       this.#workspace = workspace;
@@ -181,14 +184,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       this.#favorites = model.favorites;
       this.#moduleManager = model.moduleManager;
       monacoDependency.bind('change', this.triggerEvent);
-      const module = __pkg.bundle.module.specifier;
-      this.#texts = new CurrentTexts(module, true);
-      this.#texts.bind('change', this.triggerEvent);
       this.triggerEvent();
     }
 
   }();
-  window.y = controller;
   /********
   index.jsx
   ********/
@@ -1363,7 +1362,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       event.stopPropagation();
       event.preventDefault();
       workspace.openBoard('module', {
-        label: am.module.pathname,
+        label: am.name,
         moduleId: am.module.id,
         projectId: project.application.id
       });

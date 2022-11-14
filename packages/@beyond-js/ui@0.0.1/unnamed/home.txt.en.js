@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {

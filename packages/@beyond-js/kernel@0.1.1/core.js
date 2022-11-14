@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -7,7 +7,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
   _exports.languages = _exports.hmr = _exports.beyond = _exports.__beyond_pkg = _exports.SingleCall = _exports.PendingPromise = _exports.ListenerFunction = _exports.Languages = _exports.Events = _exports.CancellationToken = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/backend", "0.1.0"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/backend", "0.1.0"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -17,7 +17,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle"], function (_expor
 
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/kernel@0.1.0/core"
+      "vspecifier": "@beyond-js/kernel@0.1.1/core"
     },
     "type": "ts"
   }, _amd_module.uri).package();

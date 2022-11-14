@@ -2466,42 +2466,53 @@ html {
   html .p2 {
     font-size: 12px; }
 
-body .fade-in {
-  -webkit-animation-name: fadeIn;
-  -moz-animation-name: fadeIn;
-  -ms-animation-name: fadeIn;
-  -o-animation-name: fadeIn;
-  animation-name: fadeIn;
-  -webkit-animation-iteration-count: 1;
-  -moz-animation-iteration-count: 1;
-  -ms-animation-iteration-count: 1;
-  -o-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -ms-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-delay: 0s;
-  -moz-animation-delay: 0s;
-  -ms-animation-delay: 0s;
-  -o-animation-delay: 0s;
-  animation-delay: 0s;
-  -webkit-animation-timing-function: ease;
-  -moz-animation-timing-function: ease;
-  -ms-animation-timing-function: ease;
-  -o-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  -ms-animation-fill-mode: both;
-  -o-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden; }
+html,
+body {
+  height: 100%; }
+  html .layouts-container,
+  html .beyond-dashboard-layout,
+  html .dashboard-layout,
+  body .layouts-container,
+  body .beyond-dashboard-layout,
+  body .dashboard-layout {
+    height: 100%; }
+  html .fade-in,
+  body .fade-in {
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -ms-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-animation-timing-function: ease;
+    -moz-animation-timing-function: ease;
+    -ms-animation-timing-function: ease;
+    -o-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden; }
 
 @-webkit-keyframes fadeIn {
   0% {
@@ -2516,8 +2527,10 @@ body .fade-in {
     opacity: 1; } }
 
 @-ms-keyframes fadeIn {
+  html .fade-in 0%,
   body .fade-in 0% {
     opacity: 0; }
+  html .fade-in 100%,
   body .fade-in 100% {
     opacity: 1; } }
 
@@ -2532,43 +2545,43 @@ body .fade-in {
     opacity: 0; }
   100% {
     opacity: 1; } }
-
-body .fade-out {
-  -webkit-animation-name: fadeOut;
-  -moz-animation-name: fadeOut;
-  -ms-animation-name: fadeOut;
-  -o-animation-name: fadeOut;
-  animation-name: fadeOut;
-  -webkit-animation-iteration-count: 1;
-  -moz-animation-iteration-count: 1;
-  -ms-animation-iteration-count: 1;
-  -o-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -ms-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-delay: 0s;
-  -moz-animation-delay: 0s;
-  -ms-animation-delay: 0s;
-  -o-animation-delay: 0s;
-  animation-delay: 0s;
-  -webkit-animation-timing-function: ease;
-  -moz-animation-timing-function: ease;
-  -ms-animation-timing-function: ease;
-  -o-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  -ms-animation-fill-mode: both;
-  -o-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden; }
+  html .fade-out,
+  body .fade-out {
+    -webkit-animation-name: fadeOut;
+    -moz-animation-name: fadeOut;
+    -ms-animation-name: fadeOut;
+    -o-animation-name: fadeOut;
+    animation-name: fadeOut;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -ms-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-animation-timing-function: ease;
+    -moz-animation-timing-function: ease;
+    -ms-animation-timing-function: ease;
+    -o-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden; }
 
 @-webkit-keyframes fadeOut {
   0% {
@@ -2583,8 +2596,10 @@ body .fade-out {
     opacity: 0; } }
 
 @-ms-keyframes fadeOut {
+  html .fade-out 0%,
   body .fade-out 0% {
     opacity: 1; }
+  html .fade-out 100%,
   body .fade-out 100% {
     opacity: 0; } }
 
@@ -2599,61 +2614,229 @@ body .fade-out {
     opacity: 1; }
   100% {
     opacity: 0; } }
-
-body .p-0 {
-  padding: 0; }
-
-body .p-60 {
-  padding-top: 60px; }
-
-body .center-block {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-
-body .lower, body .lower:first-letter {
-  text-transform: lowercase; }
-
-body .text-center {
-  text-align: center; }
-
-body .align-right {
-  align-items: end;
-  justify-content: end;
-  text-align: right; }
-
-body .container-fluid, body .container-sm, body .container-md, body .container-lg, body .container-xl, body .container-xxl {
-  padding: 20px; }
-
-body .content-on-primary, body .on-primary, body .bg-primary {
-  color: #fff; }
-  body .content-on-primary h1, body .content-on-primary h2, body .content-on-primary h3, body .content-on-primary h4, body .content-on-primary h5, body .content-on-primary h6, body .content-on-primary p, body .content-on-primary .p1, body .content-on-primary .p2, body .content-on-primary section, body .content-on-primary article, body .content-on-primary header, body .content-on-primary footer, body .on-primary h1, body .on-primary h2, body .on-primary h3, body .on-primary h4, body .on-primary h5, body .on-primary h6, body .on-primary p, body .on-primary .p1, body .on-primary .p2, body .on-primary section, body .on-primary article, body .on-primary header, body .on-primary footer, body .bg-primary h1, body .bg-primary h2, body .bg-primary h3, body .bg-primary h4, body .bg-primary h5, body .bg-primary h6, body .bg-primary p, body .bg-primary .p1, body .bg-primary .p2, body .bg-primary section, body .bg-primary article, body .bg-primary header, body .bg-primary footer {
+  html .p-0,
+  body .p-0 {
+    padding: 0; }
+  html .p-60,
+  body .p-60 {
+    padding-top: 60px; }
+  html .center-block,
+  body .center-block {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  html .lower, html .lower:first-letter,
+  body .lower,
+  body .lower:first-letter {
+    text-transform: lowercase; }
+  html .text-center,
+  body .text-center {
+    text-align: center; }
+  html .align-right,
+  body .align-right {
+    align-items: end;
+    justify-content: end;
+    text-align: right; }
+  html .container-fluid, html .container-sm, html .container-md, html .container-lg, html .container-xl, html .container-xxl,
+  body .container-fluid,
+  body .container-sm,
+  body .container-md,
+  body .container-lg,
+  body .container-xl,
+  body .container-xxl {
+    padding: 20px; }
+  html .content-on-primary,
+  html .on-primary,
+  html .bg-primary,
+  body .content-on-primary,
+  body .on-primary,
+  body .bg-primary {
     color: #fff; }
-
-body .content-on-secondary, body .on-secondary, body .bg-secondary {
-  color: #FFFFFF; }
-  body .content-on-secondary h1, body .content-on-secondary h2, body .content-on-secondary h3, body .content-on-secondary h4, body .content-on-secondary h5, body .content-on-secondary h6, body .content-on-secondary p, body .content-on-secondary .p1, body .content-on-secondary .p2, body .content-on-secondary section, body .content-on-secondary article, body .content-on-secondary header, body .content-on-secondary footer, body .on-secondary h1, body .on-secondary h2, body .on-secondary h3, body .on-secondary h4, body .on-secondary h5, body .on-secondary h6, body .on-secondary p, body .on-secondary .p1, body .on-secondary .p2, body .on-secondary section, body .on-secondary article, body .on-secondary header, body .on-secondary footer, body .bg-secondary h1, body .bg-secondary h2, body .bg-secondary h3, body .bg-secondary h4, body .bg-secondary h5, body .bg-secondary h6, body .bg-secondary p, body .bg-secondary .p1, body .bg-secondary .p2, body .bg-secondary section, body .bg-secondary article, body .bg-secondary header, body .bg-secondary footer {
+    html .content-on-primary h1,
+    html .content-on-primary h2,
+    html .content-on-primary h3,
+    html .content-on-primary h4,
+    html .content-on-primary h5,
+    html .content-on-primary h6,
+    html .content-on-primary p,
+    html .content-on-primary .p1,
+    html .content-on-primary .p2,
+    html .content-on-primary section,
+    html .content-on-primary article,
+    html .content-on-primary header,
+    html .content-on-primary footer,
+    html .on-primary h1,
+    html .on-primary h2,
+    html .on-primary h3,
+    html .on-primary h4,
+    html .on-primary h5,
+    html .on-primary h6,
+    html .on-primary p,
+    html .on-primary .p1,
+    html .on-primary .p2,
+    html .on-primary section,
+    html .on-primary article,
+    html .on-primary header,
+    html .on-primary footer,
+    html .bg-primary h1,
+    html .bg-primary h2,
+    html .bg-primary h3,
+    html .bg-primary h4,
+    html .bg-primary h5,
+    html .bg-primary h6,
+    html .bg-primary p,
+    html .bg-primary .p1,
+    html .bg-primary .p2,
+    html .bg-primary section,
+    html .bg-primary article,
+    html .bg-primary header,
+    html .bg-primary footer,
+    body .content-on-primary h1,
+    body .content-on-primary h2,
+    body .content-on-primary h3,
+    body .content-on-primary h4,
+    body .content-on-primary h5,
+    body .content-on-primary h6,
+    body .content-on-primary p,
+    body .content-on-primary .p1,
+    body .content-on-primary .p2,
+    body .content-on-primary section,
+    body .content-on-primary article,
+    body .content-on-primary header,
+    body .content-on-primary footer,
+    body .on-primary h1,
+    body .on-primary h2,
+    body .on-primary h3,
+    body .on-primary h4,
+    body .on-primary h5,
+    body .on-primary h6,
+    body .on-primary p,
+    body .on-primary .p1,
+    body .on-primary .p2,
+    body .on-primary section,
+    body .on-primary article,
+    body .on-primary header,
+    body .on-primary footer,
+    body .bg-primary h1,
+    body .bg-primary h2,
+    body .bg-primary h3,
+    body .bg-primary h4,
+    body .bg-primary h5,
+    body .bg-primary h6,
+    body .bg-primary p,
+    body .bg-primary .p1,
+    body .bg-primary .p2,
+    body .bg-primary section,
+    body .bg-primary article,
+    body .bg-primary header,
+    body .bg-primary footer {
+      color: #fff; }
+  html .content-on-secondary,
+  html .on-secondary,
+  html .bg-secondary,
+  body .content-on-secondary,
+  body .on-secondary,
+  body .bg-secondary {
     color: #FFFFFF; }
-
-body .self-center {
-  align-items: center;
-  justify-self: center;
-  align-self: center; }
-
-body .no-pd {
-  padding: 0; }
-
-body .mt-15 {
-  margin-top: 15px; }
-
-body .mt-30 {
-  margin-top: 2rem; }
-
-body .mt-100 {
-  margin-top: 100px; }
-
-body .relative__container {
-  position: relative; }
+    html .content-on-secondary h1,
+    html .content-on-secondary h2,
+    html .content-on-secondary h3,
+    html .content-on-secondary h4,
+    html .content-on-secondary h5,
+    html .content-on-secondary h6,
+    html .content-on-secondary p,
+    html .content-on-secondary .p1,
+    html .content-on-secondary .p2,
+    html .content-on-secondary section,
+    html .content-on-secondary article,
+    html .content-on-secondary header,
+    html .content-on-secondary footer,
+    html .on-secondary h1,
+    html .on-secondary h2,
+    html .on-secondary h3,
+    html .on-secondary h4,
+    html .on-secondary h5,
+    html .on-secondary h6,
+    html .on-secondary p,
+    html .on-secondary .p1,
+    html .on-secondary .p2,
+    html .on-secondary section,
+    html .on-secondary article,
+    html .on-secondary header,
+    html .on-secondary footer,
+    html .bg-secondary h1,
+    html .bg-secondary h2,
+    html .bg-secondary h3,
+    html .bg-secondary h4,
+    html .bg-secondary h5,
+    html .bg-secondary h6,
+    html .bg-secondary p,
+    html .bg-secondary .p1,
+    html .bg-secondary .p2,
+    html .bg-secondary section,
+    html .bg-secondary article,
+    html .bg-secondary header,
+    html .bg-secondary footer,
+    body .content-on-secondary h1,
+    body .content-on-secondary h2,
+    body .content-on-secondary h3,
+    body .content-on-secondary h4,
+    body .content-on-secondary h5,
+    body .content-on-secondary h6,
+    body .content-on-secondary p,
+    body .content-on-secondary .p1,
+    body .content-on-secondary .p2,
+    body .content-on-secondary section,
+    body .content-on-secondary article,
+    body .content-on-secondary header,
+    body .content-on-secondary footer,
+    body .on-secondary h1,
+    body .on-secondary h2,
+    body .on-secondary h3,
+    body .on-secondary h4,
+    body .on-secondary h5,
+    body .on-secondary h6,
+    body .on-secondary p,
+    body .on-secondary .p1,
+    body .on-secondary .p2,
+    body .on-secondary section,
+    body .on-secondary article,
+    body .on-secondary header,
+    body .on-secondary footer,
+    body .bg-secondary h1,
+    body .bg-secondary h2,
+    body .bg-secondary h3,
+    body .bg-secondary h4,
+    body .bg-secondary h5,
+    body .bg-secondary h6,
+    body .bg-secondary p,
+    body .bg-secondary .p1,
+    body .bg-secondary .p2,
+    body .bg-secondary section,
+    body .bg-secondary article,
+    body .bg-secondary header,
+    body .bg-secondary footer {
+      color: #FFFFFF; }
+  html .self-center,
+  body .self-center {
+    align-items: center;
+    justify-self: center;
+    align-self: center; }
+  html .no-pd,
+  body .no-pd {
+    padding: 0; }
+  html .mt-15,
+  body .mt-15 {
+    margin-top: 15px; }
+  html .mt-30,
+  body .mt-30 {
+    margin-top: 2rem; }
+  html .mt-100,
+  body .mt-100 {
+    margin-top: 100px; }
+  html .relative__container,
+  body .relative__container {
+    position: relative; }
 
 .beyond-alert {
   padding: 1rem 2.5rem; }

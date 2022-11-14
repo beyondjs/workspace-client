@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kernel@0.1.0/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/kernel@0.1.1/core"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -7,7 +7,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/kerne
   _exports.hmr = _exports.backends = _exports.__beyond_pkg = _exports.Backend = _exports.ActionsBridge = void 0;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.0"], ["@beyond-js/local", "0.1.0"], ["socket.io", "4.5.2"], ["socket.io-client", "4.5.2"], ["@beyond-js/backend", "0.1.0"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.1"], ["@beyond-js/local", "0.1.0"], ["socket.io", "4.5.3"], ["socket.io-client", "4.5.3"], ["@beyond-js/backend", "0.1.0"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 

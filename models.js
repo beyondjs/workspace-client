@@ -1,12 +1,10 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspect@0.0.1/models.legacy", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/ds-editor.code"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/ds-editor.code", "@beyond-js/dashboard@0.0.1/database"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.BundleManager = void 0;
-  _exports.DSDatabase = DSDatabase;
-  _exports.projectsFactory = _exports.hmr = _exports.branchFactory = _exports.__beyond_pkg = _exports.TreeFactory = _exports.Packagers = _exports.ModuleModel = _exports.ModuleManager = _exports.FilesTree = _exports.FavoritesModel = _exports.FavoritesFactory = _exports.FavoriteChildren = _exports.DSUser = _exports.DSModel = void 0;
+  _exports.projectsFactory = _exports.hmr = _exports.branchFactory = _exports.__beyond_pkg = _exports.TreeFactory = _exports.Packagers = _exports.ModuleModel = _exports.ModuleManager = _exports.FilesTree = _exports.FavoritesModel = _exports.FavoritesFactory = _exports.FavoriteChildren = _exports.DSUser = _exports.BundleManager = void 0;
 
   /*************
   LEGACY IMPORTS
@@ -30,9 +28,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
   const {
     getEditorManager
   } = dependency_5;
+  const {
+    DSModel
+  } = dependency_6;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -49,7 +50,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
 
   ;
 
-  __pkg.dependencies.update([['@beyond-js/inspect/models.legacy', dependency_1], ['@beyond-js/inspect/models.ts', dependency_2], ['@beyond-js/plm/plm-indexed-db', dependency_3], ['@beyond-js/dashboard/hooks', dependency_4], ['@beyond-js/dashboard/ds-editor.code', dependency_5]]);
+  __pkg.dependencies.update([['@beyond-js/inspect/reactive-model', dependency_1], ['@beyond-js/inspect/models.ts', dependency_2], ['@beyond-js/plm/plm-indexed-db', dependency_3], ['@beyond-js/dashboard/hooks', dependency_4], ['@beyond-js/dashboard/ds-editor.code', dependency_5], ['@beyond-js/dashboard/database', dependency_6]]);
 
   const {
     module
@@ -2070,182 +2071,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     }
 
   }();
-  /***********************
-  FILE: database\config.js
-  ***********************/
-
-  _exports.TreeFactory = TreeFactory;
-
-  function getConfig() {
-    const CONFIG = Object.freeze({
-      DB: 'beyond.dashboard',
-      VERSION: 6
-    }); //TODO validar uso de tablas list, records, storages y unpublished
-
-    const tables = {
-      favorites: {
-        name: 'favorites',
-        config: {
-          keyPath: 'id',
-          autoIncrement: true
-        },
-        indexes: [['id', 'id', {
-          unique: true
-        }], ['name', 'name', {
-          unique: true
-        }], ['items', 'items', {
-          unique: false
-        }]]
-      },
-      workspaces: {
-        name: 'workspaces',
-        config: {
-          keyPath: 'wd'
-        },
-        indexes: [['wd', 'wd', {
-          unique: true
-        }], ['lastAccess', 'lastAccess']]
-      },
-      user: {
-        name: 'user',
-        config: {
-          keyPath: 'id',
-          autoIncrement: true
-        },
-        indexes: [['id', 'id', {
-          unique: true
-        }], ['email', 'email', {
-          unique: true
-        }], ['cover', 'cover']]
-      },
-      workspace: {
-        name: 'workspace',
-        config: {
-          keyPath: 'wd',
-          autoIncrement: true
-        },
-        indexes: [['id', 'id', {
-          unique: true
-        }], ['panels', 'panels'], ['config', 'config'], ['wd', 'wd', {
-          unique: true
-        }]]
-      }
-    };
-    const stores = [];
-
-    for (const store in tables) {
-      stores.push(tables[store]);
-    }
-
-    return {
-      name: CONFIG.DB,
-      version: CONFIG.VERSION,
-      stores: stores
-    };
-  }
-  /************************
-  FILE: database\indexed.js
-  ************************/
-
-
-  function DSDatabase() {
-    'use strict';
-
-    let db, initialised;
-    const config = getConfig();
-    Object.defineProperty(this, 'initialised', {
-      get: () => initialised
-    });
-    Object.defineProperty(this, 'db', {
-      get: () => db
-    });
-    let promise;
-
-    this.initialise = async () => {
-      if (initialised || promise) return promise;
-      promise = new PendingPromise();
-      const {
-        BeyondDB
-      } = await beyond.import('@beyond-js/dashboard/indexeddb');
-      db = await BeyondDB.create(config);
-      initialised = true;
-      promise.resolve(db);
-      promise = undefined;
-    };
-
-    this.store = name => db.stores.has(name) ? db.stores.get(name) : false;
-  }
-  /****************
-  FILE: ds-model.js
-  ****************/
-
-
-  class DSModelObject extends ReactiveModel {
-    _db;
-
-    get db() {
-      return this._db;
-    }
-
-    ready() {
-      return this.db.initialised;
-    }
-
-    #initialising;
-    #wd;
-
-    get wd() {
-      return this.#wd;
-    }
-
-    #lastAccess;
-
-    get lastAccess() {
-      return this.#lastAccess;
-    }
-
-    constructor() {
-      super();
-      const database = new DSDatabase();
-      database.initialise();
-      this._db = database;
-    }
-
-    async initialise(wd) {
-      if (this.#initialising) return this.#initialising;
-      this.#initialising = this.db.initialise();
-      await this.#initialising;
-      this.#lastAccess = performance.now();
-      const data = await DSModel.db.store('workspace').get(wd);
-      if (!data) return this.reset(wd);
-      return this.db.store('workspaces').save({
-        wd,
-        lastAccess: this.#lastAccess
-      });
-    }
-
-    async reset(wd) {
-      const specs = {
-        wd,
-        lastAccess: performance.now(),
-        panels: {
-          items: new Map()
-        },
-        opened: new Set()
-      };
-      await this.db.store('workspace').save(specs);
-      return specs;
-    }
-
-    store = name => this.db.store(name);
-  }
-
-  const DSModel = new DSModelObject();
   /***************
   FILE: factory.js
   ***************/
 
-  _exports.DSModel = DSModel;
+  _exports.TreeFactory = TreeFactory;
 
   class ProjectsFactory {
     _applications = new Map();
@@ -2265,6 +2095,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
 
   }
 
+  /* bundle */
   const projectsFactory = new ProjectsFactory();
   /**************************
   FILE: favorites\children.js
@@ -2859,7 +2690,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
       this.#projectModel = projectModel;
       this._moduleManager = projectModel.moduleManager;
 
-      this.onRename = () => this.triggerEvent('favorite.renamed');
+      this.onRename = () => this.triggerEvent("favorite.renamed");
 
       this._check();
     }
@@ -2873,7 +2704,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     async _check() {
       this._promise = new PendingPromise();
       await DSModel.initialise();
-      const favorites = await DSModel.db.store('favorites');
+      const favorites = await DSModel.db.store("favorites");
       this._db = favorites;
       const items = await favorites.getAll();
       items.forEach(item => {
@@ -2891,13 +2722,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
         const instance = new FavoritesList(this, this._moduleManager, specs);
 
         const onLoad = () => {
-          this.triggerEvent('loaded');
+          this.triggerEvent("loaded");
           this.items.set(instance.id, instance);
-          instance.unbind('favorites.loaded', onLoad);
+          instance.unbind("favorites.loaded", onLoad);
         };
 
-        instance.bind('favorites.loaded', onLoad);
-        instance.bind('favorite.renamed', this.onRename);
+        instance.bind("favorites.loaded", onLoad);
+        instance.bind("favorite.renamed", this.onRename);
         this.items.set(instance.id, instance);
         return instance;
       });
@@ -2907,14 +2738,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
 
     add = async (name, specs) => {
       try {
-        const identifier = name.replace(/ /g, '-').toLowerCase();
+        const identifier = name.replace(/ /g, "-").toLowerCase();
         const favorite = this.items.has(name) ? this.items.get(name) : new FavoritesList(this, this._moduleManager, {
           name: name,
           id: identifier
         });
         await favorite.add(specs);
         this.items.set(favorite.id, favorite);
-        favorite.bind('favorite.renamed', this.onRename);
+        favorite.bind("favorite.renamed", this.onRename);
         this.triggerEvent();
       } catch (e) {
         console.error(103, e);
@@ -4206,7 +4037,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
   _exports.ModuleManager = ModuleManager;
 
   class ProjectModel extends ReactiveModel {
-    #bundles = ['layout', 'page', 'code', 'widget', 'all'];
+    #bundles = ["layout", "page", "code", "widget", "all"];
 
     get bundles() {
       return this.#bundles;
@@ -4234,12 +4065,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     }
 
     get containers() {
-      const items = ['all', 'application'];
+      const items = ["all", "application"];
       this.application.libraries?.items?.forEach(item => items.push(item.library.name));
       return items;
     }
 
-    #filterContainer = 'application';
+    #filterContainer = "application";
 
     get filterContainer() {
       return this.#filterContainer;
@@ -4247,7 +4078,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
 
     get specifier() {
       let specifier = this.#application.specifier ?? this.#application.name;
-      specifier = ['undefined'].includes(specifier) ? undefined : specifier;
+      specifier = ["undefined"].includes(specifier) ? undefined : specifier;
       return specifier;
     }
 
@@ -4257,7 +4088,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
       this.triggerEvent();
     }
 
-    _filterBundle = 'all';
+    _filterBundle = "all";
 
     get filterBundle() {
       return this._filterBundle;
@@ -4269,7 +4100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
       this.triggerEvent();
     }
 
-    _filterText = '';
+    _filterText = "";
 
     get filterText() {
       return this._filterText;
@@ -4278,7 +4109,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     set filterText(value) {
       if (value === this._filterText) return;
       this._filterText = value;
-      this.triggerEvent('items.filtered');
+      this.triggerEvent("items.filtered");
     }
     /**
      * Return the items of the application checking if it's necessary apply a filter.
@@ -4436,18 +4267,18 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
         },
         tree: SPECS.tree
       });
-      this.#application.bind('change', this.checkLoaded);
-      this.#application.bind('change', this.validateErrors);
-      this.#application.bind('change', this.triggerEvent);
+      this.#application.bind("change", this.checkLoaded);
+      this.#application.bind("change", this.validateErrors);
+      this.#application.bind("change", this.triggerEvent);
       this.#application.fetch();
       this.#moduleManager = new ModuleManager(this, moduleId);
       this.#favorites = FavoritesFactory.get(this.application.id, this);
-      this.#favorites.bind('change', this.triggerEvent);
+      this.#favorites.bind("change", this.triggerEvent);
     }
 
     checkLoaded = () => {
       if (!this.application.tree.landed) return;
-      this.application.unbind('change', this.checkLoaded);
+      this.application.unbind("change", this.checkLoaded);
       this.#processModules();
       this.#staticManager = new StaticManager(this);
       this.#processTemplate();
@@ -4455,14 +4286,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     };
 
     #processModules() {
-      const items = this.itemsByContainer('application').map(module => module);
-      this.#modulesTree = TreeFactory.get('project', {
+      const items = this.itemsByContainer("application").map(module => module);
+      this.#modulesTree = TreeFactory.get("project", {
         id: this.application.id,
         project: this,
         object: this.application,
         items,
         listener: () => {
-          const items = this.itemsByContainer('application').map(module => module);
+          const items = this.itemsByContainer("application").map(module => module);
           if (!this.items || !this.am.tree.landed) return;
           if (this.items.length === this.#modulesTree.elements.length) return;
           this.#modulesTree.setElements(items);
@@ -4490,7 +4321,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     _filterItems() {
       const specs = {};
       if (!this.am) return [];
-      specs.container = this.filterContainer ? this.#getContainerId(this.filterContainer) : 'application';
+      specs.container = this.filterContainer ? this.#getContainerId(this.filterContainer) : "application";
       if (this.filterText) specs.text = this.filterText;
       if (this.filterBundle) specs.bundle = this.filterBundle;
       return this.am.getItems(specs);
@@ -4503,7 +4334,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     }
 
     #getContainerId(container) {
-      if (['application', 'all'].includes(container)) return container;
+      if (["application", "all"].includes(container)) return container;
       const library = this.application.libraries.items.find(library => library.library?.name === container);
       if (!library) return container;
       return `${library.id}/`;
@@ -4523,16 +4354,24 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "@beyond-js/inspe
     };
 
     async process(id, actions) {
+      if (!id) {
+        console.warn('id is required to process');
+        return;
+      }
+
+      if (!actions.build && !actions.declarations) {
+        console.warn('No actions to process');
+        return;
+      }
+
       try {
-        this.processing = true; // TODO: @felix setAction
-
-        console.log('id, actions', id, actions);
-        await this.application.process.run(id, actions); // const distribution = this.application.deployment.distributions.get(id);
-        // await this.application.builder.build(distribution.values);
-
+        this.processing = true;
+        await this.application.process.run(id, actions);
         this.processing = false;
-        this.triggerEvent('compilation.change');
-      } catch (e) {}
+        this.triggerEvent("compilation.change");
+      } catch (e) {
+        console.error(e);
+      }
     }
 
   }

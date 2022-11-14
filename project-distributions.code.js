@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/dashboard@0.0.1/project-distributions-form", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/ui@0.0.1/form", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/texts-binder", "@beyond-js/ui@0.0.1/icon", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-contexts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/dashboard@0.0.1/project-distributions-form", "@beyond-js/dashboard@0.0.1/ds-select", "@beyond-js/ui@0.0.1/form", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/texts-binder", "@beyond-js/ui@0.0.1/icon", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-contexts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -56,7 +56,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
   } = dependency_13;
 
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.0"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.2"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
 
@@ -108,25 +108,25 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
     distribution,
     texts
   }) => {
-    if (['ios', 'android'].includes(distribution.platform)) return null;
+    if (["ios", "android"].includes(distribution.platform)) return null;
     const [status, setStatus] = React.useState(distribution.launcher?.status);
     const [fetching, setFetching] = React.useState(false);
     const {
       launcher
     } = distribution;
-    const isWeb = ['web'].includes(distribution.platform);
-    const action = launcher?.status === 'running' ? 'stop' : 'start';
+    const isWeb = ["web"].includes(distribution.platform);
+    const action = launcher?.status === "running" ? "stop" : "start";
     useBinder([launcher], () => setStatus(distribution.launcher?.status));
 
     const onClick = async event => {
-      event.stopPropagation();
       const {
         action
       } = event.currentTarget.dataset;
+      event.stopPropagation();
 
       if (isWeb) {
         const url = `http://localhost:${distribution.ports.bundles}`;
-        window.open(url, '_blank');
+        window.open(url, "_blank");
         return;
       }
 
@@ -141,14 +141,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
       }
     };
 
-    const icon = action === 'start' ? 'play' : action;
+    const icon = action === "start" ? "play" : action;
     const attrs = {
       icon: icon,
-      title: 'Run',
+      title: "Run",
       onClick: onClick
     };
 
-    if (fetching || launcher?.status === 'initialising') {
+    if (fetching || launcher?.status === "initialising") {
       return /*#__PURE__*/React.createElement("div", {
         className: "distribution__actions"
       }, /*#__PURE__*/React.createElement("button", {
@@ -161,8 +161,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.0/bundle", "react@16.14.0", 
 
     return /*#__PURE__*/React.createElement("div", {
       className: "distribution__actions"
-    }, launcher?.status === 'running' && /*#__PURE__*/React.createElement(DSIconButton, {
+    }, launcher?.status === "running" && /*#__PURE__*/React.createElement(DSIconButton, {
       icon: "replay",
+      onClick: onClick,
       "data-action": "restart"
     }), /*#__PURE__*/React.createElement(DSIconButton, _extends({}, attrs, {
       "data-action": action
