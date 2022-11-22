@@ -202,12 +202,38 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       className: "module__alerts-section"
     }, /*#__PURE__*/React.createElement(GeneralAlerts, null), /*#__PURE__*/React.createElement(Diagnostics, null));
   }
-  /***********************************
-  bundles\bundle\diagnostics\files.jsx
-  ***********************************/
+  /*************************************
+  bundles\bundle\diagnostics\general.jsx
+  *************************************/
 
 
-  function FilesDiagnostics({
+  const GeneralDiagnostics = ({
+    type,
+    data
+  }) => {
+    if (!data || !data.length) return null;
+    const clss = {
+      errors: 'error-text',
+      warnings: 'warning-text'
+    };
+    if (!clss.hasOwnProperty(type)) type = 'errors';
+    const cls = `ds-diagnostics ${clss[type]}`;
+    const {
+      texts
+    } = useModuleContext();
+    const output = data.map((item, i) => /*#__PURE__*/React.createElement("li", {
+      key: item.id
+    }, item.message));
+    return /*#__PURE__*/React.createElement("ul", {
+      className: cls
+    }, output);
+  };
+  /**********************************
+  bundles\bundle\diagnostics\maps.jsx
+  **********************************/
+
+
+  function MapsDiagnostics({
     data
   }) {
     const {
@@ -281,32 +307,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       className: cls
     }, output);
   }
-  /*************************************
-  bundles\bundle\diagnostics\general.jsx
-  *************************************/
-
-
-  const GeneralDiagnostics = ({
-    type,
-    data
-  }) => {
-    if (!data || !data.length) return null;
-    const clss = {
-      errors: 'error-text',
-      warnings: 'warning-text'
-    };
-    if (!clss.hasOwnProperty(type)) type = 'errors';
-    const cls = `ds-diagnostics ${clss[type]}`;
-    const {
-      texts
-    } = useModuleContext();
-    const output = data.map((item, i) => /*#__PURE__*/React.createElement("li", {
-      key: item.id
-    }, item.message));
-    return /*#__PURE__*/React.createElement("ul", {
-      className: cls
-    }, output);
-  };
   /************************
   bundles\bundle\header.jsx
   ************************/
@@ -363,14 +363,22 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
   }) {
     const {
       general,
-      files
+      files,
+      dependencies,
+      overwrites
     } = diagnostics;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(GeneralDiagnostics, {
       type: "error",
       data: general
-    }), /*#__PURE__*/React.createElement(FilesDiagnostics, {
+    }), /*#__PURE__*/React.createElement(MapsDiagnostics, {
       type: "error",
       data: files
+    }), /*#__PURE__*/React.createElement(MapsDiagnostics, {
+      type: "error",
+      data: dependencies
+    }), /*#__PURE__*/React.createElement(MapsDiagnostics, {
+      type: "error",
+      data: overwrites
     }));
   }
   /***********************

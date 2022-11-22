@@ -128,13 +128,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         build: compile,
         declarations
       });
-      if (workspace.panels.items.size === 1) return workspace.panels.add('compile', specs);
+
+      if (workspace.panels.items.size === 1) {
+        await workspace.panels.add("compile", specs);
+      }
 
       if (workspace.panels.boardOpened(specs.id)) {
         return;
       }
 
-      workspace.openBoard('compile', specs);
+      workspace.openBoard("compile", specs);
     };
 
     const disabled = selected && (compile || declarations);
@@ -161,6 +164,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       texts,
       toggleCompilationModal
     } = workspace;
+    const [ready, setReady] = React.useState(workspace.active.ready);
     const {
       application: {
         deployment: {
@@ -168,8 +172,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         }
       }
     } = workspace.active;
+    useBinder([workspace.active], () => setReady(workspace.active.ready));
     const [compile, setCompile] = React.useState(false);
     const [declarations, setDeclarations] = React.useState(false);
+    if (!ready) return "...";
 
     if (!distributions.size) {
       return /*#__PURE__*/React.createElement(BeyondModal, {
@@ -195,7 +201,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         checked
       }
     }) => {
-      const action = name === 'build' ? setCompile : setDeclarations;
+      const action = name === "build" ? setCompile : setDeclarations;
       action(checked);
     };
 
@@ -212,7 +218,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       }
     }, /*#__PURE__*/React.createElement(BeyondModal, {
       show: true,
-      onClose: toggleCompilationModal,
+      onClose: onClose,
       className: "ds-modal ds-distributions-select__modal"
     }, /*#__PURE__*/React.createElement("div", {
       className: "modal__panels"

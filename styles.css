@@ -2620,6 +2620,9 @@ body {
   html .p-60,
   body .p-60 {
     padding-top: 60px; }
+  html .mt-30,
+  body .mt-30 {
+    margin-top: 30px; }
   html .center-block,
   body .center-block {
     display: flex;
@@ -3333,73 +3336,106 @@ html {
   gap: .5rem;
   justify-content: end; }
 
-.beyond-element-modal.ds-modal .modal-content form, .beyond-element-modal.ds-modal .ds-modal__content form {
+.beyond-element-modal.ds-modal .modal-content form,
+.beyond-element-modal.ds-modal .ds-modal__content form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%; }
-  .beyond-element-modal.ds-modal .modal-content form .beyond-alert, .beyond-element-modal.ds-modal .ds-modal__content form .beyond-alert {
+  .beyond-element-modal.ds-modal .modal-content form .beyond-element-input,
+  .beyond-element-modal.ds-modal .ds-modal__content form .beyond-element-input {
+    margin-top: 20px; }
+    .beyond-element-modal.ds-modal .modal-content form .beyond-element-input .beyond-element-input-error,
+    .beyond-element-modal.ds-modal .ds-modal__content form .beyond-element-input .beyond-element-input-error {
+      bottom: -17px; }
+    .beyond-element-modal.ds-modal .modal-content form .beyond-element-input label,
+    .beyond-element-modal.ds-modal .ds-modal__content form .beyond-element-input label {
+      left: 0; }
+  .beyond-element-modal.ds-modal .modal-content form .beyond-alert,
+  .beyond-element-modal.ds-modal .ds-modal__content form .beyond-alert {
     margin: 1rem 0; }
-  .beyond-element-modal.ds-modal .modal-content form .item, .beyond-element-modal.ds-modal .ds-modal__content form .item {
-    margin: .5rem 0; }
+  .beyond-element-modal.ds-modal .modal-content form .item:not(.mt-30),
+  .beyond-element-modal.ds-modal .ds-modal__content form .item:not(.mt-30) {
+    margin: 0.5rem 0; }
 
-.beyond-element-modal.ds-modal .modal-content input, .beyond-element-modal.ds-modal .ds-modal__content input {
+.beyond-element-modal.ds-modal .modal-content input,
+.beyond-element-modal.ds-modal .ds-modal__content input {
   color: var(--text-color); }
 
-.beyond-element-modal.ds-modal .modal-content .ds-switch__container, .beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container {
+.beyond-element-modal.ds-modal .modal-content .ds-switch__container,
+.beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container {
   display: flex;
   gap: 1rem; }
-  .beyond-element-modal.ds-modal .modal-content .ds-switch__container label, .beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container label {
+  .beyond-element-modal.ds-modal .modal-content .ds-switch__container label,
+  .beyond-element-modal.ds-modal .ds-modal__content .ds-switch__container label {
     display: flex;
-    gap: .5rem;
+    gap: 0.5rem;
     align-items: center; }
 
-.beyond-element-modal.ds-modal .modal-content .beyond-input, .beyond-element-modal.ds-modal .modal-content label, .beyond-element-modal.ds-modal .ds-modal__content .beyond-input, .beyond-element-modal.ds-modal .ds-modal__content label {
+.beyond-element-modal.ds-modal .modal-content .beyond-input,
+.beyond-element-modal.ds-modal .modal-content label,
+.beyond-element-modal.ds-modal .ds-modal__content .beyond-input,
+.beyond-element-modal.ds-modal .ds-modal__content label {
   color: var(text-color); }
 
-.beyond-element-modal.ds-modal .modal-content .beyond-icon-button, .beyond-element-modal.ds-modal .modal-content .beyond-icon, .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon-button, .beyond-element-modal.ds-modal .ds-modal__content .beyond-icon {
+.beyond-element-modal.ds-modal .modal-content .beyond-icon-button,
+.beyond-element-modal.ds-modal .modal-content .beyond-icon,
+.beyond-element-modal.ds-modal .ds-modal__content .beyond-icon-button,
+.beyond-element-modal.ds-modal .ds-modal__content .beyond-icon {
   fill: var(--text-color); }
 
-.beyond-element-modal.ds-modal .modal-content .form__separator__legend, .beyond-element-modal.ds-modal .ds-modal__content .form__separator__legend {
+.beyond-element-modal.ds-modal .modal-content .form__separator__legend,
+.beyond-element-modal.ds-modal .ds-modal__content .form__separator__legend {
   font-size: 1rem;
   font-weight: bold;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   margin: 3rem 0 0;
   display: flex;
   justify-content: space-between; }
 
-.beyond-element-modal.ds-modal .modal-content .input__info__container, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container {
+.beyond-element-modal.ds-modal .modal-content .input__info__container,
+.beyond-element-modal.ds-modal .ds-modal__content .input__info__container {
   position: relative;
   display: grid;
   align-items: center; }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container:not(.select__container) .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container:not(.select__container) .form__info {
+  .beyond-element-modal.ds-modal .modal-content .input__info__container:not(.select__container) .form__info,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__info__container:not(.select__container) .form__info {
     position: absolute;
     right: 0;
     bottom: 1rem; }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .form__info {
+  .beyond-element-modal.ds-modal .modal-content .input__info__container .form__info,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .form__info {
     fill: var(--text-color); }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container .form__select, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .form__select {
+  .beyond-element-modal.ds-modal .modal-content .input__info__container .form__select,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .form__select {
     border: none;
     border-bottom: 1px solid var(--text-color); }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container.select__container .form__info, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container.select__container .form__info {
+  .beyond-element-modal.ds-modal .modal-content .input__info__container.select__container .form__info,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__info__container.select__container .form__info {
     right: 3rem;
     position: absolute;
-    bottom: .5rem; }
-  .beyond-element-modal.ds-modal .modal-content .input__info__container .beyond-element-input, .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .beyond-element-input {
-    margin: .5rem 0 0 0; }
+    bottom: 0.5rem; }
+  .beyond-element-modal.ds-modal .modal-content .input__info__container .beyond-element-input,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__info__container .beyond-element-input {
+    margin: 0.5rem 0 0 0; }
 
-.beyond-element-modal.ds-modal .modal-content .input__feedback__msg, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg {
+.beyond-element-modal.ds-modal .modal-content .input__feedback__msg,
+.beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg {
   margin-bottom: 1rem; }
-  .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed {
+  .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed,
+  .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed {
     position: absolute;
     bottom: -1rem;
-    font-size: .60rem; }
-    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text-success, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text-success {
+    font-size: 0.6rem; }
+    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text-success,
+    .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text-success {
       color: var(--success); }
-    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text, .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text {
+    .beyond-element-modal.ds-modal .modal-content .input__feedback__msg .form__text__feed.form__text,
+    .beyond-element-modal.ds-modal .ds-modal__content .input__feedback__msg .form__text__feed.form__text {
       color: var(--error); }
 
-.beyond-element-modal.ds-modal .modal-content .ds-modal__footer .beyond-button, .beyond-element-modal.ds-modal .ds-modal__content .ds-modal__footer .beyond-button {
+.beyond-element-modal.ds-modal .modal-content .ds-modal__footer .beyond-button,
+.beyond-element-modal.ds-modal .ds-modal__content .ds-modal__footer .beyond-button {
   height: 36px; }
 
 /**

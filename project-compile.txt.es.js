@@ -36,7 +36,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 2809956670,
+    hash: 309118691,
     creator: function (require, exports) {
       exports.txt = {
         "sections": {
@@ -58,7 +58,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
           "declarations": "Generar declaraciones",
           "compile": "Compilar",
           "addDistribution": "Agregar distribución",
-          "new": "Nueva compilación",
+          "new": " Procesos",
           "add": "Agregar distribución",
           "process": "Procesar"
         },
@@ -67,9 +67,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
           "errorLog": "Resumen de errores obtenidos en el proceso de compilación"
         },
         "alerts": {
-          "error": "Compilacion generada con errores",
-          "success": "Compilación generada exitosamente",
-          "processing": "Compilando proyecto."
+          "error": "Proceso ejecutado con errores",
+          "success": "Proceso finalizado exitosamente",
+          "processing": "Procesando proyecto."
         },
         "finished": {
           "directory": "Directorio de ubicación"

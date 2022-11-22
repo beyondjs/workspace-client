@@ -513,7 +513,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/dashb
     #loaded;
 
     get ready() {
-      if (this.#dsmodel?.ready && this.#firstTime && this.applications.tree.landed) this.#firstTime = false;
+      if (this.#dsmodel?.ready && this.#firstTime && this.applications?.tree.landed) this.#firstTime = false;
       const isReady = this.#user?.validated && (!this.#firstTime || this.applications?.tree.landed);
       return isReady && this.#texts.ready && this.#loaded;
     }
@@ -585,6 +585,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/dashb
 
     constructor(specs = {}) {
       super();
+      this.#dsmodel = DSModel;
     }
 
     async initialise(specs) {
@@ -603,9 +604,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/dashb
         this.applications.bind("change", this.#addNotifications);
         this.#user.bind("change", this.triggerEvent);
         this.#applications.fetch();
-        this.#dsmodel = DSModel;
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
 

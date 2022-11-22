@@ -100,7 +100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       if (value === this.#activeItem) return;
       this.#activeItem = value; // the panel.updated event is fired to save the workspace state on indexedDB
 
-      this.triggerEvent('panel.updated');
+      this.triggerEvent("panel.updated");
     }
     /**
      *
@@ -229,12 +229,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     }
 
     async openBoard(board) {
-      if (board?.type !== 'editor') {
+      if (board?.type !== "editor") {
         this.add(board.name, board.specs);
         return true;
       }
 
-      if (board.elementType.startsWith('template.')) {
+      if (board.elementType.startsWith("template.")) {
         return this._openTemplate(board);
       }
 
@@ -307,11 +307,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         active
       } = specs;
 
-      if (!module && !moduleId && !elementType.startsWith('template')) {
-        throw new Error('The file requires the module or moduleId parameter');
+      if (!module && !moduleId && !elementType.startsWith("template")) {
+        throw new Error("The file requires the module or moduleId parameter");
       }
 
-      if (!elementType.startsWith('template')) {
+      if (!elementType.startsWith("template")) {
         /**
          * TODO: @julio unifies the way to get parameters in the function and simplifies it.
          *
@@ -346,13 +346,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
        */
 
       this.#activeItem = id;
-      const label = elementType === 'template' ? `${elementType} | ${source.filename}` : `${module.name} | ${source.filename}`;
+      const label = elementType === "template" ? `${elementType} | ${source.filename}` : `${module.name} | ${source.filename}`;
       const tabSpecs = {
         sourceType: type,
         label,
         id: id,
         sourceId: source.id,
-        type: 'editor',
+        type: "editor",
         processor,
         moduleId: module.id,
         applicationId: project.application.id,
@@ -361,7 +361,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         elementType
       };
 
-      if (type === 'dependency') {
+      if (type === "dependency") {
         tabSpecs.label = source.label;
         tabSpecs.id = path;
       }
@@ -371,7 +371,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
 
       this.tabs.set(id, tabSpecs);
-      this.triggerEvent('panel.updated');
+      this.triggerEvent("panel.updated");
       this.triggerEvent();
       return true;
     }
@@ -398,10 +398,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
       let label = specs.label ? specs.label : control.label;
       const id = specs.id || specs.name || label;
-      const projectId = name === 'application' ? specs.id : specs.projectId;
+      const projectId = name === "application" ? specs.id : specs.projectId;
 
       if (projectId) {
-        const project = await projectsFactory.get(projectId);
+        const project = projectsFactory.get(projectId);
       }
 
       const finalSpecs = {
@@ -411,14 +411,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         id,
         label,
         name,
-        type: 'content',
+        type: "content",
         path: name,
         control: control.control,
         specs
       };
       this.tabs.set(id, finalSpecs);
       this.activeItem = id;
-      this.triggerEvent('panel.updated');
+      this.triggerEvent("panel.updated");
       this.triggerEvent();
     }
     /**
@@ -434,17 +434,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       data.label = name;
       this.tabs.set(id, data);
       this.triggerEvent(`tab.change.${id}`);
-      this.triggerEvent('panel.updated');
+      this.triggerEvent("panel.updated");
     }
 
     async changeTab(tab) {
       if (!tab || !this.tabs.has(tab.id)) return;
 
-      if (tab.type !== 'editor') {
-        if (tab.type === 'project') {
-          console.log('is a project');
-        }
-
+      if (tab.type !== "editor") {
         this.#source = tab.source;
         this.activeItem = tab.id;
         this.triggerEvent();
@@ -452,7 +448,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       }
 
       const execute = async ready => {
-        if (!ready) this.editor.unbind('initialised', execute);
+        if (!ready) this.editor.unbind("initialised", execute);
         /**
          * TODO: @julio It's necessary to simplify the code. These lines are on
          * openBoard method too.
@@ -462,7 +458,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         const application = await projectsFactory.get(tab.applicationId);
         const module = await application.moduleManager.load(tab.moduleId);
         const source = await module.sources.get(tab.sourceId);
-        this.editor.setSource(tab.sourceType ?? 'source', source);
+        this.editor.setSource(tab.sourceType ?? "source", source);
         this.#source = tab.source;
         this.activeItem = tab.id;
         this.triggerEvent();
@@ -473,7 +469,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
 
       if (!this.editor.ready) {
-        this.editor.bind('initialised', execute);
+        this.editor.bind("initialised", execute);
         return;
       }
 
@@ -483,7 +479,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     async closeTab(tab) {
       try {
         if (!this.tabs.has(tab.id)) return;
-        if (tab.name === 'application') this.workspace.closeApp(tab.specs.id);
+        if (tab.name === "application") this.workspace.closeApp(tab.specs.id);
         const keys = [...this.tabs.keys()];
 
         if (keys.length === 1) {
@@ -493,7 +489,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
           }
 
           this.parent.closePanel(this.id);
-          this.triggerEvent('panel.updated');
+          this.triggerEvent("panel.updated");
           return;
         }
 
@@ -503,7 +499,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
         this.#activeItem = pos === 0 ? keys[pos + 1] : keys[pos - 1];
         this.tabs.delete(tab.id);
-        this.triggerEvent('panel.updated');
+        this.triggerEvent("panel.updated");
         this.triggerEvent();
       } catch (e) {
         console.error(888, e);
@@ -583,7 +579,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
     constructor(boards, workspace) {
       super();
-      this.bind('editor', this.triggerEvent);
+      this.bind("editor", this.triggerEvent);
       this.#boards = boards;
       this._workspace = workspace;
     }
@@ -591,8 +587,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     async load(data) {
       if (!data.items.size) {
         const panel = new Panel(this, 1);
-        panel.add('applications');
-        panel.bind('panel.updated', this.#triggerUpdate);
+        panel.add("applications");
+        panel.bind("panel.updated", this.#triggerUpdate);
         this._active = panel;
         this.#items.set(1, panel);
         this.#triggerUpdate();
@@ -617,10 +613,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         }
       });
       this.triggerEvent();
-      this.#items.forEach(item => item.bind('panel.updated', this.#triggerUpdate));
+      this.#items.forEach(item => item.bind("panel.updated", this.#triggerUpdate));
     }
 
-    #triggerUpdate = () => this.triggerEvent('panels.updated');
+    #triggerUpdate = () => this.triggerEvent("panels.updated");
     getData = () => {
       const items = new Map();
       this.items.forEach(item => items.set(item.id, item.getData()));
@@ -649,20 +645,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       const newPanel = new Panel(this, id);
       const tab = active.tabs.get(active.activeItem);
       this._active = newPanel;
-      newPanel.bind('change', this.triggerEvent);
-      newPanel.bind('panel.updated', this.#triggerUpdate);
+      newPanel.bind("change", this.triggerEvent);
+      newPanel.bind("panel.updated", this.#triggerUpdate);
       this.#items.set(id, newPanel);
 
       if (name) {
-        newPanel.add(name, specs);
+        await newPanel.add(name, specs);
         this.triggerEvent();
         return;
-      } //if the method is called without params then the new
-      //editor must be have opened the current active tab
-      // const tab = active.tabs.get(active.activeItem);
+      }
 
-
-      tab.type === 'editor' ? await newPanel.openFile(tab) : await newPanel.add(tab.path, tab.specs);
+      tab.type === "editor" ? await newPanel.openFile(tab) : await newPanel.add(tab.path, tab.specs);
       this.triggerEvent();
       this.#triggerUpdate();
     }
@@ -920,16 +913,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     React.useEffect(() => {
       const onClick = event => panel.setActive();
 
-      ref.current?.addEventListener('click', onClick);
-      return () => ref.current?.removeEventListener('click', onClick);
+      ref.current?.addEventListener("click", onClick);
+      return () => ref.current?.removeEventListener("click", onClick);
     }, []);
+    if (!tab) console.log("no tiene tab", panel, [...panel.tabs.keys()]);
 
-    if (!tab || tab.type === 'editor' && !panel.editor) {
+    if (!tab || tab.type === "editor" && !panel.editor) {
       console.warn(`tab not found: ${activeTab}`);
       return null;
     }
 
-    const Control = tab.type === 'editor' ? EditorView : tab.control;
+    const Control = tab.type === "editor" ? EditorView : tab.control;
     const tabs = [];
     panel.tabs.forEach((item, id) => {
       tabs.push( /*#__PURE__*/React.createElement(PanelTab, {
@@ -942,8 +936,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     const specs = {
       panel: panel
     };
-    if (tab.type === 'editor') specs.editor = panel.editor;
-    const clsPanel = `panel__container${total > 1 ? ' panel__container--divided' : ''}`;
+    if (tab.type === "editor") specs.editor = panel.editor;
+    const clsPanel = `panel__container${total > 1 ? " panel__container--divided" : ""}`;
     return /*#__PURE__*/React.createElement("div", {
       ref: ref,
       className: "ds__panel"
@@ -995,13 +989,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       vertical
     } = state;
     const panelsCss = {};
-    const prop = vertical ? 'gridTemplateRows' : 'gridTemplateColumns';
+    const prop = vertical ? "gridTemplateRows" : "gridTemplateColumns";
     panelsCss[prop] = `repeat(${panels.items.size}, minmax(0, 1fr))`;
-    const cls = `panels__container ${vertical ? 'panels--vertical' : ''}`;
+    const cls = `panels__container ${vertical ? "panels--vertical" : ""}`;
     return /*#__PURE__*/React.createElement(WorkspacePanelsContext.Provider, {
       value: {
         addPanel,
-        panels: panels,
+        panels,
         total: panels.items.size,
         panel: panels.active
       }

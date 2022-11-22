@@ -100,7 +100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     }
 
     set error(value) {
-      if (value === this.#error || typeof value !== 'string') return;
+      if (value === this.#error || typeof value !== "string") return;
       this.#error = value;
       this.triggerEvent();
     }
@@ -113,7 +113,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
       this._set = this._set.bind(this);
     }
 
-    triggerEvent = (event = 'change') => this._events.trigger(event);
+    triggerEvent = (event = "change") => this._events.trigger(event);
     /**
      * set value in a private property
      * @param property
@@ -122,7 +122,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
 
     _set(property, value) {
       let props = {};
-      if (property && value !== 'undefined') props[property] = value;else props = property;
+      if (property && value !== "undefined") props[property] = value;else props = property;
       let updated = false;
 
       for (const prop in props) {
@@ -134,12 +134,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
         updated = true;
       }
 
-      if (updated) this.triggerEvent();
+      if (updated) {
+        this.triggerEvent();
+      }
     }
 
     getProperties() {
       const props = {};
-      Object.keys(this).forEach(property => props[property.replace('_', '')] = this[property]);
+      Object.keys(this).forEach(property => props[property.replace("_", "")] = this[property]);
       return props;
     }
 
@@ -517,7 +519,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
 
 
   class BundleBuilder extends ReactiveModel {
-    #widgets = ['widget', 'layout', 'page'];
+    #widgets = ["widget", "layout", "page"];
     _id;
 
     get id() {
@@ -525,9 +527,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     }
 
     get moduleId() {
-      const name = this.#widgets.includes(this.type) ? this.#widget.get('name') : this.name;
-      const path = `application//${this._applicationId}//${this.type === 'layout' ? 'layouts/' : ''}`;
-      return `${path}${name.replace(/ /g, '-')}`;
+      const name = this.#widgets.includes(this.type) ? this.#widget.get("name") : this.name;
+      const path = `application//${this._applicationId}//${this.type === "layout" ? "layouts/" : ""}`;
+      return `${path}${name.replace(/ /g, "-")}`;
     }
 
     _type;
@@ -539,7 +541,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     _name;
 
     get name() {
-      return this._name ?? '';
+      return this._name ?? "";
     }
 
     _error;
@@ -566,6 +568,26 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
       return this._route;
     }
 
+    #bundles = new Set();
+
+    get bundles() {
+      return this.#bundles;
+    }
+
+    get multilanguage() {
+      return this.bundles.includes("txt");
+    }
+
+    set multilanguage(value) {
+      if (value) {
+        this.bundles.add("txt");
+        this.triggerEvent();
+        return;
+      }
+
+      this.bundles.delete("txt");
+    }
+
     _title;
     _description;
     _styles;
@@ -574,10 +596,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     _applicationId;
     _multilanguage = false;
     _processors = new Map();
+
+    get styles() {
+      return this._styles;
+    }
     /**
      * Define if the module to create is a predefined template.
      * @private
      */
+
 
     _template;
     #widget;
@@ -585,7 +612,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     get valid() {
       const structure = this._structure;
 
-      if (['page', 'widget', 'layout'].includes(this._type)) {
+      if (["page", "widget", "layout"].includes(this._type)) {
         return this.#widget.valid;
       }
 
@@ -623,7 +650,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     constructor(applicationId) {
       super();
       this.#widget = new Widget();
-      this.#widget.bind('change', this.triggerEvent);
+      this.#widget.bind("change", this.triggerEvent);
       this._applicationId = applicationId;
     }
 
@@ -644,11 +671,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
 
     get additionalProcessors() {
       return [{
-        id: 'vue',
-        name: 'Vue'
+        id: "vue",
+        name: "Vue"
       }, {
-        id: 'svelte',
-        name: 'Svelte'
+        id: "svelte",
+        name: "Svelte"
       }];
     }
 
@@ -681,7 +708,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     getProperties() {
       let params = {};
       params.projectId = this._applicationId;
-      params.bundles = [this._type];
+      this.bundles.add(this._type);
+      params.bundles = [...this.bundles];
       params.processors = Array.from(this._processors.keys());
 
       if (this.#widgets.includes(this._type)) {
@@ -707,8 +735,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
           error: undefined
         });
 
-        const action = params.template ? '/builder/module/clone' : '/builder/module/create';
-        this._styles && params.processors.push('sass');
+        const action = params.template ? "/builder/module/clone" : "/builder/module/create";
+        this._styles && params.processors.push("sass");
+        console.log(500, params);
         const response = await module.execute(action, params);
 
         if (response.error) {
@@ -891,9 +920,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
   class ElementWidget extends ReactiveModel {
     #pattern = /[a-z]+-[a-z]+/g;
     #properties = {
-      name: '',
+      name: "",
       id: undefined,
-      route: ''
+      route: "",
+      styles: true
     };
 
     get valid() {
@@ -928,14 +958,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
 
   class Widget extends ReactiveModel {
     #fields = [];
-    #types = ['widget', 'page', 'layout'];
+    #types = ["widget", "page", "layout"];
     #type;
     _name;
     _id;
     #properties = {
-      name: '',
+      name: "",
       id: undefined,
-      route: ''
+      route: "",
+      styles: true
     };
 
     get type() {
@@ -976,7 +1007,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     get valid() {
       const structure = Structures[this.#type];
 
-      const validate = property => property !== 'element' && [undefined].includes(this.#properties[property]);
+      const validate = property => property !== "element" && [undefined].includes(this.#properties[property]);
 
       const isInvalid = structure.required.some(validate);
       return !isInvalid && this.#element.valid;
@@ -985,12 +1016,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
     constructor() {
       super();
       this.#element = new ElementWidget();
-      this.#element.bind('change', this.triggerEvent);
+      this.#element.bind("change", this.triggerEvent);
     }
 
     set(key, value) {
-      if (key.startsWith('element.')) {
-        return this.#element.set(key.split('.')[1], value);
+      if (key.startsWith("element.")) {
+        return this.#element.set(key.split(".")[1], value);
       }
 
       if (!this.#properties.hasOwnProperty(key)) return;

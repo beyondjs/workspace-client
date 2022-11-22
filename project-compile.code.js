@@ -143,7 +143,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     const {
       process
     } = project.application;
-    useBinder([process], () => setStatus(process.processed));
+    const [messages, setMessages] = React.useState(process.messages);
+    useBinder([process], () => {
+      setStatus(process.processed);
+      setMessages(process.messages);
+    });
     if (!ready) return /*#__PURE__*/React.createElement(DsFetchingBlock, null);
 
     if (props.specs.projectId !== project.application.id) {
@@ -352,7 +356,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
   **********/
 
 
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-compile.code', '.compile__trace__list{list-style:none;display:none;gap:2px;padding:0;transition:all 150ms ease-in}.compile__trace__list li{padding:4px;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds__board.board__compile .compilation__card{max-width:800px;margin:auto}.ds__board.board__compile .compilation__card.compilation__card--disabled{opacity:.6}.ds__board.board__compile .compilation__card.compilation__card--disabled header{cursor:default}.ds__board.board__compile .compilation__card header{display:flex;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--separator-color);cursor:pointer;align-items:center}.ds__board.board__compile .compilation__card header .beyond-icon{fill:var(--text-color)}.ds__board.board__compile .compilation__card header h5{display:flex;gap:.5rem;align-items:center;font-size:13px;margin:0}.ds__board.board__compile .compilation__card .card__detail{background:var(--secondary-accent-20);padding:1rem;color:var(--secondary-text-color);display:none}.ds__board.board__compile .compilation__card .card__detail.opened{display:grid;transition:all 150ms ease-in}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-compile.code', '.ds__board.board__compile .card__detail:not(.opened) .compile__trace__list{display:none}.ds__board.board__compile .compile__trace__list{list-style:none;gap:2px;padding:0;transition:all 150ms ease-in}.ds__board.board__compile .compile__trace__list li{padding:4px;transition:all 150ms ease-in}.ds__board.board__compile .compile__trace__list li:hover{background:var(--ds-element-hover)}.ds__board.board__compile .compile__trace__list .message__error{background:var(--beyond-error-color)}.ds__board.board__compile .compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds__board.board__compile .compilation__card{max-width:800px;margin:auto}.ds__board.board__compile .compilation__card.compilation__card--disabled{opacity:.6}.ds__board.board__compile .compilation__card.compilation__card--disabled header{cursor:default}.ds__board.board__compile .compilation__card header{display:flex;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--separator-color);cursor:pointer;align-items:center}.ds__board.board__compile .compilation__card header .beyond-icon{fill:var(--text-color)}.ds__board.board__compile .compilation__card header h5{display:flex;gap:.5rem;align-items:center;font-size:13px;margin:0}.ds__board.board__compile .compilation__card .card__detail{background:var(--secondary-accent-20);padding:1rem;color:var(--secondary-text-color);display:none}.ds__board.board__compile .compilation__card .card__detail.opened{display:grid;transition:all 150ms ease-in}');
   legacyStyles.appendToDOM();
   const ims = new Map(); // Module exports
 

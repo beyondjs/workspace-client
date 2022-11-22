@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.1/texts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/dashboard@0.0.1/hooks", "@beyond-js/dashboard@0.0.1/core-components", "@beyond-js/dashboard@0.0.1/ds-contexts", "@beyond-js/kernel@0.1.1/texts", "@beyond-js/dashboard@0.0.1/models"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -40,6 +40,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
   const {
     CurrentTexts
   } = dependency_11;
+  const {
+    projectsFactory
+  } = dependency_12;
 
   const bimport = specifier => {
     const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.0"], ["@beyond-js/kernel", "0.1.1"], ["@beyond-js/widgets", "0.1.0"], ["@beyond-js/backend", "0.1.0"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.3"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "0.0.1"], ["@beyond-js/dashboard", "0.0.1"]]);
@@ -60,7 +63,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
   ;
 
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/inspect/reactive-model', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/ui/form', dependency_6], ['@beyond-js/ui/preload-text', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/ds-contexts', dependency_10], ['@beyond-js/kernel/texts', dependency_11]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/inspect/reactive-model', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/ui/form', dependency_6], ['@beyond-js/ui/preload-text', dependency_7], ['@beyond-js/dashboard/hooks', dependency_8], ['@beyond-js/dashboard/core-components', dependency_9], ['@beyond-js/dashboard/ds-contexts', dependency_10], ['@beyond-js/kernel/texts', dependency_11], ['@beyond-js/dashboard/models', dependency_12]]);
 
   const {
     module
@@ -96,22 +99,22 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
         }));
       };
 
-      AppsController.bind('change', onChange);
+      AppsController.bind("change", onChange);
       onChange();
-      return () => AppsController.unbind('change', onChange);
+      return () => AppsController.unbind("change", onChange);
     }, []);
     if (!state.ready || !applications.fetched) return /*#__PURE__*/React.createElement(PreloadCollection, null);
     const {
       texts
     } = state.controller;
     const headerTexts = texts.header;
-    let apps = applications.items.map(item => /*#__PURE__*/React.createElement(ApplicationItem, {
+    let apps = applications.items.map(item => /*#__PURE__*/React.createElement(ProjectItem, {
       texts: texts,
       key: item.id,
       item: item
     }));
     if (!applications.items.length) apps = /*#__PURE__*/React.createElement(Empty, null);
-    const cls = `ds-board__content ds-board__list-container${applications.items.length ? '' : ' empty-container'}`;
+    const cls = `ds-board__content ds-board__list-container${applications.items.length ? "" : " empty-container"}`;
     return /*#__PURE__*/React.createElement(DSApplicationsContext.Provider, {
       value: {
         texts,
@@ -167,29 +170,33 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
 
   function ProjectActions({
-    project
+    project: pkg
   }) {
     const {
       texts
     } = useDSApplicationsContext();
     const {
-      workspace
+      workspace,
+      toggleProcessModal
     } = useDSWorkspaceContext(); // noinspection JSMethodCanBeStatic
 
-    const compile = event => {
-      event.stopPropagation();
-      event.preventDefault();
-      workspace.openBoard('compile', {
-        id: `${project.id}.compile`,
-        projectId: project.id
-      });
+    const compile = async event => {
+      try {
+        event.stopPropagation();
+        event.preventDefault();
+        const active = await workspace.getProject(pkg.id);
+        workspace.active = active;
+        toggleProcessModal();
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     const play = event => {
       event.stopPropagation();
-      workspace.openApp(project.id, {
-        tab: 'distributions',
-        action: 'play'
+      workspace.openApp(pkg.id, {
+        tab: "distributions",
+        action: "play"
       });
     };
 
@@ -201,13 +208,18 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       className: "circle",
       title: texts.play
     }), /*#__PURE__*/React.createElement(BeeActions, {
-      bee: project.bee,
+      bee: pkg.bee,
       texts: texts.actions
-    }), !!project.errors.length && /*#__PURE__*/React.createElement(DSIconButton, {
+    }), !!pkg.errors.length && /*#__PURE__*/React.createElement(DSIconButton, {
       icon: "error",
-      title: `total: ${project.errors.length}`,
+      title: `total: ${pkg.errors.length}`,
       className: "circle error__icon",
-      onClick: event => compile(event, 'client', project)
+      onClick: event => compile(event, "client", pkg)
+    }), /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: "compile",
+      title: texts.actions.compile,
+      className: "circle",
+      onClick: event => compile(event, "client", pkg)
     }));
   }
   /******************
@@ -285,7 +297,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
   *************/
 
 
-  function ApplicationItem({
+  function ProjectItem({
     item,
     texts
   }) {
@@ -335,10 +347,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     header
   }) {
     return /*#__PURE__*/React.createElement("div", {
-      className: "ds-board__list-container ds-projects-board"
+      className: "ds-projects-board"
     }, /*#__PURE__*/React.createElement("header", {
-      className: "list_header"
-    }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement(BeyondPreloadText, {
+      className: "board__header"
+    }, /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement(BeyondPreloadText, {
       height: "17px",
       width: "50px"
     })), /*#__PURE__*/React.createElement("div", {
@@ -351,7 +363,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(BeyondPreloadText, {
       height: "17px",
       width: "50px"
-    })))), /*#__PURE__*/React.createElement(PreloadItem, null), /*#__PURE__*/React.createElement(PreloadItem, null));
+    }))))), /*#__PURE__*/React.createElement("section", {
+      className: "ds-board__content ds-board__list-container"
+    }, /*#__PURE__*/React.createElement(PreloadItem, null), /*#__PURE__*/React.createElement(PreloadItem, null)));
   }
   /*****************
   preload\header.jsx
@@ -375,37 +389,23 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
   function PreloadItem() {
     return /*#__PURE__*/React.createElement("div", {
       className: "ds-item_list"
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("section", {
       className: "item-info"
     }, /*#__PURE__*/React.createElement("h4", {
-      className: "bold title-app"
+      className: "link bold"
     }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
       height: `10px`,
       width: `30px`
     })), /*#__PURE__*/React.createElement("p", {
-      className: "p1"
-    }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: `7px`,
-      width: `50px`
-    })), /*#__PURE__*/React.createElement("a", {
-      className: "link"
-    }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
-      height: `7px`,
-      width: `100px`
-    })), /*#__PURE__*/React.createElement("p", {
-      className: "p2 primary-text"
+      className: "p2 primary-color"
     }, /*#__PURE__*/React.createElement(BeyondPreloadText, {
       height: `7px`,
       width: `300px`,
       className: "primary"
-    }))), /*#__PURE__*/React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("section", {
       className: "right-col actions"
     }, /*#__PURE__*/React.createElement(DashboardIconButton, {
-      icon: "upload",
-      className: "circle",
-      disabled: true
-    }), /*#__PURE__*/React.createElement(DashboardIconButton, {
-      icon: "plus",
+      icon: "play",
       className: "circle",
       disabled: true
     })));
@@ -464,12 +464,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       super();
       const module = __pkg.bundle.module.specifier;
       this.#texts = new CurrentTexts(module, true);
-      this.#texts.bind('change', this.triggerEvent);
+      this.#texts.bind("change", this.triggerEvent);
     }
 
     setApplications(applications) {
       this.#applications = applications;
-      applications.bind('change', this.triggerEvent);
+      applications.bind("change", this.triggerEvent);
     }
 
   }();

@@ -36,7 +36,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
   *********************/
 
   ims.set('./txt', {
-    hash: 3601775301,
+    hash: 847072785,
     creator: function (require, exports) {
       exports.txt = {
         "sections": {
@@ -48,9 +48,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
           }
         },
         "empty": {
-          "title": "There is no compilation in process"
+          "title": "There is no process running"
         },
-        "title": "Compilation",
+        "title": "Process",
         "start": {
           "title": "Select a distribution"
         },
@@ -86,9 +86,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle"], function (_expor
           "errorLog": "Summary of errors obtained in building process"
         },
         "alerts": {
-          "error": "Build generated with errors",
-          "success": "Build has been done successfully",
-          "processing": "Building project"
+          "error": "Process generated with errors",
+          "success": "Process has been done successfully",
+          "processing": "Processing"
         },
         "finished": {
           "directory": "Location directory"

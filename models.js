@@ -4355,12 +4355,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "@beyond-js/inspe
 
     async process(id, actions) {
       if (!id) {
-        console.warn('id is required to process');
+        console.warn("id is required to process");
         return;
       }
 
       if (!actions.build && !actions.declarations) {
-        console.warn('No actions to process');
+        console.warn("No actions to process");
         return;
       }
 

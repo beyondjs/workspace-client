@@ -735,6 +735,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       origin,
       texts
     } = useCreateModuleContext();
+    const {
+      setState
+    } = useModuleFormContext();
     /**
      * Use by multilanguage and server fields
      * @param event
@@ -744,6 +747,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       const target = event.currentTarget;
       const newValue = {};
       newValue[target.name] = target.checked;
+      setState(newValue);
       model.bundle.set(target.name, target.checked);
     };
 
@@ -757,10 +761,18 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       name: "styles"
     }, disabled, {
       checked: state.styles,
-      value: state.styles,
       onChange: toggleRadio
     })), /*#__PURE__*/React.createElement(IconInfo, {
       msg: texts.help.titles.styles
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "ds-switch__container"
+    }, /*#__PURE__*/React.createElement("label", null, texts.form.multilanguage, /*#__PURE__*/React.createElement(BeyondSwitch, _extends({
+      name: "multilanguage"
+    }, disabled, {
+      checked: state.multilanguage,
+      onChange: toggleRadio
+    })), /*#__PURE__*/React.createElement(IconInfo, {
+      msg: texts.help.titles.text
     }))));
   }
   /********************************************
@@ -943,7 +955,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     let [onSubmit, error, fetching] = useSubmit(model);
     React.useEffect(() => {
       if (fetching) {
-        window.setTimeout(() => spinner.current?.classList.toggle('container-hidden'), 100);
+        window.setTimeout(() => spinner.current?.classList.toggle("container-hidden"), 100);
       }
     }, [fetching]);
     if (fetching) disabled.disabled = true;
@@ -1042,9 +1054,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
   /*bundle*/
   function useHandleChange(tpl, model) {
-    const styles = tpl === 'page' || tpl === 'widget' || tpl === 'layout' || tpl === 'code';
+    const styles = tpl === "page" || tpl === "widget" || tpl === "layout" || tpl === "code";
     const [state, setState] = React.useState({
-      styles: styles
+      styles: styles,
+      multilanguage: false
     });
     const [initial, setInitial] = React.useState(true);
 
@@ -1053,12 +1066,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       const value = {};
       let fieldValue = target.value;
 
-      if (target.name === 'name' || target.name === 'element') {
-        fieldValue = fieldValue.replace(/ /g, '-');
+      if (target.name === "name" || target.name === "element") {
+        fieldValue = fieldValue.replace(/ /g, "-");
       }
 
       if (initial) {
-        model.bundle.set('styles', state.styles);
+        model.bundle.set("styles", state.styles);
         setInitial(false);
       }
 
@@ -1072,7 +1085,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
     return {
       state,
-      setState,
+      setState: newValues => setState({ ...state,
+        ...newValues
+      }),
       handleChange
     };
   }

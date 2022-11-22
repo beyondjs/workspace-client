@@ -698,13 +698,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
     const [showProjectActionsModal, setProjectActionsModal] = React.useState(false);
 
-    const toggleProcessModal = () => setProjectActionsModal(!showProjectActionsModal);
+    const toggleProcessModal = () => {
+      setProjectActionsModal(showProjectActionsModal => !showProjectActionsModal);
+    };
 
     useBinder([workspace], () => setState({
       ready: workspace.ready,
       ...workspace.state
     }));
     React.useEffect(() => {
+      //todo: @julio. remove it from here.
       DSPreAside.addToTop("projects", {
         icon: "apps",
         title: "Proyectos",

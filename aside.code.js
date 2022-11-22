@@ -195,7 +195,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
     const [state, setState] = React.useState({
       panel: aside.panel
     });
-    let cls = `ds__aside ${state?.panel ? '' : 'hide-detail'}`;
+    let cls = `ds__aside ${state?.panel ? "" : "hide-detail"}`;
     const ref = React.useRef(null);
     useBinder([aside], () => setState(state => ({ ...state,
       panel: aside.panel,
@@ -219,8 +219,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
       });
 
       onChange();
-      controller.bind('change', onChange);
-      return () => controller.unbind('change', onChange);
+      controller.bind("change", onChange);
+      return () => controller.unbind("change", onChange);
     }, []);
     if (!state.ready) return /*#__PURE__*/React.createElement(AsidePreload, null);
     return /*#__PURE__*/React.createElement(DSAsideContext.Provider, {
@@ -611,32 +611,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.1/bundle", "react@16.14.0", 
 
   function AsidePreload() {
     return /*#__PURE__*/React.createElement("aside", {
-      className: "ds__aside hide-detail is-fetching"
+      className: "ds__aside hide-detail"
     }, /*#__PURE__*/React.createElement("section", {
-      className: "ds__pre-aside"
+      className: "ds__pre-aside is-fetching"
     }, /*#__PURE__*/React.createElement("ul", {
       className: "start-list"
     }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
       disabled: true,
       icon: "apps"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "project"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "pinup"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "bookmark"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "add"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "photoSize"
-    })), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
-      disabled: true,
-      icon: "setting"
     }))), /*#__PURE__*/React.createElement("ul", {
       className: "end-list"
     }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(DSIconButton, {
