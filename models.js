@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/dashboard@1.0.2/hooks", "@beyond-js/dashboard@1.0.2/ds-editor.code", "@beyond-js/dashboard@1.0.2/database"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/workspace@1.0.5/hooks", "@beyond-js/workspace@1.0.5/ds-editor.code", "@beyond-js/workspace@1.0.5/database"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -32,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
     DSModel
   } = dependency_6;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -40,12 +40,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/models"
+      "vspecifier": "@beyond-js/workspace@1.0.5/models"
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['@beyond-js/inspect/reactive-model', dependency_1], ['@beyond-js/inspect/models.ts', dependency_2], ['@beyond-js/plm/plm-indexed-db', dependency_3], ['@beyond-js/dashboard/hooks', dependency_4], ['@beyond-js/dashboard/ds-editor.code', dependency_5], ['@beyond-js/dashboard/database', dependency_6]]);
+  __pkg.dependencies.update([['@beyond-js/inspect/reactive-model', dependency_1], ['@beyond-js/inspect/models.ts', dependency_2], ['@beyond-js/plm/plm-indexed-db', dependency_3], ['@beyond-js/workspace/hooks', dependency_4], ['@beyond-js/workspace/ds-editor.code', dependency_5], ['@beyond-js/workspace/database', dependency_6]]);
   const {
     module
   } = __pkg.bundle;
@@ -2632,9 +2632,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
         promise.resolve(this.#items.get(id));
         return;
       }
+
+      /**
+       * TODO @all
+       * no se estan disparando los eventos de cambios cuando el elemento llega a landed
+       */
       const item = new Packager(specs);
+      window.packager = item;
       const onLoad = () => {
+        console.warn('onLoad', item.tree.found, item.tree.landed);
         if (!item.tree.landed) return;
+        console.error('onLoad after landed');
         item.unbind('change', onLoad);
         this.#active = item;
         this.#items.set(id, item);
@@ -3021,6 +3029,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
       this.#moduleManager = moduleManager;
       this.#project = project;
       this.load(moduleId);
+      this.generateDeclarations = this.generateDeclarations.bind(this);
     }
 
     /**
@@ -3153,8 +3162,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
     async createFile(params) {
       await this.#am.createFile(params);
     }
+    get declarationTrace() {
+      return this.#am?.declaration?.errors;
+    }
     async generateDeclarations() {
-      console.log('generate declarations....');
+      await this.#am.declaration.update();
+      this.triggerEvent();
     }
   }
 
@@ -3364,6 +3377,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
   _exports.ModuleManager = ModuleManager;
   class ProjectModel extends ReactiveModel {
     #bundles = ["layout", "page", "code", "widget", "all"];
+    #processParams = {
+      declarations: false,
+      build: true,
+      id: undefined
+    };
     get bundles() {
       return this.#bundles;
     }
@@ -3623,18 +3641,31 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/inspe
       // DSNotifications.register(this.application.errors, specs);
     };
 
-    async process(id, actions) {
+    async process(props) {
+      const {
+        id,
+        declarations,
+        build
+      } = props || this.#processParams;
       if (!id) {
         console.warn("id is required to process");
         return;
       }
-      if (!actions.build && !actions.declarations) {
+      if (!build && !declarations) {
         console.warn("No actions to process");
         return;
       }
+      this.#processParams = {
+        id,
+        declarations,
+        build
+      };
       try {
         this.processing = true;
-        await this.application.process.run(id, actions);
+        await this.application.process.run(id, {
+          declarations,
+          build
+        });
         this.processing = false;
         this.triggerEvent("compilation.change");
       } catch (e) {

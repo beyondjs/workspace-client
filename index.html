@@ -13,11 +13,11 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     
     <script>
-    window.__app_package = {"specifier":"@beyond-js/dashboard","vspecifier":"@beyond-js/dashboard@1.0.2","version":"1.0.2","dependencies":[["@beyond-js/inspect","0.0.1"],["@beyond-js/plm","0.0.1"],["@beyond-js/ui","0.0.1"],["@beyond-js/local","0.1.2"],["@beyond-js/kernel","0.1.7"],["@beyond-js/widgets","0.1.3"],["@beyond-js/backend","0.1.2"],["dayjs","1.11.5"],["emmet-monaco-es","5.1.2"],["monaco-editor","0.33.0"],["react","16.14.0"],["react-dom","16.14.0"],["react-select","5.4.0"],["react-split","2.0.14"],["socket.io-client","4.5.4"],["split.js","1.6.5"],["tippy.js","6.2.5"],["waves","0.1.1"],["@beyond-js/dashboard","1.0.2"]]};
+    globalThis.__app_package = {"specifier":"@beyond-js/workspace","vspecifier":"@beyond-js/workspace@1.0.5","version":"1.0.5","dependencies":[["@beyond-js/inspect","0.0.1"],["@beyond-js/plm","0.0.1"],["@beyond-js/ui","0.0.1"],["@beyond-js/local","0.1.4"],["@beyond-js/kernel","0.1.9"],["@beyond-js/widgets","0.1.4"],["@beyond-js/backend","0.1.6"],["dayjs","1.11.7"],["emmet-monaco-es","5.2.0"],["monaco-editor","0.33.0"],["react","16.14.0"],["react-dom","16.14.0"],["react-select","5.7.0"],["react-split","2.0.14"],["split.js","1.6.5"],["tippy.js","6.3.7"],["waves","0.1.1"],["socket.io-client","4.5.4"],["@beyond-js/packages-templates","1.0.0"],["@beyond-js/workspace","1.0.5"]]};
     
     // Set global baseDir and baseUrl variables
-    const baseDir = window.baseDir = '/';
-    const baseUrl = window.baseUrl = (() => {
+    const baseDir = globalThis.baseDir = '/';
+    const baseUrl = globalThis.baseUrl = (() => {
         const {protocol, host, pathname} = location;
         if (protocol === 'file:') {
             const path = pathname.split('/');
@@ -32,12 +32,12 @@
     </script>
     
     
-    <script src="/packages/@beyond-js/kernel@0.1.7/vendor/require.min.js"></script>
+    <script src="/packages/@beyond-js/kernel@0.1.9/vendor/require.min.js"></script>
     <script>
-    const paths = {'@beyond-js/dashboard@1.0.2': baseUrl.endsWith('/') ? baseUrl.slice(0, baseUrl.length - 1) : baseUrl};
+    const paths = {'@beyond-js/workspace@1.0.5': baseUrl.endsWith('/') ? baseUrl.slice(0, baseUrl.length - 1) : baseUrl};
     requirejs.config({baseUrl: '/packages', paths});
-    require(["@beyond-js/kernel@0.1.7/styles"]);
-    require(['@beyond-js/dashboard@1.0.2/start']);
+    require(["@beyond-js/kernel@0.1.9/styles"]);
+    require(['@beyond-js/workspace@1.0.5/start']);
     </script>
     
 </head>

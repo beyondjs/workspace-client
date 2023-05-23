@@ -1,0 +1,95 @@
+{
+  "en": {
+    "title": "Create a new module",
+    "subtitle": "What kind of module do you need?",
+    "additionalFeatures": "Additional Configuration",
+    "types": {
+      "bundles": {
+        "title": "Blank module",
+        "description": "Empty module to start from nothing."
+      },
+      "templates": {
+        "title": "Basic template",
+        "description": "Choose one of the base templates of the module types so that you can guide yourself and advance in a simple way"
+      }
+    },
+    "actions": {
+      "changeModuleType": "Change module type",
+      "next": "Next",
+      "back": "Back"
+    },
+    "templates": {
+      "title": "Template",
+      "options": [
+        {
+          "id": "page",
+          "title": "Blank page",
+          "description": "Blank page for web projects",
+          "icon": "web"
+        },
+        {
+          "id": "server_page",
+          "title": "Module with node service",
+          "description": "Page with service and WebSocket connection implemented",
+          "icon": "server"
+        },
+        {
+          "id": "mobile_login",
+          "title": "Mobile login",
+          "description": "Basic design for mobile projects",
+          "icon": "mobile"
+        }
+      ]
+    },
+    "bundles": {
+      "title": "Bundle type",
+      "options": [
+        {
+          "id": "page",
+          "title": "Página",
+          "description": "A module that can be accessed via a URL"
+        },
+        {
+          "id": "widget",
+          "title": "Widget",
+          "description": "Exports a web component that allows working under micro-frontends or Islands architectures."
+        },
+        {
+          "id": "layout",
+          "title": "Layout",
+          "description": "Permite definir la estructura general de varias páginas y compartir elementos en común de la aplicación"
+        },
+        {
+          "id": "code",
+          "title": "Code",
+          "description": "Multipurpose. You can be a logic module or with a graphical interface."
+        },
+        {
+          "id": "bridge",
+          "title": "Bridge",
+          "description": "Modules that allow to integrate backend logic with the client through websockets automatically"
+        },
+        {
+          "id": "ts",
+          "title": "Typescript",
+          "description": "Ideal for implementing any type of logic that only requires typescript code and no other processors."
+        },
+        {
+          "id": "start",
+          "title": "Start",
+          "description": "They allow you to add logic that must be executed at the beginning of the application."
+        }
+      ]
+    },
+    "page": {
+      "layout": "Layout",
+      "queryString": "Url parameters?",
+      "input": {
+        "layout": {
+          "placeholder": "Select."
+        }
+      }
+    },
+    "processors": "Processors"
+  }
+}

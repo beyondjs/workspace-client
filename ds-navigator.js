@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon", "@beyond-js/dashboard@1.0.2/core-components", "@beyond-js/dashboard@1.0.2/ds-contexts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/icon", "@beyond-js/workspace@1.0.5/core-components", "@beyond-js/workspace@1.0.5/ds-contexts"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -23,7 +23,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     useDSWorkspaceContext
   } = dependency_5;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -31,12 +31,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/ds-navigator"
+      "vspecifier": "@beyond-js/workspace@1.0.5/ds-navigator"
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/icon', dependency_3], ['@beyond-js/dashboard/core-components', dependency_4], ['@beyond-js/dashboard/ds-contexts', dependency_5]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/icon', dependency_3], ['@beyond-js/workspace/core-components', dependency_4], ['@beyond-js/workspace/ds-contexts', dependency_5]]);
   const {
     module
   } = __pkg.bundle;
@@ -350,7 +350,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/ds-navigator', '.ds-navigator__container.is-fetching .ds-navigator__bar .ds-navigator__form input{background:rgba(255,255,255,.1)}.ds-navigator__container .ds-navigator__bar{display:flex;align-items:center;width:100%;z-index:1000}.ds-navigator__container .ds-navigator__bar .ds-navigator__form{width:100%;display:grid;padding:5px 0;grid-gap:5px;grid-template-columns:auto 1fr auto}.ds-navigator__container .ds-navigator__bar .ds-navigator__form input{width:100%;padding:8px;color:#fff;outline:0;border:none;background:#000;box-shadow:none}.ds-navigator__container .ds-navigator__bar .ds-navigator__form .beyond-icon-button{background:#333}.ds-navigator__container .ds-navigator__bar .ds-navigator__form .beyond-icon-button svg{fill:#fff}.ds-navigator__container .navigator__fetching-container{position:absolute;top:0;left:0;bottom:0;right:0;display:flex;align-self:center;justify-content:center;justify-items:center}.ds-navigator__container .navigator__fetching-container .ds-spinner__container{display:flex;align-self:center;justify-content:center;justify-items:center}.ds-navigator__container{display:grid;height:100%;width:100%;grid-template-rows:auto 1fr;position:relative;overflow-x:auto;grid-gap:0}.ds-navigator__container .ds-navigator__iframe__container{display:flex;align-items:center;justify-content:center;flex-basis:max-content;align-items:center}.ds-navigator__container .ds-navigator__iframe__container iframe{height:100%;width:100%}.ds-navigator__container .ds-navigator__iframe__container iframe.iframe--responsive{height:142mm;width:72.5mm}.ds-navigator__container .ds-navigator__iframe__container{align-items:center}.ds-navigator__container .ds-navigator__resizer{position:absolute;top:0;bottom:0;left:0;z-index:2;height:100%;width:15px;cursor:col-resize;background:#333}.ds-navigator__container .ds-navigator__resizer:hover{background:#343434}.ds-navigator__container.is-resizing .ds-navigator__resizer__shadow{display:block}.ds-navigator__container .ds-navigator__resizer__shadow{position:absolute;top:0;left:0;bottom:15px;right:0;display:none}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/ds-navigator', '.ds-navigator__container.is-fetching .ds-navigator__bar .ds-navigator__form input{background:rgba(255,255,255,.1)}.ds-navigator__container .ds-navigator__bar{display:flex;align-items:center;width:100%;z-index:1000}.ds-navigator__container .ds-navigator__bar .ds-navigator__form{width:100%;display:grid;padding:5px 0;grid-gap:5px;grid-template-columns:auto 1fr auto}.ds-navigator__container .ds-navigator__bar .ds-navigator__form input{width:100%;padding:8px;color:#fff;outline:0;border:none;background:#000;box-shadow:none}.ds-navigator__container .ds-navigator__bar .ds-navigator__form .beyond-icon-button{background:#333}.ds-navigator__container .ds-navigator__bar .ds-navigator__form .beyond-icon-button svg{fill:#fff}.ds-navigator__container .navigator__fetching-container{position:absolute;top:0;left:0;bottom:0;right:0;display:flex;align-self:center;justify-content:center;justify-items:center}.ds-navigator__container .navigator__fetching-container .ds-spinner__container{display:flex;align-self:center;justify-content:center;justify-items:center}.ds-navigator__container{display:grid;height:100%;width:100%;grid-template-rows:auto 1fr;position:relative;overflow-x:auto;grid-gap:0}.ds-navigator__container .ds-navigator__iframe__container{display:flex;align-items:center;justify-content:center;flex-basis:max-content;align-items:center}.ds-navigator__container .ds-navigator__iframe__container iframe{height:100%;width:100%}.ds-navigator__container .ds-navigator__iframe__container iframe.iframe--responsive{height:142mm;width:72.5mm}.ds-navigator__container .ds-navigator__iframe__container{align-items:center}.ds-navigator__container .ds-navigator__resizer{position:absolute;top:0;bottom:0;left:0;z-index:2;height:100%;width:15px;cursor:col-resize;background:#333}.ds-navigator__container .ds-navigator__resizer:hover{background:#343434}.ds-navigator__container.is-resizing .ds-navigator__resizer__shadow{display:block}.ds-navigator__container .ds-navigator__resizer__shadow{position:absolute;top:0;left:0;bottom:15px;right:0;display:none}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 

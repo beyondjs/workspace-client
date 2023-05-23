@@ -1,4 +1,4 @@
-define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/transversals", "@beyond-js/kernel@0.1.7/core", "@beyond-js/kernel@0.1.7/routing", "@beyond-js/widgets@0.1.3/render", "@beyond-js/backend@0.1.2/client", "@beyond-js/dashboard@1.0.2/config", "@beyond-js/dashboard@1.0.2/workspace-model.code"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7) {
+define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/transversals", "@beyond-js/kernel@0.1.9/core", "@beyond-js/kernel@0.1.9/routing", "@beyond-js/widgets@0.1.4/render", "@beyond-js/workspace@1.0.5/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -10,54 +10,54 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
   } = brequire('@beyond-js/kernel/transversals');
   const __beyond_transversal = new Transversal('start', '');
   _exports.__beyond_transversal = __beyond_transversal;
-  __beyond_transversal.dependencies.update([['@beyond-js/kernel/transversals', dependency_1], ['@beyond-js/kernel/core', dependency_2], ['@beyond-js/kernel/routing', dependency_3], ['@beyond-js/widgets/render', dependency_4], ['@beyond-js/backend/client', dependency_5], ['@beyond-js/dashboard/config', dependency_6], ['@beyond-js/dashboard/workspace-model.code', dependency_7]]);
+  __beyond_transversal.dependencies.update([['@beyond-js/kernel/transversals', dependency_1], ['@beyond-js/kernel/core', dependency_2], ['@beyond-js/kernel/routing', dependency_3], ['@beyond-js/widgets/render', dependency_4], ['@beyond-js/workspace/config', dependency_5]]);
 
   /***********
   BUNDLE: PAGE
   ***********/
   routing.config.pages.register([{
     "route": "/indexdb",
-    "bundle": "@beyond-js/plm@0.0.1/unnamed/core/cache/indexeddb/tests/page",
+    "bundle": "@beyond-js/plm@0.0.1/core/cache/indexeddb/tests/page",
     "vdir": false,
     "layout": "default"
   }, {
     "route": "/indexed/plm",
-    "bundle": "@beyond-js/plm@0.0.1/unnamed/core/cache/indexeddb/tests/plm",
+    "bundle": "@beyond-js/plm@0.0.1/core/cache/indexeddb/tests/plm",
     "vdir": false,
     "layout": "default"
   }, {
     "route": "/beyond/ui/alerts",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/alert/page",
+    "bundle": "@beyond-js/ui@0.0.1/alert/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/code",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/code/page",
+    "bundle": "@beyond-js/ui@0.0.1/code/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/template",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/css-template/page",
+    "bundle": "@beyond-js/ui@0.0.1/css-template/page",
     "vdir": false,
     "layout": "default"
   }, {
     "route": "/beyond/ui/empty",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/empty/page",
+    "bundle": "@beyond-js/ui@0.0.1/empty/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/form",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/form/page",
+    "bundle": "@beyond-js/ui@0.0.1/form/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/home.page",
+    "bundle": "@beyond-js/ui@0.0.1/home.page",
     "vdir": true,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/icons/buttons",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/icon/pages/buttons",
+    "bundle": "@beyond-js/ui@0.0.1/icon/pages/buttons",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
@@ -67,47 +67,47 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
     "layout": "dashboard"
   }, {
     "route": "/beyond/ui/image",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/image/page",
+    "bundle": "@beyond-js/ui@0.0.1/image/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/import",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/import/page",
+    "bundle": "@beyond-js/ui@0.0.1/import/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/instruction",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/instruction/page",
+    "bundle": "@beyond-js/ui@0.0.1/instruction/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/list",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/list/page",
+    "bundle": "@beyond-js/ui@0.0.1/list/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/loading",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/loading/page",
+    "bundle": "@beyond-js/ui@0.0.1/loading/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/modals",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/modal/page",
+    "bundle": "@beyond-js/ui@0.0.1/modal/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/overlay",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/overlay/page",
+    "bundle": "@beyond-js/ui@0.0.1/overlay/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/scroll",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/perfect-scrollbar/page",
+    "bundle": "@beyond-js/ui@0.0.1/perfect-scrollbar/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/picture",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/picture/page",
+    "bundle": "@beyond-js/ui@0.0.1/picture/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
@@ -117,79 +117,78 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/preloadText",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/preload-text/page",
+    "bundle": "@beyond-js/ui@0.0.1/preload-text/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/preload",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/preload/page",
+    "bundle": "@beyond-js/ui@0.0.1/preload/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/publication",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/publication/page",
+    "bundle": "@beyond-js/ui@0.0.1/publication/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/ripple",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/ripple/page",
+    "bundle": "@beyond-js/ui@0.0.1/ripple/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/select",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/select/page",
+    "bundle": "@beyond-js/ui@0.0.1/select/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/spinner",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/spinner/page",
+    "bundle": "@beyond-js/ui@0.0.1/spinner/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/swiper",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/swiper/page",
+    "bundle": "@beyond-js/ui@0.0.1/swiper/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/tabs",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/tabs/page",
+    "bundle": "@beyond-js/ui@0.0.1/tabs/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/ui/toast",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/toast/page",
+    "bundle": "@beyond-js/ui@0.0.1/toast/page",
     "vdir": false
   }, {
     "route": "/beyond/ui/toolbar",
-    "bundle": "@beyond-js/ui@0.0.1/unnamed/toolbar/page",
+    "bundle": "@beyond-js/ui@0.0.1/toolbar/page",
     "vdir": false,
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/dashboard/icons",
-    "bundle": "@beyond-js/dashboard@1.0.2/unnamed/components/core/page",
+    "bundle": "@beyond-js/workspace@1.0.5/components/core/page",
     "vdir": false
   }, {
     "route": "/empty",
-    "bundle": "@beyond-js/dashboard@1.0.2/unnamed/components/empty",
+    "bundle": "@beyond-js/workspace@1.0.5/components/empty",
     "vdir": false
   }, {
     "route": "/beyond/uploader",
-    "bundle": "@beyond-js/dashboard@1.0.2/unnamed/components/uploader/page",
-    "vdir": false,
-    "layout": "dashboard"
+    "bundle": "@beyond-js/workspace@1.0.5/components/uploader/page",
+    "vdir": false
   }, {
     "route": "/test",
-    "bundle": "@beyond-js/dashboard@1.0.2/test",
+    "bundle": "@beyond-js/workspace@1.0.5/test",
     "vdir": false,
     "layout": "default"
   }, {
     "route": "/ui",
-    "bundle": "@beyond-js/dashboard@1.0.2/workspace-ui",
+    "bundle": "@beyond-js/workspace@1.0.5/workspace-ui",
     "vdir": false,
     "layout": "dashboard"
   }, {
     "route": "/",
-    "bundle": "@beyond-js/dashboard@1.0.2/workspace",
+    "bundle": "@beyond-js/workspace@1.0.5/workspace",
     "vdir": true,
     "layout": "workspace"
   }]);
@@ -202,24 +201,24 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
     "bundle": "@beyond-js/ui@0.0.1/layout-main"
   }, {
     "name": "workspace",
-    "bundle": "@beyond-js/dashboard@1.0.2/workspace-layout"
+    "bundle": "@beyond-js/workspace@1.0.5/workspace-layout"
   }, {
     "name": "editor",
-    "bundle": "@beyond-js/dashboard@1.0.2/unnamed/layout/editor"
+    "bundle": "@beyond-js/workspace@1.0.5/layout/editor"
   }]);
   const bundles = [];
   /**********************************
-  MODULE: @beyond-js/dashboard/boards
+  MODULE: @beyond-js/workspace/boards
   **********************************/
 
   bundles.push([{
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/boards"
+      "vspecifier": "@beyond-js/workspace@1.0.5/boards"
     },
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
@@ -261,17 +260,17 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
   }]);
 
   /**********************************
-  MODULE: @beyond-js/dashboard/monaco
+  MODULE: @beyond-js/workspace/monaco
   **********************************/
 
   bundles.push([{
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/monaco"
+      "vspecifier": "@beyond-js/workspace@1.0.5/monaco"
     },
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
@@ -279,11 +278,11 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
     ***********************/
 
     ims.set('./start', {
-      hash: 2263413813,
+      hash: 2255236841,
       creator: function (require, exports) {
         "use strict";
 
-        var _config = require("@beyond-js/dashboard/config");
+        var _config = require("@beyond-js/workspace/config");
         const {
           local
         } = _config.default;
@@ -297,7 +296,7 @@ define(["exports", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/kernel@0.1.7/tr
       }
     });
     return {
-      dependencies: ['@beyond-js/backend/client', '@beyond-js/dashboard/config', '@beyond-js/dashboard/workspace-model.code']
+      dependencies: ['@beyond-js/workspace/config']
     };
   }]);
   __beyond_transversal.initialise(bundles);

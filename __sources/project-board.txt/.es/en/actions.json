@@ -1,0 +1,16 @@
+{
+  "en": {
+    "actions": {
+      "navigate": "Navigate",
+      "process": "Project actions",
+      "editDescription": "Edit description",
+      "generatingDeclarations": "generating...",
+      "publish": "Publish",
+      "update": "Update dependencies",
+      "declarations": "Generate declarations",
+      "start": "Play",
+      "stop": "Stop",
+      "restart": "Restart"
+    }
+  }
+}

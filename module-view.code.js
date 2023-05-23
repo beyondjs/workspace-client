@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.5", "@beyond-js/dashboard@1.0.2/core-components", "@beyond-js/dashboard@1.0.2/hooks", "@beyond-js/dashboard@1.0.2/texts-binder", "@beyond-js/dashboard@1.0.2/ds-contexts", "@beyond-js/dashboard@1.0.2/tabs", "@beyond-js/ui@0.0.1/preload-text"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.7", "@beyond-js/workspace@1.0.5/core-components", "@beyond-js/workspace@1.0.5/hooks", "@beyond-js/workspace@1.0.5/texts-binder", "@beyond-js/workspace@1.0.5/ds-contexts", "@beyond-js/workspace@1.0.5/tabs", "@beyond-js/ui@0.0.1/preload-text"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -62,7 +62,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     BeyondPreloadText
   } = dependency_11;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -70,13 +70,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/module-view",
+      "vspecifier": "@beyond-js/workspace@1.0.5/module-view",
       "multibundle": true
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/spinner', dependency_3], ['@beyond-js/ui/form', dependency_4], ['dayjs', dependency_5], ['@beyond-js/dashboard/core-components', dependency_6], ['@beyond-js/dashboard/hooks', dependency_7], ['@beyond-js/dashboard/texts-binder', dependency_8], ['@beyond-js/dashboard/ds-contexts', dependency_9], ['@beyond-js/dashboard/tabs', dependency_10], ['@beyond-js/ui/preload-text', dependency_11]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/spinner', dependency_3], ['@beyond-js/ui/form', dependency_4], ['dayjs', dependency_5], ['@beyond-js/workspace/core-components', dependency_6], ['@beyond-js/workspace/hooks', dependency_7], ['@beyond-js/workspace/texts-binder', dependency_8], ['@beyond-js/workspace/ds-contexts', dependency_9], ['@beyond-js/workspace/tabs', dependency_10], ['@beyond-js/ui/preload-text', dependency_11]]);
   const {
     module
   } = __pkg.bundle;
@@ -814,6 +814,56 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     }, output));
   }
 
+  /**********************
+  declarations\detail.jsx
+  **********************/
+
+  function DeclarationsDetail({
+    trace
+  }) {
+    const [toggle, setToggle] = React.useState(false);
+    const errors = trace.errors.map((item, i) => /*#__PURE__*/React.createElement("li", {
+      key: i
+    }, item));
+    return /*#__PURE__*/React.createElement("div", {
+      className: "bundle__detail s--pointer"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex-container flex-space",
+      onClick: () => setToggle(!toggle)
+    }, /*#__PURE__*/React.createElement("span", null, trace.bundle)), toggle && /*#__PURE__*/React.createElement("div", {
+      className: "flex-container"
+    }, /*#__PURE__*/React.createElement("article", {
+      className: "bundle__container"
+    }, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("ul", {
+      className: "ds-diagnostics error-text"
+    }, errors)))));
+  }
+
+  /*********************
+  declarations\index.jsx
+  *********************/
+
+  function Declarations() {
+    const {
+      model,
+      texts
+    } = useModuleContext();
+    const [items, setItems] = React.useState(undefined);
+    useBinder([model], () => setItems(model.declarationTrace));
+    let output;
+    if (!items) {
+      return /*#__PURE__*/React.createElement("h4", null, texts.declarations.notProcessed);
+    }
+    if (!items.length) {
+      return /*#__PURE__*/React.createElement("h4", null, texts.declarations.success);
+    }
+    output = items.map(trace => /*#__PURE__*/React.createElement(DeclarationsDetail, {
+      key: trace.bundle,
+      trace: trace
+    }));
+    return /*#__PURE__*/React.createElement(React.Fragment, null, output);
+  }
+
   /*********************
   dependencies\index.jsx
   *********************/
@@ -1087,6 +1137,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     } = model;
     const link = am.route ? `${application.url}${am.route.toLowerCase()}` : '';
     const [showPath, setShowPath] = React.useState(false);
+    const [fetching, setFetching] = React.useState(false);
     const togglePath = () => setShowPath(!showPath);
     const changeProperty = event => {
       const target = event.currentTarget;
@@ -1096,7 +1147,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
       event.preventDefault();
       workspace.openNavigator(application.id, link);
     };
+    const declarations = async event => {
+      setFetching(true);
+      await model.generateDeclarations();
+      setFetching(false);
+    };
     const path = showPath ? am.module.path : am.module.subpath;
+    const cls = `module-view__header__section${fetching ? ' is-fetching' : ''}`;
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("header", {
       className: "module-view__header"
     }, /*#__PURE__*/React.createElement("section", {
@@ -1114,10 +1171,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     }), /*#__PURE__*/React.createElement("span", null, am.module.specifier))), /*#__PURE__*/React.createElement("div", {
       className: "module-view__header__rows"
     }, /*#__PURE__*/React.createElement(ModulePlatforms, null), /*#__PURE__*/React.createElement(CSpecs, null)), /*#__PURE__*/React.createElement("div", {
-      className: "module-view__header__section"
+      className: cls
     }, /*#__PURE__*/React.createElement(DSIconButton, {
       icon: "declarations",
-      onClick: model.generateDeclarations
+      onClick: declarations
     }))));
   }
 
@@ -1310,6 +1367,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
       bundles,
       consumers,
       dependencies,
+      declarations,
       settings
     } = texts.labels;
     return /*#__PURE__*/React.createElement(ModuleContext.Provider, {
@@ -1325,8 +1383,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     }, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(ModuleErrors, null), /*#__PURE__*/React.createElement("div", {
       className: "ds__board__tabs-container"
     }, /*#__PURE__*/React.createElement(TabsContainer, null, /*#__PURE__*/React.createElement(Tabs, {
-      tabs: [bundles, consumers, dependencies, settings]
-    }), /*#__PURE__*/React.createElement(Board, null, /*#__PURE__*/React.createElement(ModuleBundles, null), /*#__PURE__*/React.createElement(Consumers, null), /*#__PURE__*/React.createElement(ListDependencies, null))))));
+      tabs: [bundles, consumers, dependencies, declarations, settings]
+    }), /*#__PURE__*/React.createElement(Board, null, /*#__PURE__*/React.createElement(ModuleBundles, null), /*#__PURE__*/React.createElement(Consumers, null), /*#__PURE__*/React.createElement(ListDependencies, null), /*#__PURE__*/React.createElement(Declarations, null), /*#__PURE__*/React.createElement(React.Fragment, null))))));
   }
 
   /****************
@@ -1596,7 +1654,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__container header{padding:1rem .5rem}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr auto;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__container header{padding:1rem .5rem}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr auto;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 

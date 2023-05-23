@@ -1,0 +1,29 @@
+{
+  "en": {
+    "scanner": {
+      "title": "scanned modules"
+    },
+    "application": {
+      "info": {
+        "description": "Description",
+        "title": "Title",
+        "name": "Name",
+        "empty": {
+          "description": "The application does not have a description",
+          "title": "Add a title",
+          "name": "Add a name"
+        }
+      },
+      "tabs": {
+        "modules": "Modules",
+        "distributions": "Distributions",
+        "settings": "Settings"
+      },
+      "actions": {
+        "save": "Save",
+        "close": "Close"
+      },
+      "error404": "Application not found"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/dashboard@1.0.2/models", "@beyond-js/dashboard@1.0.2/database", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/kernel@0.1.7/texts", "@beyond-js/dashboard@1.0.2/uploader-components", "@beyond-js/dashboard@1.0.2/ds-panels", "@beyond-js/dashboard@1.0.2/ds-contexts", "@beyond-js/backend@0.1.2/client"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/workspace@1.0.5/models", "@beyond-js/workspace@1.0.5/database", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/workspace@1.0.5/uploader-components", "@beyond-js/workspace@1.0.5/ds-panels", "@beyond-js/workspace@1.0.5/ds-contexts", "@beyond-js/backend@0.1.6/client"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -44,7 +44,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/dashb
     backends
   } = dependency_9;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -52,13 +52,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/dashb
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/workspace-model",
+      "vspecifier": "@beyond-js/workspace@1.0.5/workspace-model",
       "multibundle": true
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['@beyond-js/dashboard/models', dependency_1], ['@beyond-js/dashboard/database', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/inspect/reactive-model', dependency_4], ['@beyond-js/kernel/texts', dependency_5], ['@beyond-js/dashboard/uploader-components', dependency_6], ['@beyond-js/dashboard/ds-panels', dependency_7], ['@beyond-js/dashboard/ds-contexts', dependency_8], ['@beyond-js/backend/client', dependency_9]]);
+  __pkg.dependencies.update([['@beyond-js/workspace/models', dependency_1], ['@beyond-js/workspace/database', dependency_2], ['@beyond-js/inspect/models.ts', dependency_3], ['@beyond-js/inspect/reactive-model', dependency_4], ['@beyond-js/kernel/texts', dependency_5], ['@beyond-js/workspace/uploader-components', dependency_6], ['@beyond-js/workspace/ds-panels', dependency_7], ['@beyond-js/workspace/ds-contexts', dependency_8], ['@beyond-js/backend/client', dependency_9]]);
   const {
     module
   } = __pkg.bundle;
@@ -620,13 +620,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "@beyond-js/dashb
       if ([undefined, NaN].includes(id)) return;
       const {
         projectsFactory
-      } = await beyond.import("@beyond-js/dashboard/models");
+      } = await beyond.import("@beyond-js/workspace/models");
       return projectsFactory.get(parseInt(id), moduleId, element);
     }
     async getProject(id) {
       const {
         projectsFactory
-      } = await beyond.import("@beyond-js/dashboard/models");
+      } = await beyond.import("@beyond-js/workspace/models");
       return projectsFactory.get(parseInt(id));
     }
     async getModuleManager(projectId, moduleId) {

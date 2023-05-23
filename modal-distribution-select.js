@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/dashboard@1.0.2/breadcrumb.code", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/dashboard@1.0.2/ds-contexts", "@beyond-js/dashboard@1.0.2/hooks", "@beyond-js/dashboard@1.0.2/models", "@beyond-js/dashboard@1.0.2/core-components", "@beyond-js/kernel@0.1.7/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/workspace@1.0.5/breadcrumb.code", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/workspace@1.0.5/ds-contexts", "@beyond-js/workspace@1.0.5/hooks", "@beyond-js/workspace@1.0.5/models", "@beyond-js/workspace@1.0.5/core-components", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -57,7 +57,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     BeyondScrollContainer
   } = dependency_15;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -65,12 +65,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/modal-distribution-select"
+      "vspecifier": "@beyond-js/workspace@1.0.5/modal-distribution-select"
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/dashboard/breadcrumb.code', dependency_3], ['@beyond-js/inspect/models.code', dependency_4], ['@beyond-js/inspect/reactive-model', dependency_5], ['@beyond-js/ui/alert', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/dashboard/ds-contexts', dependency_10], ['@beyond-js/dashboard/hooks', dependency_11], ['@beyond-js/dashboard/models', dependency_12], ['@beyond-js/dashboard/core-components', dependency_13], ['@beyond-js/kernel/texts', dependency_14], ['@beyond-js/ui/perfect-scrollbar', dependency_15]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/workspace/breadcrumb.code', dependency_3], ['@beyond-js/inspect/models.code', dependency_4], ['@beyond-js/inspect/reactive-model', dependency_5], ['@beyond-js/ui/alert', dependency_6], ['@beyond-js/ui/form', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/workspace/ds-contexts', dependency_10], ['@beyond-js/workspace/hooks', dependency_11], ['@beyond-js/workspace/models', dependency_12], ['@beyond-js/workspace/core-components', dependency_13], ['@beyond-js/kernel/texts', dependency_14], ['@beyond-js/ui/perfect-scrollbar', dependency_15]]);
   const {
     module
   } = __pkg.bundle;
@@ -114,7 +114,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
         texts
       };
       onClose();
-      workspace.active.process(selected, {
+      workspace.active.process({
+        id: selected,
         build: compile,
         declarations
       });
@@ -170,8 +171,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     }
     const items = [];
     const npm = {
-      id: 'npm',
-      name: 'npm'
+      id: "npm",
+      name: "npm"
     };
     items.push( /*#__PURE__*/React.createElement(DistributionItem, {
       key: npm.id,
@@ -301,7 +302,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/modal-distribution-select', '.compile__trace__list{list-style:none;display:grid;gap:2px;padding:0}.compile__trace__list li{padding:4px;cursor:pointer;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds-distributions-select__modal div,.ds-distributions-select__modal h4,.ds-distributions-select__modal p{margin:0;padding:0}.ds-distributions-select__modal .cards__container header.ds-card__header h4{color:var(--secondary-text-color)}.ds-distributions-select__modal .cards__container .ports{display:flex;flex-wrap:wrap;gap:.5rem}.ds-distributions-select__modal .cards__container .ports div{display:flex;gap:.5rem}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/modal-distribution-select', '.compile__trace__list{list-style:none;display:grid;gap:2px;padding:0}.compile__trace__list li{padding:4px;cursor:pointer;transition:all 150ms ease-in}.compile__trace__list li:hover{background:var(--ds-element-hover)}.compile__trace__list .message__error{background:var(--beyond-error-color)}.compile__trace__list .message__error:hover{background:var(--beyond-error-darken-color)}.ds-distributions-select__modal div,.ds-distributions-select__modal h4,.ds-distributions-select__modal p{margin:0;padding:0}.ds-distributions-select__modal .cards__container header.ds-card__header h4{color:var(--secondary-text-color)}.ds-distributions-select__modal .cards__container .ports{display:flex;flex-wrap:wrap;gap:.5rem}.ds-distributions-select__modal .cards__container .ports div{display:flex;gap:.5rem}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 

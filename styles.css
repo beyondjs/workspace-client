@@ -2921,14 +2921,14 @@ body {
     opacity: .3;
     cursor: not-allowed; }
 
-.ds__board .board__header .project__specifier, .ds__board .board__header .header__detail {
+undefined .ds__board .board__header .project__specifier, undefined .ds__board .board__header .header__detail {
   color: var(--secondary);
   align-items: center;
   letter-spacing: 0.28px;
   font-size: .9rem;
   gap: .5rem;
   display: flex; }
-  .ds__board .board__header .project__specifier svg, .ds__board .board__header .header__detail svg {
+  undefined .ds__board .board__header .project__specifier svg, undefined .ds__board .board__header .header__detail svg {
     fill: var(--secondary); }
 
 .box-item {

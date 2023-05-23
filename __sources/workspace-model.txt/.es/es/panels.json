@@ -1,0 +1,25 @@
+{
+  "es": {
+    "panels": {
+      "tab": {
+        "actions": {
+          "splitRight": "Split Right",
+          "splitDown": "Split Down",
+          "close": "Close",
+          "closeAll": "Cerrar las otras pestañas"
+        },
+        "labels": {
+          "apps": "Proyectos",
+          "navigator": "Navegador",
+          "compile": "Compilador",
+          "static": "Estaticos",
+          "app": "Aplicación",
+          "appConfig": "Configuración",
+          "module": "Modulo",
+          "settings": "Preferencias"
+        }
+      }
+    }
+  }
+}
+

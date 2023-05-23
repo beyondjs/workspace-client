@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/dashboard@1.0.2/core-components", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/dashboard@1.0.2/notify", "@beyond-js/dashboard@1.0.2/hooks", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/kernel@0.1.7/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/dashboard@1.0.2/tabs"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/workspace@1.0.5/core-components", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/icon", "@beyond-js/workspace@1.0.5/notify", "@beyond-js/workspace@1.0.5/hooks", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/ui@0.0.1/perfect-scrollbar", "@beyond-js/workspace@1.0.5/tabs"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -64,7 +64,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     Board
   } = dependency_15;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -72,13 +72,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/project-create",
+      "vspecifier": "@beyond-js/workspace@1.0.5/project-create",
       "multibundle": true
     },
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/dashboard/core-components', dependency_3], ['@beyond-js/ui/image', dependency_4], ['@beyond-js/ui/icon', dependency_5], ['@beyond-js/dashboard/notify', dependency_6], ['@beyond-js/dashboard/hooks', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/ui/form', dependency_10], ['@beyond-js/inspect/models.code', dependency_11], ['@beyond-js/inspect/reactive-model', dependency_12], ['@beyond-js/kernel/texts', dependency_13], ['@beyond-js/ui/perfect-scrollbar', dependency_14], ['@beyond-js/dashboard/tabs', dependency_15]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/workspace/core-components', dependency_3], ['@beyond-js/ui/image', dependency_4], ['@beyond-js/ui/icon', dependency_5], ['@beyond-js/workspace/notify', dependency_6], ['@beyond-js/workspace/hooks', dependency_7], ['@beyond-js/ui/modal', dependency_8], ['@beyond-js/ui/spinner', dependency_9], ['@beyond-js/ui/form', dependency_10], ['@beyond-js/inspect/models.code', dependency_11], ['@beyond-js/inspect/reactive-model', dependency_12], ['@beyond-js/kernel/texts', dependency_13], ['@beyond-js/ui/perfect-scrollbar', dependency_14], ['@beyond-js/workspace/tabs', dependency_15]]);
   const {
     module
   } = __pkg.bundle;
@@ -297,10 +297,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
         value
       } = event.currentTarget;
       if (!/^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(value)) {
-        model.scope = undefined;
+        model.name = undefined;
         return;
       }
-      model.scope = value;
+      model.name = value;
     };
     const inputsAttrs = {};
     if (fetching) inputsAttrs.disabled = true;
@@ -340,13 +340,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
     }, /*#__PURE__*/React.createElement("div", {
       className: "section-group"
     }, /*#__PURE__*/React.createElement(BeyondInput, _extends({}, inputsAttrs, {
-      name: "scope",
-      label: texts.scope.label,
-      placeholder: texts.scope.label,
-      value: state.scope,
+      name: "name",
+      label: texts.name.label,
+      placeholder: texts.name.label,
+      value: state.name,
       onChange: handleName
     })), /*#__PURE__*/React.createElement(IconInfo, {
-      msg: texts.scope.info
+      msg: texts.name.info
     })), /*#__PURE__*/React.createElement(VersionInput, {
       state: state,
       setState: setState
@@ -508,7 +508,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/dashboard/project-create.code', '.xx{color:red}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/project-create.code', '.xx{color:red}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 

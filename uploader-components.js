@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_exports, _amd_module, dependency_0) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -7,7 +7,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
   _exports.JidaUploader = JidaUploader;
   _exports.resizePicture = _exports.hmr = _exports.camera = _exports.__beyond_pkg = _exports.ResourceSelectorError = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.2"], ["@beyond-js/kernel", "0.1.7"], ["@beyond-js/widgets", "0.1.3"], ["@beyond-js/backend", "0.1.2"], ["dayjs", "1.11.5"], ["emmet-monaco-es", "5.1.2"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.4.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["split.js", "1.6.5"], ["tippy.js", "6.2.5"], ["waves", "0.1.1"], ["@beyond-js/dashboard", "1.0.2"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.6"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -15,7 +15,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/dashboard@1.0.2/uploader-components"
+      "vspecifier": "@beyond-js/workspace@1.0.5/uploader-components"
     },
     "type": "code"
   }, _amd_module.uri).package();
@@ -409,15 +409,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
     const events = new Events({
       bind: this
     });
-    Object.defineProperty(this, 'events', {
+    Object.defineProperty(this, "events", {
       get: () => events
     });
     let control;
-    const fileInput = document.createElement('input');
+    const fileInput = document.createElement("input");
     const openDialog = () => fileInput.click();
-    const filesLoaded = () => events.trigger('loadend');
-    const pictureLoaded = () => events.trigger('pictureLoaded');
-    const pictureLoading = () => events.trigger('pictureLoading');
+    const filesLoaded = () => events.trigger("loadend");
+    const pictureLoaded = () => events.trigger("pictureLoaded");
+    const pictureLoading = () => events.trigger("pictureLoading");
     const getErrors = () => this.errors = files._errors;
 
     /**
@@ -425,8 +425,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
      */
     const addListener = () => {
       if (!control) return;
-      control.addEventListener('click', openDialog);
-      fileInput.addEventListener('change', files.onChangeInput);
+      control.addEventListener("click", openDialog);
+      fileInput.addEventListener("change", files.onChangeInput);
     };
     new MobileUploader(this);
     /**
@@ -434,11 +434,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
      * @type {UploadFiles}
      */
     const files = new UploadFiles(this, specs);
-    Object.defineProperty(this, 'files', {
+    Object.defineProperty(this, "files", {
       get: () => files
     });
-    files.bind('error', getErrors);
-    files.bind('loadend', filesLoaded);
+    files.bind("error", getErrors);
+    files.bind("loadend", filesLoaded);
     const ddController = new DragAndDropUploader(this, files, specs);
     this.addDragAndDrop = selector => {
       ddController.add(selector);
@@ -455,20 +455,20 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
     const setAttributes = specs => {
       if (!specs) specs = {};
       let attrs = Object.assign({
-        type: 'file',
-        style: 'display:none',
-        name: 'input_upload'
+        type: "file",
+        style: "display:none",
+        name: "input_upload"
       }, specs);
       for (let prop in attrs) fileInput.setAttribute(prop, attrs[prop]);
     };
     setAttributes(specs && specs.input);
     const mobileFiles = new MobileFiles(specs);
-    Object.defineProperty(this, 'mobileFiles', {
+    Object.defineProperty(this, "mobileFiles", {
       get: () => mobileFiles
     });
     //mobileFiles.bind('error', getErrors);
-    mobileFiles.bind('loadend', pictureLoaded);
-    mobileFiles.bind('loading', pictureLoading);
+    mobileFiles.bind("loadend", pictureLoaded);
+    mobileFiles.bind("loading", pictureLoading);
     this.publish = async (additionalParams = {}) => {
       const form = new FormData();
       //const collection = isCamera ? mobileFiles : files;
@@ -485,6 +485,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
       return response.json();
     };
   }
+
   /***********
   FILE: xhr.js
   ***********/

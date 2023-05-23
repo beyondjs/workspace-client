@@ -6,12 +6,13 @@ define(["exports"], function (_exports) {
   });
   _exports.default = void 0;
   var _default = {
-    "package": "@beyond-js/dashboard",
-    "version": "1.0.2",
+    "package": "@beyond-js/workspace",
+    "version": "1.0.5",
     "languages": {
       "default": "en",
       "supported": ["en", "es"]
     },
+    "global.css": true,
     "params": {
       "application": {
         "name": "BeyondJS - DEV",

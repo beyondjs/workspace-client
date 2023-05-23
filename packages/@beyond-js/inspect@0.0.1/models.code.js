@@ -1,12 +1,19 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_exports, _amd_module, dependency_0) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packages-templates@1.0.0/main"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.hmr = _exports.__beyond_pkg = _exports.Widget = _exports.TEMPLATES = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBuilder = _exports.ElementWidget = _exports.ApplicationBuilder = void 0;
+  _exports.hmr = _exports.__beyond_pkg = _exports.Widget = _exports.ReactiveModel = _exports.PROJECT_TYPES = _exports.ModuleBuilder = _exports.ElementWidget = _exports.ApplicationBuilder = void 0;
+  /*************
+  LEGACY IMPORTS
+  *************/
+
+  const {
+    TEMPLATES
+  } = dependency_1;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/dashboard", "1.0.2"]]);
+    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.6"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -20,7 +27,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([]);
+  __pkg.dependencies.update([['@beyond-js/packages-templates/main', dependency_1]]);
   const {
     module
   } = __pkg.bundle;
@@ -123,46 +130,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
   FILE: application\_templates.js
   ******************************/
   _exports.ReactiveModel = ReactiveModel;
-  const TEMPLATES = [{
-    name: "react",
-    platforms: ['web']
-  }, {
-    name: "vue",
-    platforms: ['web']
-  }, {
-    name: "svelte",
-    platforms: ['web']
-  }, {
-    name: "express",
-    platforms: ['node']
-  }, {
-    name: "web-backend-app",
-    platforms: ['web', 'backend']
-  }, {
-    name: 'web',
-    platforms: ['web']
-  }, {
-    name: 'web-backend',
-    platforms: ['web', 'backend']
-  }, {
-    name: 'node',
-    platforms: ['node']
-  }, {
-    name: 'backend',
-    platforms: ['backend']
-  }];
-  _exports.TEMPLATES = TEMPLATES;
   const PROJECT_TYPES = [{
     name: 'empty'
   }];
-
   /*******************************
   FILE: application\application.js
   *******************************/
   _exports.PROJECT_TYPES = PROJECT_TYPES;
   class ApplicationBuilder extends ReactiveModel {
     #id;
-    #required = ["scope", "version"];
+    #required = ["name", "version"];
     #created;
     get created() {
       return this.#created;
@@ -237,7 +214,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
         id: this.id,
         type: this.type,
         name: this.name,
-        scope: this.scope,
         title: this.title,
         version: this.version,
         created: this.created,
@@ -258,37 +234,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
       this.#name = value;
       this.triggerEvent();
     }
-
-    //
-    // get platforms() {
-    //     if (!this.is) return;
-    //     const items = this.is === 'template' ? this.templates : this.TYPES;
-    //     const {platforms} = items.find(item => item.name === this.type);
-    //     const data = platforms.map(item => {
-    //         const platform = {platform: item, environment: 'development'};
-    //         return platform;
-    //     });
-    //     const index = data.findIndex(item => item.platform === 'web');
-    //     if (index >= 0) data[index].default = true;
-    //     else data[0].default = true;
-    //     return data;
-    // }
-
     #ready = true;
     get ready() {
       return this.#ready;
     }
-    #scope;
-    get scope() {
-      return this.#scope;
-    }
-    set scope(value) {
-      if (value === this.#scope || !["string", "undefined"].includes(typeof value)) return;
-      this.#scope = value;
-      this.triggerEvent();
-    }
     get templates() {
-      return TEMPLATES;
+      return TEMPLATES ?? [];
     }
     #title;
     get title() {
@@ -330,8 +281,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
       let invalid = !!this.#required.find(field => {
         return !this[field];
       });
-      if (invalid) return false;
-      return true;
+      return !invalid;
     }
     constructor() {
       super();
@@ -368,18 +318,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
   **************************/
   _exports.ApplicationBuilder = ApplicationBuilder;
   function validate(parent) {
-    let value = parent.scope;
+    const value = parent.name;
     const regexp = /(@[\w-]+\/[\w-.]+)|[\w-\.]+/;
     if (!regexp.test(value)) {
       parent.error = "PROJECT_IDENTIFIER";
     }
-    if (!value.includes("@")) {
-      parent.name = value;
-      return true;
-    }
-    const [scope, name] = value.split("/");
-    parent.scope = scope.replace("@", "");
-    parent.name = name;
     return true;
   }
   async function create(parent) {
@@ -388,7 +331,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.7/bundle"], function (_expor
     try {
       const validation = validate(parent);
       if (!validation) return;
-      const response = await module.execute("builder/project/create", parent.getters);
+      const response = await module.execute('builder/project/create', parent.getters);
       if (!response?.status) {
         parent.error = response.error;
         return;
