@@ -1,0 +1,15 @@
+{
+  "es": {
+    "actions": {
+      "navigate": "Navegar",
+      "process": "Acciones del proyecto",
+      "editDescription": "Editar descripción",
+      "generatingDeclarations": "Generando...",
+      "publish": "Publicar",
+      "declarations": "Generar declaraciones",
+      "start": "Iniciar",
+      "stop": "Detener",
+      "restart": "Reiniciar"
+    }
+  }
+}

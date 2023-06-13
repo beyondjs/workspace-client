@@ -1,0 +1,73 @@
+{
+  "en": {
+    "errors": {
+      "noSelected": "the application selected does not has distributions",
+      "ALREADY_EXISTS": "A distribution with this configuration already exists",
+      "PORT_USED": "There is already a distribution with the indicated port"
+    },
+    "modal": {
+      "title": "Let's add a new distribution",
+      "header": "Configure",
+      "formHeader": "General Settings"
+    },
+    "actions": {
+      "add": "Add"
+    },
+    "callToAction": "To run your project, press the run button on the distribution you want to use.",
+    "platforms": {
+      "web": "Web",
+      "backend": "Backend",
+      "android": "Android",
+      "ios": "iOS",
+      "ssr": "SSR",
+      "node": "Node",
+      "deno": "Deno"
+    },
+    "props": {
+      "name": {
+        "label": "Distribution name",
+        "tooltip": "Identifier name"
+      },
+      "platform": {
+        "label": "Platform",
+        "tooltip": "Corresponds to the platform on which you want to distribute the code"
+      },
+      "environment": {
+        "label": "Entorno",
+        "development": "Desarrollo",
+        "production": "Producción"
+      },
+      "ports": {
+        "title": "Ports settings",
+        "http": {
+          "label": "Http server",
+          "tooltip": "Port on which the http server in charge of the SSR will run."
+        },
+        "inspect": {
+          "label": "Inspect port",
+          "tooltip": "It will allow code inspection through the dev tools"
+        },
+        "bundles": {
+          "label": "DevServer port",
+          "tooltip": "The DevServer returns all the resources requested in the development process"
+        },
+        "label": "Port",
+        "error": "Port isn't available",
+        "success": "Port checked and available",
+        "tooltip": "Check port"
+      },
+      "backend": "Backend",
+      "ts": "TS",
+      "ssr": "SSR",
+      "compress": "Compress",
+      "default": "default",
+      "checkType": "Check types",
+      "bundler": {
+        "label": "Modules format",
+        "tooltip": "Format used for bundle packaging"
+      },
+      "advancedSettings": "Advanced settings"
+    }
+  }
+}
+

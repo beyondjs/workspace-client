@@ -1,0 +1,37 @@
+{
+  "es": {
+    "process": {
+      "title": "Procesos",
+      "start": {
+        "title": "Selecciona una distribución para realizar la compilación"
+      },
+      "empty": "No hay distribuciones añadidas. Cree uno con la plataforma y las especificaciones que desea construir.",
+      "actions": {
+        "market": "Marketplace",
+        "compile": "Compilar",
+        "declarations": "Generar declaraciones",
+        "compile": "Compilar"
+      }
+    },
+    "distribution": {
+      "environment": "Entorno",
+      "ts": "TS",
+      "npm": "Compila tu paquete para publicar en npm",
+      "platform": "Plataforma",
+      "ssr": "SSR",
+      "ports": {
+        "title": "Puertos",
+        "http": "Puerto Http",
+        "inspect": "Puerto de Inspección ",
+        "bundles": "Puerto DevServer"
+      },
+      "empty": {
+        "title": "Distributions",
+        "messages": {
+          "execute": "Es necesario agregar una distribución con la plataforma en la que desees ejecutar el proyecto",
+          "compile": "Es necesario agregar una distribución con la plataforma en la que desees compilar el proyecto"
+        }
+      }
+    }
+  }
+}
