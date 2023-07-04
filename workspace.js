@@ -169,6 +169,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     const specs = {
       port: this.qs.get("port") ?? 4000
     };
+    if (this.qs.get("host")) specs.host = this.qs.get("host");
     workspace.load(specs);
     ReactDOM.render(React.createElement(DSWorkspace, {
       workspace,

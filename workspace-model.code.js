@@ -242,10 +242,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/works
       if (value === this.#port) return;
       this.#port = value;
     }
-    constructor(port, workspace) {
+    constructor({
+      port,
+      host
+    }, workspace) {
       super();
       const id = "@beyond-js/inspect";
-      const url = `http://localhost:${port}`;
+      host = host ? `https://${host}` : `http://localhost`;
+      const url = `${host}:${port}`;
       backends.register(id, url);
       (async () => {
         const backend = await backends.get(id);
@@ -524,9 +528,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/works
       return this.#load(specs);
     }
     async #load({
-      port
+      port,
+      host
     }) {
-      this.#portManager = new PortManager(port, this);
+      this.#portManager = new PortManager({
+        port,
+        host
+      }, this);
       this.#wd = await Dashboard.getWD();
       await this.#dsmodel.initialise(this.#wd);
       await DSModel.initialise();
