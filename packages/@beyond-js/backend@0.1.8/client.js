@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.hmr = _exports.backends = _exports.__beyond_pkg = _exports.Backend = _exports.ActionsBridge = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.4"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@beyond-js/backend", "0.1.6"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.4"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@beyond-js/backend", "0.1.8"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/backend@0.1.6/client"
+      "vspecifier": "@beyond-js/backend@0.1.8/client"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -30,7 +30,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   *******************************/
 
   ims.set('./action/bridge', {
-    hash: 2081575659,
+    hash: 1745530134,
     creator: function (require, exports) {
       "use strict";
 
@@ -39,14 +39,20 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       });
       exports.ActionsBridge = void 0;
       var _ = require("./");
+      var _backends = require("../backends");
       /*bundle*/
       class ActionsBridge {
         #distribution;
         #bundle;
+        #pkg;
         #backend;
+        get backend() {
+          return _backends.backends.get(this.#pkg);
+        }
         constructor(distribution, bundle) {
           this.#distribution = distribution;
           this.#bundle = bundle.specifier;
+          this.#pkg = bundle.module.pkg;
           this.#backend = `${bundle.module.pkg}/${this.#distribution}`;
         }
         async execute(action, ...params) {
@@ -94,7 +100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   ******************************/
 
   ims.set('./action/index', {
-    hash: 2047620412,
+    hash: 501662521,
     creator: function (require, exports) {
       "use strict";
 
@@ -202,7 +208,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
               void processingTime;
               error ? this.#promise.reject(new _executionError.ExecutionError(error.message, error.stack)) : this.#promise.resolve(message);
             };
+            const onError = error => {
+              this.#executed = true;
+              this.#executing = false;
+              clearTimeout(this.#timer);
+              socket.off();
+              this.#promise.reject(new Error('Socket disconnected'));
+            };
             socket.on(this.#channel, onresponse);
+            socket.on('disconnect', onError);
+            socket.on('connect_error', onError);
             this.#send(socket);
           } catch (exc) {
             this.#promise.reject(exc);

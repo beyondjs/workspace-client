@@ -1,7 +1,7 @@
-import {Events} from "@beyond-js/kernel/core";
-import {module} from "beyond_context";
-import type {Application} from "./item";
-import {backends} from "@beyond-js/backend/client";
+import { Events } from "@beyond-js/kernel/core";
+import { module } from "beyond_context";
+import type { Application } from "./item";
+import { backends } from "@beyond-js/backend/client";
 
 interface MessageSpecs {
     id: string;
@@ -9,9 +9,9 @@ interface MessageSpecs {
     text: string;
     error?: boolean;
     processed?: boolean;
-    main: string,
-    moduleId: string,
-    stack: [MessageSpecs]
+    main: string;
+    moduleId: string;
+    stack: [MessageSpecs];
 }
 
 export class ApplicationProcess extends Events {
@@ -51,7 +51,7 @@ export class ApplicationProcess extends Events {
     }
 
     private onMessage = (message: MessageSpecs) => {
-        if (!['process'].includes(message.type)) return;
+        if (!["process"].includes(message.type)) return;
 
         if (message.processed) {
             this.#processed = true;
@@ -69,7 +69,7 @@ export class ApplicationProcess extends Events {
 
         if (!message.main) {
             if (!this.#exc.has(message.moduleId)) {
-                console.warn('error message recived and not process main first', message)
+                console.warn("error message recived and not process main first", message);
             }
             const msg = this.#exc.get(message.moduleId);
             msg.stack.push(message);
@@ -101,23 +101,27 @@ export class ApplicationProcess extends Events {
         }
     }
 
-    async run(id: string, actions: { build: boolean; declarations: boolean }) {
+    async run(actions: { build: boolean; declarations: boolean }, distribution: string) {
         if (this.#processing) return;
-        if (!id) {
-            console.warn('Parameter id is required');
+
+        if (!actions.build && !actions.declarations) {
+            console.warn("No actions to process");
             return;
         }
-        if (!actions.build && !actions.declarations) {
-            console.warn('No actions to process');
+
+        if (actions.build && !distribution) {
+            console.error("You must indicate a distribution to compile");
             return;
         }
 
         this.clean();
         this.#processing = true;
         this.trigger("change");
-        const specs = Object.assign({application: this.#application.id, distribution: id}, actions);
+
         try {
             await this.prepare();
+
+            const specs = Object.assign({ application: this.#application.id, distribution }, actions);
             await module.execute("applications/process", specs);
         } catch (exc) {
             console.error(exc.message);

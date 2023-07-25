@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0.0.1/core", "@beyond-js/kernel@0.1.9/core", "@beyond-js/backend@0.1.6/client", "@beyond-js/inspect@0.0.1/reactive-model"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0.0.1/core", "@beyond-js/kernel@0.1.9/core", "@beyond-js/backend@0.1.8/client", "@beyond-js/inspect@0.0.1/reactive-model"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
   });
   _exports.hmr = _exports.__beyond_pkg = _exports.TransversalDependency = _exports.TransversalDependencies = _exports.TemplateProcessorsSources = _exports.TemplateProcessorsSource = _exports.TemplateProcessor = _exports.TemplateOverwrites = _exports.TemplateOverwrite = _exports.TemplateGlobals = _exports.TemplateGlobalSources = _exports.TemplateGlobalSource = _exports.TemplateGlobal = _exports.TemplateApplicationsSources = _exports.TemplateApplicationsSource = _exports.TemplateApplication = _exports.Template = _exports.RunTimeManager = _exports.RunTimeError = _exports.Realtime = _exports.ProcessorSources = _exports.ProcessorSource = _exports.ProcessorOverwrites = _exports.ProcessorOverwrite = _exports.ProcessorDependency = _exports.ProcessorDependencies = _exports.Processor = _exports.Packagers = _exports.PackagerCompilers = _exports.PackagerCompiler = _exports.Packager = _exports.Modules = _exports.ModuleTexts = _exports.ModuleStatics = _exports.ModuleStatic = _exports.ModuleDeclarations = _exports.Module = _exports.GlobalBundles = _exports.GlobalBundle = _exports.DistributionLauncher = _exports.Declarations = _exports.Declaration = _exports.Dashboard = _exports.Consumers = _exports.Consumer = _exports.BundleDependency = _exports.BundleDependencies = _exports.Bundle = _exports.Applications = _exports.ApplicationStatics = _exports.ApplicationStatic = _exports.ApplicationModules = _exports.ApplicationModuleDeclarations = _exports.ApplicationModule = _exports.ApplicationDistributions = _exports.ApplicationDistribution = _exports.ApplicationDeployments = _exports.ApplicationDeployment = _exports.Application = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.6"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.8"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -426,7 +426,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
   ***************************************************/
 
   ims.set('./applications/modules/declarations', {
-    hash: 974647874,
+    hash: 4023930398,
     creator: function (require, exports) {
       "use strict";
 
@@ -453,22 +453,22 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
         }
         #has(type) {
           let find = false;
-          const bundles = this.#parent.properties.get('bundles');
+          const bundles = this.#parent.properties.get("bundles");
           bundles.forEach(bundle => [...bundle.processors.keys()].includes(type) && (find = true));
           return find;
         }
         async update() {
-          if (!this.#has('ts')) {
-            console.warn('the module does not use declarations');
+          if (!this.#has("ts")) {
+            console.warn("the module does not use declarations");
             return;
           }
           this.#errors = [];
           this.#process = true;
-          this.trigger('change');
+          this.trigger("change");
           try {
-            const action = '/modules/declarations/update';
+            const action = "/modules/declarations/update";
             const id = {
-              id: this.#parent.fields.get('id').value
+              id: this.#parent.fields.get("id").value
             };
             this.#errors = await _beyond_context.module.execute(action, id);
             return this.#errors;
@@ -476,7 +476,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
             this.#errors = exc.message;
           } finally {
             this.#process = false;
-            this.trigger('change');
+            this.trigger("change");
           }
         }
       }
@@ -720,7 +720,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
   **************************************/
 
   ims.set('./applications/process', {
-    hash: 2159195254,
+    hash: 3952499410,
     creator: function (require, exports) {
       "use strict";
 
@@ -761,7 +761,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
           this.#application = application;
         }
         onMessage = message => {
-          if (!['process'].includes(message.type)) return;
+          if (!["process"].includes(message.type)) return;
           if (message.processed) {
             this.#processed = true;
             this.#processing = false;
@@ -776,7 +776,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
           }
           if (!message.main) {
             if (!this.#exc.has(message.moduleId)) {
-              console.warn('error message recived and not process main first', message);
+              console.warn("error message recived and not process main first", message);
             }
             const msg = this.#exc.get(message.moduleId);
             msg.stack.push(message);
@@ -803,25 +803,25 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
             console.error(exc.stack);
           }
         }
-        async run(id, actions) {
+        async run(actions, distribution) {
           if (this.#processing) return;
-          if (!id) {
-            console.warn('Parameter id is required');
+          if (!actions.build && !actions.declarations) {
+            console.warn("No actions to process");
             return;
           }
-          if (!actions.build && !actions.declarations) {
-            console.warn('No actions to process');
+          if (actions.build && !distribution) {
+            console.error("You must indicate a distribution to compile");
             return;
           }
           this.clean();
           this.#processing = true;
           this.trigger("change");
-          const specs = Object.assign({
-            application: this.#application.id,
-            distribution: id
-          }, actions);
           try {
             await this.prepare();
+            const specs = Object.assign({
+              application: this.#application.id,
+              distribution
+            }, actions);
             await _beyond_context.module.execute("applications/process", specs);
           } catch (exc) {
             console.error(exc.message);
@@ -2383,7 +2383,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
   **************************************/
 
   ims.set('./modules/declarations', {
-    hash: 4002272489,
+    hash: 3605558816,
     creator: function (require, exports) {
       "use strict";
 
@@ -2410,36 +2410,35 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
         }
         #has(type) {
           let find = false;
-          const bundles = this.#parent.properties.get('bundles');
+          const bundles = this.#parent.properties.get("bundles");
           bundles.forEach(bundle => {
-            if (type === bundle.fields.get('name').value) {
+            if (type === bundle.fields.get("name").value) {
               find = true;
             }
           });
           return find;
         }
         async update() {
-          if (!this.#has('ts')) {
-            console.warn('the module does not use declarations');
+          if (!this.#has("ts")) {
+            console.warn("the module does not use declarations");
             return;
           }
           try {
-            const action = '/modules/declarations/update';
+            const action = "/modules/declarations/update";
             const id = {
-              id: this.#parent.fields.get('id').value
+              id: this.#parent.fields.get("id").value
             };
-            console.log('execute', action, id);
             const response = await _beyond_context.module.execute(action, id);
             if (response?.error) {
               this.#errors = response.error;
-              console.error('Error Creating module: ', response.error);
+              console.error("Error Creating module: ", response.error);
               return;
             }
           } catch (error) {
             this.#errors = error;
           } finally {
             this.#fetching = false;
-            this.trigger('change');
+            this.trigger("change");
           }
         }
       }

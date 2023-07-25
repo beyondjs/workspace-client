@@ -170,7 +170,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   ****************************/
 
   ims.set('./controller', {
-    hash: 1763009503,
+    hash: 3835813087,
     creator: function (require, exports) {
       "use strict";
 

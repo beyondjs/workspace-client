@@ -13,7 +13,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
     TEMPLATES
   } = dependency_1;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.6"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.8"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {

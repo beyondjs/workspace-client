@@ -5,8 +5,8 @@ System.register([], function (_export, _context) {
     setters: [],
     execute: function () {
       _export("default", {
-        "package": "@beyond-js/widgets",
-        "version": "0.1.4",
+        "package": "@beyond-js/backend",
+        "version": "0.1.8",
         "languages": {
           "supported": [],
           "default": "en"

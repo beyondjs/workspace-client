@@ -1,8 +1,8 @@
-import {module} from "beyond_context";
-import {Events} from "@beyond-js/kernel/core";
-import {ItemsProperty} from "@beyond-js/plm/core";
-import type {Module} from "./item";
-import type {Bundle} from "../bundles/item";
+import { module } from "beyond_context";
+import { Events } from "@beyond-js/kernel/core";
+import { ItemsProperty } from "@beyond-js/plm/core";
+import type { Module } from "./item";
+import type { Bundle } from "../bundles/item";
 
 export /*bundle*/
 class ModuleDeclarations extends Events {
@@ -25,9 +25,9 @@ class ModuleDeclarations extends Events {
 
     #has(type: string) {
         let find = false;
-        const bundles = <ItemsProperty>this.#parent.properties.get('bundles');
+        const bundles = <ItemsProperty>this.#parent.properties.get("bundles");
         bundles.forEach((bundle: Bundle) => {
-            if (type === bundle.fields.get('name').value) {
+            if (type === bundle.fields.get("name").value) {
                 find = true;
             }
         });
@@ -36,30 +36,26 @@ class ModuleDeclarations extends Events {
     }
 
     async update() {
-
-        if (!this.#has('ts')) {
-            console.warn('the module does not use declarations');
+        if (!this.#has("ts")) {
+            console.warn("the module does not use declarations");
             return;
         }
 
         try {
-            const action = '/modules/declarations/update';
-            const id = {id: this.#parent.fields.get('id').value};
-
-            console.log('execute', action, id)
+            const action = "/modules/declarations/update";
+            const id = { id: this.#parent.fields.get("id").value };
             const response: any = await module.execute(action, id);
 
             if (response?.error) {
                 this.#errors = response.error;
-                console.error('Error Creating module: ', response.error);
+                console.error("Error Creating module: ", response.error);
                 return;
             }
         } catch (error) {
             this.#errors = error;
         } finally {
             this.#fetching = false;
-            this.trigger('change');
+            this.trigger("change");
         }
-
     }
 }
