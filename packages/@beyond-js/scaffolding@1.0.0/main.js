@@ -1,7 +1,7 @@
 define(["@beyond-js/kernel@0.1.9/bundle"], (dep_0) => {
 
 const bimport = specifier => {
-	const dependencies = new Map([["@beyond-js/kernel","0.1.9"],["@beyond-js/packages-templates","1.0.0"]]);
+	const dependencies = new Map([["@beyond-js/kernel","0.1.9"],["@beyond-js/scaffolding","1.0.0"]]);
 	return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
 };
 
@@ -43,16 +43,17 @@ var __toCommonJS = mod => __copyProps(__defProp({}, "__esModule", {
   value: true
 }), mod);
 
-// .beyond/uimport/temp/@beyond-js/packages-templates/main.1.0.0.js
+// .beyond/uimport/@beyond-js/scaffolding/main.1.0.0.js
 var main_1_0_0_exports = {};
 __export(main_1_0_0_exports, {
   TEMPLATES: () => TEMPLATES,
+  TYPES: () => TYPES,
   __beyond_pkg: () => __beyond_pkg,
   hmr: () => hmr
 });
 module.exports = __toCommonJS(main_1_0_0_exports);
 
-// node_modules/@beyond-js/packages-templates/main/main.browser.mjs
+// node_modules/@beyond-js/scaffolding/main/main.browser.mjs
 var dependency_0 = __toESM(require("@beyond-js/kernel@0.1.9/bundle"), 0);
 var import_meta = {};
 var {
@@ -60,7 +61,7 @@ var {
 } = dependency_0;
 var __pkg = new __Bundle({
   "module": {
-    "vspecifier": "@beyond-js/packages-templates@1.0.0/main"
+    "vspecifier": "@beyond-js/scaffolding@1.0.0/main"
   },
   "type": "ts"
 }, import_meta.url).package();
@@ -68,7 +69,7 @@ var __pkg = new __Bundle({
 __pkg.dependencies.update([]);
 var ims = /* @__PURE__ */new Map();
 ims.set("./index", {
-  hash: 231829269,
+  hash: 3511745868,
   creator: function (require2, exports) {
     "use strict";
 
@@ -105,22 +106,27 @@ ims.set("./index", {
       platforms: ["backend"]
     }];
     exports.TEMPLATES = TEMPLATES2;
-    const TYPES = ["empty", "web", "backend", "web-backend", "node", "express", "react", "svelte", "vue"];
-    exports.TYPES = TYPES;
+    const TYPES2 = ["empty", "web", "backend", "web-backend", "node", "express", "react", "svelte", "vue"];
+    exports.TYPES = TYPES2;
   }
 });
 __pkg.exports.descriptor = [{
   "im": "./index",
   "from": "TEMPLATES",
   "name": "TEMPLATES"
+}, {
+  "im": "./index",
+  "from": "TYPES",
+  "name": "TYPES"
 }];
-var TEMPLATES;
+var TEMPLATES, TYPES;
 __pkg.exports.process = function ({
   require: require2,
   prop,
   value
 }) {
   (require2 || prop === "TEMPLATES") && (TEMPLATES = require2 ? require2("./index").TEMPLATES : value);
+  (require2 || prop === "TYPES") && (TYPES = require2 ? require2("./index").TYPES : value);
 };
 var __beyond_pkg = __pkg;
 var hmr = new function () {
@@ -134,4 +140,4 @@ code(module, require);
 return module.exports;
 });
 
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy5iZXlvbmQvdWltcG9ydC90ZW1wL0BiZXlvbmQtanMvcGFja2FnZXMtdGVtcGxhdGVzL21haW4uMS4wLjAuanMiLCIuLi9ub2RlX21vZHVsZXMvQGJleW9uZC1qcy9wYWNrYWdlcy10ZW1wbGF0ZXMvbWFpbi9fX3NvdXJjZXMvbWFpbi9pbmRleC50cyJdLCJuYW1lcyI6WyJfX2V4cG9ydCIsIlRFTVBMQVRFUyIsIl9fYmV5b25kX3BrZyIsImhtciIsIm1vZHVsZSIsIm5hbWUiLCJwbGF0Zm9ybXMiLCJleHBvcnRzIiwiVFlQRVMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUFBQTtFQUFBQztFQUFBQztFQUFBQztBQUFBO0FBQUFDOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztJQ0FrQixNQUFNSCxhQUFZLENBQ2hDO01BQUNJLE1BQU07TUFBU0MsV0FBVyxDQUFDLEtBQUs7SUFBQyxHQUNsQztNQUFDRCxNQUFNO01BQU9DLFdBQVcsQ0FBQyxLQUFLO0lBQUMsR0FDaEM7TUFBQ0QsTUFBTTtNQUFVQyxXQUFXLENBQUMsS0FBSztJQUFDLEdBQ25DO01BQUNELE1BQU07TUFBV0MsV0FBVyxDQUFDLE1BQU07SUFBQyxHQUNyQztNQUFDRCxNQUFNO01BQW1CQyxXQUFXLENBQUMsT0FBTyxTQUFTO0lBQUMsR0FDdkQ7TUFBQ0QsTUFBTTtNQUFPQyxXQUFXLENBQUMsS0FBSztJQUFDLEdBQ2hDO01BQUNELE1BQU07TUFBZUMsV0FBVyxDQUFDLE9BQU8sU0FBUztJQUFDLEdBQ25EO01BQUNELE1BQU07TUFBUUMsV0FBVyxDQUFDLE1BQU07SUFBQyxHQUNsQztNQUFDRCxNQUFNO01BQVdDLFdBQVcsQ0FBQyxTQUFTO0lBQUMsQ0FBQztJQUMzQ0M7SUFHRixNQUFNQyxRQUFRLENBQUMsU0FBUyxPQUFPLFdBQVcsZUFBZSxRQUFRLFdBQVcsU0FBUyxVQUFVLEtBQUs7SUFBRUQiLCJmaWxlIjoiIiwic291cmNlUm9vdCI6Ii9wcm9qZWN0L291dCJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy5iZXlvbmQvdWltcG9ydC9AYmV5b25kLWpzL3NjYWZmb2xkaW5nL21haW4uMS4wLjAuanMiLCIuLi9ub2RlX21vZHVsZXMvQGJleW9uZC1qcy9zY2FmZm9sZGluZy9tYWluL19fc291cmNlcy9tYWluL2luZGV4LnRzIl0sIm5hbWVzIjpbIl9fZXhwb3J0IiwiVEVNUExBVEVTIiwiVFlQRVMiLCJfX2JleW9uZF9wa2ciLCJobXIiLCJtb2R1bGUiLCJuYW1lIiwicGxhdGZvcm1zIiwiZXhwb3J0cyJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0FBQUFBO0VBQUFDO0VBQUFDO0VBQUFDO0VBQUFDO0FBQUE7QUFBQUM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lDQWtCLE1BQU1KLGFBQVksQ0FDaEM7TUFBQ0ssTUFBTTtNQUFTQyxXQUFXLENBQUMsS0FBSztJQUFDLEdBQ2xDO01BQUNELE1BQU07TUFBT0MsV0FBVyxDQUFDLEtBQUs7SUFBQyxHQUNoQztNQUFDRCxNQUFNO01BQVVDLFdBQVcsQ0FBQyxLQUFLO0lBQUMsR0FDbkM7TUFBQ0QsTUFBTTtNQUFXQyxXQUFXLENBQUMsTUFBTTtJQUFDLEdBQ3JDO01BQUNELE1BQU07TUFBbUJDLFdBQVcsQ0FBQyxPQUFPLFNBQVM7SUFBQyxHQUN2RDtNQUFDRCxNQUFNO01BQU9DLFdBQVcsQ0FBQyxLQUFLO0lBQUMsR0FDaEM7TUFBQ0QsTUFBTTtNQUFlQyxXQUFXLENBQUMsT0FBTyxTQUFTO0lBQUMsR0FDbkQ7TUFBQ0QsTUFBTTtNQUFRQyxXQUFXLENBQUMsTUFBTTtJQUFDLEdBQ2xDO01BQUNELE1BQU07TUFBV0MsV0FBVyxDQUFDLFNBQVM7SUFBQyxDQUFDO0lBQzNDQztJQUdGLE1BQU1OLFNBQVEsQ0FBQyxTQUFTLE9BQU8sV0FBVyxlQUFlLFFBQVEsV0FBVyxTQUFTLFVBQVUsS0FBSztJQUFFTSIsImZpbGUiOiIiLCJzb3VyY2VSb290IjoiL3Byb2plY3Qvb3V0In0=

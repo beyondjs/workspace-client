@@ -6,7 +6,7 @@ System.register([], function (_export, _context) {
     execute: function () {
       _export("default", {
         "package": "@beyond-js/backend",
-        "version": "0.1.8",
+        "version": "0.1.9",
         "languages": {
           "supported": [],
           "default": "en"

@@ -12,7 +12,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
 
   const BeyondDB = dependency_3.default;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {

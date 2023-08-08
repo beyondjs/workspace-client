@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.hmr = _exports.backends = _exports.__beyond_pkg = _exports.Backend = _exports.ActionsBridge = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.4"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@beyond-js/backend", "0.1.8"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.3"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@types/node", "18.11.9"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/backend@0.1.8/client"
+      "vspecifier": "@beyond-js/backend@0.1.9/client"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -100,7 +100,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   ******************************/
 
   ims.set('./action/index', {
-    hash: 501662521,
+    hash: 3766515380,
     creator: function (require, exports) {
       "use strict";
 
@@ -212,7 +212,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
               this.#executed = true;
               this.#executing = false;
               clearTimeout(this.#timer);
-              socket.off();
+              //socket.off();
               this.#promise.reject(new Error('Socket disconnected'));
             };
             socket.on(this.#channel, onresponse);

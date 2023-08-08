@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
   });
   _exports.hmr = _exports.__beyond_pkg = _exports.Transversal = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/backend", "0.1.8"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/backend", "0.1.9"], ["@types/node", "18.11.18"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {

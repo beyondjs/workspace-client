@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packages-templates@1.0.0/main"], function (_exports, _amd_module, dependency_0, dependency_1) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/scaffolding@1.0.0/main"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -13,7 +13,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
     TEMPLATES
   } = dependency_1;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.8"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/plm", "0.0.1"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/inspect", "0.0.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -27,7 +27,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['@beyond-js/packages-templates/main', dependency_1]]);
+  __pkg.dependencies.update([['@beyond-js/scaffolding/main', dependency_1]]);
   const {
     module
   } = __pkg.bundle;
@@ -541,7 +541,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
           error: undefined
         });
         const action = params.template ? "/builder/module/clone" : "/builder/module/create";
-        this._styles && params.processors.push('sass');
+        this._styles && params.processors.push("scss");
         const response = await module.execute(action, params);
         if (response.error) {
           this._set({
@@ -569,8 +569,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
   class ModuleBuilder extends ReactiveModel {
     #bundle;
     #applicationId;
-    #PROCESSORS = ['sass', 'less'];
-    #BUNDLES = ['page', 'widget', 'layout', 'code', 'start', 'bridge', 'typescript'];
+    #PROCESSORS = ["scss", "sass", "less"];
+    #BUNDLES = ["page", "widget", "layout", "code", "start", "bridge", "typescript"];
 
     /**
      * TODO: change logic @julio
@@ -580,16 +580,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
      */
     #TEMPLATES = Object.freeze({
       page: {
-        'id': 'page',
-        'bundle': 'page'
+        id: "page",
+        bundle: "page"
       },
       server_page: {
-        'id': 'server_page',
-        'bundle': 'page'
+        id: "server_page",
+        bundle: "page"
       },
       mobile_login: {
-        'id': 'mobile_login',
-        'bundle': 'page'
+        id: "mobile_login",
+        bundle: "page"
       }
     });
     get applicationId() {
@@ -620,11 +620,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
       super(applicationId);
       this.#applicationId = applicationId;
       this.#bundle = new BundleBuilder(this.#applicationId);
-      this.#bundle.bind('change', this.triggerEvent);
+      this.#bundle.bind("change", this.triggerEvent);
     }
     setTemplate(name) {
       if (!this.#TEMPLATES.hasOwnProperty(name)) {
-        console.warn('the template does not exists');
+        console.warn("the template does not exists");
       }
       const template = this.#TEMPLATES[name];
       this.#bundle.type = template.bundle;
@@ -657,39 +657,39 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/packa
 
   const Structures = {
     module: {
-      fields: ['id', 'name', 'title', 'description', 'developer', 'author', 'template', 'styles', 'server', 'multilanguage']
+      fields: ["id", "name", "title", "description", "developer", "author", "template", "styles", "server", "multilanguage"]
     },
     page: {
-      fields: ['vdir', 'route', 'layoutId', 'element'],
-      required: ['route', 'name', 'element'],
-      processors: ['ts', 'jsx'],
-      dependencies: ['layout']
+      fields: ["vdir", "route", "layoutId", "element"],
+      required: ["route", "name", "element"],
+      processors: ["ts", "jsx"],
+      dependencies: ["layout"]
     },
     widget: {
       fields: ["element"],
-      required: ['name', 'element'],
-      processors: ['ts', 'sass']
+      required: ["name", "element"],
+      processors: ["ts", "sass", "scss"]
     },
     layout: {
       fields: ["element"],
-      required: ['name', 'element'],
-      processors: ['ts', 'jsx']
+      required: ["name", "element"],
+      processors: ["ts", "jsx"]
     },
     code: {
-      required: ['name'],
-      processors: ['ts', 'jsx']
+      required: ["name"],
+      processors: ["ts", "jsx"]
     },
     bridge: {
-      required: ['name']
+      required: ["name"]
     },
     start: {
-      required: ['name']
+      required: ["name"]
     },
     ts: {
-      required: ['name']
+      required: ["name"]
     },
     js: {
-      required: ['name']
+      required: ["name"]
     }
   };
 

@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/workspace@1.0.5/hooks", "@beyond-js/workspace@1.0.5/ds-editor.code", "@beyond-js/workspace@1.0.5/database"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/inspect@0.0.1/models.ts", "@beyond-js/plm@0.0.1/plm-indexed-db", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/ds-editor.code", "@beyond-js/workspace@1.1.1/database"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -32,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
     DSModel
   } = dependency_6;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.8"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -40,7 +40,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/workspace@1.0.5/models"
+      "vspecifier": "@beyond-js/workspace@1.1.1/models"
     },
     "type": "code"
   }, _amd_module.uri).package();
@@ -2965,7 +2965,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
      * @returns {string}
      */
     get name() {
-      let name = this.am?.id?.replace(`application//${this.application.id}//`, '');
+      let name = this.am?.id?.replace(`application//${this.application.id}//`, "");
       return this.am?.name ?? name;
     }
     #bundlesTree;
@@ -3040,7 +3040,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
      */
     load(moduleId, concat = false) {
       if (this.#am) {
-        this.#am.off('change', this.triggerEvent);
+        this.#am.off("change", this.triggerEvent);
         this.#am = undefined;
       }
       moduleId = concat ? `${this.#project.id}//${moduleId}` : moduleId;
@@ -3051,7 +3051,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
         },
         tree: this.#tree
       });
-      this.#am.on('change', this.checkLoaded);
+      this.#am.on("change", this.checkLoaded);
       this.fetch();
     }
 
@@ -3064,10 +3064,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       if (!this.am.found) {
         this.#ready = true;
         this.#found = false;
-        this.triggerEvent('model.loaded');
+        this.triggerEvent("model.loaded");
       }
       if (!this.am.tree.landed) return;
-      this.am.off('change', this.checkLoaded);
+      this.am.off("change", this.checkLoaded);
       // load bundles by name;
       this.checkModule();
       this.triggerEvent();
@@ -3077,9 +3077,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
           item.sources.items.forEach(source => this.#sources.set(source.id, source));
         });
       });
-      this.am.on('change', this.triggerEvent);
+      this.am.on("change", this.triggerEvent);
       this.#ready = true;
-      this.triggerEvent('model.loaded');
+      this.triggerEvent("model.loaded");
     };
 
     /**
@@ -3090,17 +3090,17 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
      */
     checkModule() {
       this.#bundlesManager = new BundlesManager(this);
-      this.#bundlesManager.bind('change', this.triggerEvent);
+      this.#bundlesManager.bind("change", this.triggerEvent);
       const onProcessed = () => {
         this.#moduleManager.setProcessed(this.id);
-        this.#bundlesManager.unbind('bundles.processed', onProcessed);
+        this.#bundlesManager.unbind("bundles.processed", onProcessed);
       };
       if (this.#bundlesManager.processed) onProcessed();
-      this.#bundlesManager.bind('bundles.processed', onProcessed);
+      this.#bundlesManager.bind("bundles.processed", onProcessed);
     }
     loadStatic() {
       if (!this.am.module?.static) return;
-      this.#_static = TreeFactory.get('static', {
+      this.#_static = TreeFactory.get("static", {
         project: this.project,
         object: this.am,
         items: this.am.module.static.items,
@@ -3117,12 +3117,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       });
     }
     getFile(bundleName, processorContainer, fileName) {
-      bundleName = processorContainer === 'txt' ? 'txt' : bundleName;
+      bundleName = processorContainer === "txt" ? "txt" : bundleName;
       const bundle = this.am.getBundle(bundleName);
       const processor = bundle.processors.get(processorContainer);
       let file;
       processor.files.items.forEach(item => {
-        const name = item.relative.file.replace(/\\/g, '/').split(['/']).pop();
+        const name = item.relative.file.replace(/\\/g, "/").split(["/"]).pop();
         if (name === fileName) file = item;
       });
       if (!file) {

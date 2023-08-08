@@ -7,7 +7,7 @@ define(["exports"], function (_exports) {
   _exports.default = void 0;
   var _default = {
     "package": "@beyond-js/workspace",
-    "version": "1.0.5",
+    "version": "1.1.1",
     "languages": {
       "default": "en",
       "supported": ["en", "es"]

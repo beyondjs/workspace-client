@@ -1,4 +1,4 @@
-define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/transversals", "@beyond-js/kernel@0.1.9/core", "@beyond-js/kernel@0.1.9/routing", "@beyond-js/widgets@0.1.4/render", "@beyond-js/workspace@1.0.5/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
+define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/transversals", "@beyond-js/kernel@0.1.9/core", "@beyond-js/kernel@0.1.9/routing", "@beyond-js/widgets@0.1.5/render", "@beyond-js/workspace@1.1.1/config"], function (_exports, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -166,29 +166,29 @@ define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/tr
     "layout": "beyond-ui"
   }, {
     "route": "/beyond/dashboard/icons",
-    "bundle": "@beyond-js/workspace@1.0.5/components/core/page",
+    "bundle": "@beyond-js/workspace@1.1.1/components/core/page",
     "vdir": false
   }, {
     "route": "/empty",
-    "bundle": "@beyond-js/workspace@1.0.5/components/empty",
+    "bundle": "@beyond-js/workspace@1.1.1/components/empty",
     "vdir": false
   }, {
     "route": "/beyond/uploader",
-    "bundle": "@beyond-js/workspace@1.0.5/components/uploader/page",
+    "bundle": "@beyond-js/workspace@1.1.1/components/uploader/page",
     "vdir": false
   }, {
     "route": "/test",
-    "bundle": "@beyond-js/workspace@1.0.5/test",
+    "bundle": "@beyond-js/workspace@1.1.1/test",
     "vdir": false,
     "layout": "default"
   }, {
     "route": "/ui",
-    "bundle": "@beyond-js/workspace@1.0.5/workspace-ui",
+    "bundle": "@beyond-js/workspace@1.1.1/workspace-ui",
     "vdir": false,
     "layout": "dashboard"
   }, {
     "route": "/",
-    "bundle": "@beyond-js/workspace@1.0.5/workspace",
+    "bundle": "@beyond-js/workspace@1.1.1/workspace",
     "vdir": true,
     "layout": "workspace"
   }]);
@@ -201,10 +201,10 @@ define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/tr
     "bundle": "@beyond-js/ui@0.0.1/layout-main"
   }, {
     "name": "workspace",
-    "bundle": "@beyond-js/workspace@1.0.5/workspace-layout"
+    "bundle": "@beyond-js/workspace@1.1.1/workspace-layout"
   }, {
     "name": "editor",
-    "bundle": "@beyond-js/workspace@1.0.5/layout/editor"
+    "bundle": "@beyond-js/workspace@1.1.1/layout/editor"
   }]);
   const bundles = [];
   /**********************************
@@ -213,12 +213,12 @@ define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/tr
 
   bundles.push([{
     "module": {
-      "vspecifier": "@beyond-js/workspace@1.0.5/boards"
+      "vspecifier": "@beyond-js/workspace@1.1.1/boards"
     },
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.8"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
@@ -265,12 +265,12 @@ define(["exports", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/tr
 
   bundles.push([{
     "module": {
-      "vspecifier": "@beyond-js/workspace@1.0.5/monaco"
+      "vspecifier": "@beyond-js/workspace@1.1.1/monaco"
     },
     "type": "start"
   }, function (ims, exports) {
     const bimport = specifier => {
-      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.4"], ["@beyond-js/backend", "0.1.8"], ["dayjs", "1.11.7"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["socket.io-client", "4.5.4"], ["@beyond-js/packages-templates", "1.0.0"], ["@beyond-js/workspace", "1.0.5"], ["@beyond-js/workspace", "1.0.5"]]);
+      const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
       return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
     };
     /***********************
