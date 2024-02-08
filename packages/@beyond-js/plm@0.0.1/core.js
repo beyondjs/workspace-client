@@ -40,7 +40,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       exports.auth = void 0;
       var _sessions = require("./sessions");
       /*bundle*/
-      const auth = new class {
+      const auth = exports.auth = new class {
         #sessions = new _sessions.Sessions();
         get sessions() {
           return this.#sessions;
@@ -53,7 +53,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           session.accessToken = accessToken;
         }
       }();
-      exports.auth = auth;
     }
   });
 
@@ -173,11 +172,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       });
       exports.NotSet = exports.DataSource = void 0;
       /*bundle*/
-      const NotSet = {};
-      exports.NotSet = NotSet;
+      const NotSet = exports.NotSet = {};
       /*bundle*/
       var DataSource;
-      exports.DataSource = DataSource;
       (function (DataSource) {
         DataSource[DataSource["NotLoaded"] = 0] = "NotLoaded";
         DataSource[DataSource["Cache"] = 1] = "Cache";
@@ -1915,7 +1912,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       exports.Filter = exports.ConditionOperand = void 0;
       /*bundle*/
       var ConditionOperand;
-      exports.ConditionOperand = ConditionOperand;
       (function (ConditionOperand) {
         ConditionOperand[ConditionOperand["Equal"] = 0] = "Equal";
         ConditionOperand[ConditionOperand["Greater"] = 1] = "Greater";
@@ -2541,13 +2537,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       exports.realtime = void 0;
       var _reports = require("./reports/reports");
       /*bundle*/
-      const realtime = new class {
+      const realtime = exports.realtime = new class {
         #reports = new _reports.Reports();
         get reports() {
           return this.#reports;
         }
       }();
-      exports.realtime = realtime;
     }
   });
 
@@ -5426,8 +5421,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       }
       exports.Tables = Tables;
       /*bundle*/
-      const tables = new Tables();
-      exports.tables = tables;
+      const tables = exports.tables = new Tables();
     }
   });
 
@@ -5831,25 +5825,24 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "tables",
     "name": "tables"
   }];
-  let auth, NotSet, DataSource, CollectionSpecs, Collection, ItemSpecs, Item, CollectionProperty, ItemSelectorProperty, ItemProperty, ItemsProperty, ConditionOperand, realtime, ListUpdateFilterReport, TableSpecs, tables;
+  let auth = _exports.auth = void 0,
+    NotSet = _exports.NotSet = void 0,
+    DataSource = _exports.DataSource = void 0,
+    CollectionSpecs = _exports.CollectionSpecs = void 0,
+    Collection = _exports.Collection = void 0,
+    ItemSpecs = _exports.ItemSpecs = void 0,
+    Item = _exports.Item = void 0,
+    CollectionProperty = _exports.CollectionProperty = void 0,
+    ItemSelectorProperty = _exports.ItemSelectorProperty = void 0,
+    ItemProperty = _exports.ItemProperty = void 0,
+    ItemsProperty = _exports.ItemsProperty = void 0,
+    ConditionOperand = _exports.ConditionOperand = void 0,
+    realtime = _exports.realtime = void 0,
+    ListUpdateFilterReport = _exports.ListUpdateFilterReport = void 0,
+    TableSpecs = _exports.TableSpecs = void 0,
+    tables = _exports.tables = void 0;
 
   // Module exports
-  _exports.tables = tables;
-  _exports.TableSpecs = TableSpecs;
-  _exports.ListUpdateFilterReport = ListUpdateFilterReport;
-  _exports.realtime = realtime;
-  _exports.ConditionOperand = ConditionOperand;
-  _exports.ItemsProperty = ItemsProperty;
-  _exports.ItemProperty = ItemProperty;
-  _exports.ItemSelectorProperty = ItemSelectorProperty;
-  _exports.CollectionProperty = CollectionProperty;
-  _exports.Item = Item;
-  _exports.ItemSpecs = ItemSpecs;
-  _exports.Collection = Collection;
-  _exports.CollectionSpecs = CollectionSpecs;
-  _exports.DataSource = DataSource;
-  _exports.NotSet = NotSet;
-  _exports.auth = auth;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -5872,13 +5865,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'TableSpecs') && (_exports.TableSpecs = TableSpecs = require ? require('./tables/table').TableSpecs : value);
     (require || prop === 'tables') && (_exports.tables = tables = require ? require('./tables/tables').tables : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=core.js.map

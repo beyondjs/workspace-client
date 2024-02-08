@@ -130,13 +130,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/scaff
   FILE: application\_templates.js
   ******************************/
   _exports.ReactiveModel = ReactiveModel;
-  const PROJECT_TYPES = [{
+  const PROJECT_TYPES = _exports.PROJECT_TYPES = [{
     name: 'empty'
   }];
   /*******************************
   FILE: application\application.js
   *******************************/
-  _exports.PROJECT_TYPES = PROJECT_TYPES;
+
   class ApplicationBuilder extends ReactiveModel {
     #id;
     #required = ["name", "version"];
@@ -804,12 +804,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/scaff
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

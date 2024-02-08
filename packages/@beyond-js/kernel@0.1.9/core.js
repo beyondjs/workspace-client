@@ -61,8 +61,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
       }
       exports.Beyond = Beyond;
       /*bundle*/
-      const beyond = new Beyond();
-      exports.beyond = beyond;
+      const beyond = exports.beyond = new Beyond();
       globalThis.beyond = beyond;
     }
   });
@@ -166,8 +165,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
       }
       exports.Languages = Languages;
       /*bundle*/
-      const languages = new Languages(globalThis.__app_package.specifier);
-      exports.languages = languages;
+      const languages = exports.languages = new Languages(globalThis.__app_package.specifier);
     }
   });
 
@@ -453,17 +451,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
     "from": "PendingPromise",
     "name": "PendingPromise"
   }];
-  let beyond, Languages, languages, Events, ListenerFunction, CancellationToken, SingleCall, PendingPromise;
+  let beyond = _exports.beyond = void 0,
+    Languages = _exports.Languages = void 0,
+    languages = _exports.languages = void 0,
+    Events = _exports.Events = void 0,
+    ListenerFunction = _exports.ListenerFunction = void 0,
+    CancellationToken = _exports.CancellationToken = void 0,
+    SingleCall = _exports.SingleCall = void 0,
+    PendingPromise = _exports.PendingPromise = void 0;
 
   // Module exports
-  _exports.PendingPromise = PendingPromise;
-  _exports.SingleCall = SingleCall;
-  _exports.CancellationToken = CancellationToken;
-  _exports.ListenerFunction = ListenerFunction;
-  _exports.Events = Events;
-  _exports.languages = languages;
-  _exports.Languages = Languages;
-  _exports.beyond = beyond;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -478,13 +475,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
     (require || prop === 'SingleCall') && (_exports.SingleCall = SingleCall = require ? require('./utils/execution-control/single-call/single-call').SingleCall : value);
     (require || prop === 'PendingPromise') && (_exports.PendingPromise = PendingPromise = require ? require('./utils/pending-promise/pending-promise').PendingPromise : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=core.js.map

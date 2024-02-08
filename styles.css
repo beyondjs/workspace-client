@@ -3195,20 +3195,31 @@ html {
   display: grid;
   gap: 1rem;
   list-style: none; }
-  .cards__container > section, .cards__container .ds-card {
+  .cards__container > section,
+  .cards__container .ds-card {
     background: var(--background);
     border-radius: var(--border-radius-base);
     padding: 1.5rem;
     border: 1px solid transparent;
     transition: all 200ms linear;
     cursor: pointer; }
-    .cards__container > section .ds-card__header, .cards__container .ds-card .ds-card__header {
+    .cards__container > section .ds-card__header,
+    .cards__container .ds-card .ds-card__header {
       display: flex;
-      gap: .5rem;
+      gap: 0.5rem;
       align-items: center; }
-    .cards__container > section .p1, .cards__container > section h4, .cards__container > section p, .cards__container > section div, .cards__container .ds-card .p1, .cards__container .ds-card h4, .cards__container .ds-card p, .cards__container .ds-card div {
+    .cards__container > section .p1,
+    .cards__container > section h4,
+    .cards__container > section p,
+    .cards__container > section div,
+    .cards__container .ds-card .p1,
+    .cards__container .ds-card h4,
+    .cards__container .ds-card p,
+    .cards__container .ds-card div {
       padding: 0; }
-    .cards__container > section.selected, .cards__container > section:hover, .cards__container .ds-card.selected, .cards__container .ds-card:hover {
+    .cards__container > section.selected, .cards__container > section:hover,
+    .cards__container .ds-card.selected,
+    .cards__container .ds-card:hover {
       border-color: var(--secondary);
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2); }
 

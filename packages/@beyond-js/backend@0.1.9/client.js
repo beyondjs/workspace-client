@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.hmr = _exports.backends = _exports.__beyond_pkg = _exports.Backend = _exports.ActionsBridge = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.3"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@types/node", "18.11.9"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.8"], ["@beyond-js/local", "0.1.3"], ["socket.io", "4.5.4"], ["socket.io-client", "4.5.4"], ["@types/node", "20.11.16"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -293,7 +293,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       exports.backends = void 0;
       var _backend = require("./backend");
       /*bundle*/
-      const backends = new class {
+      const backends = exports.backends = new class {
         #hosts = new Map();
         register(pkg, host) {
           !this.#hosts.has(pkg) && this.#hosts.set(pkg, new _backend.Backend(pkg, host));
@@ -338,7 +338,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           return await a.execute();
         }
       }();
-      exports.backends = backends;
     }
   });
 
@@ -483,12 +482,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "backends",
     "name": "backends"
   }];
-  let ActionsBridge, Backend, backends;
+  let ActionsBridge = _exports.ActionsBridge = void 0,
+    Backend = _exports.Backend = void 0,
+    backends = _exports.backends = void 0;
 
   // Module exports
-  _exports.backends = backends;
-  _exports.Backend = Backend;
-  _exports.ActionsBridge = ActionsBridge;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -498,13 +496,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'Backend') && (_exports.Backend = Backend = require ? require('./backend').Backend : value);
     (require || prop === 'backends') && (_exports.backends = backends = require ? require('./backends').backends : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=client.js.map

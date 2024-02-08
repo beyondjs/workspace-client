@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.widgets = _exports.prerender = _exports.hmr = _exports.attributes = _exports.__beyond_pkg = _exports.WidgetCSR = _exports.StylesManager = _exports.NodeWidget = _exports.IWidgetSpecs = _exports.IBeyondWidgetController = _exports.GlobalCSS = _exports.BeyondWidget = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/widgets@0.1.5/render"
+      "vspecifier": "@beyond-js/widgets@0.1.6/render"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -88,8 +88,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       }
       exports.Attributes = Attributes;
       /*bundle*/
-      const attributes = new Attributes();
-      exports.attributes = attributes;
+      const attributes = exports.attributes = new Attributes();
     }
   });
 
@@ -109,7 +108,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       var _node = require("./node");
       // Maintains a tree of widget instances
       // NodeWidget is an object with a tree structure (parent, children)
-      const instances = new class extends Set {
+      const instances = exports.instances = new class extends Set {
         register(widget) {
           this.add(widget);
           // Find parent widget
@@ -128,7 +127,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           return node;
         }
       }();
-      exports.instances = instances;
     }
   });
 
@@ -182,7 +180,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       });
       exports.prerender = void 0;
       /*bundle*/
-      const prerender = new class {
+      const prerender = exports.prerender = new class {
         #ssr = [];
         get ssr() {
           return this.#ssr;
@@ -195,7 +193,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           });
         }
       }();
-      exports.prerender = prerender;
     }
   });
 
@@ -268,7 +265,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           hash = (hash << 5) - hash + c;
           hash = hash & hash; // Convert to 32bit integer
         }
-
         return hash.toString().replace('-', 'n');
       }
       ;
@@ -371,7 +367,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   ******************************/
 
   ims.set('./widget/index', {
-    hash: 2251972216,
+    hash: 2614430817,
     creator: function (require, exports) {
       "use strict";
 
@@ -1044,8 +1040,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
         }
       }
       /*bundle*/
-      const widgets = new BeyondWidgets();
-      exports.widgets = widgets;
+      const widgets = exports.widgets = new BeyondWidgets();
     }
   });
   __pkg.exports.descriptor = [{
@@ -1089,19 +1084,18 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "widgets",
     "name": "widgets"
   }];
-  let attributes, NodeWidget, prerender, IBeyondWidgetController, WidgetCSR, IWidgetSpecs, BeyondWidget, GlobalCSS, StylesManager, widgets;
+  let attributes = _exports.attributes = void 0,
+    NodeWidget = _exports.NodeWidget = void 0,
+    prerender = _exports.prerender = void 0,
+    IBeyondWidgetController = _exports.IBeyondWidgetController = void 0,
+    WidgetCSR = _exports.WidgetCSR = void 0,
+    IWidgetSpecs = _exports.IWidgetSpecs = void 0,
+    BeyondWidget = _exports.BeyondWidget = void 0,
+    GlobalCSS = _exports.GlobalCSS = void 0,
+    StylesManager = _exports.StylesManager = void 0,
+    widgets = _exports.widgets = void 0;
 
   // Module exports
-  _exports.widgets = widgets;
-  _exports.StylesManager = StylesManager;
-  _exports.GlobalCSS = GlobalCSS;
-  _exports.BeyondWidget = BeyondWidget;
-  _exports.IWidgetSpecs = IWidgetSpecs;
-  _exports.WidgetCSR = WidgetCSR;
-  _exports.IBeyondWidgetController = IBeyondWidgetController;
-  _exports.prerender = prerender;
-  _exports.NodeWidget = NodeWidget;
-  _exports.attributes = attributes;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -1118,13 +1112,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'StylesManager') && (_exports.StylesManager = StylesManager = require ? require('./widget/styles/index').StylesManager : value);
     (require || prop === 'widgets') && (_exports.widgets = widgets = require ? require('./widgets').widgets : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=render.js.map

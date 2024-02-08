@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "emmet-monaco-es@5.2.0", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/hooks"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "emmet-monaco-es@5.3.0", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/hooks"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -32,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     useBinder
   } = dependency_7;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -167,7 +167,7 @@ export const module = <Module>null;
     }
   }
   _exports.MonacoDependency = MonacoDependency;
-  const monacoDependency = new MonacoDependency();
+  const monacoDependency = _exports.monacoDependency = new MonacoDependency();
 
   /*************
   FILE: index.js
@@ -177,7 +177,7 @@ export const module = <Module>null;
    *  Represents the editor instance
    *
    */
-  _exports.monacoDependency = monacoDependency;
+
   class Editor extends ReactiveModel {
     #type;
     /**
@@ -316,7 +316,6 @@ export const module = <Module>null;
 
       // if (source && processor) this.addFile(bundle, this.currentProcessor, source, true);
     }
-
     updateSettings() {
       if (!this.instance) return;
       this.instance.updateOptions(monacoDependency.settings.properties);
@@ -873,13 +872,13 @@ export const module = <Module>null;
     useBinder([editor], () => setIsUnpublished(editor.unpublished));
     React.useEffect(() => {
       editor.init(vs.current, tab.sourceId);
-      vs.current.addEventListener('click', panel.setActive);
+      vs.current.addEventListener("click", panel.setActive);
       return () => {
-        vs.current.removeEventListener('click', panel.setActive);
+        vs.current?.removeEventListener("click", panel.setActive);
         editor.removeListeners();
       };
     }, []);
-    const cls = `ds-editor__container ${isUnpublished ? ' is-unpublished' : ''} `;
+    const cls = `ds-editor__container ${isUnpublished ? " is-unpublished" : ""} `;
     return /*#__PURE__*/React.createElement("div", {
       className: cls
     }, isUnpublished && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -906,12 +905,10 @@ export const module = <Module>null;
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

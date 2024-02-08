@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -115,12 +115,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/workspace@1.1.1/workspace-model.code", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/workspace@1.1.1/uploader-components", "@beyond-js/workspace@1.1.1/breadcrumb.code", "@beyond-js/workspace@1.1.1/models", "@beyond-js/workspace@1.1.1/database", "@beyond-js/workspace@1.1.1/settings.code", "@beyond-js/workspace@1.1.1/projects-board.code", "@beyond-js/workspace@1.1.1/project-create.code", "@beyond-js/workspace@1.1.1/project-compile.code", "@beyond-js/workspace@1.1.1/project-board.code", "@beyond-js/workspace@1.1.1/static-board.code", "@beyond-js/workspace@1.1.1/aside.code", "@beyond-js/workspace@1.1.1/ds-navigator", "@beyond-js/workspace@1.1.1/ds-notifications.code", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/module-view.code", "@beyond-js/workspace@1.1.1/module-create.code", "@beyond-js/workspace@1.1.1/layout-header", "@beyond-js/workspace@1.1.1/modal-distribution-select", "@beyond-js/workspace@1.1.1/ds-panels"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25, dependency_26, dependency_27, dependency_28) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/ui@0.0.1/image", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/workspace@1.1.1/workspace-model.code", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/workspace@1.1.1/uploader-components", "@beyond-js/workspace@1.1.1/breadcrumb.code", "@beyond-js/workspace@1.1.1/models", "@beyond-js/workspace@1.1.1/database", "@beyond-js/workspace@1.1.1/settings.code", "@beyond-js/workspace@1.1.1/projects-board.code", "@beyond-js/workspace@1.1.1/project-create.code", "@beyond-js/workspace@1.1.1/project-compile.code", "@beyond-js/workspace@1.1.1/project-board.code", "@beyond-js/workspace@1.1.1/static-board.code", "@beyond-js/workspace@1.1.1/aside.code", "@beyond-js/workspace@1.1.1/ds-navigator", "@beyond-js/workspace@1.1.1/ds-notifications.code", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/module-view.code", "@beyond-js/workspace@1.1.1/module-create.code", "@beyond-js/workspace@1.1.1/layout-header", "@beyond-js/workspace@1.1.1/modal-distribution-select", "@beyond-js/workspace@1.1.1/ds-panels", "@beyond-js/ui@0.0.1/modal"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16, dependency_17, dependency_18, dependency_19, dependency_20, dependency_21, dependency_22, dependency_23, dependency_24, dependency_25, dependency_26, dependency_27, dependency_28, dependency_29) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -7,7 +7,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   _exports.DSWorkspace = DSWorkspace;
   _exports.Page = Page;
   _exports.Unplugged = Unplugged;
+  _exports.VersionModal = VersionModal;
+  _exports.VersionModalItem = VersionModalItem;
   _exports.hmr = _exports.__beyond_pkg = void 0;
+  _exports.useRegister = useRegister;
   /*************
   LEGACY IMPORTS
   *************/
@@ -34,6 +37,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   const {
     BeyondAlert,
     DSIcon,
+    DSIconButton,
     DashboardIconButton,
     DSSpinner
   } = dependency_9;
@@ -99,8 +103,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   const {
     Panels
   } = dependency_28;
+  const {
+    BeyondModal,
+    BeyondConfirmModal
+  } = dependency_29;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -113,7 +121,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     "type": "page"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/workspace/workspace-model.code', dependency_7], ['@beyond-js/workspace/hooks', dependency_8], ['@beyond-js/workspace/core-components', dependency_9], ['@beyond-js/workspace/uploader-components', dependency_10], ['@beyond-js/workspace/breadcrumb.code', dependency_11], ['@beyond-js/workspace/models', dependency_12], ['@beyond-js/workspace/database', dependency_13], ['@beyond-js/workspace/settings.code', dependency_14], ['@beyond-js/workspace/projects-board.code', dependency_15], ['@beyond-js/workspace/project-create.code', dependency_16], ['@beyond-js/workspace/project-compile.code', dependency_17], ['@beyond-js/workspace/project-board.code', dependency_18], ['@beyond-js/workspace/static-board.code', dependency_19], ['@beyond-js/workspace/aside.code', dependency_20], ['@beyond-js/workspace/ds-navigator', dependency_21], ['@beyond-js/workspace/ds-notifications.code', dependency_22], ['@beyond-js/workspace/ds-contexts', dependency_23], ['@beyond-js/workspace/module-view.code', dependency_24], ['@beyond-js/workspace/module-create.code', dependency_25], ['@beyond-js/workspace/layout-header', dependency_26], ['@beyond-js/workspace/modal-distribution-select', dependency_27], ['@beyond-js/workspace/ds-panels', dependency_28]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/image', dependency_3], ['@beyond-js/ui/form', dependency_4], ['@beyond-js/ui/spinner', dependency_5], ['@beyond-js/kernel/texts', dependency_6], ['@beyond-js/workspace/workspace-model.code', dependency_7], ['@beyond-js/workspace/hooks', dependency_8], ['@beyond-js/workspace/core-components', dependency_9], ['@beyond-js/workspace/uploader-components', dependency_10], ['@beyond-js/workspace/breadcrumb.code', dependency_11], ['@beyond-js/workspace/models', dependency_12], ['@beyond-js/workspace/database', dependency_13], ['@beyond-js/workspace/settings.code', dependency_14], ['@beyond-js/workspace/projects-board.code', dependency_15], ['@beyond-js/workspace/project-create.code', dependency_16], ['@beyond-js/workspace/project-compile.code', dependency_17], ['@beyond-js/workspace/project-board.code', dependency_18], ['@beyond-js/workspace/static-board.code', dependency_19], ['@beyond-js/workspace/aside.code', dependency_20], ['@beyond-js/workspace/ds-navigator', dependency_21], ['@beyond-js/workspace/ds-notifications.code', dependency_22], ['@beyond-js/workspace/ds-contexts', dependency_23], ['@beyond-js/workspace/module-view.code', dependency_24], ['@beyond-js/workspace/module-create.code', dependency_25], ['@beyond-js/workspace/layout-header', dependency_26], ['@beyond-js/workspace/modal-distribution-select', dependency_27], ['@beyond-js/workspace/ds-panels', dependency_28], ['@beyond-js/ui/modal', dependency_29]]);
   const {
     module
   } = __pkg.bundle;
@@ -280,7 +288,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
 
       // reset()
     };
-
     React.useEffect(() => {
       return () => {
         const container = ref.current;
@@ -656,30 +663,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     }));
   });
 
-  /************
-  workspace.jsx
-  ************/
+  /***************
+  use-register.jsx
+  ***************/
 
-  function DSWorkspace({
-    workspace,
-    animation
-  }) {
-    const [state, setState] = React.useState({});
-    const [showModal, setShowModal] = React.useState(false);
-    const [ready, setReady] = React.useState(false);
-    const navigateModule = route => setState({
-      navigator: route,
-      openNavigator: true
-    });
+  function useRegister(workspace) {
     const showProjectForm = () => setShowModal(true);
-    const [showProjectActionsModal, setProjectActionsModal] = React.useState(false);
-    const toggleProcessModal = () => {
-      setProjectActionsModal(showProjectActionsModal => !showProjectActionsModal);
-    };
-    useBinder([workspace], () => setState({
-      ready: workspace.ready,
-      ...workspace.state
-    }));
     React.useEffect(() => {
       //todo: @julio. remove it from here.
       DSPreAside.addToTop("projects", {
@@ -711,6 +700,89 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
         }
       });
     }, []);
+    return [showProjectForm];
+  }
+
+  /*******************
+  version\fix-item.jsx
+  *******************/
+
+  function VersionModalItem({
+    item: [icon, title, description]
+  }) {
+    return /*#__PURE__*/React.createElement("section", {
+      className: "ds-card card-text"
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(DSIconButton, {
+      icon: icon
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, title), /*#__PURE__*/React.createElement("p", null, description)));
+  }
+
+  /****************
+  version\index.jsx
+  ****************/
+
+  function VersionModal({
+    close,
+    texts
+  }) {
+    const onClose = () => {
+      close(false);
+    };
+    const {
+      fixes
+    } = texts;
+    return /*#__PURE__*/React.createElement(BeyondModal, {
+      show: true,
+      className: "ds-modal--lg ds-modal",
+      onClose: onClose
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "modal__panels modal__welcome"
+    }, /*#__PURE__*/React.createElement("section", {
+      className: "left__panel"
+    }, /*#__PURE__*/React.createElement("header", {
+      className: "info-container"
+    }, /*#__PURE__*/React.createElement("h3", null, fixes.title), /*#__PURE__*/React.createElement("p", null, fixes.description))), /*#__PURE__*/React.createElement("section", {
+      className: "right__panel"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "cards__container"
+    }, fixes.items.map((item, index) => /*#__PURE__*/React.createElement(VersionModalItem, {
+      item: item,
+      key: `fix-${index}`
+    }))))), /*#__PURE__*/React.createElement("footer", {
+      className: "ds-modal__footer"
+    }, /*#__PURE__*/React.createElement(BeyondButton, {
+      type: "button",
+      onClick: onClose,
+      className: "primary"
+    }, fixes.actions.accept)));
+  }
+
+  /************
+  workspace.jsx
+  ************/
+
+  function DSWorkspace({
+    workspace,
+    animation
+  }) {
+    const [state, setState] = React.useState({});
+    const [showModal, setShowModal] = React.useState(false);
+    const [ready, setReady] = React.useState(false);
+    const navigateModule = route => setState({
+      navigator: route,
+      openNavigator: true
+    });
+    const [showProjectActionsModal, setProjectActionsModal] = React.useState(false);
+    const seen = !localStorage.getItem(`workspace.seen.version.${workspace.version}`);
+    const [showVersionModal, setShowVersionModal] = React.useState(seen);
+    const toggleProcessModal = () => {
+      setProjectActionsModal(showProjectActionsModal => !showProjectActionsModal);
+    };
+    useBinder([workspace], () => setState({
+      ready: workspace.ready,
+      ...workspace.state
+    }));
+    const [showProjectForm] = useRegister(workspace);
     if (workspace.connected === false) {
       return /*#__PURE__*/React.createElement(Unplugged, {
         workspace: workspace
@@ -761,13 +833,16 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     }), showProjectActionsModal && /*#__PURE__*/React.createElement(CompilationModal, {
       workspace: workspace,
       onClose: () => setProjectActionsModal(false)
+    }), showVersionModal && /*#__PURE__*/React.createElement(VersionModal, {
+      close: setShowVersionModal,
+      texts: texts
     }));
   }
 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/workspace', '.preload-container .circle span{position:absolute;top:0;left:0;bottom:0;right:0;border-radius:50%;background:#050910;height:400px;width:400px;margin:auto;animation:pulse 2.5s linear infinite;animation-delay:calc(.5s * var(--i));transition:all .3s ease-in}@keyframes pulse{0%{transform:scale(1);opacity:.5}90%{transform:scale(3);opacity:.75}100%{transform:scale(4);opacity:0}}.preload-container.finishing .beyond-element-image{position:absolute;margin:auto;z-index:10;transition:all 1.3s ease-in-out;animation:appear 2s 1;overflow:hidden}.preload-container.finishing .animation-container{height:100%;width:100%;transform:rotate(0);transition:all .3s linear}.preload-container.finishing .animation-container .line{animation:0;transition:all .1s linear;opacity:0}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container{animation:twist .9s 1;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container .ds-preload__icon{height:88px;left:-22px}@keyframes appear{0%{height:0;width:0}90%{height:auto;width:auto;opacity:1}}@keyframes twist{from{transform:rotate(0)}to{transform:rotate(360deg);opacity:0}}.preload-container .beyond-element-image{opacity:0;position:absolute;margin:auto}.preload-container .animation-container{position:relative;height:50%;transition:all .3s ease-in;width:50%;transform:rotate(30deg)}.preload-container .animation-container .animate-svg__container{align-items:center;justify-content:center;display:flex;position:absolute;top:0;left:0;bottom:0;right:0}.preload-container .animation-container .animate-svg__container .ds-preload__icon{z-index:20;height:150px;width:150px;margin:auto;animation:rotate 2s linear infinite;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container .animation-container .line{position:absolute;height:100px;width:2px;border:2px solid;z-index:1;margin:15px;transform:rotate(30deg);animation:move .3s infinite;animation-fill-mode:forwards}.preload-container .animation-container .line.line-one{margin-top:-100px;margin-left:-200px}.preload-container .animation-container .line.line-one-two{margin-top:-280px;margin-left:-80px;border-color:rgba(255,255,200,.1)}.preload-container .animation-container .line.line-three{margin-left:-20px;border-color:rgba(255,255,200,.1);margin-top:-150px;display:none}.preload-container .animation-container .line.line-two{margin-left:200px;margin-top:150px}.preload-container .animation-container .line.line-two-two{border-color:rgba(255,255,200,.1);margin-left:130px;margin-top:30px}@keyframes move{from{transform:translateY(-150px)}to{transform:translateY(150px)}}@keyframes rotate{0%{transform:rotate(0)}13%{transform:rotate(30deg) scale(1.1)}26%{transform:rotate(45deg) scale(1.01)}39%{transform:rotate(30deg) scale(1)}50%{transform:rotate(0) scale(1.1)}63%{transform:rotate(-30deg) scale(1.01)}76%{transform:rotate(-45deg) scale(1.02)}89%{transform:rotate(-30deg)}}.container__early__form{display:flex;align-items:center;justify-content:center;height:100vh;justify-items:center;flex-direction:column;max-width:500px;margin:auto;-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form 0%{opacity:0}.container__early__form 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .warning-text{color:var(--beyond-warning-color);-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form .warning-text 0%{opacity:0}.container__early__form .warning-text 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .logo img{max-width:200px}.container__early__form header{text-align:center;margin-bottom:30px}.container__early__form header h1{font-size:20px;margin-left:1rem}.container__early__form.ending .elements__section{opacity:.1}.container__early__form.ending.ending-left .elements__section{-webkit-animation-name:fadeOutLeft;-moz-animation-name:fadeOutLeft;-ms-animation-name:fadeOutLeft;-o-animation-name:fadeOutLeft;animation-name:fadeOutLeft;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-moz-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-ms-keyframes fadeOutLeft{.container__early__form.ending.ending-left .elements__section 0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.container__early__form.ending.ending-left .elements__section 100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-o-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}.container__early__form .elements__section{display:flex;justify-content:center;flex-direction:column;align-items:center}.container__early__form form{width:100%}.container__early__form form .form-group{display:flex;border-radius:4px}.container__early__form form .form-group .form-sub-group{position:relative}.container__early__form form .form-group .form-sub-group:last-child{flex-grow:1}.container__early__form form .form-group .form-sub-group .beyond-element-input{color:var(--beyond-text-on-primary)}.container__early__form form .form-group .form-sub-group label{position:absolute;top:0;left:0;cursor:text;transform-origin:0 0;transition:all .3s}.container__early__form form .upper-text{text-transform:uppercase}.container__early__form form .form__actions{margin:40px 0;display:flex;justify-items:center;align-content:center;justify-content:center}.container__early__form form .form__actions .beyond-button{height:40px;width:60%}.container__early__form form .form__actions .beyond-button[disabled]{opacity:.2}.container__early__form form .early__message{font-size:1.1rem;padding:0 20px;text-align:center;color:var(--beyond-primary-color)}.early-access__container{display:flex;align-items:center;justify-content:center;flex-direction:column;width:100%}.early-access__container header h1{color:var(--beyond-primary-color)}.early-access__container form{display:grid;gap:15px}.early-access__container form input{margin-top:30px;border:1px solid var(--beyond-primary-color);background:0 0;padding:15px;border-radius:15px;font-size:1.5rem;color:var(--beyond-primary-color);text-transform:uppercase;text-align:center;outline:0}.app__empty__container{height:100%;width:100%;display:flex;justify-content:center;align-items:top;padding-top:15%}.ds-footer-bar{grid-area:footer;z-index:8;position:fixed;bottom:0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;left:0;right:0;padding:8px 15px;background:var(--ds-secondary-bg);display:flex;justify-content:space-between;align-items:center}.ds-footer-bar *{font-size:10px;padding:0}.ds-footer-bar h1,.ds-footer-bar h2,.ds-footer-bar h3,.ds-footer-bar p{padding:0;margin:0}.ds-footer-bar span{display:inline-flex;padding:0 5px}.ds-footer-bar .primary-text{color:var(--beyond-primary-color)}.ds-footer-bar .beyond-button{background:#000;border:0;color:#fff}.ds__main-container{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color);z-index:1}.preload-container{height:100vh;width:100vw;overflow:hidden}.ds-application-view-layout{display:grid;height:100%;grid-template-areas:"aside toolbar" "aside errors" "aside panel";grid-template-columns:auto 1fr;grid-template-rows:auto auto 1fr;overflow:hidden}.ds-application-view-layout .ds-toolbar{grid-area:toolbar;z-index:1}.ds-application-view-layout .ds__aside{grid-area:aside}.ds-application-view-layout .ds__workspace__errors{grid-area:errors}.ds-application-view-layout .ds__main-content{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--background)}.ds-home-page,.main__container{height:100%}.unpplugged__container{width:100%;height:100%}.unpplugged__container .content{max-width:500px;display:grid;margin:auto;padding:1rem;align-items:center;justify-content:center;justify-items:center;text-align:center}.unpplugged__container .content ul{list-style:none}.unpplugged__container .content .code{margin:auto .5rem;padding:1rem;display:inline-flex;border-radius:var(--border-radius-base);background-color:var(--surface)}.unpplugged__container .content footer{margin-top:3rem}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/workspace', '.preload-container .circle span{position:absolute;top:0;left:0;bottom:0;right:0;border-radius:50%;background:#050910;height:400px;width:400px;margin:auto;animation:pulse 2.5s linear infinite;animation-delay:calc(.5s * var(--i));transition:all .3s ease-in}@keyframes pulse{0%{transform:scale(1);opacity:.5}90%{transform:scale(3);opacity:.75}100%{transform:scale(4);opacity:0}}.preload-container.finishing .beyond-element-image{position:absolute;margin:auto;z-index:10;transition:all 1.3s ease-in-out;animation:appear 2s 1;overflow:hidden}.preload-container.finishing .animation-container{height:100%;width:100%;transform:rotate(0);transition:all .3s linear}.preload-container.finishing .animation-container .line{animation:0;transition:all .1s linear;opacity:0}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container{animation:twist .9s 1;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container.finishing .animation-container .animate-svg__container .ds-preload__icon-container .ds-preload__icon{height:88px;left:-22px}@keyframes appear{0%{height:0;width:0}90%{height:auto;width:auto;opacity:1}}@keyframes twist{from{transform:rotate(0)}to{transform:rotate(360deg);opacity:0}}.preload-container .beyond-element-image{opacity:0;position:absolute;margin:auto}.preload-container .animation-container{position:relative;height:50%;transition:all .3s ease-in;width:50%;transform:rotate(30deg)}.preload-container .animation-container .animate-svg__container{align-items:center;justify-content:center;display:flex;position:absolute;top:0;left:0;bottom:0;right:0}.preload-container .animation-container .animate-svg__container .ds-preload__icon{z-index:20;height:150px;width:150px;margin:auto;animation:rotate 2s linear infinite;transform-origin:center;transform-box:fill-box;animation-fill-mode:forwards}.preload-container .animation-container .line{position:absolute;height:100px;width:2px;border:2px solid;z-index:1;margin:15px;transform:rotate(30deg);animation:move .3s infinite;animation-fill-mode:forwards}.preload-container .animation-container .line.line-one{margin-top:-100px;margin-left:-200px}.preload-container .animation-container .line.line-one-two{margin-top:-280px;margin-left:-80px;border-color:rgba(255,255,200,.1)}.preload-container .animation-container .line.line-three{margin-left:-20px;border-color:rgba(255,255,200,.1);margin-top:-150px;display:none}.preload-container .animation-container .line.line-two{margin-left:200px;margin-top:150px}.preload-container .animation-container .line.line-two-two{border-color:rgba(255,255,200,.1);margin-left:130px;margin-top:30px}@keyframes move{from{transform:translateY(-150px)}to{transform:translateY(150px)}}@keyframes rotate{0%{transform:rotate(0)}13%{transform:rotate(30deg) scale(1.1)}26%{transform:rotate(45deg) scale(1.01)}39%{transform:rotate(30deg) scale(1)}50%{transform:rotate(0) scale(1.1)}63%{transform:rotate(-30deg) scale(1.01)}76%{transform:rotate(-45deg) scale(1.02)}89%{transform:rotate(-30deg)}}.container__early__form{display:flex;align-items:center;justify-content:center;height:100vh;justify-items:center;flex-direction:column;max-width:500px;margin:auto;-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form 0%{opacity:0}.container__early__form 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .warning-text{color:var(--beyond-warning-color);-webkit-animation-name:fadeIn;-moz-animation-name:fadeIn;-ms-animation-name:fadeIn;-o-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-moz-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@-ms-keyframes fadeIn{.container__early__form .warning-text 0%{opacity:0}.container__early__form .warning-text 100%{opacity:1}}@-o-keyframes fadeIn{0%{opacity:0}100%{opacity:1}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.container__early__form .logo img{max-width:200px}.container__early__form header{text-align:center;margin-bottom:30px}.container__early__form header h1{font-size:20px;margin-left:1rem}.container__early__form.ending .elements__section{opacity:.1}.container__early__form.ending.ending-left .elements__section{-webkit-animation-name:fadeOutLeft;-moz-animation-name:fadeOutLeft;-ms-animation-name:fadeOutLeft;-o-animation-name:fadeOutLeft;animation-name:fadeOutLeft;-webkit-animation-iteration-count:1;-moz-animation-iteration-count:1;-ms-animation-iteration-count:1;-o-animation-iteration-count:1;animation-iteration-count:1;-webkit-animation-duration:1s;-moz-animation-duration:1s;-ms-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-delay:0s;-moz-animation-delay:0s;-ms-animation-delay:0s;-o-animation-delay:0s;animation-delay:0s;-webkit-animation-timing-function:ease;-moz-animation-timing-function:ease;-ms-animation-timing-function:ease;-o-animation-timing-function:ease;animation-timing-function:ease;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-ms-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;backface-visibility:hidden}@-webkit-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-moz-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-ms-keyframes fadeOutLeft{.container__early__form.ending.ending-left .elements__section 0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}.container__early__form.ending.ending-left .elements__section 100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@-o-keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}@keyframes fadeOutLeft{0%{opacity:1;-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0)}100%{opacity:0;-webkit-transform:translateX(-20px);-moz-transform:translateX(-20px);-ms-transform:translateX(-20px);-o-transform:translateX(-20px);transform:translateX(-20px)}}.container__early__form .elements__section{display:flex;justify-content:center;flex-direction:column;align-items:center}.container__early__form form{width:100%}.container__early__form form .form-group{display:flex;border-radius:4px}.container__early__form form .form-group .form-sub-group{position:relative}.container__early__form form .form-group .form-sub-group:last-child{flex-grow:1}.container__early__form form .form-group .form-sub-group .beyond-element-input{color:var(--beyond-text-on-primary)}.container__early__form form .form-group .form-sub-group label{position:absolute;top:0;left:0;cursor:text;transform-origin:0 0;transition:all .3s}.container__early__form form .upper-text{text-transform:uppercase}.container__early__form form .form__actions{margin:40px 0;display:flex;justify-items:center;align-content:center;justify-content:center}.container__early__form form .form__actions .beyond-button{height:40px;width:60%}.container__early__form form .form__actions .beyond-button[disabled]{opacity:.2}.container__early__form form .early__message{font-size:1.1rem;padding:0 20px;text-align:center;color:var(--beyond-primary-color)}.early-access__container{display:flex;align-items:center;justify-content:center;flex-direction:column;width:100%}.early-access__container header h1{color:var(--beyond-primary-color)}.early-access__container form{display:grid;gap:15px}.early-access__container form input{margin-top:30px;border:1px solid var(--beyond-primary-color);background:0 0;padding:15px;border-radius:15px;font-size:1.5rem;color:var(--beyond-primary-color);text-transform:uppercase;text-align:center;outline:0}.app__empty__container{height:100%;width:100%;display:flex;justify-content:center;align-items:top;padding-top:15%}.ds-footer-bar{grid-area:footer;z-index:8;position:fixed;bottom:0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;left:0;right:0;padding:8px 15px;background:var(--ds-secondary-bg);display:flex;justify-content:space-between;align-items:center}.ds-footer-bar *{font-size:10px;padding:0}.ds-footer-bar h1,.ds-footer-bar h2,.ds-footer-bar h3,.ds-footer-bar p{padding:0;margin:0}.ds-footer-bar span{display:inline-flex;padding:0 5px}.ds-footer-bar .primary-text{color:var(--beyond-primary-color)}.ds-footer-bar .beyond-button{background:#000;border:0;color:#fff}.ds__main-container{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--beyond-background-color);z-index:1}.preload-container{height:100vh;width:100vw;overflow:hidden}.ds-application-view-layout{display:grid;height:100%;grid-template-areas:"aside toolbar" "aside errors" "aside panel";grid-template-columns:auto 1fr;grid-template-rows:auto au o 1fr;overflow:hidden}.ds-application-view-layout .ds-toolbar{grid-area:toolbar;z-index:1}.ds-application-view-layout .ds__aside{grid-area:aside}.ds-application-view-layout .ds__workspace__errors{grid-area:errors}.ds-application-view-layout .ds__main-content{display:flex;width:100%;position:relative;flex-grow:0;flex-wrap:nowrap;overflow:hidden;flex-shrink:0;grid-area:panel;min-height:100%;overflow-x:auto;background:var(--background)}.ds-home-page,.main__container{height:100%}.unpplugged__container{width:100%;height:100%}.unpplugged__container .content{max-width:500px;display:grid;margin:auto;padding:1rem;align-items:center;justify-content:center;justify-items:center;text-align:center}.unpplugged__container .content ul{list-style:none}.unpplugged__container .content .code{margin:auto .5rem;padding:1rem;display:inline-flex;border-radius:var(--border-radius-base);background-color:var(--surface)}.unpplugged__container .content footer{margin-top:3rem}.modal__welcome .cards__container .ds-card{display:flex;gap:1rem}.modal__welcome .cards__container .ds-card .beyond-icon{height:3rem;width:3rem}.modal__welcome .cards__container .ds-card:hover,.modal__welcome .cards__container .ds-card:selected{cursor:text;border:none;box-shadow:none}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 
@@ -777,12 +852,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

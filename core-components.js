@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/form"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/icon", "@beyond-js/ui@0.0.1/form"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -38,7 +38,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     BeyondButton
   } = dependency_5;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -368,7 +368,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   FILE: platforms\index.js
   ***********************/
 
-  const PLATFORMS = {
+  const PLATFORMS = _exports.PLATFORMS = {
     deno: {
       viewBox: `0 0 21.179 21.182`,
       icon: `<g id="deno-icon" transform="translate(0.005 0)">
@@ -415,7 +415,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   /********************
   FILE: tree\bundles.js
   ********************/
-  _exports.PLATFORMS = PLATFORMS;
+
   const styles = 'style="fill:#E36152"';
   const defaultIcon = {
     viewBox: '0 0 70 70',
@@ -796,14 +796,15 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   Object.keys(BUNDLES_ICONS).forEach(bundle => treeIcons[`bundle.${bundle}`] = BUNDLES_ICONS[bundle]);
   Object.keys(FILE_ICONS).forEach(file => treeIcons[`file.${file}`] = FILE_ICONS[file]);
   Object.keys(PROCESSORS_ICONS).forEach(file => treeIcons[`processor.${file}`] = PROCESSORS_ICONS[file]);
-  const TREE_ICONS = treeIcons;
+  const TREE_ICONS = _exports.TREE_ICONS = treeIcons;
 
   /**********
   FILE: ds.js
   **********/
-  _exports.TREE_ICONS = TREE_ICONS;
-  const DS_ICONS = Object.assign(ICONS, TREE_ICONS, PLATFORMS);
-  _exports.DS_ICONS = DS_ICONS;
+
+  const DS_ICONS = _exports.DS_ICONS = Object.assign(ICONS, TREE_ICONS, PLATFORMS, {
+    bundles: BUNDLES_ICONS
+  });
   function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -936,7 +937,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   dashboard-icon-button.jsx
   ************************/
 
-  const DashboardIconButton = React.forwardRef((props, ref) => {
+  const DashboardIconButton = _exports.DashboardIconButton = React.forwardRef((props, ref) => {
     let properties = {};
     const icon = props.icon;
     if (DS_ICONS.hasOwnProperty(icon)) {
@@ -960,13 +961,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
    * node
    * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<{}> & React.RefAttributes<unknown>>}
    */
-  _exports.DashboardIconButton = DashboardIconButton;
-  const DSIconButton = DashboardIconButton;
+  const DSIconButton = _exports.DSIconButton = DashboardIconButton;
 
   /*****************
   dashboard-icon.jsx
   *****************/
-  _exports.DSIconButton = DSIconButton;
+
   function DashboardIcon(props) {
     let properties = {};
     const icon = props.icon || props.name;
@@ -976,12 +976,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     } else if (icon && !props.icon) properties.icon = icon;
     return /*#__PURE__*/React.createElement(BeyondIcon, _extends({}, props, properties));
   }
-  const DSIcon = DashboardIcon;
+  const DSIcon = _exports.DSIcon = DashboardIcon;
 
   /***********
   dropdown.jsx
   ***********/
-  _exports.DSIcon = DSIcon;
+
   function Dropdown({
     children,
     control
@@ -1203,7 +1203,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   spinner.jsx
   **********/
 
-  const DSSpinner = React.forwardRef(({
+  const DSSpinner = _exports.DSSpinner = React.forwardRef(({
     className,
     fetching,
     type
@@ -1223,7 +1223,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   /***********
   use-form.jsx
   ***********/
-  _exports.DSSpinner = DSSpinner;
+
   const useForm = ({
     state,
     validations = {}
@@ -1290,12 +1290,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

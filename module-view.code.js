@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.7", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/texts-binder", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/tabs", "@beyond-js/ui@0.0.1/preload-text"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/ui@0.0.1/form", "dayjs@1.11.10", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/texts-binder", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/tabs", "@beyond-js/ui@0.0.1/preload-text", "@beyond-js/ui@0.0.1/icon"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -13,6 +13,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   _exports.BundleState = BundleState;
   _exports.CSpecs = CSpecs;
   _exports.EditModulePlatforms = EditModulePlatforms;
+  _exports.FileLink = FileLink;
   _exports.HeaderPreload = HeaderPreload;
   _exports.ModuleBoard = ModuleBoard;
   _exports.ModuleBundles = ModuleBundles;
@@ -20,6 +21,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   _exports.ModulePlatforms = ModulePlatforms;
   _exports.ModulePreload = ModulePreload;
   _exports.hmr = _exports.__beyond_pkg = void 0;
+  _exports.useProject = useProject;
+  _exports.useTabManager = useTabManager;
   /*************
   LEGACY IMPORTS
   *************/
@@ -37,6 +40,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     DSIconButton,
     DSIcon,
     FadeIn,
+    DS_ICONS,
     DSCard,
     DSCards,
     SmallCard,
@@ -61,8 +65,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   const {
     BeyondPreloadText
   } = dependency_11;
+  const {
+    BeyondIcon,
+    BeyondIconButton
+  } = dependency_12;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -76,7 +84,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     "type": "code"
   }, _amd_module.uri).package();
   ;
-  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/spinner', dependency_3], ['@beyond-js/ui/form', dependency_4], ['dayjs', dependency_5], ['@beyond-js/workspace/core-components', dependency_6], ['@beyond-js/workspace/hooks', dependency_7], ['@beyond-js/workspace/texts-binder', dependency_8], ['@beyond-js/workspace/ds-contexts', dependency_9], ['@beyond-js/workspace/tabs', dependency_10], ['@beyond-js/ui/preload-text', dependency_11]]);
+  __pkg.dependencies.update([['react', dependency_1], ['react-dom', dependency_2], ['@beyond-js/ui/spinner', dependency_3], ['@beyond-js/ui/form', dependency_4], ['dayjs', dependency_5], ['@beyond-js/workspace/core-components', dependency_6], ['@beyond-js/workspace/hooks', dependency_7], ['@beyond-js/workspace/texts-binder', dependency_8], ['@beyond-js/workspace/ds-contexts', dependency_9], ['@beyond-js/workspace/tabs', dependency_10], ['@beyond-js/ui/preload-text', dependency_11], ['@beyond-js/ui/icon', dependency_12]]);
   const {
     module
   } = __pkg.bundle;
@@ -239,12 +247,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     const {
       workspace
     } = useDSWorkspaceContext();
-    let type = 'error';
+    let type = "error";
     const clss = {
-      errors: 'error-text',
-      warnings: 'warning-text'
+      errors: "error-text",
+      warnings: "warning-text"
     };
-    if (!clss.hasOwnProperty(type)) type = 'errors';
+    if (!clss.hasOwnProperty(type)) type = "errors";
     const cls = `ds-diagnostics ${clss[type]}`;
     let output = [];
     if (!data.size) return null;
@@ -257,7 +265,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       } = target.dataset;
       lineNumber = parseInt(lineNumber);
       column = parseInt(column);
-      const source = await bundleModel.getFile(target.dataset.file, 'ts');
+      const source = await bundleModel.getFile(target.dataset.file, "ts");
       const position = {
         lineNumber,
         column
@@ -265,15 +273,23 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       workspace.openFile({
         source: source,
         path: source.relative.file,
-        processor: 'ts',
+        processor: "ts",
         position: position,
         moduleId: model.id
       });
     };
+    const onCopy = event => {
+      /* Select the text field */
+
+      // console.log(event.currentTarget.dataset.content);
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(event.currentTarget.dataset.content);
+    };
     data.forEach((item, id) => {
       output = output.concat(item.map((item, k) => {
-        const path = workspace.active.application.path.replace(/\\/g, '/');
-        const file = item.file?.replace(`${path}/`, '');
+        const path = workspace.active.application.path.replace(/\\/g, "/");
+        const file = item.file?.replace(`${path}/`, "");
+        const fileLink = `${file}:${item.line}:${item.character}`;
         return /*#__PURE__*/React.createElement("li", {
           key: `${id}.${k}`,
           className: "item__data p1"
@@ -284,19 +300,49 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
           }
         }), item.file && /*#__PURE__*/React.createElement("div", {
           style: {
-            textAlign: 'right'
+            textAlign: "right"
           }
         }, /*#__PURE__*/React.createElement("span", {
+          href: `vscode://file/${fileLink}`,
           "data-file": item.file,
           "data-column": item.character,
           "data-line-number": item.line,
           onClick: onClick
-        }, file, ": ", item.line, ": ", item.character)));
+        }, fileLink), /*#__PURE__*/React.createElement(BeyondIcon, {
+          icon: "contentCopy",
+          "data-content": fileLink,
+          onClick: onCopy
+        })));
       }));
     });
     return /*#__PURE__*/React.createElement("ul", {
       className: cls
     }, output);
+  }
+
+  /***************************
+  bundles\bundle\file-link.jsx
+  ***************************/
+
+  function FileLink({
+    distribution,
+    type,
+    extension
+  }) {
+    if (!distribution) return null;
+    const {
+      model,
+      bundle
+    } = useBundleContext();
+    const uri = `http://localhost:${distribution.ports.bundles}/${bundle.subpath}.${extension}`;
+    return /*#__PURE__*/React.createElement("span", {
+      className: "bundle-link"
+    }, /*#__PURE__*/React.createElement(DSIcon, {
+      icon: DS_ICONS.bundles.code
+    }), /*#__PURE__*/React.createElement("a", {
+      href: `${uri}`,
+      target: "_blank"
+    }, type));
   }
 
   /************************
@@ -308,10 +354,57 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       model,
       bundle
     } = useBundleContext();
+    const {
+      distributions
+    } = useModuleContext();
+    const distribution = distributions.find(item => bundle.platforms.includes(item.platform));
+    const declarations = distributions.find(item => item.ts?.compiler);
+    async function copy(event) {
+      const value = event.currentTarget.dataset.value;
+      if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(value);
+        return;
+      }
+      await navigator.clipboard.writeText(value);
+    }
+
+    // Polyfill for navigator.clipboard.writeText for browsers that don't support it
+    function fallbackCopyTextToClipboard(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        const successful = document.execCommand("copy");
+        const msg = successful ? "successful" : "unsuccessful";
+      } catch (err) {
+        console.error("Fallback: Unable to copy text to clipboard.", err);
+      }
+      document.body.removeChild(textArea);
+    }
     return /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement("h4", null, model.name), /*#__PURE__*/React.createElement("div", {
       className: "secondary-text p1 flex-container flex-center-y"
-    }, bundle.specifier, " ", /*#__PURE__*/React.createElement(DSIcon, {
+    }, /*#__PURE__*/React.createElement("span", {
+      "data-value": bundle.specifier,
+      onClick: copy,
+      className: "bundle-link"
+    }, /*#__PURE__*/React.createElement(DSIcon, {
       icon: "contentCopy"
+    }), bundle.specifier), /*#__PURE__*/React.createElement("span", {
+      className: "bundle-link",
+      "data-value": bundle.vspecifier,
+      onClick: copy
+    }, /*#__PURE__*/React.createElement(DSIcon, {
+      icon: "contentCopy"
+    }), bundle.vspecifier), /*#__PURE__*/React.createElement(FileLink, {
+      distribution: distribution,
+      extension: "js",
+      type: "Bundle"
+    }), /*#__PURE__*/React.createElement(FileLink, {
+      distribution: declarations,
+      extension: "d.ts",
+      type: "Declarations"
     })));
   }
 
@@ -436,7 +529,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     const [cspec, setCSpec] = React.useState(model.cspec);
     const output = [];
     useBinder([model], () => setCSpec(model.cspec));
-    window.module = model;
     bundles.items.forEach(bundle => output.push( /*#__PURE__*/React.createElement(Bundle, {
       key: bundle.id,
       item: bundle
@@ -1329,6 +1421,44 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     }))));
   }
 
+  /********************
+  hooks\use-project.jsx
+  ********************/
+
+  function useProject(specs) {
+    let {
+      workspace
+    } = useDSWorkspaceContext();
+    const [project, setProject] = React.useState();
+    const [model, setModel] = React.useState();
+    React.useEffect(() => {
+      const project = workspace.getProject(specs.projectId);
+      setProject(project);
+      const set = module => {
+        setModel(module);
+      };
+      workspace.getModuleManager(specs.projectId, specs.moduleId).then(set);
+    }, [specs.projectId, specs.moduleId]);
+    return [project, model];
+  }
+
+  /************************
+  hooks\use-tab-manager.jsx
+  ************************/
+
+  function useTabManager(moduleId) {
+    let {
+      panel
+    } = useDSWorkspaceContext();
+    React.useEffect(() => {
+      if (!moduleId) return;
+      if ([undefined, null].includes(moduleId)) return;
+      moduleManager.load(moduleId).then(model => {
+        panel.setTabName(moduleId, model.name);
+      });
+    }, [moduleId]);
+  }
+
   /********
   index.jsx
   ********/
@@ -1340,32 +1470,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       specs
     } = props;
     let {
-      workspace,
-      navigateModule,
-      panel
+      navigateModule
     } = useDSWorkspaceContext();
-    const [model, setModel] = React.useState();
     const [ready, setReady] = React.useState();
-    const [project, setProject] = React.useState();
     const module = __pkg.bundle.module.specifier;
     const [textsReady, texts] = useTextsBinder(module);
-    React.useEffect(() => {
-      workspace.getProject(specs.projectId).then(project => {
-        setProject(project);
-        const set = module => {
-          setModel(module);
-        };
-        workspace.getModuleManager(specs.projectId, specs.moduleId).then(set);
-      });
-    }, [specs.projectId, specs.moduleId]);
+    const [project, model] = useProject(specs);
+    useTabManager(specs.moduleId);
     useBinder([model], () => setReady(model.ready));
-    //TODO: @julio remove this logic
-    React.useEffect(() => {
-      if ([undefined, null].includes(specs?.moduleId)) return;
-      moduleManager.load(specs.moduleId).then(model => {
-        panel.setTabName(specs.moduleId, model.name);
-      });
-    }, [specs.moduleId]);
     if (!specs.moduleId || !textsReady || !model?.ready || specs.moduleId !== model.id) {
       return /*#__PURE__*/React.createElement(ModulePreload, null);
     }
@@ -1376,21 +1488,25 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       declarations,
       settings
     } = texts.labels;
+    const distributions = project.application?.deployment?.distributions ? [...project.application.deployment.distributions.values()] : [];
     return /*#__PURE__*/React.createElement(ModuleContext.Provider, {
       value: {
         model,
         navigateModule,
         texts,
         application: project.application,
-        project
+        project,
+        distributions
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "ds-module-view__detail ds__board"
     }, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(ModuleErrors, null), /*#__PURE__*/React.createElement("div", {
       className: "ds__board__tabs-container"
-    }, /*#__PURE__*/React.createElement(TabsContainer, null, /*#__PURE__*/React.createElement(Tabs, {
+    }, /*#__PURE__*/React.createElement(TabsContainer, {
+      selected: 0
+    }, /*#__PURE__*/React.createElement(Tabs, {
       tabs: [bundles, consumers, dependencies, declarations, settings]
-    }), /*#__PURE__*/React.createElement(Board, null, /*#__PURE__*/React.createElement(ModuleBundles, null), /*#__PURE__*/React.createElement(Consumers, null), /*#__PURE__*/React.createElement(ListDependencies, null), /*#__PURE__*/React.createElement(Declarations, null), /*#__PURE__*/React.createElement(React.Fragment, null))))));
+    }), /*#__PURE__*/React.createElement(Board, null, /*#__PURE__*/React.createElement(ModuleBundles, null), /*#__PURE__*/React.createElement(Consumers, null), /*#__PURE__*/React.createElement(ListDependencies, null), /*#__PURE__*/React.createElement(Declarations, null))))));
   }
 
   /****************
@@ -1660,7 +1776,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__container header{padding:1rem .5rem}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr auto;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
+  const legacyStyles = beyondLegacyStyles.register('@beyond-js/workspace/module-view.code', '.bundle__detail{background:var(--secondary-accent-40);font-size:.75rem;padding:.25rem 2rem}.bundle__detail .beyond-icon{margin-left:.5rem;fill:var(--primary)}.bundle__container header{padding:1rem .5rem}.bundle-link{display:flex;margin-top:1rem;justify-content:center;gap:.5rem;opacity:.8}.bundle-link+.bundle-link{margin-left:1rem}.bundle-link,.bundle-link a{cursor:pointer;text-decoration:none;color:var(--text-color);opacity:.8}.bundle-link a:hover,.bundle-link:hover{opacity:1}.ds-diagnostics{list-style:none;width:100%}.ds-diagnostics .item__data{display:flex;gap:.5rem;justify-content:space-between}.ds-diagnostics .item__data .error__block div,.ds-diagnostics .item__data div{display:block;width:100%}.ds-diagnostics.error-text{color:var(--primary)}.ds-diagnostics.warning-text{color:var(--warning)}.ds-diagnostics li{padding:.5rem 0}.panel__container .module-view__header{display:grid;grid-template-columns:1fr 1fr auto;gap:.25rem;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__rows{display:grid;grid-gap:.25rem}.panel__container .module-view__header .module-view__header__section{background:var(--secondary-accent-40);padding:1rem 2rem;display:flex;align-items:center;gap:.5rem}.panel__container .module-view__header .module-view__header__section.start--column{padding-left:2.5rem;align-items:start;flex-direction:column}.panel__container .module-view__header .module-view__header__section.start--column .header__detail{color:var(--secondary);align-items:center;letter-spacing:.28px;font-size:.9rem;gap:.5rem;display:flex}.panel__container .module-view__header .module-view__header__section.start--column .header__detail svg{fill:var(--secondary)}.panel__container .module-view__header .module-view__header__section .beyond-icon{fill:var(--text-color)}.panel__container.panel__container--divided .module-view__header{grid-template-columns:1fr}.panel__container.panel__container--divided .module-view__header .module-view__header__rows{display:flex}.panel__container.panel__container--divided .module-view__header .module-view__header__section{display:grid;flex-grow:1;gap:.2rem}.panel__container.panel__container--divided .module-view__header .module-view__header__section .section__detail{display:flex;align-items:center}.panel__container.panel__container--divided .module-view__header .module-view__header__section .label__section{display:grid}.module-view__header__section .icons__container,.module-view__header__section .icons__container--edit{display:flex;gap:.5rem;justify-items:center}.module-view__header__section .platform-icon{opacity:.5;transition:all .2s ease-in;cursor:pointer}.module-view__header__section .platform-icon.platform--selected,.module-view__header__section .platform-icon:hover{opacity:1}@keyframes move-to-right{from{width:40px}to{width:auto}}');
   legacyStyles.appendToDOM();
   const ims = new Map();
 
@@ -1670,12 +1786,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

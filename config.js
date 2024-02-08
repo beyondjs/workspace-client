@@ -5,13 +5,14 @@ define(["exports"], function (_exports) {
     value: true
   });
   _exports.default = void 0;
-  var _default = {
+  var _default = _exports.default = {
     "package": "@beyond-js/workspace",
     "version": "1.1.1",
     "languages": {
       "default": "en",
       "supported": ["en", "es"]
     },
+    "environment": "development",
     "global.css": true,
     "params": {
       "application": {
@@ -33,5 +34,4 @@ define(["exports"], function (_exports) {
     "ssr": {},
     "backend": {}
   };
-  _exports.default = _default;
 });

@@ -286,11 +286,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "Texts",
     "name": "Texts"
   }];
-  let CurrentTexts, Texts;
+  let CurrentTexts = _exports.CurrentTexts = void 0,
+    Texts = _exports.Texts = void 0;
 
   // Module exports
-  _exports.Texts = Texts;
-  _exports.CurrentTexts = CurrentTexts;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -299,13 +298,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'CurrentTexts') && (_exports.CurrentTexts = CurrentTexts = require ? require('./current').CurrentTexts : value);
     (require || prop === 'Texts') && (_exports.Texts = Texts = require ? require('./texts').Texts : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=texts.js.map

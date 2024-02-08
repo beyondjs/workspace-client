@@ -32,7 +32,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
     DSModel
   } = dependency_6;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -164,7 +164,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
         this.#favorites = FavoritesFactory.get(id, project);
         // this.#favorites.bind('loaded', this.checkFavorites.bind(this));
       }
-
       this._now = performance.now();
       if (item.items) this._items = item.items;
       this.#favoritesList = specs?.favoritesList;
@@ -446,12 +445,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       });
     }
   }
-  const FilesTree = Tree;
+  const FilesTree = _exports.FilesTree = Tree;
 
   /*************************
   FILE: tree\types\bundle.js
   *************************/
-  _exports.FilesTree = FilesTree;
+
   class BundleTree extends BaseTree {
     get icons() {
       return {
@@ -617,7 +616,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       // }
       ];
     }
-
     _module;
     get module() {
       return this._module;
@@ -1624,7 +1622,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
   FILE: tree\branches\factory.js
   *****************************/
 
-  const branchFactory = new class {
+  const branchFactory = _exports.branchFactory = new class {
     _elements = new Map();
     get elements() {
       return this._elements;
@@ -1682,8 +1680,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
   /********************
   FILE: tree\factory.js
   ********************/
-  _exports.branchFactory = branchFactory;
-  const TreeFactory = new class {
+
+  const TreeFactory = _exports.TreeFactory = new class {
     #items = new Map();
     get types() {
       return {
@@ -1732,7 +1730,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
   /***************
   FILE: factory.js
   ***************/
-  _exports.TreeFactory = TreeFactory;
+
   class ProjectsFactory {
     _applications = new Map();
     get applications() {
@@ -1746,12 +1744,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       return application;
     }
   }
-  /* bundle */const projectsFactory = new ProjectsFactory();
+  /* bundle */const projectsFactory = _exports.projectsFactory = new ProjectsFactory();
 
   /**************************
   FILE: favorites\children.js
   **************************/
-  _exports.projectsFactory = projectsFactory;
+
   class FavoriteChildren extends ReactiveModel {
     _bundle;
     get bundle() {
@@ -1843,12 +1841,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
     }
   }
   ;
-  const FavoritesFactory = new Factory();
+  const FavoritesFactory = _exports.FavoritesFactory = new Factory();
 
   /***************************
   FILE: favorites\list-base.js
   ***************************/
-  _exports.FavoritesFactory = FavoritesFactory;
+
   class FavoritesListBase extends ReactiveModel {
     _name;
     get name() {
@@ -3640,7 +3638,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
       };
       // DSNotifications.register(this.application.errors, specs);
     };
-
     async process(props) {
       const {
         id,
@@ -4168,12 +4165,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/inspe
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

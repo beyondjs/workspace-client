@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/core", "@beyond-js/widgets@0.1.5/render", "@beyond-js/kernel@0.1.9/styles"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/core", "@beyond-js/widgets@0.1.6/render", "@beyond-js/kernel@0.1.9/styles"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.hmr = _exports.__beyond_pkg = _exports.WidgetServerController = _exports.WidgetControllerBase = _exports.WidgetClientController = _exports.WidgetAttributes = _exports.IWidgetStore = _exports.IWidgetRendered = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/widgets@0.1.5/controller"
+      "vspecifier": "@beyond-js/widgets@0.1.6/controller"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -170,7 +170,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   ****************************/
 
   ims.set('./controller', {
-    hash: 3835813087,
+    hash: 3411867322,
     creator: function (require, exports) {
       "use strict";
 
@@ -301,15 +301,14 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "WidgetServerController",
     "name": "WidgetServerController"
   }];
-  let WidgetAttributes, WidgetClientController, IWidgetStore, WidgetControllerBase, IWidgetRendered, WidgetServerController;
+  let WidgetAttributes = _exports.WidgetAttributes = void 0,
+    WidgetClientController = _exports.WidgetClientController = void 0,
+    IWidgetStore = _exports.IWidgetStore = void 0,
+    WidgetControllerBase = _exports.WidgetControllerBase = void 0,
+    IWidgetRendered = _exports.IWidgetRendered = void 0,
+    WidgetServerController = _exports.WidgetServerController = void 0;
 
   // Module exports
-  _exports.WidgetServerController = WidgetServerController;
-  _exports.IWidgetRendered = IWidgetRendered;
-  _exports.WidgetControllerBase = WidgetControllerBase;
-  _exports.IWidgetStore = IWidgetStore;
-  _exports.WidgetClientController = WidgetClientController;
-  _exports.WidgetAttributes = WidgetAttributes;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -322,13 +321,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'IWidgetRendered') && (_exports.IWidgetRendered = IWidgetRendered = require ? require('./ssr').IWidgetRendered : value);
     (require || prop === 'WidgetServerController') && (_exports.WidgetServerController = WidgetServerController = require ? require('./ssr').WidgetServerController : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=controller.js.map

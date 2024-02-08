@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/ui@0.0.1/ripple"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/ui@0.0.1/ripple"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -69,7 +69,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       }
       // this.tippy(this._button.current, tippy);
     }
-
     get button() {
       return this._button && this._button.current;
     }
@@ -147,7 +146,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
 
       // this.tippy(this.icon.current);
     }
-
     render() {
       let {
         props
@@ -199,7 +197,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   FILE: svgs.js
   ************/
   _exports.BeyondIcon = BeyondIcon;
-  const BEYOND_ICONS = {
+  const BEYOND_ICONS = _exports.BEYOND_ICONS = {
     'av:stop': `<g id="stop"><path d="M6 6h12v12H6z"></path></g>`,
     'idcard': `<g transform="scale(0.75)">
                     <path d="M27.296,6.498h-7.497V0h-7.724v6.498H4.579c-2.393,0-4.333,1.94-4.333,4.333v16.711c0,2.394,1.94,4.333,4.333,4.333
@@ -624,7 +622,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   /**********
   SCSS STYLES
   **********/
-  _exports.BEYOND_ICONS = BEYOND_ICONS;
   const legacyStyles = beyondLegacyStyles.register('@beyond-js/ui/icon', '.beyond-icon-button{height:40px;width:40px;background:0 0;border:none;display:inline-grid;position:relative;outline:0!important;align-items:center;justify-content:center}.beyond-icon-button svg.beyond-icon{height:15px;width:15px}.beyond-icon-button.circle{border-radius:50%}.beyond-icon-button.circle>.beyond-ripple{border-radius:50%;align-self:center}.beyond-icon-button.primary{background:#ff8056;color:#fff}.beyond-icon-button.primary.dark{background:#e36152}.beyond-icon-button.primary.light{background:#ffa789}.beyond-icon-button.primary svg{fill:#fff}.beyond-icon-button.gray{background:#e4e5dc}.beyond-icon-button.secondary{background:#121f36;fill:#FFFFFF;color:#fff}.beyond-icon-button.secondary.dark{background:#050910}.beyond-icon-button.secondary.light{background:#313c50}.beyond-icon-button.small-icon{height:24px;width:24px}.beyond-icon-button.small-icon .beyond-icon{height:12px;width:12px}.beyond-icon{height:20px;width:20px;position:relative}.beyond-icon.circle{border-radius:50%;padding:5px}.beyond-icon svg{fill:var(--beyond-element-primary-text)}');
   legacyStyles.appendToDOM();
   const ims = new Map();
@@ -635,12 +632,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

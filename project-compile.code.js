@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/workspace@1.1.1/breadcrumb.code", "@beyond-js/ui@0.0.1/icon", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/models", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/workspace@1.1.1/texts-binder"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/workspace@1.1.1/breadcrumb.code", "@beyond-js/ui@0.0.1/icon", "@beyond-js/inspect@0.0.1/models.code", "@beyond-js/inspect@0.0.1/reactive-model", "@beyond-js/ui@0.0.1/alert", "@beyond-js/ui@0.0.1/form", "@beyond-js/ui@0.0.1/modal", "@beyond-js/ui@0.0.1/spinner", "@beyond-js/workspace@1.1.1/ds-contexts", "@beyond-js/workspace@1.1.1/hooks", "@beyond-js/workspace@1.1.1/models", "@beyond-js/workspace@1.1.1/core-components", "@beyond-js/kernel@0.1.9/texts", "@beyond-js/workspace@1.1.1/texts-binder"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3, dependency_4, dependency_5, dependency_6, dependency_7, dependency_8, dependency_9, dependency_10, dependency_11, dependency_12, dependency_13, dependency_14, dependency_15, dependency_16) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -13,6 +13,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   _exports.ItemMessage = ItemMessage;
   _exports.Message = Message;
   _exports.useCompilerContext = _exports.hmr = _exports.__beyond_pkg = void 0;
+  _exports.useGetProject = useGetProject;
   /*************
   LEGACY IMPORTS
   *************/
@@ -66,7 +67,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     useTextsBinder
   } = dependency_16;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -104,8 +105,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   _context.jsx
   ***********/
 
-  const CompilerContext = React.createContext();
-  _exports.CompilerContext = CompilerContext;
+  const CompilerContext = _exports.CompilerContext = React.createContext();
   const useCompilerContext = () => React.useContext(CompilerContext);
 
   /********
@@ -130,6 +130,27 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     }))));
   }
 
+  /**************
+  get-project.jsx
+  **************/
+
+  function useGetProject(id) {
+    const {
+      workspace
+    } = useDSWorkspaceContext();
+    const project = workspace.getProject(id);
+    const [ready, setReady] = React.useState(project.ready);
+    React.useEffect(() => {
+      const onChange = () => {
+        setReady(project.ready);
+      };
+      project.on("ready", onChange);
+      onChange();
+      return () => project.off("ready", onChange);
+    }, []);
+    return [project];
+  }
+
   /********
   index.jsx
   ********/
@@ -137,13 +158,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   function CompileBoard(props) {
     const [fetching, setFetching] = React.useState();
     const [status, setStatus] = React.useState(props.specs.status);
-    const {
-      workspace: {
-        project
-      }
-    } = useDSWorkspaceContext();
     const [compiling, setCompiling] = React.useState(null);
     const [ready, texts] = useTextsBinder(__pkg.bundle.module.specifier);
+    const [project] = useGetProject(props.specs.projectId);
     const {
       process
     } = project.application;
@@ -152,10 +169,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
       setStatus(process.processed);
       setMessages(process.messages);
     });
-    if (!ready) return /*#__PURE__*/React.createElement(DsFetchingBlock, null);
-    if (props.specs.projectId !== project.application.id) {
-      throw Error("the project is not loaded");
-    }
+    if (!ready || !project.ready) return /*#__PURE__*/React.createElement(DsFetchingBlock, null);
     const finalTexts = {
       ...props.texts,
       ...texts
@@ -391,12 +405,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

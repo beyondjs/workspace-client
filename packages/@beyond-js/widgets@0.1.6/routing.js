@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/core", "@beyond-js/widgets@0.1.5/render", "@beyond-js/kernel@0.1.9/routing"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kernel@0.1.9/core", "@beyond-js/widgets@0.1.6/render", "@beyond-js/kernel@0.1.9/routing"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   });
   _exports.manager = _exports.hmr = _exports.__beyond_pkg = _exports.Route = _exports.PageURI = _exports.PageInstance = _exports.Layout = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/widgets@0.1.5/routing"
+      "vspecifier": "@beyond-js/widgets@0.1.6/routing"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -157,7 +157,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       var _layouts = require("./layouts");
       var _route = require("./route");
       /*bundle*/
-      const manager = typeof process === 'object' ? void 0 : new class Manager {
+      const manager = exports.manager = typeof process === 'object' ? void 0 : new class Manager {
         // The registry of all layouts (except the main layout) and pages instances registered in the session
         #instances = {
           layouts: new _layouts.default(),
@@ -229,7 +229,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
           return done();
         }
       }();
-      exports.manager = manager;
     }
   });
 
@@ -484,14 +483,13 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "PageURI",
     "name": "PageURI"
   }];
-  let Layout, manager, PageInstance, Route, PageURI;
+  let Layout = _exports.Layout = void 0,
+    manager = _exports.manager = void 0,
+    PageInstance = _exports.PageInstance = void 0,
+    Route = _exports.Route = void 0,
+    PageURI = _exports.PageURI = void 0;
 
   // Module exports
-  _exports.PageURI = PageURI;
-  _exports.Route = Route;
-  _exports.PageInstance = PageInstance;
-  _exports.manager = manager;
-  _exports.Layout = Layout;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -503,13 +501,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'Route') && (_exports.Route = Route = require ? require('./route').Route : value);
     (require || prop === 'PageURI') && (_exports.PageURI = PageURI = require ? require('./uri').PageURI : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=routing.js.map

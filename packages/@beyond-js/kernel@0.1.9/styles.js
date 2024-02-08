@@ -181,9 +181,8 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
         }
       }
       /*bundle*/
-      const styles = new Registry();
+      const styles = exports.styles = new Registry();
       // Just for legacy projects
-      exports.styles = styles;
       globalThis.beyondLegacyStyles = styles;
     }
   });
@@ -301,12 +300,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "V1Styles",
     "name": "V1Styles"
   }];
-  let DependenciesStyles, styles, V1Styles;
+  let DependenciesStyles = _exports.DependenciesStyles = void 0,
+    styles = _exports.styles = void 0,
+    V1Styles = _exports.V1Styles = void 0;
 
   // Module exports
-  _exports.V1Styles = V1Styles;
-  _exports.styles = styles;
-  _exports.DependenciesStyles = DependenciesStyles;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -316,13 +314,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     (require || prop === 'styles') && (_exports.styles = styles = require ? require('./registry').styles : value);
     (require || prop === 'V1Styles') && (_exports.V1Styles = V1Styles = require ? require('./v1').V1Styles : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=styles.js.map

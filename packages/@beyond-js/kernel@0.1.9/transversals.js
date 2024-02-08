@@ -164,10 +164,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
     "from": "Transversal",
     "name": "Transversal"
   }];
-  let Transversal;
+  let Transversal = _exports.Transversal = void 0;
 
   // Module exports
-  _exports.Transversal = Transversal;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -175,13 +174,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
   }) {
     (require || prop === 'Transversal') && (_exports.Transversal = Transversal = require ? require('./transversal').Transversal : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=transversals.js.map

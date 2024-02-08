@@ -1635,7 +1635,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
       var _beyond_context = require("beyond_context");
       var _reactiveModel = require("@beyond-js/inspect/reactive-model");
       /*bundle*/
-      const Dashboard = new class extends _reactiveModel.ReactiveModel {
+      const Dashboard = exports.Dashboard = new class extends _reactiveModel.ReactiveModel {
         get ready() {
           return !!this.#wd;
         }
@@ -1699,7 +1699,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
           }
         }
       }();
-      exports.Dashboard = Dashboard;
     }
   });
 
@@ -3404,7 +3403,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
         reports
       } = _core.realtime;
       /*bundle*/
-      const Realtime = new class extends _reactiveModel.ReactiveModel {
+      const Realtime = exports.Realtime = new class extends _reactiveModel.ReactiveModel {
         async initialise() {
           const backend = await _client.backends.get("@beyond-js/inspect");
           const socket = await backend.socket;
@@ -3420,7 +3419,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
           socket.on("server:plm/record/field/update", message => reports.record.update(message.table, message.id, message.field, message.value));
         }
       }();
-      exports.Realtime = Realtime;
     }
   });
 
@@ -3600,8 +3598,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
           return this.#config;
         }
       }
-      const BeyondServer = new Server();
-      exports.BeyondServer = BeyondServer;
+      const BeyondServer = exports.BeyondServer = new Server();
     }
   });
 
@@ -4771,66 +4768,65 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
     "from": "TemplateProcessorsSource",
     "name": "TemplateProcessorsSource"
   }];
-  let Applications, ApplicationDeployments, ApplicationDeployment, Application, ApplicationModules, ApplicationModuleDeclarations, ApplicationModule, ApplicationStatics, ApplicationStatic, Consumers, Consumer, BundleDependencies, BundleDependency, Bundle, Packagers, PackagerCompilers, PackagerCompiler, Packager, Dashboard, Declarations, Declaration, TransversalDependencies, TransversalDependency, ApplicationDistributions, ApplicationDistribution, DistributionLauncher, GlobalBundles, GlobalBundle, Modules, ModuleDeclarations, Module, ModuleStatics, ModuleStatic, ModuleTexts, ProcessorDependencies, ProcessorDependency, Processor, ProcessorOverwrites, ProcessorOverwrite, ProcessorSources, ProcessorSource, Realtime, RunTimeError, RunTimeManager, TemplateApplication, TemplateApplicationsSources, TemplateApplicationsSource, TemplateGlobals, TemplateGlobal, TemplateGlobalSources, TemplateGlobalSource, Template, TemplateOverwrites, TemplateOverwrite, TemplateProcessor, TemplateProcessorsSources, TemplateProcessorsSource;
+  let Applications = _exports.Applications = void 0,
+    ApplicationDeployments = _exports.ApplicationDeployments = void 0,
+    ApplicationDeployment = _exports.ApplicationDeployment = void 0,
+    Application = _exports.Application = void 0,
+    ApplicationModules = _exports.ApplicationModules = void 0,
+    ApplicationModuleDeclarations = _exports.ApplicationModuleDeclarations = void 0,
+    ApplicationModule = _exports.ApplicationModule = void 0,
+    ApplicationStatics = _exports.ApplicationStatics = void 0,
+    ApplicationStatic = _exports.ApplicationStatic = void 0,
+    Consumers = _exports.Consumers = void 0,
+    Consumer = _exports.Consumer = void 0,
+    BundleDependencies = _exports.BundleDependencies = void 0,
+    BundleDependency = _exports.BundleDependency = void 0,
+    Bundle = _exports.Bundle = void 0,
+    Packagers = _exports.Packagers = void 0,
+    PackagerCompilers = _exports.PackagerCompilers = void 0,
+    PackagerCompiler = _exports.PackagerCompiler = void 0,
+    Packager = _exports.Packager = void 0,
+    Dashboard = _exports.Dashboard = void 0,
+    Declarations = _exports.Declarations = void 0,
+    Declaration = _exports.Declaration = void 0,
+    TransversalDependencies = _exports.TransversalDependencies = void 0,
+    TransversalDependency = _exports.TransversalDependency = void 0,
+    ApplicationDistributions = _exports.ApplicationDistributions = void 0,
+    ApplicationDistribution = _exports.ApplicationDistribution = void 0,
+    DistributionLauncher = _exports.DistributionLauncher = void 0,
+    GlobalBundles = _exports.GlobalBundles = void 0,
+    GlobalBundle = _exports.GlobalBundle = void 0,
+    Modules = _exports.Modules = void 0,
+    ModuleDeclarations = _exports.ModuleDeclarations = void 0,
+    Module = _exports.Module = void 0,
+    ModuleStatics = _exports.ModuleStatics = void 0,
+    ModuleStatic = _exports.ModuleStatic = void 0,
+    ModuleTexts = _exports.ModuleTexts = void 0,
+    ProcessorDependencies = _exports.ProcessorDependencies = void 0,
+    ProcessorDependency = _exports.ProcessorDependency = void 0,
+    Processor = _exports.Processor = void 0,
+    ProcessorOverwrites = _exports.ProcessorOverwrites = void 0,
+    ProcessorOverwrite = _exports.ProcessorOverwrite = void 0,
+    ProcessorSources = _exports.ProcessorSources = void 0,
+    ProcessorSource = _exports.ProcessorSource = void 0,
+    Realtime = _exports.Realtime = void 0,
+    RunTimeError = _exports.RunTimeError = void 0,
+    RunTimeManager = _exports.RunTimeManager = void 0,
+    TemplateApplication = _exports.TemplateApplication = void 0,
+    TemplateApplicationsSources = _exports.TemplateApplicationsSources = void 0,
+    TemplateApplicationsSource = _exports.TemplateApplicationsSource = void 0,
+    TemplateGlobals = _exports.TemplateGlobals = void 0,
+    TemplateGlobal = _exports.TemplateGlobal = void 0,
+    TemplateGlobalSources = _exports.TemplateGlobalSources = void 0,
+    TemplateGlobalSource = _exports.TemplateGlobalSource = void 0,
+    Template = _exports.Template = void 0,
+    TemplateOverwrites = _exports.TemplateOverwrites = void 0,
+    TemplateOverwrite = _exports.TemplateOverwrite = void 0,
+    TemplateProcessor = _exports.TemplateProcessor = void 0,
+    TemplateProcessorsSources = _exports.TemplateProcessorsSources = void 0,
+    TemplateProcessorsSource = _exports.TemplateProcessorsSource = void 0;
 
   // Module exports
-  _exports.TemplateProcessorsSource = TemplateProcessorsSource;
-  _exports.TemplateProcessorsSources = TemplateProcessorsSources;
-  _exports.TemplateProcessor = TemplateProcessor;
-  _exports.TemplateOverwrite = TemplateOverwrite;
-  _exports.TemplateOverwrites = TemplateOverwrites;
-  _exports.Template = Template;
-  _exports.TemplateGlobalSource = TemplateGlobalSource;
-  _exports.TemplateGlobalSources = TemplateGlobalSources;
-  _exports.TemplateGlobal = TemplateGlobal;
-  _exports.TemplateGlobals = TemplateGlobals;
-  _exports.TemplateApplicationsSource = TemplateApplicationsSource;
-  _exports.TemplateApplicationsSources = TemplateApplicationsSources;
-  _exports.TemplateApplication = TemplateApplication;
-  _exports.RunTimeManager = RunTimeManager;
-  _exports.RunTimeError = RunTimeError;
-  _exports.Realtime = Realtime;
-  _exports.ProcessorSource = ProcessorSource;
-  _exports.ProcessorSources = ProcessorSources;
-  _exports.ProcessorOverwrite = ProcessorOverwrite;
-  _exports.ProcessorOverwrites = ProcessorOverwrites;
-  _exports.Processor = Processor;
-  _exports.ProcessorDependency = ProcessorDependency;
-  _exports.ProcessorDependencies = ProcessorDependencies;
-  _exports.ModuleTexts = ModuleTexts;
-  _exports.ModuleStatic = ModuleStatic;
-  _exports.ModuleStatics = ModuleStatics;
-  _exports.Module = Module;
-  _exports.ModuleDeclarations = ModuleDeclarations;
-  _exports.Modules = Modules;
-  _exports.GlobalBundle = GlobalBundle;
-  _exports.GlobalBundles = GlobalBundles;
-  _exports.DistributionLauncher = DistributionLauncher;
-  _exports.ApplicationDistribution = ApplicationDistribution;
-  _exports.ApplicationDistributions = ApplicationDistributions;
-  _exports.TransversalDependency = TransversalDependency;
-  _exports.TransversalDependencies = TransversalDependencies;
-  _exports.Declaration = Declaration;
-  _exports.Declarations = Declarations;
-  _exports.Dashboard = Dashboard;
-  _exports.Packager = Packager;
-  _exports.PackagerCompiler = PackagerCompiler;
-  _exports.PackagerCompilers = PackagerCompilers;
-  _exports.Packagers = Packagers;
-  _exports.Bundle = Bundle;
-  _exports.BundleDependency = BundleDependency;
-  _exports.BundleDependencies = BundleDependencies;
-  _exports.Consumer = Consumer;
-  _exports.Consumers = Consumers;
-  _exports.ApplicationStatic = ApplicationStatic;
-  _exports.ApplicationStatics = ApplicationStatics;
-  _exports.ApplicationModule = ApplicationModule;
-  _exports.ApplicationModuleDeclarations = ApplicationModuleDeclarations;
-  _exports.ApplicationModules = ApplicationModules;
-  _exports.Application = Application;
-  _exports.ApplicationDeployment = ApplicationDeployment;
-  _exports.ApplicationDeployments = ApplicationDeployments;
-  _exports.Applications = Applications;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -4894,13 +4890,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/plm@0
     (require || prop === 'TemplateProcessorsSources') && (_exports.TemplateProcessorsSources = TemplateProcessorsSources = require ? require('./templates/processors/sources/collection').TemplateProcessorsSources : value);
     (require || prop === 'TemplateProcessorsSource') && (_exports.TemplateProcessorsSource = TemplateProcessorsSource = require ? require('./templates/processors/sources/item').TemplateProcessorsSource : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=models.ts.js.map

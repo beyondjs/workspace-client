@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widgets@0.1.5/render"], function (_exports, _amd_module, dependency_0, dependency_1) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widgets@0.1.6/render"], function (_exports, _amd_module, dependency_0, dependency_1) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,7 +6,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
   });
   _exports.ssr = _exports.hmr = _exports.__beyond_pkg = void 0;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -14,7 +14,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
   } = dependency_0;
   const __pkg = new __Bundle({
     "module": {
-      "vspecifier": "@beyond-js/widgets@0.1.5/layout"
+      "vspecifier": "@beyond-js/widgets@0.1.6/layout"
     },
     "type": "ts"
   }, _amd_module.uri).package();
@@ -217,7 +217,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
       });
       exports.ssr = void 0;
       /*bundle*/
-      const ssr = new class extends EventTarget {
+      const ssr = exports.ssr = new class extends EventTarget {
         // The main layout
         #main;
         get main() {
@@ -250,7 +250,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
           this.dispatchEvent(event);
         }
       }();
-      exports.ssr = ssr;
     }
   });
   __pkg.exports.descriptor = [{
@@ -258,10 +257,9 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
     "from": "ssr",
     "name": "ssr"
   }];
-  let ssr;
+  let ssr = _exports.ssr = void 0;
 
   // Module exports
-  _exports.ssr = ssr;
   __pkg.exports.process = function ({
     require,
     prop,
@@ -269,13 +267,11 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/widge
   }) {
     (require || prop === 'ssr') && (_exports.ssr = ssr = require ? require('./ssr').ssr : value);
   };
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });
 //# sourceMappingURL=layout.js.map

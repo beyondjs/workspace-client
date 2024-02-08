@@ -1,4 +1,4 @@
-define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", "react-dom@16.14.0", "@beyond-js/workspace@1.1.1/core-components"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
+define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "react-dom@18.2.0", "@beyond-js/workspace@1.1.1/core-components"], function (_exports, _amd_module, dependency_0, dependency_1, dependency_2, dependency_3) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -15,7 +15,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     DSIcon
   } = dependency_3;
   const bimport = specifier => {
-    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.5"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["emmet-monaco-es", "5.2.0"], ["monaco-editor", "0.33.0"], ["react", "16.14.0"], ["react-dom", "16.14.0"], ["react-select", "5.7.0"], ["react-split", "2.0.14"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["dayjs", "1.11.7"], ["socket.io-client", "4.5.4"], ["@popperjs/core", "2.11.6"], ["@types/react", "16.14.35"], ["@types/react-dom", "16.9.18"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
+    const dependencies = new Map([["@beyond-js/inspect", "0.0.1"], ["@beyond-js/plm", "0.0.1"], ["@beyond-js/ui", "0.0.1"], ["@beyond-js/local", "0.1.4"], ["@beyond-js/kernel", "0.1.9"], ["@beyond-js/widgets", "0.1.6"], ["@beyond-js/backend", "0.1.9"], ["@beyond-js/scaffolding", "1.0.0"], ["@beyond-js/events", "0.0.6"], ["dayjs", "1.11.10"], ["emmet-monaco-es", "5.3.0"], ["monaco-editor", "0.33.0"], ["pragmate-ui", "0.0.4"], ["react", "18.2.0"], ["react-dom", "18.2.0"], ["react-select", "5.8.0"], ["react-split", "2.0.14"], ["socket.io-client", "4.5.4"], ["socket.io-parser", "4.2.1"], ["engine.io-parser", "5.0.7"], ["split.js", "1.6.5"], ["tippy.js", "6.3.7"], ["waves", "0.1.1"], ["@popperjs/core", "2.11.8"], ["@types/react", "16.14.56"], ["@types/react-dom", "16.9.24"], ["@beyond-js/workspace", "1.1.1"], ["@beyond-js/workspace", "1.1.1"]]);
     return globalThis.bimport(globalThis.bimport.resolve(specifier, dependencies));
   };
   const {
@@ -82,7 +82,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   const community = `<path d="M22.346.013A6.179,6.179,0,0,0,19.88.649a9.279,9.279,0,0,0-2.79,2.07,24.057,24.057,0,0,0-3.372,4.573,14.789,14.789,0,0,1,4.226-.364,16.987,16.987,0,0,1,1.749-2.213c1.912-1.941,3.474-2.1,4.267,1.152A17.414,17.414,0,0,1,24.4,8.851a14.966,14.966,0,0,1,3.463,2.7,24.966,24.966,0,0,0-.653-6.1,9.4,9.4,0,0,0-1.392-3.2A5.131,5.131,0,0,0,23.2.122a3.239,3.239,0,0,0-.855-.109ZM17.51,8.707c-.329-.011-.656-.01-.981,0a13.224,13.224,0,0,0-6.5,2.035,11.749,11.749,0,0,0-2.1,1.76C5,15.59,1.494,22.181,5.9,29.344A8.585,8.585,0,0,0,7.012,30.8a13.207,13.207,0,0,0,22.854-5.262A13.4,13.4,0,0,0,20.487,9.159a13.154,13.154,0,0,0-2.977-.45ZM4.69,30.684a28.424,28.424,0,0,0-1.15,8.2c.15,1.835.883,2.033,1.923.52a22.894,22.894,0,0,0,2.372-5.343A15.139,15.139,0,0,1,4.69,30.684Zm18.8,5.079a14.973,14.973,0,0,1-4.4,1.333,22.976,22.976,0,0,0-.6,5.825c.15,1.834.883,2.032,1.923.519a28.32,28.32,0,0,0,3.07-7.676Zm-12.207.3A63.931,63.931,0,0,0,9.22,47.668c-.1,2.761.637,2.958,1.923.518A63.839,63.839,0,0,0,15.112,37.1a14.962,14.962,0,0,1-1.953-.373,14.924,14.924,0,0,1-1.877-.661Z" 
         transform="translate(-3.513 -0.013)"/>`;
   const usercircle = `<path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"></path>`;
-  const svgs = {
+  const svgs = _exports.svgs = {
     'bell': bell,
     'cloud': cloud,
     'login': login,
@@ -94,7 +94,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
   /************
   FILE: page.js
   ************/
-  _exports.svgs = svgs;
+
   function Page() {
     console.warn(12345);
     ReactDOM.render(React.createElement(AppHome, {
@@ -117,12 +117,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@16.14.0", 
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

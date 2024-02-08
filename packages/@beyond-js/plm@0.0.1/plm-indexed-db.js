@@ -196,11 +196,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
       return promise;
     };
   }
-  var _default = new DBManager();
+  var _default = _exports.default = new DBManager();
   /********************
   FILE: store\delete.js
   ********************/
-  _exports.default = _default;
   function deleteItem(parent) {
     async function remove(item) {
       const db = await parent.db;
@@ -374,12 +373,10 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle"], function (_expor
     prop,
     value
   }) {};
-  const __beyond_pkg = __pkg;
-  _exports.__beyond_pkg = __beyond_pkg;
-  const hmr = new function () {
+  const __beyond_pkg = _exports.__beyond_pkg = __pkg;
+  const hmr = _exports.hmr = new function () {
     this.on = (event, listener) => __pkg.hmr.on(event, listener);
     this.off = (event, listener) => __pkg.hmr.off(event, listener);
   }();
-  _exports.hmr = hmr;
   __pkg.initialise(ims);
 });

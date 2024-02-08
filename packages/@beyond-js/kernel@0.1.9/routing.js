@@ -1104,7 +1104,6 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       var _core = require("@beyond-js/kernel/core");
       var _history = require("./history/history");
       var RoutingMode;
-      exports.RoutingMode = RoutingMode;
       (function (RoutingMode) {
         RoutingMode[RoutingMode["Hash"] = 0] = "Hash";
         RoutingMode[RoutingMode["Pathname"] = 1] = "Pathname";
@@ -1200,8 +1199,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
       }
       exports.Routing = Routing;
       /*bundle*/
-      const routing = new Routing();
-      exports.routing = routing;
+      const routing = exports.routing = new Routing();
       window.routing = routing;
       beyond.navigate = (url, state) => routing.pushState(url, state);
       beyond.pushState = (url, state) => routing.pushState(url, state);
@@ -1421,13 +1419,12 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "@beyond-js/kerne
     "from": "routing",
     "name": "routing"
   }];
-  let IContainerControl, LayoutContainer, PageContainer, routing;
+  let IContainerControl = _exports.IContainerControl = void 0,
+    LayoutContainer = _exports.LayoutContainer = void 0,
+    PageContainer = _exports.PageContainer = void 0,
+    routing = _exports.routing = void 0;
 
   // Module exports
-  _exports.routing = routing;
-  _exports.PageContainer = PageContainer;
-  _exports.LayoutContainer = LayoutContainer;
-  _exports.IContainerControl = IContainerControl;
   __pkg.exports.process = function ({
     require,
     prop,
