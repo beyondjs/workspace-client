@@ -726,6 +726,7 @@ define(["exports", "module", "@beyond-js/kernel@0.1.9/bundle", "react@18.2.0", "
     texts
   }) {
     const onClose = () => {
+      localStorage.setItem(`workspace.seen.version.${workspace.version}`, "true");
       close(false);
     };
     const {
