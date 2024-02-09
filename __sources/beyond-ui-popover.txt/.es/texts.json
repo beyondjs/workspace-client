@@ -1,0 +1,15 @@
+{
+  "es": {
+    "title": "Lista tipo Trello con BeyondJS"
+  },
+  "en": {
+    "title": "Trello list with BeyondJS",
+    "list": {
+      "placeholder": "Agrega el nombre de la tarjeta",
+      "actions": {
+        "card": "Agregar tarjeta",
+        "save": "Guardar"
+      }
+    }
+  }
+}

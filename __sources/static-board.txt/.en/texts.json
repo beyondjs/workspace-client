@@ -1,0 +1,12 @@
+{
+  "en": {
+    "actions": {
+      "copy": "Copy path"
+    }
+  },
+  "es": {
+    "actions": {
+      "copy": "Copiar directorio"
+    }
+  }
+}

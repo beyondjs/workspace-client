@@ -1,0 +1,15 @@
+{
+    "packages": [
+        "./package.json",
+        "../inspect/package.json",
+        "../plm/package.json",
+        "../ui/package.json",
+        "../@beyond-js/local/package.json",
+        "../@beyond-js/backend/package.json",
+        "../@beyond-js/kernel/package.json",
+        "../@beyond-js/widgets/package.json"
+    ],
+    "processors": {
+        "register": ["../processors"]
+    }
+}

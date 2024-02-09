@@ -1,0 +1,10 @@
+{
+    "en": {
+        "unplugged": {
+            "title": "Para conectarte al Workspace debes seguir los siguientes pasos",
+            "p1": "1. Instala BeyondJS:",
+            "p2": "2. Inicia BeyondJS en la carpeta que desees con el siguiente comando",
+            "action": "Recarga y empieza a crear."
+        }
+    }
+}

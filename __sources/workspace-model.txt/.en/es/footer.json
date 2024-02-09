@@ -1,0 +1,10 @@
+{
+  "es": {
+    "footer": {
+      "path": "pathname",
+      "project": "Project",
+      "projectEmpty": "No projects selected"
+    }
+  }
+}
+
